@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SpeedyChef</string>
+	<string name="MM_Home_Title">Home</string>
+	<string name="MM_Search_Title">Search</string>
+	<string name="MM_Browse_Title">Browse</string>
+	<string name="MM_Plan_Title">Plan</string>
+	<string name="MM_Preferences_Title">Preferences</string>
+	<string name="MM_Account_Title">Account</string>
+</resources>

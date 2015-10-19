@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/MM_Home"
+          android:title="@string/MM_Home_Title"
+          android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/MM_Search"
+          android:title="@string/MM_Search_Title"
+          android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/MM_Browse"
+          android:title="@string/MM_Browse_Title"
+          android:showAsAction="ifRoom|withText"/>
+   	<item android:id="@+id/MM_Plan"
+          android:title="@string/MM_Plan_Title"
+          android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/MM_Preferences"
+          android:title="@string/MM_Preferences_Title"
+          android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/MM_Account"
+          android:title="@string/MM_Account_Title"
+          android:showAsAction="ifRoom|withText"/>
+</menu>
