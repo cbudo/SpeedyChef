@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<style name="MyTheme" parent="MyTheme.Base">
+		<item name="colorPrimary">@color/my_blue</item>
+		<item name="colorAccent">@color/my_purple</item>
+		<item name="android:windowBackground">@color/my_black</item>
+		<item name="android:textColorPrimary">@color/my_blue</item>
+	</style>
+	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
+		<item name="colorPrimary">#2196F3</item>
+		<item name="colorPrimaryDark">#1976D2</item>
+		<item name="colorAccent">#FF4081</item>
+	</style>
+</resources>
