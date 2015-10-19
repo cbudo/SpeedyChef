@@ -33,6 +33,7 @@ namespace SpeedyChef
 					Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
 				};
 
+				//Testing Github through Comment
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed"); 

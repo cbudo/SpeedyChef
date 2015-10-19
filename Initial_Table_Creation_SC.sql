@@ -1,3 +1,6 @@
+USE SpeedyChef;
+GO
+
 CREATE TABLE Recipe
 (
 Recid int PRIMARY KEY CLUSTERED,
@@ -42,6 +45,7 @@ Groupname varchar(50) REFERENCES Member_Group(Groupname),
 Tooldesc varchar(255),
 PRIMARY KEY (Toolname, Groupname));
 
+
 CREATE TABLE Oven
 (
 Toolname varchar(50) REFERENCES Tool(Toolname),
@@ -50,7 +54,7 @@ Ovenpwrtype varchar(255),
 Ovenburnnum int,
 PRIMARY KEY (Toolname, Groupname));
 
-
+GO
 
 
 
@@ -61,11 +65,15 @@ Recid int REFERENCES Recipe(Recid),
 Taskid int REFERENCES Task(Taskid),
 PRIMARY KEY (Recid, Taskid));
 
+GO
+
 CREATE TABLE Task_Food_Items
 (
 Taskid int REFERENCES Task(Taskid),
 Foodname varchar(50) REFERENCES Food_Item(Foodname),
 PRIMARY KEY (Taskid, Foodname));
+
+GO 
 
 CREATE TABLE Member_Allergens
 (
@@ -73,6 +81,8 @@ Memname varchar(30) REFERENCES Member(Memname),
 Foodname varchar(50) REFERENCES Food_Item(Foodname),
 Substitution varchar(50) REFERENCES Food_Item(Foodname),
 PRIMARY KEY (Memname, Foodname));
+
+GO
 
 CREATE TABLE Agenda_Recipes
 (
@@ -82,3 +92,5 @@ Recstart datetime,
 Recend datetime,
 Partysize int,
 PRIMARY KEY (Agowner, Recid));
+
+GO

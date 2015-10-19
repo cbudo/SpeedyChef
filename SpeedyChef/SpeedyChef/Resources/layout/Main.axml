@@ -19,4 +19,14 @@
             android:id="@+id/menu_button"
             android:background="@drawable/menu_lines" />
     </LinearLayout>
+    <SearchView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_search"
+        android:background="#ff000000"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp" />
 </LinearLayout>
