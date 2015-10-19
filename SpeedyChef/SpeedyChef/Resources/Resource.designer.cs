@@ -1558,6 +1558,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f0b0028
 			public const int list_item = 2131427368;
 			
+			// aapt resource value: 0x7f0b004f
+			public const int main_search = 2131427407;
+			
 			// aapt resource value: 0x7f0b0053
 			public const int media_actions = 2131427411;
 			
@@ -1596,9 +1599,6 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f0b0030
 			public const int scrollView = 2131427376;
-			
-			// aapt resource value: 0x7f0b004f
-			public const int searchView1 = 2131427407;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int search_badge = 2131427394;
@@ -2385,14 +2385,14 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f070070
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131165296;
 			
-			// aapt resource value: 0x7f07012c
-			public const int Mono_Android_Theme_Splash = 2131165484;
+			// aapt resource value: 0x7f07012d
+			public const int Mono_Android_Theme_Splash = 2131165485;
 			
 			// aapt resource value: 0x7f07012a
 			public const int MyTheme = 2131165482;
 			
-			// aapt resource value: 0x7f07012b
-			public const int MyTheme_Base = 2131165483;
+			// aapt resource value: 0x7f07012c
+			public const int MyTheme_Base = 2131165484;
 			
 			// aapt resource value: 0x7f07000f
 			public const int Platform_AppCompat = 2131165199;
@@ -2423,6 +2423,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f070013
 			public const int Platform_Widget_AppCompat_Spinner = 2131165203;
+			
+			// aapt resource value: 0x7f07012b
+			public const int PopupMenu = 2131165483;
 			
 			// aapt resource value: 0x7f070020
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131165216;

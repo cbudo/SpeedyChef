@@ -23,7 +23,6 @@ namespace SpeedyChef
 
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 
-
 			menu_button.Click += (s, arg) => {
 				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);

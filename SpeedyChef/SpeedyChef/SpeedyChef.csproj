@@ -69,11 +69,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\menu\Main_Menu.xml" />
-    <AndroidResource Include="Resources\drawable\pressed_lines.png" />
-    <AndroidResource Include="Resources\drawable\menu_lines.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable\menu_lines.png" />
+    <AndroidResource Include="Resources\drawable\pressed_lines.png" />
+    <AndroidResource Include="Resources\menu\Main_Menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

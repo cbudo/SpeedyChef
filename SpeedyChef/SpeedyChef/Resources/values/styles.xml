@@ -3,8 +3,17 @@
 	<style name="MyTheme" parent="MyTheme.Base">
 		<item name="colorPrimary">@color/my_blue</item>
 		<item name="colorAccent">@color/my_purple</item>
+		<item name="android:colorPrimary">@color/my_black</item>
+		<item name="android:colorAccent">@color/my_black</item>
 		<item name="android:windowBackground">@color/my_black</item>
 		<item name="android:textColorPrimary">@color/my_blue</item>
+		<item name="android:statusBarColor">@color/my_blue</item>
+		<item name="android:navigationBarColor">@color/my_blue</item>
+		<item name="android:popupMenuStyle">@style/PopupMenu</item>
+	</style>
+	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+		<item name="android:popupBackground">@android:color/white</item>
+		<item name="android:textColorPrimary">@color/my_black</item>
 	</style>
 	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="windowNoTitle">true</item>

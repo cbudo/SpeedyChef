@@ -23,5 +23,8 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchView1" />
+        android:id="@+id/main_search"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp" />
 </LinearLayout>
