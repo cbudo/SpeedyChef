@@ -34,6 +34,7 @@ namespace SpeedyChef
 				};
 
 				//Testing Github through Comment
+				//Another comment
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed"); 
