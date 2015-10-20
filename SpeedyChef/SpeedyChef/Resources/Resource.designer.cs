@@ -2490,8 +2490,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080131
 			public const int MenuTextSmall = 2131231025;
 			
-			// aapt resource value: 0x7f080134
-			public const int Mono_Android_Theme_Splash = 2131231028;
+			// aapt resource value: 0x7f080135
+			public const int Mono_Android_Theme_Splash = 2131231029;
 			
 			// aapt resource value: 0x7f08012d
 			public const int MyTheme = 2131231021;
@@ -2786,6 +2786,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f0800ea
 			public const int ThemeOverlay_AppCompat_Light = 2131230954;
+			
+			// aapt resource value: 0x7f080134
+			public const int WebImage = 2131231028;
 			
 			// aapt resource value: 0x7f0800eb
 			public const int Widget_AppCompat_ActionBar = 2131230955;

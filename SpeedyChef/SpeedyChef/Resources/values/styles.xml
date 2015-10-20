@@ -17,6 +17,8 @@
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textColor">@color/text</item>
+		<item name="android:textSize">16dp</item>
+		<item name="android:padding">15dp</item>
 	</style>
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
 		<item name="android:popupBackground">@android:color/white</item>
@@ -37,6 +39,10 @@
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>
 		<item name="android:gravity">center</item>
-		<item name="android:padding">20px</item>
+	</style>
+	<style name="WebImage">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
 	</style>
 </resources>
