@@ -10,10 +10,17 @@
 		<item name="android:statusBarColor">@color/my_blue</item>
 		<item name="android:navigationBarColor">@color/my_blue</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
+		<item name="textAppearanceLargePopupMenu">@style/MenuTextLarge</item>
+		<item name="textAppearanceSmallPopupMenu">@style/MenuTextSmall</item>
 	</style>
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
 		<item name="android:popupBackground">@android:color/white</item>
-		<item name="android:textColorPrimary">@color/my_black</item>
+	</style>
+	<style name="MenuTextLarge">
+		<item name="android:textColor">@color/my_black</item>
+	</style>
+	<style name="MenuTextSmall">
+		<item name="android:textColor">@color/my_black</item>
 	</style>
 	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="windowNoTitle">true</item>
