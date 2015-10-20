@@ -81,6 +81,7 @@
     <AndroidResource Include="Resources\drawable\pressed_lines.png" />
     <AndroidResource Include="Resources\menu\Main_Menu.xml" />
     <AndroidResource Include="Resources\layout\TestCardView.axml" />
+    <AndroidResource Include="Resources\layout\Step.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
