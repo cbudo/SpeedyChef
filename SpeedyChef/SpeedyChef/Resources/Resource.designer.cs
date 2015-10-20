@@ -775,29 +775,29 @@ namespace SpeedyChef
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f070043
-			public const int abc_background_cache_hint_selector_material_dark = 2131165251;
-			
 			// aapt resource value: 0x7f070044
-			public const int abc_background_cache_hint_selector_material_light = 2131165252;
+			public const int abc_background_cache_hint_selector_material_dark = 2131165252;
+			
+			// aapt resource value: 0x7f070045
+			public const int abc_background_cache_hint_selector_material_light = 2131165253;
 			
 			// aapt resource value: 0x7f070004
 			public const int abc_input_method_navigation_guard = 2131165188;
 			
-			// aapt resource value: 0x7f070045
-			public const int abc_primary_text_disable_only_material_dark = 2131165253;
-			
 			// aapt resource value: 0x7f070046
-			public const int abc_primary_text_disable_only_material_light = 2131165254;
+			public const int abc_primary_text_disable_only_material_dark = 2131165254;
 			
 			// aapt resource value: 0x7f070047
-			public const int abc_primary_text_material_dark = 2131165255;
+			public const int abc_primary_text_disable_only_material_light = 2131165255;
 			
 			// aapt resource value: 0x7f070048
-			public const int abc_primary_text_material_light = 2131165256;
+			public const int abc_primary_text_material_dark = 2131165256;
 			
 			// aapt resource value: 0x7f070049
-			public const int abc_search_url_text = 2131165257;
+			public const int abc_primary_text_material_light = 2131165257;
+			
+			// aapt resource value: 0x7f07004a
+			public const int abc_search_url_text = 2131165258;
 			
 			// aapt resource value: 0x7f070005
 			public const int abc_search_url_text_normal = 2131165189;
@@ -808,11 +808,11 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f070007
 			public const int abc_search_url_text_selected = 2131165191;
 			
-			// aapt resource value: 0x7f07004a
-			public const int abc_secondary_text_material_dark = 2131165258;
-			
 			// aapt resource value: 0x7f07004b
-			public const int abc_secondary_text_material_light = 2131165259;
+			public const int abc_secondary_text_material_dark = 2131165259;
+			
+			// aapt resource value: 0x7f07004c
+			public const int abc_secondary_text_material_light = 2131165260;
 			
 			// aapt resource value: 0x7f070008
 			public const int accent_material_dark = 2131165192;
@@ -997,17 +997,20 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f07003b
 			public const int switch_thumb_disabled_material_light = 2131165243;
 			
-			// aapt resource value: 0x7f07004c
-			public const int switch_thumb_material_dark = 2131165260;
-			
 			// aapt resource value: 0x7f07004d
-			public const int switch_thumb_material_light = 2131165261;
+			public const int switch_thumb_material_dark = 2131165261;
+			
+			// aapt resource value: 0x7f07004e
+			public const int switch_thumb_material_light = 2131165262;
 			
 			// aapt resource value: 0x7f07003c
 			public const int switch_thumb_normal_material_dark = 2131165244;
 			
 			// aapt resource value: 0x7f07003d
 			public const int switch_thumb_normal_material_light = 2131165245;
+			
+			// aapt resource value: 0x7f070043
+			public const int text = 2131165251;
 			
 			static Color()
 			{
@@ -1930,10 +1933,13 @@ namespace SpeedyChef
 			public const int select_dialog_singlechoice_material = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int support_simple_spinner_dropdown_item = 2130903076;
+			public const int Step = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int TestCardView = 2130903077;
+			public const int support_simple_spinner_dropdown_item = 2130903077;
+			
+			// aapt resource value: 0x7f030026
+			public const int TestCardView = 2130903078;
 			
 			static Layout()
 			{
@@ -2475,20 +2481,23 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080002
 			public const int CardView_Light = 2131230722;
 			
-			// aapt resource value: 0x7f08012f
-			public const int MenuTextLarge = 2131231023;
+			// aapt resource value: 0x7f080133
+			public const int CenterTitle = 2131231027;
 			
 			// aapt resource value: 0x7f080130
-			public const int MenuTextSmall = 2131231024;
+			public const int MenuTextLarge = 2131231024;
 			
-			// aapt resource value: 0x7f080132
-			public const int Mono_Android_Theme_Splash = 2131231026;
+			// aapt resource value: 0x7f080131
+			public const int MenuTextSmall = 2131231025;
+			
+			// aapt resource value: 0x7f080135
+			public const int Mono_Android_Theme_Splash = 2131231029;
 			
 			// aapt resource value: 0x7f08012d
 			public const int MyTheme = 2131231021;
 			
-			// aapt resource value: 0x7f080131
-			public const int MyTheme_Base = 2131231025;
+			// aapt resource value: 0x7f080132
+			public const int MyTheme_Base = 2131231026;
 			
 			// aapt resource value: 0x7f080012
 			public const int Platform_AppCompat = 2131230738;
@@ -2520,8 +2529,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080016
 			public const int Platform_Widget_AppCompat_Spinner = 2131230742;
 			
-			// aapt resource value: 0x7f08012e
-			public const int PopupMenu = 2131231022;
+			// aapt resource value: 0x7f08012f
+			public const int PopupMenu = 2131231023;
 			
 			// aapt resource value: 0x7f080023
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131230755;
@@ -2718,6 +2727,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f0800d7
 			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131230935;
 			
+			// aapt resource value: 0x7f08012e
+			public const int TextBase = 2131231022;
+			
 			// aapt resource value: 0x7f0800d8
 			public const int Theme_AppCompat = 2131230936;
 			
@@ -2774,6 +2786,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f0800ea
 			public const int ThemeOverlay_AppCompat_Light = 2131230954;
+			
+			// aapt resource value: 0x7f080134
+			public const int WebImage = 2131231028;
 			
 			// aapt resource value: 0x7f0800eb
 			public const int Widget_AppCompat_ActionBar = 2131230955;
