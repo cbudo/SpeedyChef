@@ -104,18 +104,11 @@ namespace SpeedyChef
 
 		public TestObject ()
 		{
-			CaptionArray = new string[11];
-			CaptionArray [0] = "hello";
-			CaptionArray [1] = "this";
-			CaptionArray [2] = "is";
-			CaptionArray [3] = "a";
-			CaptionArray [4] = "test";
-			CaptionArray [5] = "six";
-			CaptionArray [6] = "seven";
-			CaptionArray [7] = "eight";
-			CaptionArray [8] = "nine";
-			CaptionArray [9] = "ten";
-			CaptionArray [10] = "eleven";
+			int numCaptions = 300;
+			CaptionArray = new string[numCaptions];
+			for (int i = 0; i < numCaptions; i++){
+				CaptionArray [i] = i.ToString();
+			}
 			NumElements = CaptionArray.Length;
 		}
 
