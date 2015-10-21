@@ -22,51 +22,46 @@ namespace SpeedyChef
 		{
 			base.OnCreate (bundle);
 
+			//RECYCLER VIEW
 			mObject = new TestObject ();
-
 			mAdapter = new TestAdapter (mObject);
-
 			SetContentView (Resource.Layout.Main);
-
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
-
 			mRecyclerView.SetAdapter (mAdapter);
-
 			mLayoutManager = new v7Widget.LinearLayoutManager (this);
 			mRecyclerView.SetLayoutManager (mLayoutManager);
 
+			//SEARCH VIEW
 			SearchView searchView = FindViewById<SearchView> (Resource.Id.main_search);
-
 			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener)this);
-				
 			searchView.SetQueryHint ("Search Recipes...");
-
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
-
 			search_container.Click += (sender, e) => {
 				if (searchView.Iconified != false){
 					searchView.Iconified = false;
 				}
 			};
 
+			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
-
 			menu_button.Click += (s, arg) => {
 				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
-
 				menu.MenuItemClick += (s1, arg1) => {
-					Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
+					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
+					if (arg1.Item.TitleFormatted.ToString() == "Search") {
+						var intent = new Intent(this, typeof(MainSearchActivity));
+						StartActivity(intent);
+					}
 				};
-
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
 				};
-
 				menu.Show ();
 			};
+				
 		}
 
 		public bool OnQueryTextChange(string input)
