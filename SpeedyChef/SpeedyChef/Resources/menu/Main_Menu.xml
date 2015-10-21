@@ -18,4 +18,7 @@
     <item android:id="@+id/MM_Account"
           android:title="@string/MM_Account_Title"
           android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/MM_Walkthrough"
+    	  android:title="@string/MM_Walkthrough"
+    	  android:showAsAction="ifRoom|withText"/>
 </menu>

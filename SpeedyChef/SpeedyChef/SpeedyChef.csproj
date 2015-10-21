@@ -59,6 +59,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MainSearchActivity.cs" />
     <Compile Include="StepsActivity.cs" />
     <Compile Include="Models\RecipeStep.cs" />
     <Compile Include="MealPlannerCalendar.cs" />
