@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace SpeedyChef
 {
 	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : Activity, SearchView.IOnQueryTextListener, SearchView.IOnSuggestionListener
 	{
 		v7Widget.RecyclerView mRecyclerView;
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
@@ -25,7 +25,7 @@ namespace SpeedyChef
 			mObject = new TestObject ();
 
 			mAdapter = new TestAdapter (mObject);
-			// Set our view from the "main" layout resource
+
 			SetContentView (Resource.Layout.Main);
 
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
@@ -34,6 +34,20 @@ namespace SpeedyChef
 
 			mLayoutManager = new v7Widget.LinearLayoutManager (this);
 			mRecyclerView.SetLayoutManager (mLayoutManager);
+
+			SearchView searchView = FindViewById<SearchView> (Resource.Id.main_search);
+
+			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener)this);
+				
+			searchView.SetQueryHint ("Search Recipes...");
+
+			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
+
+			search_container.Click += (sender, e) => {
+				if (searchView.Iconified != false){
+					searchView.Iconified = false;
+				}
+			};
 
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 
@@ -53,6 +67,28 @@ namespace SpeedyChef
 
 				menu.Show ();
 			};
+		}
+
+		public bool OnQueryTextChange(string input)
+		{
+			System.Console.WriteLine (input);
+			return true;
+		}
+
+		public bool OnQueryTextSubmit(string input)
+		{
+			System.Console.WriteLine (input);
+			return true;
+		}
+
+		public bool OnSuggestionSelect (int position)
+		{
+			return false;
+		}
+
+		public bool OnSuggestionClick (int position)
+		{
+			return false;
 		}
 	}
 
