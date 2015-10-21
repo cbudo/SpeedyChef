@@ -12,5 +12,6 @@
 		<item name="android:textColorPrimary">@color/my_blue</item>
 		<item name="android:statusBarColor">@color/my_blue</item>
 		<item name="android:navigationBarColor">@color/my_blue</item>
+		<item name="android:textColorHint">@color/my_blue</item>
 	</style>
 </resources>

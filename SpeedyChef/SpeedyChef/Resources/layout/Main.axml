@@ -18,23 +18,40 @@
             android:id="@+id/menu_button"
             android:background="@drawable/menu_lines" />
     </LinearLayout>
-    <SearchView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_search"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="50dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_container"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="50dp">
+            <SearchView
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/main_search"
+                android:layoutMode="opticalBounds"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginBottom="0dp" />
+        </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:scrollbars="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 </LinearLayout>
