@@ -13,7 +13,7 @@
 	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textColor">@color/my_blue</item>
+		<item name="android:textColor">@color/text</item>
 	</style>
 	<style name="generalButtonStyle">
 		<item name="android:background">@color/my_blue</item>
@@ -37,5 +37,10 @@
 		<item name="colorPrimary">#2196F3</item>
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#FF4081</item>
+	</style>
+	<style name="PaginatedContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">20dp</item>
 	</style>
 </resources>

@@ -3,10 +3,6 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Dummy Text" />
     <android.support.v4.view.ViewPager
         android:id="@+id/walkthrough_pager"
         android:layout_width="fill_parent"

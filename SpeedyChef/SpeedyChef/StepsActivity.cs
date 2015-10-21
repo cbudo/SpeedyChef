@@ -16,7 +16,7 @@ using Android.Support.V4.View;
 namespace SpeedyChef
 {
 
-	[Activity(Label = "PagerDemo", Icon = "@drawable/icon")]
+	/*[Activity(Label = "PagerDemo", Icon = "@drawable/icon")]
 	public class StepsActivity : FragmentActivity
 	{
 		private ViewPager viewPager;
@@ -32,7 +32,7 @@ namespace SpeedyChef
 
 
 		}
-	}
+	} */
 
 	public class AwesomeFragmentAdapter : FragmentPagerAdapter {
 
@@ -62,15 +62,15 @@ namespace SpeedyChef
 		}
 	}
 		
-	/*[Activity (Label = "StepsActivity")]			
-	/*public class StepsActivity : FragmentActivity
-	/*{
+	[Activity (Label = "StepsActivity")]			
+	public class StepsActivity : FragmentActivity
+	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Walkthrough);
-			Android.Support.V4.View.ViewPager vp = (Android.Support.V4.View.ViewPager) FindViewById (Resource.Id.walkthrough_pager);
+			ViewPager vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
 
 			RecipeStep[] steps = new RecipeStep[4];
 			RecipeStep s1 = new RecipeStep();
@@ -95,11 +95,11 @@ namespace SpeedyChef
 
 			/*TextView title = FindViewById (Resource.Id.step_title);
 			ImageView img = FindViewById (Resource.Id.step_image);
-			TextView desc = FindViewById (Resource.Id.step_desc); 
+			TextView desc = FindViewById (Resource.Id.step_desc); */
 		}
-	}*/
+	}
 
-	/*class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
+	class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
 		private RecipeStep[] steps;
 		public StepFragmentPagerAdapter (Android.Support.V4.App.FragmentManager fm, RecipeStep[] steps) : base(fm) {
 			this.steps = steps;
@@ -115,9 +115,9 @@ namespace SpeedyChef
 			}
 		}
 
-	}*/
+	}
 
-	/*class StepFragment : Android.Support.V4.App.Fragment {
+	class StepFragment : Android.Support.V4.App.Fragment {
 
 		private RecipeStep recipeStep;
 
@@ -130,7 +130,7 @@ namespace SpeedyChef
 			ViewGroup rootView = (ViewGroup) inflater.Inflate (Resource.Layout.Step, container, false);
 
 			TextView titleTv = (TextView) rootView.FindViewById (Resource.Id.step_title);
-			//ImageView imgv = (ImageView) rootView.FindViewById (Resource.Id.step_image);
+			ImageView imgv = (ImageView) rootView.FindViewById (Resource.Id.step_image);
 			TextView descTv = (TextView) rootView.FindViewById (Resource.Id.step_desc);
 
 			titleTv.Text = this.recipeStep.title;
@@ -139,6 +139,6 @@ namespace SpeedyChef
 			return rootView;
 		}
 
-	}*/
+	}
 }
 
