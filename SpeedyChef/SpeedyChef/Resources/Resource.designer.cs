@@ -1455,11 +1455,14 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f02003e
 			public const int menu_lines = 2130837566;
 			
-			// aapt resource value: 0x7f020040
-			public const int notification_template_icon_bg = 2130837568;
-			
 			// aapt resource value: 0x7f02003f
-			public const int pressed_lines = 2130837567;
+			public const int monoandroidsplash = 2130837567;
+			
+			// aapt resource value: 0x7f020041
+			public const int notification_template_icon_bg = 2130837569;
+			
+			// aapt resource value: 0x7f020040
+			public const int pressed_lines = 2130837568;
 			
 			static Drawable()
 			{
@@ -2561,6 +2564,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f080131
 			public const int MenuTextSmall = 2131231025;
+			
+			// aapt resource value: 0x7f080135
+			public const int Mono_Android_Theme_Splash = 2131231029;
 			
 			// aapt resource value: 0x7f08012d
 			public const int MyTheme = 2131231021;

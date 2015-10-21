@@ -78,8 +78,8 @@ namespace SpeedyChef
 			Button addButton = FindViewById<Button> (Resource.Id.addMeal);
 			addButton.Click += (sender, e) => {
 				//StartActivity(typeof(AddMealActivity));
-				var intent = new Intent(this, typeof(AddMealActivity));
-				StartActivity(intent);
+				//var intent = new Intent(this, typeof(AddMealActivity));
+				//StartActivity(intent);
 
 			};
 
