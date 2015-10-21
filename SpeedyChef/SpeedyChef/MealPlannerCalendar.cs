@@ -14,7 +14,7 @@ using Java.Util;
 
 namespace SpeedyChef
 {
-	[Activity (Theme="@style/MyTheme", Label = "MealPlannerCalendar")]			
+	[Activity (Label = "MealPlannerCalendar")]			
 	public class MealPlannerCalendar : Activity
 	{
 		/**

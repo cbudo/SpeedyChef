@@ -33,7 +33,7 @@ namespace SpeedyChef
 
 			//SEARCH VIEW
 			SearchView searchView = FindViewById<SearchView> (Resource.Id.main_search);
-			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener)this);
+			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener) this);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {

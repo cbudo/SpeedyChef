@@ -13,6 +13,7 @@
         android:layout_height="80px"
         android:id="@+id/monthBar">
         <Button
+            style="@style/generalButtonStyle"
             android:text="&lt;"
             android:layout_width="40px"
             android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
             android:layout_centerHorizontal="true"
             android:minWidth="250dp" />
         <Button
+            style="@style/generalButtonStyle"
             android:text="&gt;"
             android:layout_width="30px"
             android:layout_height="wrap_content"
@@ -51,6 +53,7 @@
             android:layout_height="70dp"
             android:id="@+id/dayLayout">
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X S"
                 android:layout_width="wrap_content"
@@ -58,6 +61,7 @@
                 android:id="@+id/day1"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X M"
                 android:layout_width="wrap_content"
@@ -65,6 +69,7 @@
                 android:id="@+id/day2"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X T"
                 android:layout_width="wrap_content"
@@ -72,6 +77,7 @@
                 android:id="@+id/day3"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X W"
                 android:layout_width="wrap_content"
@@ -79,6 +85,7 @@
                 android:id="@+id/day4"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X T"
                 android:layout_width="wrap_content"
@@ -86,6 +93,7 @@
                 android:id="@+id/day5"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X F"
                 android:layout_width="wrap_content"
@@ -93,6 +101,7 @@
                 android:id="@+id/day6"
                 android:layout_weight="1" />
             <Button
+                style="@style/generalButtonStyle"
                 android:lines="2"
                 android:text="X S"
                 android:layout_width="wrap_content"
@@ -133,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spaceLeft" />
             <Button
+                style="@style/generalButtonStyle"
                 android:text="Add"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"

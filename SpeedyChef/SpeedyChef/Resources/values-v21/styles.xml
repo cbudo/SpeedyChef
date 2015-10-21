@@ -13,5 +13,25 @@
 		<item name="android:statusBarColor">@color/my_blue</item>
 		<item name="android:navigationBarColor">@color/my_blue</item>
 		<item name="android:textColorHint">@color/my_blue</item>
+		<item name="android:popupMenuStyle">@style/PopupMenu</item>
+	</style>
+	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textColor">@color/my_blue</item>
+	</style>
+	<style name="generalButtonStyle">
+		<item name="android:background">@color/my_blue</item>
+	</style>
+	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+		<item name="android:popupBackground">@android:color/white</item>
+		<item name="android:textColorPrimary">@android:color/my_black</item>
+	</style>
+	<style name="CenterTitle" parent="TextBase">
+		<item name="android:textSize">28dp</item>
+		<item name="android:gravity">center</item>
+	</style>
+	<style name="WebImage">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
 	</style>
 </resources>

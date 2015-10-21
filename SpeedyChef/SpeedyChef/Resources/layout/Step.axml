@@ -5,14 +5,11 @@
     android:layout_height="fill_parent">
     <TextView
         android:id="@+id/step_title"
-        style="@style/CenterTitle"
         android:text="Boil Potatoes" />
     <ImageView
         android:id="@+id/step_image"
-        style="@style/WebImage"
         android:src="@drawable/icon" />
     <TextView
         android:id="@+id/step_desc"
-        style="@style/TextBase"
         android:text="Put the potatoes into the boiling water. Check back on them twelve minutes later. If they are done, they will be soft and the peel will slide off easily." />
 </LinearLayout>
