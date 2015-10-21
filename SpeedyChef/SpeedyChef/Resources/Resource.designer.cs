@@ -1477,23 +1477,23 @@ namespace SpeedyChef
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f060068
+			public const int MM_Account = 2131099752;
+			
 			// aapt resource value: 0x7f060065
-			public const int MM_Account = 2131099749;
-			
-			// aapt resource value: 0x7f060062
-			public const int MM_Browse = 2131099746;
-			
-			// aapt resource value: 0x7f060060
-			public const int MM_Home = 2131099744;
+			public const int MM_Browse = 2131099749;
 			
 			// aapt resource value: 0x7f060063
-			public const int MM_Plan = 2131099747;
+			public const int MM_Home = 2131099747;
+			
+			// aapt resource value: 0x7f060066
+			public const int MM_Plan = 2131099750;
+			
+			// aapt resource value: 0x7f060067
+			public const int MM_Preferences = 2131099751;
 			
 			// aapt resource value: 0x7f060064
-			public const int MM_Preferences = 2131099748;
-			
-			// aapt resource value: 0x7f060061
-			public const int MM_Search = 2131099745;
+			public const int MM_Search = 2131099748;
 			
 			// aapt resource value: 0x7f060052
 			public const int action0 = 2131099730;
@@ -1738,6 +1738,15 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060054
 			public const int status_bar_latest_event_content = 2131099732;
 			
+			// aapt resource value: 0x7f060061
+			public const int step_desc = 2131099745;
+			
+			// aapt resource value: 0x7f060060
+			public const int step_image = 2131099744;
+			
+			// aapt resource value: 0x7f06005f
+			public const int step_title = 2131099743;
+			
 			// aapt resource value: 0x7f06004a
 			public const int submit_area = 2131099722;
 			
@@ -1753,8 +1762,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060032
 			public const int textSpacerNoButtons = 2131099698;
 			
-			// aapt resource value: 0x7f06005f
-			public const int textView = 2131099743;
+			// aapt resource value: 0x7f060062
+			public const int textView = 2131099746;
 			
 			// aapt resource value: 0x7f060058
 			public const int time = 2131099736;
