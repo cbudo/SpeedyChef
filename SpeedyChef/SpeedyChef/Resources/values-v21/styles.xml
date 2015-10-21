@@ -6,24 +6,20 @@
 		<item name="android:windowAllowReturnTransitionOverlap">true</item>
 		<item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
 		<item name="android:windowSharedElementExitTransition">@android:transition/move</item>
-		<item name="android:colorPrimary">@color/my_black</item>
-		<item name="android:colorAccent">@color/my_blue</item>
 		<item name="android:windowBackground">@color/my_black</item>
-		<item name="android:textColorPrimary">@color/my_blue</item>
-		<item name="android:statusBarColor">@color/my_blue</item>
-		<item name="android:navigationBarColor">@color/my_blue</item>
-		<item name="android:textColorHint">@color/my_blue</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
 	</style>
 	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
 		<item name="android:textColor">@color/my_blue</item>
+		<item name="android:background">@color/my_black</item>
 	</style>
 	<style name="generalButtonStyle">
 		<item name="android:background">@color/my_blue</item>
 	</style>
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
 		<item name="android:popupBackground">@android:color/white</item>
-		<item name="android:textColorPrimary">@android:color/my_black</item>
+		<item name="android:textColor">@android:color/green</item>
+		<item name="android:textSize">12dp</item>
 	</style>
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>

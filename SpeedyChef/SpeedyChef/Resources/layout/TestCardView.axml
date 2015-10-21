@@ -10,15 +10,15 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="5dp">
         <LinearLayout
+            android:background="@color/my_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp">
             <TextView
+                style="@style/TextBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
                 android:text="Caption"
                 android:id="@+id/textView"
                 android:layout_gravity="center_horizontal"
