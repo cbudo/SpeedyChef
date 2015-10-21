@@ -2078,6 +2078,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f090019
 			public const int MM_Walkthrough = 2131296281;
 			
+			// aapt resource value: 0x7f09001a
+			public const int Main_Search_Hint = 2131296282;
+			
 			// aapt resource value: 0x7f090000
 			public const int abc_action_bar_home_description = 2131296256;
 			

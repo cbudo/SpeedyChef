@@ -14,7 +14,7 @@ using Java.Util;
 
 namespace SpeedyChef
 {
-	[Activity (Label = "MealPlannerCalendar")]			
+	[Activity (Theme="@style/MyTheme", Label = "MealPlannerCalendar")]			
 	public class MealPlannerCalendar : Activity
 	{
 		/**
@@ -81,6 +81,34 @@ namespace SpeedyChef
 				//var intent = new Intent(this, typeof(AddMealActivity));
 				//StartActivity(intent);
 
+			};
+
+			//MENU VIEW
+			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
+			menu_button.Click += (s, arg) => {
+				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+				PopupMenu menu = new PopupMenu (this, menu_button);
+				menu.Inflate (Resource.Menu.Main_Menu);
+				menu.MenuItemClick += (s1, arg1) => {
+					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
+					if (arg1.Item.TitleFormatted.ToString() == "Search") {
+						var intent = new Intent(this, typeof(MainSearchActivity));
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
+						var intent = new Intent(this, typeof(MealPlannerCalendar));
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
+						var intent = new Intent(this, typeof(StepsActivity));
+						StartActivity(intent);
+					}
+				};
+				menu.DismissEvent += (s2, arg2) => {
+					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+					Console.WriteLine ("menu dismissed");
+				};
+				menu.Show ();
 			};
 
 			// Define variables
@@ -200,4 +228,3 @@ namespace SpeedyChef
 
 	}
 }
-

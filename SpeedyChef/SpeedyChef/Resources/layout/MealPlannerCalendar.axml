@@ -5,6 +5,19 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_linear_layout">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/menu_button"
+            android:background="@drawable/menu_lines" />
+    </LinearLayout>
     <RelativeLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -23,6 +36,7 @@
             android:width="40dp"
             android:maxWidth="50dp" />
         <TextView
+            style="@style/TextBase"
             android:text="Month Presenter"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
@@ -111,6 +125,7 @@
         </LinearLayout>
     </HorizontalScrollView>
     <TextView
+        style="@style/TextBase"
         android:text="Debug Info"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
