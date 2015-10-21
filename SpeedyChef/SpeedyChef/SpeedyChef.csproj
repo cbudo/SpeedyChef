@@ -59,13 +59,10 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="MainSearchActivity.cs" />
-=======
     <Compile Include="StepsActivity.cs" />
     <Compile Include="Models\RecipeStep.cs" />
     <Compile Include="MealPlannerCalendar.cs" />
->>>>>>> 8e820c9eccc3578151a0ee3ddc950d09e88c8717
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -88,11 +85,8 @@
     <AndroidResource Include="Resources\drawable\pressed_lines.png" />
     <AndroidResource Include="Resources\menu\Main_Menu.xml" />
     <AndroidResource Include="Resources\layout\TestCardView.axml" />
-<<<<<<< HEAD
-=======
     <AndroidResource Include="Resources\layout\Step.axml" />
     <AndroidResource Include="Resources\layout\MealPlannerCalendar.axml" />
->>>>>>> 8e820c9eccc3578151a0ee3ddc950d09e88c8717
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
