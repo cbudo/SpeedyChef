@@ -50,7 +50,7 @@ namespace SpeedyChef
 		/**
 		 * List of all buttons in display area to be selected
 		 **/
-		Button[] daysList = null;
+		DateButton[] daysList = null;
 
 		/**
 		 * Location of button
@@ -91,17 +91,17 @@ namespace SpeedyChef
 			monthInfo.Text = current.ToString ("MMMMMMMMMM") + " of " + current.Year;
 
 			// Retrieve buttons from layouts
-			daysList [0] = FindViewById<Button> (Resource.Id.day1);
-			daysList [1] = FindViewById<Button> (Resource.Id.day2);
-			daysList [2] = FindViewById<Button> (Resource.Id.day3);
-			daysList [3] = FindViewById<Button> (Resource.Id.day4);
-			daysList [4] = FindViewById<Button> (Resource.Id.day5);
-			daysList [5] = FindViewById<Button> (Resource.Id.day6);
-			daysList [6] = FindViewById<Button> (Resource.Id.day7);
+			daysList [0] = new DateButton( FindViewById<Button> (Resource.Id.day1));
+			daysList [1] = new DateButton(FindViewById<Button> (Resource.Id.day2));
+			daysList [2] = new DateButton (FindViewById<Button> (Resource.Id.day3));
+			daysList [3] = new DateButton (FindViewById<Button> (Resource.Id.day4));
+			daysList [4] = new DateButton (FindViewById<Button> (Resource.Id.day5));
+			daysList [5] = new DateButton (FindViewById<Button> (Resource.Id.day6));
+			daysList [6] = new DateButton (FindViewById<Button> (Resource.Id.day7));
 
 			// Adding action listeners
 			for (int i = 0; i < daysList.Length; i++) {
-				daysList [i].Click += (sender, e) => {
+				daysList [i].wrappedButton.Click += (sender, e) => {
 					if (selected != null) {
 						selected.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
 					}
@@ -149,13 +149,13 @@ namespace SpeedyChef
 				// and displays appropriately
 				day = date.AddDays (-date.DayOfWeek.GetHashCode () + i).ToString ("M/d");
 				weekDay = date.AddDays (-date.DayOfWeek.GetHashCode () + i).ToString ("ddd");
-				daysList [i].Text = weekDay.Substring (0, 1) + "\n" + day;
+				daysList [i].wrappedButton.Text = weekDay.Substring (0, 1) + "\n" + day;
 				// Sets all the buttons to the default colors
-				daysList [i].SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
+				daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
 				// Handles setting the highlighting of the current day on the phone
 				if (i == current.DayOfWeek.GetHashCode () && date.Date.Equals (current.Date)) {
-					currentDate = daysList [i];
-					daysList [i].SetBackgroundColor (Android.Graphics.Color.ForestGreen);
+					currentDate = daysList [i].wrappedButton;
+					daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
 				}
 			}
 			// Removes any selected day
@@ -185,12 +185,13 @@ namespace SpeedyChef
 		}
 	}
 
-	public class DateButton : Button {
+	public class DateButton {
 
 		private DateTime dateField;
+		public Button wrappedButton;
 
-		public DateButton(Context context) : base(context){
-			
+		public DateButton(Button button){
+			wrappedButton = button;
 		}
 			
 		public void SetDateField(DateTime date){
