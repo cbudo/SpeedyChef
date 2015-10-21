@@ -87,6 +87,7 @@
     <AndroidResource Include="Resources\layout\TestCardView.axml" />
     <AndroidResource Include="Resources\layout\Step.axml" />
     <AndroidResource Include="Resources\layout\MealPlannerCalendar.axml" />
+    <AndroidResource Include="Resources\layout\Walkthrough.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

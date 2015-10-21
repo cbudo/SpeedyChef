@@ -10,20 +10,67 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.View;
 using Android.Support.V4.App;
+using Android.Support.V4.View;
 
 namespace SpeedyChef
 {
-	[Activity (Label = "StepsActivity")]			
+
+	[Activity(Label = "PagerDemo", Icon = "@drawable/icon")]
 	public class StepsActivity : FragmentActivity
 	{
+		private ViewPager viewPager;
+
+		protected override void OnCreate(Bundle bundle)
+		{
+			base.OnCreate(bundle);
+
+			SetContentView(Resource.Layout.Walkthrough);
+
+			viewPager = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
+			viewPager.Adapter = new AwesomeFragmentAdapter (SupportFragmentManager);
+
+
+		}
+	}
+
+	public class AwesomeFragmentAdapter : FragmentPagerAdapter {
+
+		public AwesomeFragmentAdapter(Android.Support.V4.App.FragmentManager fm) : base(fm) {
+
+		}
+
+		public override int Count {
+			get {
+				return 5;
+			}
+		}
+			
+
+		public override Android.Support.V4.App.Fragment GetItem(int position) {
+			return new AwesomeFragment ();
+		}
+	
+	}
+
+	public class AwesomeFragment : Android.Support.V4.App.Fragment {
+
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			var view = inflater.Inflate (Resource.Layout.Step, container, false);
+
+			return view;
+		}
+	}
+		
+	/*[Activity (Label = "StepsActivity")]			
+	/*public class StepsActivity : FragmentActivity
+	/*{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			ViewPager vp = new ViewPager (this);
-			SetContentView (vp);
+			SetContentView (Resource.Layout.Walkthrough);
+			Android.Support.V4.View.ViewPager vp = (Android.Support.V4.View.ViewPager) FindViewById (Resource.Id.walkthrough_pager);
 
 			RecipeStep[] steps = new RecipeStep[4];
 			RecipeStep s1 = new RecipeStep();
@@ -48,11 +95,11 @@ namespace SpeedyChef
 
 			/*TextView title = FindViewById (Resource.Id.step_title);
 			ImageView img = FindViewById (Resource.Id.step_image);
-			TextView desc = FindViewById (Resource.Id.step_desc); */
+			TextView desc = FindViewById (Resource.Id.step_desc); 
 		}
-	}
+	}*/
 
-	class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
+	/*class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
 		private RecipeStep[] steps;
 		public StepFragmentPagerAdapter (Android.Support.V4.App.FragmentManager fm, RecipeStep[] steps) : base(fm) {
 			this.steps = steps;
@@ -68,9 +115,9 @@ namespace SpeedyChef
 			}
 		}
 
-	}
+	}*/
 
-	class StepFragment : Android.Support.V4.App.Fragment {
+	/*class StepFragment : Android.Support.V4.App.Fragment {
 
 		private RecipeStep recipeStep;
 
@@ -92,6 +139,6 @@ namespace SpeedyChef
 			return rootView;
 		}
 
-	}
+	}*/
 }
 

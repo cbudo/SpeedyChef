@@ -1480,26 +1480,26 @@ namespace SpeedyChef
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f06007d
-			public const int MM_Account = 2131099773;
-			
-			// aapt resource value: 0x7f06007a
-			public const int MM_Browse = 2131099770;
-			
-			// aapt resource value: 0x7f060078
-			public const int MM_Home = 2131099768;
+			// aapt resource value: 0x7f06007e
+			public const int MM_Account = 2131099774;
 			
 			// aapt resource value: 0x7f06007b
-			public const int MM_Plan = 2131099771;
-			
-			// aapt resource value: 0x7f06007c
-			public const int MM_Preferences = 2131099772;
+			public const int MM_Browse = 2131099771;
 			
 			// aapt resource value: 0x7f060079
-			public const int MM_Search = 2131099769;
+			public const int MM_Home = 2131099769;
 			
-			// aapt resource value: 0x7f06007e
-			public const int MM_Walkthrough = 2131099774;
+			// aapt resource value: 0x7f06007c
+			public const int MM_Plan = 2131099772;
+			
+			// aapt resource value: 0x7f06007d
+			public const int MM_Preferences = 2131099773;
+			
+			// aapt resource value: 0x7f06007a
+			public const int MM_Search = 2131099770;
+			
+			// aapt resource value: 0x7f06007f
+			public const int MM_Walkthrough = 2131099775;
 			
 			// aapt resource value: 0x7f060067
 			public const int action0 = 2131099751;
@@ -1852,6 +1852,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060013
 			public const int useLogo = 2131099667;
 			
+			// aapt resource value: 0x7f060078
+			public const int walkthrough_pager = 2131099768;
+			
 			// aapt resource value: 0x7f060055
 			public const int weekOf = 2131099733;
 			
@@ -2021,6 +2024,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f030027
 			public const int TestCardView = 2130903079;
+			
+			// aapt resource value: 0x7f030028
+			public const int Walkthrough = 2130903080;
 			
 			static Layout()
 			{
