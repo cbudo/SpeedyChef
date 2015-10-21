@@ -54,6 +54,14 @@ namespace SpeedyChef
 						var intent = new Intent(this, typeof(MainSearchActivity));
 						StartActivity(intent);
 					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
+						var intent = new Intent(this, typeof(MealPlannerCalendar));
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
+						var intent = new Intent(this, typeof(StepsActivity));
+						StartActivity(intent);
+					}
 				};
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
@@ -149,5 +157,3 @@ namespace SpeedyChef
 		}
 	}
 }
-
-
