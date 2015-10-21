@@ -68,7 +68,7 @@ namespace SpeedyChef
 			// Provides global 
 			debug = FindViewById<TextView> (Resource.Id.debug);
 			monthInfo = FindViewById<TextView> (Resource.Id.weekOf);
-			daysList = new Button[7];
+			daysList = new DateButton[7];
 			addBar = FindViewById<RelativeLayout> (Resource.Id.addBar);
 			// Makes sure day is selected before you can add a meal
 			if (selected == null) {
@@ -183,6 +183,20 @@ namespace SpeedyChef
 			viewDate = viewDate.AddDays (7);
 			handleCalendar (viewDate);
 		}
+	}
+
+	public class DateButton : Button {
+
+		private DateTime dateField;
+
+		public DateButton(Context context) : base(context){
+			
+		}
+			
+		public void SetDateField(DateTime date){
+			this.dateField = date;
+		}
+
 	}
 }
 
