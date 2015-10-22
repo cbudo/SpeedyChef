@@ -63,6 +63,7 @@
     <Compile Include="Models\RecipeStep.cs" />
     <Compile Include="MealPlannerCalendar.cs" />
     <Compile Include="BrowseNationalitiesActivity.cs" />
+    <Compile Include="MealDesign.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -89,6 +90,7 @@
     <AndroidResource Include="Resources\layout\MealPlannerCalendar.axml" />
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
     <AndroidResource Include="Resources\layout\SideBySideView.axml" />
+    <AndroidResource Include="Resources\layout\MealDesign.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
