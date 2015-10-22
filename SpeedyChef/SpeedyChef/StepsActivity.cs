@@ -36,15 +36,19 @@ namespace SpeedyChef
 			RecipeStep s1 = new RecipeStep();
 			s1.title = "Step 1";
 			s1.desc = "DESCRIPTIVE CONTENT 11111";
+			s1.time = 1;
 			RecipeStep s2 = new RecipeStep();
 			s2.title = "Step 2";
 			s2.desc = "DESCRIPTIVE CONTENT 22222";
+			s2.time = 4;
 			RecipeStep s3 = new RecipeStep();
 			s3.title = "Step 3";
 			s3.desc = "DESCRIPTIVE CONTENT 33333";
+			s3.time = 20;
 			RecipeStep s4 = new RecipeStep();
 			s4.title = "Step 4";
 			s4.desc = "DESCRIPTIVE CONTENT 44444";
+			s4.time = 10;
 
 			steps [0] = s1;
 			steps [1] = s2;
@@ -123,9 +127,11 @@ namespace SpeedyChef
 			TextView titleTv = (TextView) rootView.FindViewById (Resource.Id.step_title);
 			ImageView imgv = (ImageView) rootView.FindViewById (Resource.Id.step_image);
 			TextView descTv = (TextView) rootView.FindViewById (Resource.Id.step_desc);
+			TextView timeTv = (TextView)rootView.FindViewById (Resource.Id.step_time);
 
 			titleTv.Text = this.recipeStep.title;
 			descTv.Text = this.recipeStep.desc;
+			timeTv.Text = this.recipeStep.time.ToString() + Resources.GetString(Resource.String.minute_short);
 
 			return rootView;
 		}

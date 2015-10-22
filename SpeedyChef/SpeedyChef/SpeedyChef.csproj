@@ -94,6 +94,7 @@
     <AndroidResource Include="Resources\layout\HorizontalContainer.axml" />
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
     <AndroidResource Include="Resources\layout\SideBySideView.axml" />
+    <AndroidResource Include="Resources\drawable\clock1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

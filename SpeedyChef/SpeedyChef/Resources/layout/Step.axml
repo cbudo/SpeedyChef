@@ -10,5 +10,13 @@
         style="@style/WebImage" />
     <TextView
         android:id="@+id/step_desc"
-        style="@style/TextBase" />
+        style="@style/TextBase"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/step_time"
+        style="@style/CenterTitle"
+        android:background="@drawable/clock1"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp"
+        android:layout_marginTop="20dp" />
 </LinearLayout>
