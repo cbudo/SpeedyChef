@@ -91,8 +91,8 @@ namespace SpeedyChef
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += (s1, arg1) => {
 					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
-					if (arg1.Item.TitleFormatted.ToString() == "Search") {
-						var intent = new Intent(this, typeof(MainSearchActivity));
+					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
+						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {

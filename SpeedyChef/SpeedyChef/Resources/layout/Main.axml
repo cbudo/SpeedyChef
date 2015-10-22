@@ -39,12 +39,18 @@
                 android:id="@+id/main_search"
                 android:layoutMode="opticalBounds"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_height="match_parent" />
         </LinearLayout>
+        <TextView
+            android:textColor="@color/my_blue"
+            android:gravity="center"
+            android:text="Planned Meals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mealPlanText"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="25dp" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:scrollbars="vertical"
