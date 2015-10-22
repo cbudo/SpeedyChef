@@ -63,6 +63,7 @@
     <Compile Include="Models\RecipeStep.cs" />
     <Compile Include="MealPlannerCalendar.cs" />
     <Compile Include="BrowseNationalitiesActivity.cs" />
+    <Compile Include="MainSearchActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
