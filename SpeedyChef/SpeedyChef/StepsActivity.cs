@@ -12,59 +12,18 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Android.Graphics.Drawables;
 
 namespace SpeedyChef
 {
-
-	/*[Activity(Label = "PagerDemo", Icon = "@drawable/icon")]
-	public class StepsActivity : FragmentActivity
-	{
-		private ViewPager viewPager;
-
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
-
-			SetContentView(Resource.Layout.Walkthrough);
-
-			viewPager = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
-			viewPager.Adapter = new AwesomeFragmentAdapter (SupportFragmentManager);
-
-
-		}
-	} */
-
-	public class AwesomeFragmentAdapter : FragmentPagerAdapter {
-
-		public AwesomeFragmentAdapter(Android.Support.V4.App.FragmentManager fm) : base(fm) {
-
-		}
-
-		public override int Count {
-			get {
-				return 5;
-			}
-		}
-			
-
-		public override Android.Support.V4.App.Fragment GetItem(int position) {
-			return new AwesomeFragment ();
-		}
-	
-	}
-
-	public class AwesomeFragment : Android.Support.V4.App.Fragment {
-
-		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			var view = inflater.Inflate (Resource.Layout.Step, container, false);
-
-			return view;
-		}
-	}
 		
 	[Activity (Label = "StepsActivity")]			
 	public class StepsActivity : FragmentActivity
 	{
+
+		RecipeStep[] steps; 
+
+		//Called when the page is created
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -72,7 +31,8 @@ namespace SpeedyChef
 			SetContentView (Resource.Layout.Walkthrough);
 			ViewPager vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
 
-			RecipeStep[] steps = new RecipeStep[4];
+			//TODO replace dummy content with actual input
+			steps = new RecipeStep[4];
 			RecipeStep s1 = new RecipeStep();
 			s1.title = "Step 1";
 			s1.desc = "DESCRIPTIVE CONTENT 11111";
@@ -93,11 +53,42 @@ namespace SpeedyChef
 
 			vp.Adapter = new StepFragmentPagerAdapter (SupportFragmentManager, steps);
 
-			/*TextView title = FindViewById (Resource.Id.step_title);
-			ImageView img = FindViewById (Resource.Id.step_image);
-			TextView desc = FindViewById (Resource.Id.step_desc); */
+			//This sets up the progress dots to appear at the bottom of the screen
+			ViewGroup pd = (ViewGroup) FindViewById (Resource.Id.progress_dots);
+			ImageView[] progressDots = new ImageView[steps.Length];
+			Drawable open = Resources.GetDrawable (Resource.Drawable.circle_open);
+
+			for (int i = 0; i < progressDots.Length; i++) {
+				progressDots [i] = new ImageView (this);
+				progressDots [i].SetImageDrawable (open);
+				pd.AddView (progressDots [i]);
+			}
+			progressDots[0].SetImageDrawable (Resources.GetDrawable(Resource.Drawable.circle_closed));
+
+			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed)));
 		}
+			
 	}
+
+	/*class ProgressDots
+	{
+		ImageView[] dots;
+		Drawable open;
+		Drawable closed;
+
+		public ProgressDots (ViewGroup view, int num, Drawable open, Drawable closed)
+		{
+			
+		}
+
+		//Updates the progress bar at the bottom to show the currently selected page
+		public void SetUIListPos(int pos) {
+			dots [pos].SetImageResource (closed);
+			if (pos < dots.Length - 1) {
+				dots [pos + 1].SetImageResource (open);
+			}
+		}
+	}*/
 
 	class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
 		private RecipeStep[] steps;
@@ -139,6 +130,29 @@ namespace SpeedyChef
 			return rootView;
 		}
 
+	}
+
+	class StepChangeListener : ViewPager.SimpleOnPageChangeListener {
+		ImageView[] dots;
+		Drawable open;
+		Drawable closed;
+
+		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed) : base() {
+			this.dots = dots;
+			this.open = open;
+			this.closed = closed;
+		}
+
+		public override void OnPageSelected (int position) {
+			SetUIListPos (position);
+		}
+
+		public void SetUIListPos(int pos) {
+			dots [pos].SetImageDrawable(closed);
+			if (pos < dots.Length - 1) {
+				dots [pos + 1].SetImageDrawable (open);
+			}
+		}
 	}
 }
 

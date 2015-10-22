@@ -8,6 +8,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textColor">@color/text</item>
+		<item name="android:padding">10dp</item>
 	</style>
 	<style name="generalButtonStyle">
 		<item name="android:background">@color/my_blue</item>
@@ -20,6 +21,8 @@
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>
 		<item name="android:gravity">center</item>
+		<item name="android:layout_marginTop">10dp</item>
+		<item name="android:layout_marginBottom">10dp</item>
 	</style>
 	<style name="WebImage">
 		<item name="android:layout_width">wrap_content</item>
