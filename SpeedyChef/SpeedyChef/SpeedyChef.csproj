@@ -91,6 +91,11 @@
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
     <AndroidResource Include="Resources\layout\SideBySideView.axml" />
     <AndroidResource Include="Resources\layout\MealDesign.axml" />
+    <AndroidResource Include="Resources\drawable\circle_closed.png" />
+    <AndroidResource Include="Resources\drawable\circle_open.png" />
+    <AndroidResource Include="Resources\drawable\clock1.png" />
+    <AndroidResource Include="Resources\layout\HorizontalContainer.axml" />
+    <AndroidResource Include="Resources\layout\Walkthrough.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

@@ -1453,19 +1453,28 @@ namespace SpeedyChef
 			public const int abc_textfield_search_material = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int Icon = 2130837565;
+			public const int circle_closed = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int menu_lines = 2130837566;
+			public const int circle_open = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int monoandroidsplash = 2130837567;
-			
-			// aapt resource value: 0x7f020041
-			public const int notification_template_icon_bg = 2130837569;
+			public const int clock1 = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int pressed_lines = 2130837568;
+			public const int Icon = 2130837568;
+			
+			// aapt resource value: 0x7f020041
+			public const int menu_lines = 2130837569;
+			
+			// aapt resource value: 0x7f020042
+			public const int monoandroidsplash = 2130837570;
+			
+			// aapt resource value: 0x7f020044
+			public const int notification_template_icon_bg = 2130837572;
+			
+			// aapt resource value: 0x7f020043
+			public const int pressed_lines = 2130837571;
 			
 			static Drawable()
 			{
@@ -1480,26 +1489,26 @@ namespace SpeedyChef
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f060083
+			public const int MM_Account = 2131099779;
+			
 			// aapt resource value: 0x7f060080
-			public const int MM_Account = 2131099776;
-			
-			// aapt resource value: 0x7f06007d
-			public const int MM_Browse = 2131099773;
-			
-			// aapt resource value: 0x7f06007b
-			public const int MM_Home = 2131099771;
+			public const int MM_Browse = 2131099776;
 			
 			// aapt resource value: 0x7f06007e
-			public const int MM_Plan = 2131099774;
-			
-			// aapt resource value: 0x7f06007f
-			public const int MM_Preferences = 2131099775;
-			
-			// aapt resource value: 0x7f06007c
-			public const int MM_Search = 2131099772;
+			public const int MM_Home = 2131099774;
 			
 			// aapt resource value: 0x7f060081
-			public const int MM_Walkthrough = 2131099777;
+			public const int MM_Plan = 2131099777;
+			
+			// aapt resource value: 0x7f060082
+			public const int MM_Preferences = 2131099778;
+			
+			// aapt resource value: 0x7f06007f
+			public const int MM_Search = 2131099775;
+			
+			// aapt resource value: 0x7f060084
+			public const int MM_Walkthrough = 2131099780;
 			
 			// aapt resource value: 0x7f060068
 			public const int action0 = 2131099752;
@@ -1720,6 +1729,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060006
 			public const int progress_circular = 2131099654;
 			
+			// aapt resource value: 0x7f06007d
+			public const int progress_dots = 2131099773;
+			
 			// aapt resource value: 0x7f060007
 			public const int progress_horizontal = 2131099655;
 			
@@ -1813,6 +1825,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060078
 			public const int step_image = 2131099768;
 			
+			// aapt resource value: 0x7f06007a
+			public const int step_time = 2131099770;
+			
 			// aapt resource value: 0x7f060077
 			public const int step_title = 2131099767;
 			
@@ -1831,8 +1846,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060032
 			public const int textSpacerNoButtons = 2131099698;
 			
-			// aapt resource value: 0x7f06007a
-			public const int textView = 2131099770;
+			// aapt resource value: 0x7f06007b
+			public const int textView = 2131099771;
 			
 			// aapt resource value: 0x7f060075
 			public const int textViewLeft = 2131099765;
@@ -1860,6 +1875,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f060013
 			public const int useLogo = 2131099667;
+			
+			// aapt resource value: 0x7f06007c
+			public const int walkthrough_pager = 2131099772;
 			
 			// aapt resource value: 0x7f060057
 			public const int weekOf = 2131099735;
@@ -1987,58 +2005,64 @@ namespace SpeedyChef
 			public const int BrowseNationalities = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int Main = 2130903065;
+			public const int HorizontalContainer = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int MealDesign = 2130903066;
+			public const int Main = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int MealPlannerCalendar = 2130903067;
+			public const int MealDesign = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int notification_media_action = 2130903068;
+			public const int MealPlannerCalendar = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int notification_media_cancel_action = 2130903069;
+			public const int notification_media_action = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int notification_template_big_media = 2130903070;
+			public const int notification_media_cancel_action = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int notification_template_big_media_narrow = 2130903071;
+			public const int notification_template_big_media = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int notification_template_lines = 2130903072;
+			public const int notification_template_big_media_narrow = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int notification_template_media = 2130903073;
+			public const int notification_template_lines = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int notification_template_part_chronometer = 2130903074;
+			public const int notification_template_media = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int notification_template_part_time = 2130903075;
+			public const int notification_template_part_chronometer = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int select_dialog_item_material = 2130903076;
+			public const int notification_template_part_time = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int select_dialog_multichoice_material = 2130903077;
+			public const int select_dialog_item_material = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int select_dialog_singlechoice_material = 2130903078;
+			public const int select_dialog_multichoice_material = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int SideBySideView = 2130903079;
+			public const int select_dialog_singlechoice_material = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int Step = 2130903080;
+			public const int SideBySideView = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int support_simple_spinner_dropdown_item = 2130903081;
+			public const int Step = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int TestCardView = 2130903082;
+			public const int support_simple_spinner_dropdown_item = 2130903082;
+			
+			// aapt resource value: 0x7f03002b
+			public const int TestCardView = 2130903083;
+			
+			// aapt resource value: 0x7f03002c
+			public const int Walkthrough = 2130903084;
 			
 			static Layout()
 			{
@@ -2143,6 +2167,24 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f090012
 			public const int app_name = 2131296274;
+			
+			// aapt resource value: 0x7f09001a
+			public const int hour = 2131296282;
+			
+			// aapt resource value: 0x7f09001d
+			public const int hour_short = 2131296285;
+			
+			// aapt resource value: 0x7f09001b
+			public const int minute = 2131296283;
+			
+			// aapt resource value: 0x7f09001e
+			public const int minute_short = 2131296286;
+			
+			// aapt resource value: 0x7f09001c
+			public const int second = 2131296284;
+			
+			// aapt resource value: 0x7f09001f
+			public const int second_short = 2131296287;
 			
 			// aapt resource value: 0x7f090011
 			public const int status_bar_notification_info_overflow = 2131296273;
@@ -2586,14 +2628,17 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080131
 			public const int CenterTitle = 2131231025;
 			
-			// aapt resource value: 0x7f080134
-			public const int Mono_Android_Theme_Splash = 2131231028;
+			// aapt resource value: 0x7f080135
+			public const int Mono_Android_Theme_Splash = 2131231029;
 			
 			// aapt resource value: 0x7f08012d
 			public const int MyTheme = 2131231021;
 			
 			// aapt resource value: 0x7f080133
 			public const int MyTheme_Base = 2131231027;
+			
+			// aapt resource value: 0x7f080134
+			public const int PaginatedContent = 2131231028;
 			
 			// aapt resource value: 0x7f080012
 			public const int Platform_AppCompat = 2131230738;
