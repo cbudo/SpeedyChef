@@ -67,13 +67,17 @@ namespace SpeedyChef
 
 	public class NationalityViewHolder : v7Widget.RecyclerView.ViewHolder
 	{
+		public ImageView LeftImage { get; private set; }
+		public ImageView RightImage { get; private set; }
 		public TextView LeftText { get; private set; }
 		public TextView RightText { get; private set; }
 		// Locate and cache view references
 
 		public NationalityViewHolder (View itemView) : base (itemView)
 		{
+			LeftImage = itemView.FindViewById<ImageView> (Resource.Id.imageViewLeft);
 			LeftText = itemView.FindViewById<TextView> (Resource.Id.textViewLeft);
+			RightImage = itemView.FindViewById<ImageView> (Resource.Id.imageViewRight);
 			RightText = itemView.FindViewById<TextView> (Resource.Id.textViewRight);
 		}
 	}
@@ -100,16 +104,18 @@ namespace SpeedyChef
 		{
 			NationalityViewHolder vh = holder as NationalityViewHolder;
 			int realPosition = position * 2;
-			string tempLeft = mNationalityObject.getObjectInPosition (realPosition);
-			string tempRight = mNationalityObject.getObjectInPosition (realPosition + 1);
-			if (tempLeft == null){
-				tempLeft = "";
+			int tempLeftImage = mNationalityObject.getObjectInPosition (realPosition).Item1;
+			string tempLeftText = mNationalityObject.getObjectInPosition (realPosition).Item2;
+			int tempRightImage = mNationalityObject.getObjectInPosition (realPosition + 1).Item1;
+			string tempRightText = mNationalityObject.getObjectInPosition (realPosition + 1).Item2;
+			if (tempLeftImage != -1){
+				vh.LeftImage.SetImageResource(tempLeftImage);
+				vh.LeftText.Text = tempLeftText;
 			}
-			if (tempRight == null) {
-				tempRight = "";
+			if (tempRightImage != -1) {
+				vh.RightImage.SetImageResource(tempRightImage);
+				vh.RightText.Text = tempRightText;
 			}
-			vh.LeftText.Text = tempLeft;
-			vh.RightText.Text = tempRight;
 		}
 
 		public override int ItemCount
@@ -121,29 +127,28 @@ namespace SpeedyChef
 	public class NationalityObject
 	{
 		public int NumElements;
-		public string[] NationalityArray;
+		public Tuple<int, string>[] NationalityArray;
 
 		public NationalityObject ()
 		{
-			NationalityArray = new string[11];
-			NationalityArray [0] = "hello";
-			NationalityArray [1] = "this";
-			NationalityArray [2] = "is";
-			NationalityArray [3] = "a";
-			NationalityArray [4] = "test";
-			NationalityArray [5] = "six";
-			NationalityArray [6] = "seven";
-			NationalityArray [7] = "eight";
-			NationalityArray [8] = "nine";
-			NationalityArray [9] = "ten";
-			NationalityArray [10] = "eleven";
+			NationalityArray = new Tuple<int, string>[10];
+			NationalityArray [0] = new Tuple<int, string>(Resource.Drawable.ItalianFood, "Italian");
+			NationalityArray [1] = new Tuple<int, string>(Resource.Drawable.AmericanFood, "American");
+			NationalityArray [2] = new Tuple<int, string>(Resource.Drawable.ChineseFood, "Chinese");
+			NationalityArray [3] = new Tuple<int, string>(Resource.Drawable.MexicanFood, "Mexican");
+			NationalityArray [4] = new Tuple<int, string>(Resource.Drawable.IndianFood, "Indian");
+			NationalityArray [5] = new Tuple<int, string>(Resource.Drawable.JapaneseFood, "Japanese");
+			NationalityArray [6] = new Tuple<int, string>(Resource.Drawable.FrenchFood, "French");
+			NationalityArray [7] = new Tuple<int, string>(Resource.Drawable.ThaiFood, "Thai");
+			NationalityArray [8] = new Tuple<int, string>(Resource.Drawable.SpanishFood, "Spanish");
+			NationalityArray [9] = new Tuple<int, string>(Resource.Drawable.GreekFood, "Greek");
 			NumElements = NationalityArray.Length;
 		}
 
-		public string getObjectInPosition(int position)
+		public Tuple<int, string> getObjectInPosition(int position)
 		{
 			if (position >= NumElements) {
-				return null;
+				return new Tuple<int, string>(-1, null);
 			}
 			return this.NationalityArray [position];
 		}

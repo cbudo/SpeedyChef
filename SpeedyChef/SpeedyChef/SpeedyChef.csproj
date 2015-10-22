@@ -85,7 +85,6 @@
     <AndroidResource Include="Resources\drawable\menu_lines.png" />
     <AndroidResource Include="Resources\drawable\pressed_lines.png" />
     <AndroidResource Include="Resources\menu\Main_Menu.xml" />
-    <AndroidResource Include="Resources\layout\TestCardView.axml" />
     <AndroidResource Include="Resources\layout\Step.axml" />
     <AndroidResource Include="Resources\layout\MealPlannerCalendar.axml" />
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
@@ -96,6 +95,17 @@
     <AndroidResource Include="Resources\drawable\clock1.png" />
     <AndroidResource Include="Resources\layout\HorizontalContainer.axml" />
     <AndroidResource Include="Resources\layout\Walkthrough.axml" />
+    <AndroidResource Include="Resources\layout\LinearCardView.axml" />
+    <AndroidResource Include="Resources\drawable\AmericanFood.jpg" />
+    <AndroidResource Include="Resources\drawable\ChineseFood.jpg" />
+    <AndroidResource Include="Resources\drawable\FrenchFood.jpg" />
+    <AndroidResource Include="Resources\drawable\GreekFood.jpg" />
+    <AndroidResource Include="Resources\drawable\IndianFood.jpg" />
+    <AndroidResource Include="Resources\drawable\ItalianFood.jpg" />
+    <AndroidResource Include="Resources\drawable\JapaneseFood.jpg" />
+    <AndroidResource Include="Resources\drawable\MexicanFood.jpg" />
+    <AndroidResource Include="Resources\drawable\SpanishFood.jpg" />
+    <AndroidResource Include="Resources\drawable\ThaiFood.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

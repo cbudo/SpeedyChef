@@ -3,7 +3,7 @@
 	<style name="MyTheme" parent="MyTheme.Base">
 		<item name="android:windowBackground">@color/my_black</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
-		<item name="android:actionMenuTextColor">@color/my_blue</item>
+		<item name="android:itemTextAppearance">@style/menuTextAppearance</item>
 	</style>
 	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
 		<item name="android:layout_width">wrap_content</item>
@@ -17,6 +17,10 @@
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
 		<item name="android:popupBackground">@color/my_white</item>
 	</style>
+	<style name="menuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/my_blue</item>
+        <item name="android:textSize">18dp</item>
+    </style>
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>
 		<item name="android:gravity">center</item>
@@ -29,16 +33,16 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 	</style>
+	<style name="PaginatedContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">20dp</item>
+	</style>
 	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="windowNoTitle">true</item>
 		<item name="windowActionBar">false</item>
 		<item name="colorPrimary">#2196F3</item>
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#FF4081</item>
-	</style>
-	<style name="PaginatedContent">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:padding">20dp</item>
 	</style>
 </resources>

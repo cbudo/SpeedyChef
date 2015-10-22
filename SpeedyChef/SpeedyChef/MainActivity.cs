@@ -16,15 +16,15 @@ namespace SpeedyChef
 	{
 		v7Widget.RecyclerView mRecyclerView;
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
-		TestAdapter mAdapter;
-		TestObject mObject;
+		PlannedMealAdapter mAdapter;
+		PlannedMealObject mObject;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			//RECYCLER VIEW
-			mObject = new TestObject ();
-			mAdapter = new TestAdapter (mObject);
+			mObject = new PlannedMealObject ();
+			mAdapter = new PlannedMealAdapter (mObject);
 			SetContentView (Resource.Layout.Main);
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
 			mRecyclerView.SetAdapter (mAdapter);
@@ -100,71 +100,71 @@ namespace SpeedyChef
 		}
 	}
 
-	public class TestViewHolder : v7Widget.RecyclerView.ViewHolder
+	public class PlannedMealViewHolder : v7Widget.RecyclerView.ViewHolder
 	{
-		public TextView Caption { get; private set; }
+		public TextView mealDescription { get; private set; }
 		// Locate and cache view references
-		public TestViewHolder (View itemView) : base (itemView)
+		public PlannedMealViewHolder (View itemView) : base (itemView)
 		{
-			Caption = itemView.FindViewById<TextView> (Resource.Id.textView);
+			mealDescription = itemView.FindViewById<TextView> (Resource.Id.textView);
 		}
 	}
 
-	public class TestAdapter : v7Widget.RecyclerView.Adapter
+	public class PlannedMealAdapter : v7Widget.RecyclerView.Adapter
 	{
-		public TestObject mTestObject;
+		public PlannedMealObject mPMObject;
 
-		public TestAdapter (TestObject inTestObject)
+		public PlannedMealAdapter (PlannedMealObject inPMObject)
 		{
-			mTestObject = inTestObject;
+			mPMObject = inPMObject;
 		}
 
 		public override v7Widget.RecyclerView.ViewHolder
 		OnCreateViewHolder (ViewGroup parent, int viewType)
 		{
 			View itemView = LayoutInflater.From (parent.Context).
-				Inflate (Resource.Layout.TestCardView, parent, false);
-			TestViewHolder vh = new TestViewHolder (itemView);
+				Inflate (Resource.Layout.LinearCardView, parent, false);
+			PlannedMealViewHolder vh = new PlannedMealViewHolder (itemView);
 			return vh;
 		}
 		public override void
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
-			TestViewHolder vh = holder as TestViewHolder;
-			vh.Caption.Text = mTestObject.getObjectInPosition(position);
+			PlannedMealViewHolder vh = holder as PlannedMealViewHolder;
+			vh.mealDescription.Text = mPMObject.getObjectInPosition(position);
 		}
 
 		public override int ItemCount
 		{
-			get { return mTestObject.NumElements; }
+			get { return mPMObject.NumElements; }
 		}
 	}
 
-	public class TestObject
+	public class PlannedMealObject
 	{
 		public int NumElements;
-		public string[] CaptionArray;
+		public string[] mealArray;
 
-		public TestObject ()
+		public PlannedMealObject ()
 		{
-			CaptionArray = new string[11];
-			CaptionArray [0] = "hello";
-			CaptionArray [1] = "this";
-			CaptionArray [2] = "is";
-			CaptionArray [3] = "a";
-			CaptionArray [4] = "test";
-			CaptionArray [5] = "six";
-			CaptionArray [6] = "seven";
-			CaptionArray [7] = "eight";
-			CaptionArray [8] = "nine";
-			CaptionArray [9] = "ten";
-			CaptionArray [10] = "eleven";
-			NumElements = CaptionArray.Length;
+			mealArray = new string[11];
+			mealArray [0] = "hello";
+			mealArray [1] = "this";
+			mealArray [2] = "is";
+			mealArray [3] = "a";
+			mealArray [4] = "test";
+			mealArray [5] = "six";
+			mealArray [6] = "seven";
+			mealArray [7] = "eight";
+			mealArray [8] = "nine";
+			mealArray [9] = "ten";
+			mealArray [10] = "eleven";
+			NumElements = mealArray.Length;
 		}
 
 		public string getObjectInPosition(int position)
 		{
-			return this.CaptionArray [position];
+			return this.mealArray [position];
 		}
 	}
 }
