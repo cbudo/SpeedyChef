@@ -6,8 +6,10 @@
 		<item name="android:actionMenuTextColor">@color/my_blue</item>
 	</style>
 	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
-		<item name="android:textColor">@color/my_blue</item>
-		<item name="android:background">@color/my_white</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">@color/text</item>
+		<item name="android:padding">10dp</item>
 	</style>
 	<style name="generalButtonStyle">
 		<item name="android:background">@color/my_blue</item>
@@ -18,6 +20,9 @@
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>
 		<item name="android:gravity">center</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginTop">10dp</item>
+		<item name="android:layout_marginBottom">10dp</item>
 	</style>
 	<style name="WebImage">
 		<item name="android:layout_width">wrap_content</item>
@@ -30,5 +35,10 @@
 		<item name="colorPrimary">#2196F3</item>
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#FF4081</item>
+	</style>
+	<style name="PaginatedContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">20dp</item>
 	</style>
 </resources>

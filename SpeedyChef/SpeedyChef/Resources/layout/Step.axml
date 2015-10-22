@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    style="@style/PaginatedContent">
     <TextView
         android:id="@+id/step_title"
-        android:text="Boil Potatoes" />
+        style="@style/CenterTitle" />
     <ImageView
         android:id="@+id/step_image"
-        android:src="@drawable/icon" />
+        style="@style/WebImage" />
     <TextView
         android:id="@+id/step_desc"
-        android:text="Put the potatoes into the boiling water. Check back on them twelve minutes later. If they are done, they will be soft and the peel will slide off easily." />
+        style="@style/TextBase"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/step_time"
+        style="@style/CenterTitle"
+        android:background="@drawable/clock1"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp"
+        android:layout_marginTop="20dp" />
 </LinearLayout>
