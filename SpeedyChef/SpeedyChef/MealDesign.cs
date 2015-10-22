@@ -53,7 +53,15 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
+
+			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
+			returnButton.Click += (sender, e) => {
+				Finish();
+			};
 		}
+
+
+
 	}
 }
 
