@@ -36,7 +36,6 @@
             android:width="40dp"
             android:maxWidth="50dp" />
         <TextView
-            style="@style/TextBase"
             android:text="Month Presenter"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
@@ -125,7 +124,6 @@
         </LinearLayout>
     </HorizontalScrollView>
     <TextView
-        style="@style/TextBase"
         android:text="Debug Info"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"

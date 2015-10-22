@@ -39,7 +39,6 @@ namespace SpeedyChef
 			TextView textView = (TextView) searchView.FindViewById(id);
 			textView.SetTextColor(Android.Graphics.Color.LightSkyBlue);
 			textView.SetHintTextColor (Android.Graphics.Color.LightSkyBlue);
-			textView.SetHint (Resource.String.Main_Search_Hint);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {
@@ -56,8 +55,8 @@ namespace SpeedyChef
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += (s1, arg1) => {
 					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
-					if (arg1.Item.TitleFormatted.ToString() == "Search") {
-						var intent = new Intent(this, typeof(MainSearchActivity));
+					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
+						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
@@ -128,7 +127,6 @@ namespace SpeedyChef
 			TestViewHolder vh = new TestViewHolder (itemView);
 			return vh;
 		}
-
 		public override void
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
@@ -149,11 +147,18 @@ namespace SpeedyChef
 
 		public TestObject ()
 		{
-			int numCaptions = 300;
-			CaptionArray = new string[numCaptions];
-			for (int i = 0; i < numCaptions; i++){
-				CaptionArray [i] = i.ToString();
-			}
+			CaptionArray = new string[11];
+			CaptionArray [0] = "hello";
+			CaptionArray [1] = "this";
+			CaptionArray [2] = "is";
+			CaptionArray [3] = "a";
+			CaptionArray [4] = "test";
+			CaptionArray [5] = "six";
+			CaptionArray [6] = "seven";
+			CaptionArray [7] = "eight";
+			CaptionArray [8] = "nine";
+			CaptionArray [9] = "ten";
+			CaptionArray [10] = "eleven";
 			NumElements = CaptionArray.Length;
 		}
 
