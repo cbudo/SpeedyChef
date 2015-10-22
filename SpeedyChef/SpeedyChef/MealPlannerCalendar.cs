@@ -147,6 +147,15 @@ namespace SpeedyChef
 			debug.Text = "";
 		}
 
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data){
+			base.OnActivityResult (requestCode, resultCode, data);
+			if (resultCode == Result.Ok) {
+				Console.WriteLine (data.GetStringExtra("Result"));
+			}
+			Console.WriteLine ("Maybe");
+		}
+
+
 		/**
 		 * Event Handler method to help get date to pass to next object
 		 **/ 

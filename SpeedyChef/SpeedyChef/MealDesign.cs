@@ -56,6 +56,10 @@ namespace SpeedyChef
 
 			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
 			returnButton.Click += (sender, e) => {
+				Intent i = new Intent(this, typeof(MealPlannerCalendar));
+				i.PutExtra("Result", "Passing back works");
+				SetResult(Result.Ok, i);
+				Console.WriteLine("Made it here");
 				Finish();
 			};
 		}
