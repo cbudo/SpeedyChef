@@ -10,13 +10,13 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="0dp">
         <LinearLayout
-            android:background="@color/my_white"
+            android:background="@color/my_blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
             <TextView
-                android:textColor="@color/my_blue"
+                android:textColor="@color/my_black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Left_Text"
