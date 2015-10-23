@@ -46,7 +46,8 @@
                     android:layout_marginTop="10px"
                     android:layout_marginRight="10px"
                     android:layout_marginBottom="10px"
-                    android:hint="Name of Meal" />
+                    android:hint="Name of Meal"
+                    android:singleLine="true" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
