@@ -1453,58 +1453,178 @@ namespace SpeedyChef
 			public const int abc_textfield_search_material = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int AmericanFood = 2130837565;
+			public const int AmericanDesserts = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int ChineseFood = 2130837566;
+			public const int AmericanFood = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int circle_closed = 2130837567;
+			public const int AmericanHamburgers = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int circle_open = 2130837568;
+			public const int AmericanMeats = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int clock1 = 2130837569;
+			public const int AmericanVegetables = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int FrenchFood = 2130837570;
+			public const int ChineseDesserts = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int GreekFood = 2130837571;
+			public const int ChineseFood = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int Icon = 2130837572;
+			public const int ChineseMeats = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int IndianFood = 2130837573;
+			public const int ChineseRice = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int ItalianFood = 2130837574;
+			public const int ChineseVegetables = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int JapaneseFood = 2130837575;
+			public const int circle_closed = 2130837575;
 			
 			// aapt resource value: 0x7f020048
-			public const int menu_lines = 2130837576;
+			public const int circle_open = 2130837576;
 			
 			// aapt resource value: 0x7f020049
-			public const int MexicanFood = 2130837577;
+			public const int clock1 = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int monoandroidsplash = 2130837578;
-			
-			// aapt resource value: 0x7f02004e
-			public const int notification_template_icon_bg = 2130837582;
+			public const int FrenchDesserts = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int pressed_lines = 2130837579;
+			public const int FrenchFood = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int SpanishFood = 2130837580;
+			public const int FrenchMeats = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ThaiFood = 2130837581;
+			public const int FrenchSnails = 2130837581;
+			
+			// aapt resource value: 0x7f02004e
+			public const int FrenchVegetables = 2130837582;
+			
+			// aapt resource value: 0x7f02004f
+			public const int GreekDesserts = 2130837583;
+			
+			// aapt resource value: 0x7f020050
+			public const int GreekFood = 2130837584;
+			
+			// aapt resource value: 0x7f020051
+			public const int GreekGyros = 2130837585;
+			
+			// aapt resource value: 0x7f020052
+			public const int GreekMeats = 2130837586;
+			
+			// aapt resource value: 0x7f020053
+			public const int GreekVegetables = 2130837587;
+			
+			// aapt resource value: 0x7f020054
+			public const int Icon = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int IndianCurry = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int IndianDesserts = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int IndianFood = 2130837591;
+			
+			// aapt resource value: 0x7f020058
+			public const int IndianMeats = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public const int IndianVegetables = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int ItalianDesserts = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public const int ItalianFood = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public const int ItalianMeats = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public const int ItalianPastas = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int ItalianVegetables = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int JapaneseDesserts = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int JapaneseFood = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int JapaneseMeats = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int JapaneseSushi = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public const int JapaneseVegetables = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public const int menu_lines = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int MexicanDesserts = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int MexicanFood = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int MexicanMeats = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int MexicanVegetables = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int MexicanWraps = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int monoandroidsplash = 2130837610;
+			
+			// aapt resource value: 0x7f020076
+			public const int notification_template_icon_bg = 2130837622;
+			
+			// aapt resource value: 0x7f02006b
+			public const int pressed_lines = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int SpanishDesserts = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int SpanishFood = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int SpanishMeats = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int SpanishOmelettes = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int SpanishVegetables = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int ThaiDesserts = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int ThaiFood = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int ThaiFoodEx = 2130837619;
+			
+			// aapt resource value: 0x7f020074
+			public const int ThaiMeats = 2130837620;
+			
+			// aapt resource value: 0x7f020075
+			public const int ThaiVegetables = 2130837621;
 			
 			static Drawable()
 			{

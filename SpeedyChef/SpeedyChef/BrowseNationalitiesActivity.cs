@@ -19,15 +19,16 @@ namespace SpeedyChef
 	{
 		v7Widget.RecyclerView mRecyclerView;
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
-		NationalityAdapter mAdapter;
-		NationalityObject mObject;
+		SideBySideAdapter mAdapter;
+		SideBySideObject mObject;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			//RECYCLER VIEW
-			mObject = new NationalityObject ();
-			mAdapter = new NationalityAdapter (mObject);
+			mObject = new SideBySideObject ();
+			mAdapter = new SideBySideAdapter (mObject, this, false);
 			SetContentView (Resource.Layout.BrowseNationalities);
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
 			mRecyclerView.SetAdapter (mAdapter);
@@ -65,30 +66,53 @@ namespace SpeedyChef
 		}
 	}
 
-	public class NationalityViewHolder : v7Widget.RecyclerView.ViewHolder
+	public class SideBySideViewHolder : v7Widget.RecyclerView.ViewHolder
 	{
 		public ImageView LeftImage { get; private set; }
 		public ImageView RightImage { get; private set; }
 		public TextView LeftText { get; private set; }
 		public TextView RightText { get; private set; }
+		public Activity callingActivity;
 		// Locate and cache view references
 
-		public NationalityViewHolder (View itemView) : base (itemView)
+		public SideBySideViewHolder (View itemView, Activity callingActivity, bool searchLanding) : base (itemView)
 		{
 			LeftImage = itemView.FindViewById<ImageView> (Resource.Id.imageViewLeft);
 			LeftText = itemView.FindViewById<TextView> (Resource.Id.textViewLeft);
+			this.callingActivity = callingActivity;
 			RightImage = itemView.FindViewById<ImageView> (Resource.Id.imageViewRight);
 			RightText = itemView.FindViewById<TextView> (Resource.Id.textViewRight);
+			if (!searchLanding) {
+				this.attributeClicks ();
+			}
+		}
+
+		public void attributeClicks()
+		{
+			LeftImage.Click += (sender, e) => {
+				CachedData.Instance.SelectedNationality = LeftText.Text;
+				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
+				callingActivity.StartActivity(intent);
+			};
+			RightImage.Click += (sender, e) => {
+				CachedData.Instance.SelectedNationality = RightText.Text;
+				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
+				callingActivity.StartActivity(intent);
+			};
 		}
 	}
 
-	public class NationalityAdapter : v7Widget.RecyclerView.Adapter
+	public class SideBySideAdapter : v7Widget.RecyclerView.Adapter
 	{
-		public NationalityObject mNationalityObject;
+		public SideBySideObject mSideBySideObject;
+		public Activity callingActivity;
+		public bool searchLanding;
 
-		public NationalityAdapter (NationalityObject inNationalityObject)
+		public SideBySideAdapter (SideBySideObject inSideBySideObject, Activity inActivity, bool searchLanding)
 		{
-			mNationalityObject = inNationalityObject;
+			this.mSideBySideObject = inSideBySideObject;
+			this.callingActivity = inActivity;
+			this.searchLanding = searchLanding;
 		}
 
 		public override v7Widget.RecyclerView.ViewHolder
@@ -96,18 +120,19 @@ namespace SpeedyChef
 		{
 			View itemView = LayoutInflater.From (parent.Context).
 				Inflate (Resource.Layout.SideBySideView, parent, false);
-			NationalityViewHolder vh = new NationalityViewHolder (itemView);
+			SideBySideViewHolder vh = new SideBySideViewHolder (itemView, this.callingActivity, this.searchLanding);
 			return vh;
 		}
+
 		public override void
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
-			NationalityViewHolder vh = holder as NationalityViewHolder;
+			SideBySideViewHolder vh = holder as SideBySideViewHolder;
 			int realPosition = position * 2;
-			int tempLeftImage = mNationalityObject.getObjectInPosition (realPosition).Item1;
-			string tempLeftText = mNationalityObject.getObjectInPosition (realPosition).Item2;
-			int tempRightImage = mNationalityObject.getObjectInPosition (realPosition + 1).Item1;
-			string tempRightText = mNationalityObject.getObjectInPosition (realPosition + 1).Item2;
+			int tempLeftImage = mSideBySideObject.getObjectInPosition (realPosition).Item1;
+			string tempLeftText = mSideBySideObject.getObjectInPosition (realPosition).Item2;
+			int tempRightImage = mSideBySideObject.getObjectInPosition (realPosition + 1).Item1;
+			string tempRightText = mSideBySideObject.getObjectInPosition (realPosition + 1).Item2;
 			if (tempLeftImage != -1){
 				vh.LeftImage.SetImageResource(tempLeftImage);
 				vh.LeftText.Text = tempLeftText;
@@ -120,29 +145,35 @@ namespace SpeedyChef
 
 		public override int ItemCount
 		{
-			get { return ((mNationalityObject.NumElements + 1) / 2) ; }
+			get { return ((mSideBySideObject.NumElements + 1) / 2) ; }
 		}
 	}
 
-	public class NationalityObject
+	public class SideBySideObject
 	{
 		public int NumElements;
-		public Tuple<int, string>[] NationalityArray;
+		public Tuple<int, string>[] SideBySideArray;
 
-		public NationalityObject ()
+		public SideBySideObject ()
 		{
-			NationalityArray = new Tuple<int, string>[10];
-			NationalityArray [0] = new Tuple<int, string>(Resource.Drawable.ItalianFood, "Italian");
-			NationalityArray [1] = new Tuple<int, string>(Resource.Drawable.AmericanFood, "American");
-			NationalityArray [2] = new Tuple<int, string>(Resource.Drawable.ChineseFood, "Chinese");
-			NationalityArray [3] = new Tuple<int, string>(Resource.Drawable.MexicanFood, "Mexican");
-			NationalityArray [4] = new Tuple<int, string>(Resource.Drawable.IndianFood, "Indian");
-			NationalityArray [5] = new Tuple<int, string>(Resource.Drawable.JapaneseFood, "Japanese");
-			NationalityArray [6] = new Tuple<int, string>(Resource.Drawable.FrenchFood, "French");
-			NationalityArray [7] = new Tuple<int, string>(Resource.Drawable.ThaiFood, "Thai");
-			NationalityArray [8] = new Tuple<int, string>(Resource.Drawable.SpanishFood, "Spanish");
-			NationalityArray [9] = new Tuple<int, string>(Resource.Drawable.GreekFood, "Greek");
-			NumElements = NationalityArray.Length;
+			SideBySideArray = new Tuple<int, string>[10];
+			SideBySideArray [0] = new Tuple<int, string>(Resource.Drawable.ItalianFood, "Italian");
+			SideBySideArray [1] = new Tuple<int, string>(Resource.Drawable.AmericanFood, "American");
+			SideBySideArray [2] = new Tuple<int, string>(Resource.Drawable.ChineseFood, "Chinese");
+			SideBySideArray [3] = new Tuple<int, string>(Resource.Drawable.MexicanFood, "Mexican");
+			SideBySideArray [4] = new Tuple<int, string>(Resource.Drawable.IndianFood, "Indian");
+			SideBySideArray [5] = new Tuple<int, string>(Resource.Drawable.JapaneseFood, "Japanese");
+			SideBySideArray [6] = new Tuple<int, string>(Resource.Drawable.FrenchFood, "French");
+			SideBySideArray [7] = new Tuple<int, string>(Resource.Drawable.ThaiFood, "Thai");
+			SideBySideArray [8] = new Tuple<int, string>(Resource.Drawable.SpanishFood, "Spanish");
+			SideBySideArray [9] = new Tuple<int, string>(Resource.Drawable.GreekFood, "Greek");
+			NumElements = SideBySideArray.Length;
+		}
+
+		public SideBySideObject (Tuple<int, string>[] inArray)
+		{
+			SideBySideArray = inArray;
+			NumElements = SideBySideArray.Length;
 		}
 
 		public Tuple<int, string> getObjectInPosition(int position)
@@ -150,7 +181,7 @@ namespace SpeedyChef
 			if (position >= NumElements) {
 				return new Tuple<int, string>(-1, null);
 			}
-			return this.NationalityArray [position];
+			return this.SideBySideArray [position];
 		}
 	}
 }

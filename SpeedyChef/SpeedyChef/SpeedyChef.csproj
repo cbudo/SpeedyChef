@@ -64,6 +64,7 @@
     <Compile Include="MealPlannerCalendar.cs" />
     <Compile Include="BrowseNationalitiesActivity.cs" />
     <Compile Include="MealDesign.cs" />
+    <Compile Include="SubtypeBrowseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,6 +107,46 @@
     <AndroidResource Include="Resources\drawable\MexicanFood.jpg" />
     <AndroidResource Include="Resources\drawable\SpanishFood.jpg" />
     <AndroidResource Include="Resources\drawable\ThaiFood.jpg" />
+    <AndroidResource Include="Resources\drawable\AmericanDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\AmericanHamburgers.jpg" />
+    <AndroidResource Include="Resources\drawable\AmericanMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\AmericanVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\ChineseDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\ChineseMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\ChineseRice.jpg" />
+    <AndroidResource Include="Resources\drawable\ChineseVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\FrenchDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\FrenchMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\FrenchSnails.jpg" />
+    <AndroidResource Include="Resources\drawable\FrenchVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\GreekDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\GreekGyros.jpg" />
+    <AndroidResource Include="Resources\drawable\GreekMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\GreekVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\IndianCurry.jpg" />
+    <AndroidResource Include="Resources\drawable\IndianDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\IndianMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\IndianVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\ItalianDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\ItalianMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\ItalianPastas.jpg" />
+    <AndroidResource Include="Resources\drawable\ItalianVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\JapaneseDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\JapaneseMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\JapaneseSushi.jpg" />
+    <AndroidResource Include="Resources\drawable\JapaneseVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\MexicanDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\MexicanMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\MexicanVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\MexicanWraps.jpg" />
+    <AndroidResource Include="Resources\drawable\SpanishDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\SpanishMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\SpanishOmelettes.jpg" />
+    <AndroidResource Include="Resources\drawable\SpanishVegetables.jpg" />
+    <AndroidResource Include="Resources\drawable\ThaiDesserts.jpg" />
+    <AndroidResource Include="Resources\drawable\ThaiFoodEx.jpg" />
+    <AndroidResource Include="Resources\drawable\ThaiMeats.jpg" />
+    <AndroidResource Include="Resources\drawable\ThaiVegetables.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
