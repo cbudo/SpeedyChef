@@ -16,6 +16,26 @@
             android:id="@+id/menu_button"
             android:background="@drawable/menu_lines" />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameLayout">
+        <EditText
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="100px"
+            android:id="@+id/mealName"
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="10px"
+            android:layout_marginRight="10px"
+            android:layout_marginBottom="1px"
+            android:hint="Name of Meal"
+            android:singleLine="true" />
+    </LinearLayout>
     <ScrollView
         android:minWidth="25px"
         android:minHeight="250px"
@@ -31,58 +51,64 @@
             android:id="@+id/scrollInfo">
             <LinearLayout
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/nameLayout">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="100px"
-                    android:id="@+id/mealName"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="10px"
-                    android:layout_marginBottom="10px"
-                    android:hint="Name of Meal"
-                    android:singleLine="true" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:id="@+id/mealInfo"
                 android:layout_width="match_parent"
                 android:layout_below="@id/nameLayout"
                 android:gravity="center"
-                android:layout_height="wrap_content" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:id="@+id/nameIncrementer"
-                android:layout_width="match_parent"
-                android:layout_below="@id/mealInfo"
-                android:gravity="center"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="Diners: "
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:id="@+id/dinerText" />
-                <NumberPicker
-                    style="@style/generalButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:id="@+id/dinerCount" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mealTwo">
+                    <Button
+                        android:text="X"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/RemoveTwo" />
+                    <TextView
+                        android:text="Tacos"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="30pt"
+                        android:id="@+id/TextTwo" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/nameIncrementer"
+        android:layout_width="match_parent"
+        android:layout_below="@id/mealInfo"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20pt">
+        <TextView
+            android:text="Diners: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/dinerText" />
+        <NumberPicker
+            style="@style/generalButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/dinerCount"
+            android:verticalScrollbarPosition="defaultPosition"
+            android:scrollbars="none"
+            android:fitsSystemWindows="true" />
+    </LinearLayout>
     <RelativeLayout
         android:orientation="vertical"
         android:minWidth="25px"
@@ -97,17 +123,7 @@
             android:id="@+id/searchButtonBar"
             android:gravity="center"
             android:minWidth="25px"
-            android:minHeight="25px">
-            <Button
-                style="@style/generalButtonStyle"
-                android:text="Search Recipe"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/searchButton"
-                android:layout_width="500px"
-                android:layout_height="100px"
-                android:layout_marginBottom="5px" />
-        </LinearLayout>
+            android:minHeight="25px" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -119,14 +135,25 @@
             android:layout_below="@id/searchButtonBar">
             <Button
                 style="@style/generalButtonStyle"
+                android:text="Search Recipe"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/searchButton"
+                android:layout_width="300px"
+                android:layout_height="100px"
+                android:layout_marginBottom="5px"
+                android:layout_marginRight="5px" />
+            <Button
+                style="@style/generalButtonStyle"
                 android:text="Bookmark Recipe"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/bookmarkButton"
-                android:layout_width="500px"
+                android:layout_width="300px"
                 android:layout_height="100px"
                 android:layout_marginRight="0.0dp"
-                android:layout_marginBottom="5px" />
+                android:layout_marginBottom="5px"
+                android:layout_marginLeft="5px" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"

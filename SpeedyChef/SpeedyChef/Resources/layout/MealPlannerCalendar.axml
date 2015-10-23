@@ -137,12 +137,38 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mealDisplay">
-        <ScrollView
+        <LinearLayout
+            android:orientation="horizontal"
             android:minWidth="25px"
-            android:minHeight="250px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/mealScroll" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/innerScroll">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:gravity="right"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MealOne">
+                <TextView
+                    android:text="Beans and Rice"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="30pt"
+                    android:id="@+id/Desc" />
+                <Button
+                    android:text="&gt;"
+                    android:gravity="center"
+                    android:layout_width="30pt"
+                    android:layout_height="30pt"
+                    android:id="@+id/Proceed"
+                    android:layout_marginRight="0.0dp" />
+            </LinearLayout>
+        </LinearLayout>
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
