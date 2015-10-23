@@ -65,6 +65,7 @@
     <Compile Include="BrowseNationalitiesActivity.cs" />
     <Compile Include="MealDesign.cs" />
     <Compile Include="SubtypeBrowseActivity.cs" />
+    <Compile Include="RecipeStepTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -94,12 +95,8 @@
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
     <AndroidResource Include="Resources\layout\SideBySideView.axml" />
     <AndroidResource Include="Resources\layout\MealDesign.axml" />
-    <AndroidResource Include="Resources\drawable\circle_closed.png" />
-    <AndroidResource Include="Resources\drawable\circle_open.png" />
     <AndroidResource Include="Resources\drawable\clock1.png" />
     <AndroidResource Include="Resources\drawable\timing_progress.xml" />
-    <AndroidResource Include="Resources\layout\HorizontalContainer.axml" />
-    <AndroidResource Include="Resources\layout\Walkthrough.axml" />
     <AndroidResource Include="Resources\layout\LinearCardView.axml" />
     <AndroidResource Include="Resources\drawable\AmericanFood.jpg" />
     <AndroidResource Include="Resources\drawable\ChineseFood.jpg" />
