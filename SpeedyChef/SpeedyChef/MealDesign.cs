@@ -23,8 +23,8 @@ namespace SpeedyChef
 			// Create your application here
 			long binaryDate = Intent.GetLongExtra("Date", 0);
 			DateTime date = DateTime.FromBinary (binaryDate);
-			TextView text = FindViewById<TextView> (Resource.Id.debug);
-			text.Text = date.ToString ();
+			//TextView text = FindViewById<TextView> (Resource.Id.debug);
+			//text.Text = date.ToString ();
 
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
@@ -53,6 +53,10 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
+
+			NumberPicker np = FindViewById<NumberPicker> (Resource.Id.dinerCount);
+			np.MaxValue = 20;
+			np.MinValue = 0;
 
 			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
 			returnButton.Click += (sender, e) => {
