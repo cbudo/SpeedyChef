@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_linear_layout">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/menu_button"
+            android:background="@drawable/menu_lines" />
+    </LinearLayout>
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="250px"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:id="@+id/mealScroll"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollInfo">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameLayout">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="100px"
+                    android:id="@+id/mealName"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:hint="Name of Meal"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/mealInfo"
+                android:layout_width="match_parent"
+                android:layout_below="@id/nameLayout"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/nameIncrementer"
+                android:layout_width="match_parent"
+                android:layout_below="@id/mealInfo"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Diners: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/dinerText" />
+                <NumberPicker
+                    style="@style/generalButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/dinerCount" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonBar">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchButtonBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Search Recipe"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/searchButton"
+                android:layout_width="500px"
+                android:layout_height="100px"
+                android:layout_marginBottom="5px" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookmarkBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_below="@id/searchButtonBar">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Bookmark Recipe"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/bookmarkButton"
+                android:layout_width="500px"
+                android:layout_height="100px"
+                android:layout_marginRight="0.0dp"
+                android:layout_marginBottom="5px" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_below="@id/bookmarkBar">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Save Meal"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/returnButton"
+                android:layout_width="500px"
+                android:layout_height="100px" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

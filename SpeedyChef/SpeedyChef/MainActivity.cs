@@ -16,15 +16,16 @@ namespace SpeedyChef
 	{
 		v7Widget.RecyclerView mRecyclerView;
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
-		TestAdapter mAdapter;
-		TestObject mObject;
+		PlannedMealAdapter mAdapter;
+		PlannedMealObject mObject;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			//RECYCLER VIEW
-			mObject = new TestObject ();
-			mAdapter = new TestAdapter (mObject);
+			mObject = new PlannedMealObject ();
+			mAdapter = new PlannedMealAdapter (mObject);
 			SetContentView (Resource.Layout.Main);
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
 			mRecyclerView.SetAdapter (mAdapter);
@@ -37,8 +38,8 @@ namespace SpeedyChef
 			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener) this);
 			int id = Resources.GetIdentifier("android:id/search_src_text", null, null);
 			TextView textView = (TextView) searchView.FindViewById(id);
-			textView.SetTextColor(Android.Graphics.Color.LightSkyBlue);
-			textView.SetHintTextColor (Android.Graphics.Color.LightSkyBlue);
+			textView.SetTextColor(Android.Graphics.Color.Black);
+			textView.SetHintTextColor (Android.Graphics.Color.Black);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {
@@ -100,71 +101,178 @@ namespace SpeedyChef
 		}
 	}
 
-	public class TestViewHolder : v7Widget.RecyclerView.ViewHolder
+	public class PlannedMealViewHolder : v7Widget.RecyclerView.ViewHolder
 	{
-		public TextView Caption { get; private set; }
+		public TextView mealDescription { get; private set; }
 		// Locate and cache view references
-		public TestViewHolder (View itemView) : base (itemView)
+		public PlannedMealViewHolder (View itemView) : base (itemView)
 		{
-			Caption = itemView.FindViewById<TextView> (Resource.Id.textView);
+			mealDescription = itemView.FindViewById<TextView> (Resource.Id.textView);
 		}
 	}
 
-	public class TestAdapter : v7Widget.RecyclerView.Adapter
+	public class PlannedMealAdapter : v7Widget.RecyclerView.Adapter
 	{
-		public TestObject mTestObject;
+		public PlannedMealObject mPMObject;
 
-		public TestAdapter (TestObject inTestObject)
+		public PlannedMealAdapter (PlannedMealObject inPMObject)
 		{
-			mTestObject = inTestObject;
+			mPMObject = inPMObject;
 		}
 
 		public override v7Widget.RecyclerView.ViewHolder
 		OnCreateViewHolder (ViewGroup parent, int viewType)
 		{
 			View itemView = LayoutInflater.From (parent.Context).
-				Inflate (Resource.Layout.TestCardView, parent, false);
-			TestViewHolder vh = new TestViewHolder (itemView);
+				Inflate (Resource.Layout.LinearCardView, parent, false);
+			PlannedMealViewHolder vh = new PlannedMealViewHolder (itemView);
 			return vh;
 		}
 		public override void
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
-			TestViewHolder vh = holder as TestViewHolder;
-			vh.Caption.Text = mTestObject.getObjectInPosition(position);
+			PlannedMealViewHolder vh = holder as PlannedMealViewHolder;
+			vh.mealDescription.Text = mPMObject.getObjectInPosition(position);
 		}
 
 		public override int ItemCount
 		{
-			get { return mTestObject.NumElements; }
+			get { return mPMObject.NumElements; }
 		}
 	}
 
-	public class TestObject
+	public class PlannedMealObject
 	{
 		public int NumElements;
-		public string[] CaptionArray;
+		public string[] mealArray;
 
-		public TestObject ()
+		public PlannedMealObject ()
 		{
-			CaptionArray = new string[11];
-			CaptionArray [0] = "hello";
-			CaptionArray [1] = "this";
-			CaptionArray [2] = "is";
-			CaptionArray [3] = "a";
-			CaptionArray [4] = "test";
-			CaptionArray [5] = "six";
-			CaptionArray [6] = "seven";
-			CaptionArray [7] = "eight";
-			CaptionArray [8] = "nine";
-			CaptionArray [9] = "ten";
-			CaptionArray [10] = "eleven";
-			NumElements = CaptionArray.Length;
+			mealArray = new string[5];
+			mealArray [0] = "10/28 Mom's Mystery Meatloaf";
+			mealArray [1] = "10/30 Halloween Cake w/ Candy Corn";
+			mealArray [2] = "10/31 All Saints Day Omelette";
+			mealArray [3] = "11/2 Wedding Present (Brownies)";
+			mealArray [4] = "11/3 Uncle Chuck's Chicken Noodle Soup";
+			NumElements = mealArray.Length;
 		}
 
 		public string getObjectInPosition(int position)
 		{
-			return this.CaptionArray [position];
+			return this.mealArray [position];
+		}
+	}
+
+	public class CachedData
+	{
+
+		public Tuple<int, string>[] ItalianFood { get; set; }
+		public Tuple<int, string>[] ChineseFood { get; set; }
+		public Tuple<int, string>[] FrenchFood { get; set; }
+		public Tuple<int, string>[] SpanishFood { get; set; }
+		public Tuple<int, string>[] MexicanFood { get; set; }
+		public Tuple<int, string>[] GreekFood { get; set; }
+		public Tuple<int, string>[] ThaiFood { get; set; }
+		public Tuple<int, string>[] IndianFood { get; set; }
+		public Tuple<int, string>[] JapaneseFood { get; set; }
+		public Tuple<int, string>[] AmericanFood { get; set; }
+		public Dictionary<string, Tuple<int, string>[]> TupleDict { get; set; }
+		public string SelectedNationality { get; set; }
+
+		private CachedData()
+		{
+			ItalianFood = new Tuple<int, string>[4];
+			TupleDict = new Dictionary<string, Tuple<int, string>[]> ();
+			TupleDict.Add ("Italian", ItalianFood);
+			ItalianFood [0] = new Tuple<int, string> (Resource.Drawable.ItalianDesserts, "Italian Desserts");
+			ItalianFood [1] = new Tuple<int, string> (Resource.Drawable.ItalianMeats, "Italian Meats");
+			ItalianFood [2] = new Tuple<int, string> (Resource.Drawable.ItalianVegetables, "Italian Vegetables");
+			ItalianFood [3] = new Tuple<int, string>(Resource.Drawable.ItalianPastas, "Italian Pastas");
+
+			ChineseFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Chinese", ChineseFood);
+			ChineseFood [0] = new Tuple<int, string> (Resource.Drawable.ChineseDesserts, "Chinese Desserts");
+			ChineseFood [1] = new Tuple<int, string> (Resource.Drawable.ChineseMeats, "Chinese Meats"); 
+			ChineseFood [2] = new Tuple<int, string> (Resource.Drawable.ChineseVegetables, "Chinese Vegetables");
+			ChineseFood [3] = new Tuple<int, string> (Resource.Drawable.ChineseRice, "Chinese Rice");
+
+			FrenchFood = new Tuple<int, string>[4];
+			TupleDict.Add ("French", FrenchFood);
+			FrenchFood[0] = new Tuple<int, string> (Resource.Drawable.FrenchDesserts, "French Desserts");
+			FrenchFood[1] = new Tuple<int, string> (Resource.Drawable.FrenchMeats, "French Meats");
+			FrenchFood[2] = new Tuple<int, string> (Resource.Drawable.FrenchVegetables, "French Vegetables");
+			FrenchFood[3] = new Tuple<int, string> (Resource.Drawable.FrenchSnails, "French Snails");
+
+			SpanishFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Spanish", SpanishFood);
+			SpanishFood[0] = new Tuple<int, string> (Resource.Drawable.SpanishDesserts, "Spanish Desserts"); 
+			SpanishFood[1] = new Tuple<int, string> (Resource.Drawable.SpanishMeats, "Spanish Meats");
+			SpanishFood[2] = new Tuple<int, string> (Resource.Drawable.SpanishVegetables, "Spanish Vegetables");
+			SpanishFood[3] = new Tuple<int, string> (Resource.Drawable.SpanishOmelettes, "Spanish Omelettes");
+
+			MexicanFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Mexican", MexicanFood);
+			MexicanFood[0] = new Tuple<int, string> (Resource.Drawable.MexicanDesserts, "Mexican Desserts");
+			MexicanFood[1] = new Tuple<int, string> (Resource.Drawable.MexicanMeats, "Mexican Meats");
+			MexicanFood[2] = new Tuple<int, string> (Resource.Drawable.MexicanVegetables, "Mexican Vegetables");
+			MexicanFood[3] = new Tuple<int, string> (Resource.Drawable.MexicanWraps, "Mexican Wraps");
+
+			AmericanFood = new Tuple<int, string>[4];
+			TupleDict.Add ("American", AmericanFood);
+			AmericanFood[0] = new Tuple<int, string> (Resource.Drawable.AmericanDesserts, "American Desserts");
+			AmericanFood[1] = new Tuple<int, string> (Resource.Drawable.AmericanMeats, "American Meats");
+			AmericanFood[2] = new Tuple<int, string> (Resource.Drawable.AmericanVegetables, "American Vegetables");
+			AmericanFood[3] = new Tuple<int, string> (Resource.Drawable.AmericanHamburgers, "American Hamburgers");
+
+			JapaneseFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Japanese", JapaneseFood);
+			JapaneseFood[0] = new Tuple<int, string> (Resource.Drawable.JapaneseDesserts, "Japanese Desserts");
+			JapaneseFood[1] = new Tuple<int, string> (Resource.Drawable.JapaneseMeats, "Japanese Meats");
+			JapaneseFood[2] = new Tuple<int, string> (Resource.Drawable.JapaneseVegetables, "Japanese Vegetables");
+			JapaneseFood[3] = new Tuple<int, string> (Resource.Drawable.JapaneseSushi, "Japanese Sushi");
+
+			GreekFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Greek", GreekFood);
+			GreekFood[0] = new Tuple<int, string> (Resource.Drawable.GreekDesserts, "Greek Desserts");
+			GreekFood[1] = new Tuple<int, string> (Resource.Drawable.GreekMeats, "Greek Meats");
+			GreekFood[2] = new Tuple<int, string> (Resource.Drawable.GreekVegetables, "Greek Vegetables");
+			GreekFood[3] = new Tuple<int, string> (Resource.Drawable.GreekGyros, "Greek Gyros");
+
+			ThaiFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Thai", ThaiFood);
+			ThaiFood[0] = new Tuple<int, string> (Resource.Drawable.ThaiDesserts, "American Desserts");
+			ThaiFood[1] = new Tuple<int, string> (Resource.Drawable.ThaiMeats, "American Meats");
+			ThaiFood[2] = new Tuple<int, string> (Resource.Drawable.ThaiVegetables, "American Vegetables");
+			ThaiFood[3] = new Tuple<int, string> (Resource.Drawable.ThaiFoodEx, "Thai Food");
+
+			IndianFood = new Tuple<int, string>[4];
+			TupleDict.Add ("Indian", IndianFood);
+			IndianFood[0] = new Tuple<int, string> (Resource.Drawable.IndianDesserts, "Indian Desserts");
+			IndianFood[1] = new Tuple<int, string> (Resource.Drawable.IndianMeats, "Indian Meats");
+			IndianFood[2] = new Tuple<int, string> (Resource.Drawable.IndianVegetables, "Indian Vegetables");
+			IndianFood[3] = new Tuple<int, string> (Resource.Drawable.IndianCurry, "Indian Curry");
+
+			SelectedNationality = "American";
+		}
+
+		private static volatile CachedData _instance;
+		private static object syncRoot = new Object();
+
+		public static CachedData Instance
+		{
+			get
+			{
+				if (_instance == null) 
+				{
+					lock (syncRoot) 
+					{
+						if (_instance == null) 
+							_instance = new CachedData();
+					}
+				}
+
+				return _instance;
+			}
 		}
 	}
 }

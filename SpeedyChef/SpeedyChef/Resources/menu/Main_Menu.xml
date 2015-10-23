@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/PopupMenu">
     <item android:id="@+id/MM_Home"
           android:title="@string/MM_Home_Title"
           android:showAsAction="ifRoom|withText"/>

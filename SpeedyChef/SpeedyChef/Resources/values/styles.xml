@@ -21,7 +21,7 @@
 	<style name="MyTheme" parent="MyTheme.Base">
 		<item name="android:windowBackground">@color/my_black</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
-		<item name="android:actionMenuTextColor">@color/my_blue</item>
+		<item name="android:itemTextAppearance">@style/menuTextAppearance</item>
 	</style>
 	<style name="TextBase" parent="@android:style/TextAppearance.Medium">
 		<item name="android:layout_width">wrap_content</item>
@@ -33,8 +33,12 @@
 		<item name="android:background">@color/my_blue</item>
 	</style>
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-		<item name="android:popupBackground">@color/my_white</item>
+		<item name="android:popupBackground">@color/my_blue</item>
 	</style>
+	<style name="menuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:textSize">18dp</item>
+    </style>
 	<style name="CenterTitle" parent="TextBase">
 		<item name="android:textSize">28dp</item>
 		<item name="android:gravity">center</item>
