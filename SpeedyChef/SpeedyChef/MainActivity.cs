@@ -38,8 +38,8 @@ namespace SpeedyChef
 			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener) this);
 			int id = Resources.GetIdentifier("android:id/search_src_text", null, null);
 			TextView textView = (TextView) searchView.FindViewById(id);
-			textView.SetTextColor(Android.Graphics.Color.LightSkyBlue);
-			textView.SetHintTextColor (Android.Graphics.Color.LightSkyBlue);
+			textView.SetTextColor(Android.Graphics.Color.Black);
+			textView.SetHintTextColor (Android.Graphics.Color.Black);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {
@@ -148,18 +148,12 @@ namespace SpeedyChef
 
 		public PlannedMealObject ()
 		{
-			mealArray = new string[11];
-			mealArray [0] = "hello";
-			mealArray [1] = "this";
-			mealArray [2] = "is";
-			mealArray [3] = "a";
-			mealArray [4] = "test";
-			mealArray [5] = "six";
-			mealArray [6] = "seven";
-			mealArray [7] = "eight";
-			mealArray [8] = "nine";
-			mealArray [9] = "ten";
-			mealArray [10] = "eleven";
+			mealArray = new string[5];
+			mealArray [0] = "10/28 Mom's Mystery Meatloaf";
+			mealArray [1] = "10/30 Halloween Cake w/ Candy Corn";
+			mealArray [2] = "10/31 All Saints Day Omelette";
+			mealArray [3] = "11/2 Wedding Present (Brownies)";
+			mealArray [4] = "11/3 Uncle Chuck's Chicken Noodle Soup";
 			NumElements = mealArray.Length;
 		}
 
