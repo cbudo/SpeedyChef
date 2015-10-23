@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Graphics.Drawables;
+using Android.Util;
 
 namespace SpeedyChef
 {
@@ -34,21 +35,25 @@ namespace SpeedyChef
 			//TODO replace dummy content with actual input
 			steps = new RecipeStep[4];
 			RecipeStep s1 = new RecipeStep();
-			s1.title = "Step 1";
-			s1.desc = "DESCRIPTIVE CONTENT 11111";
-			s1.time = 1;
+			s1.title = "Boil Water";
+			s1.desc = "Fill a large pot with about one quart of water. Put the pot on a burner on high. Check back in about 8 minutes.";
+			s1.time = 8;
+			s1.timeable = true;
 			RecipeStep s2 = new RecipeStep();
-			s2.title = "Step 2";
-			s2.desc = "DESCRIPTIVE CONTENT 22222";
-			s2.time = 4;
+			s2.title = "Boil Potatoes";
+			s2.desc = "Put the potatoes into the boiling water. Allow them to boil for 10 minutes.";
+			s2.time = 10;
+			s2.timeable = true;
 			RecipeStep s3 = new RecipeStep();
-			s3.title = "Step 3";
-			s3.desc = "DESCRIPTIVE CONTENT 33333";
-			s3.time = 20;
+			s3.title = "Peel Potatoes";
+			s3.desc = "Remove the potatoes from the boiling water. Wait for them to cool, or you can run them under cold water. Once they are cool enough to handle, use a peeler to remove the skin.";
+			s3.time = 5;
+			s3.timeable = false;
 			RecipeStep s4 = new RecipeStep();
-			s4.title = "Step 4";
-			s4.desc = "DESCRIPTIVE CONTENT 44444";
-			s4.time = 10;
+			s4.title = "Slice Potatoes";
+			s4.desc = "Use a large chef's knife to slice the potatoes into thin chunks.";
+			s4.time = 3;
+			s4.timeable = false;
 
 			steps [0] = s1;
 			steps [1] = s2;
@@ -57,8 +62,8 @@ namespace SpeedyChef
 
 			vp.Adapter = new StepFragmentPagerAdapter (SupportFragmentManager, steps);
 
-			//This sets up the progress dots to appear at the bottom of the screen
-			ViewGroup pd = (ViewGroup) FindViewById (Resource.Id.progress_dots);
+			//Set up the progress dots to appear at the bottom of the screen
+			ViewGroup pd = (ViewGroup) FindViewById (Resource.Id.walkthrough_progress_dots);
 			ImageView[] progressDots = new ImageView[steps.Length];
 			Drawable open = Resources.GetDrawable (Resource.Drawable.circle_open);
 
@@ -70,29 +75,11 @@ namespace SpeedyChef
 			progressDots[0].SetImageDrawable (Resources.GetDrawable(Resource.Drawable.circle_closed));
 
 			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed)));
+
 		}
 			
 	}
-
-	/*class ProgressDots
-	{
-		ImageView[] dots;
-		Drawable open;
-		Drawable closed;
-
-		public ProgressDots (ViewGroup view, int num, Drawable open, Drawable closed)
-		{
-			
-		}
-
-		//Updates the progress bar at the bottom to show the currently selected page
-		public void SetUIListPos(int pos) {
-			dots [pos].SetImageResource (closed);
-			if (pos < dots.Length - 1) {
-				dots [pos + 1].SetImageResource (open);
-			}
-		}
-	}*/
+		
 
 	class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
 		private RecipeStep[] steps;
@@ -127,11 +114,20 @@ namespace SpeedyChef
 			TextView titleTv = (TextView) rootView.FindViewById (Resource.Id.step_title);
 			ImageView imgv = (ImageView) rootView.FindViewById (Resource.Id.step_image);
 			TextView descTv = (TextView) rootView.FindViewById (Resource.Id.step_desc);
-			TextView timeTv = (TextView)rootView.FindViewById (Resource.Id.step_time);
+			TextView timeTv;
+			if (this.recipeStep.timeable) {
+				rootView.FindViewById (Resource.Id.step_timer_wrapper).Visibility = ViewStates.Visible;
+				timeTv = (TextView) rootView.FindViewById (Resource.Id.step_timer_display);
+				timeTv.Text = this.recipeStep.time.ToString () + ":00";
+			}
+			else {
+				rootView.FindViewById (Resource.Id.step_static_time).Visibility = ViewStates.Visible;
+				timeTv = (TextView) rootView.FindViewById (Resource.Id.step_static_time);
+				timeTv.Text = this.recipeStep.time.ToString() + Resources.GetString(Resource.String.minute_short);
+			}
 
 			titleTv.Text = this.recipeStep.title;
 			descTv.Text = this.recipeStep.desc;
-			timeTv.Text = this.recipeStep.time.ToString() + Resources.GetString(Resource.String.minute_short);
 
 			return rootView;
 		}
