@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+	<!-- These can be used as basic styles or parents just to cut down on repetitive code-->
+	<style name="WrapContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="FillParent">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="FillWidth">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="FillHeight">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+
 	<style name="MyTheme" parent="MyTheme.Base">
 		<item name="android:windowBackground">@color/my_black</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
@@ -33,11 +51,6 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 	</style>
-	<style name="PaginatedContent">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:padding">20dp</item>
-	</style>
 	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="windowNoTitle">true</item>
 		<item name="windowActionBar">false</item>
@@ -45,4 +58,34 @@
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#FF4081</item>
 	</style>
+	<style name="PaginatedContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:padding">20dp</item>
+	</style>
+
+	<!-- Styles for the timer bars -->
+	<style name="ProgressBarFrame" parent="FillWidth">
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+		<item name="android:indeterminateOnly">false</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	    <item name="android:progressDrawable">@drawable/timing_progress</item>
+	    <item name="android:minHeight">30dp</item>
+	    <item name="android:maxHeight">50dp</item>
+	</style>
+	<style name="ProgressBarTextWrapper" parent="FillWidth">
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+	<style name="ProgressBarText" parent="TextBase">
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:textColor">@color/black_text</item>
+	</style>
+	<style name="StepCountdownTimer" parent="CenterTitle">
+		<item name="android:textSize">50dp</item>
+	</style>
+
 </resources>

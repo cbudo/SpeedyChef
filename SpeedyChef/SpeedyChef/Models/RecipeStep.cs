@@ -8,6 +8,7 @@ namespace SpeedyChef
 		public string imgUrl;
 		public string desc;
 		public int time;
+		public bool timeable;
 	}
 }
 

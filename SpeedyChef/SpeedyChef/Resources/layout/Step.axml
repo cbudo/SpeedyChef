@@ -13,10 +13,26 @@
         style="@style/TextBase"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/step_time"
+        android:id="@+id/step_static_time"
         style="@style/CenterTitle"
         android:background="@drawable/clock1"
-        android:maxHeight="50dp"
-        android:maxWidth="50dp"
-        android:layout_marginTop="20dp" />
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/step_timer_wrapper"
+        style="@style/WrapContent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/step_timer_display"
+            style="@style/StepCountdownTimer" />
+        <Button
+            android:id="@+id/step_timer_start_button"
+            style="@style/WrapContent"
+            android:text="@string/start" />
+    </LinearLayout>
 </LinearLayout>
