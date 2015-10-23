@@ -22,9 +22,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/debug" />
-    <Button
-        android:text="Return"
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="250px"
         android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:id="@+id/scrollView1"
+        android:layout_weight="1" />
+    <RelativeLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/returnButton" />
+        android:id="@+id/buttonBar">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchButtonBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Search Recipe"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/searchButton"
+                android:layout_width="500px"
+                android:layout_height="100px"
+                android:layout_marginBottom="5px" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookmarkBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_below="@id/searchButtonBar">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Bookmark Recipe"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/bookmarkButton"
+                android:layout_width="500px"
+                android:layout_height="100px"
+                android:layout_marginRight="0.0dp"
+                android:layout_marginBottom="5px" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitBar"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_below="@id/bookmarkBar">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="Save Meal"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/returnButton"
+                android:layout_width="500px"
+                android:layout_height="100px" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

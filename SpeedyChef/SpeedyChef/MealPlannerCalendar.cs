@@ -79,7 +79,7 @@ namespace SpeedyChef
 			Button addButton = FindViewById<Button> (Resource.Id.addMeal);
 			addButton.Click += (sender, e) => {
 				Intent intent = new Intent(this, typeof(MealDesign));
-				Console.WriteLine (selected.GetDateField().ToBinary());
+				// Console.WriteLine (selected.GetDateField().ToBinary());
 				// Adds Binary field to be parsed later
 				intent.PutExtra("Date", selected.GetDateField().ToBinary());
 				StartActivity(intent);
@@ -168,7 +168,7 @@ namespace SpeedyChef
 			}
 			
 			selected = GetDateButton((Button) sender);
-			Console.WriteLine(selected.GetDateField().ToBinary());
+			// Console.WriteLine(selected.GetDateField().ToBinary());
 			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
