@@ -16,19 +16,65 @@
             android:id="@+id/menu_button"
             android:background="@drawable/menu_lines" />
     </LinearLayout>
-    <TextView
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/debug" />
     <ScrollView
         android:minWidth="25px"
         android:minHeight="250px"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:id="@+id/scrollView1"
-        android:layout_weight="1" />
+        android:id="@+id/mealScroll"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollInfo">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameLayout">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="100px"
+                    android:id="@+id/mealName"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:hint="Name of Meal" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/mealInfo"
+                android:layout_width="match_parent"
+                android:layout_below="@id/nameLayout"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/nameIncrementer"
+                android:layout_width="match_parent"
+                android:layout_below="@id/mealInfo"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <NumberPicker
+                    style="@style/generalButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/dinerCount" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
     <RelativeLayout
         android:orientation="vertical"
         android:minWidth="25px"
