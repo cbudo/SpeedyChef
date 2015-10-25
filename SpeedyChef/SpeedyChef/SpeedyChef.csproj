@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Prefs.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepsActivity.cs" />
@@ -65,12 +66,16 @@
     <Compile Include="BrowseNationalitiesActivity.cs" />
     <Compile Include="MealDesign.cs" />
     <Compile Include="SubtypeBrowseActivity.cs" />
+    <Compile Include="RecipeStepTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <AndroidResource Include="Resources\layout\Preferences.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <None Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -88,14 +93,14 @@
     <AndroidResource Include="Resources\menu\Main_Menu.xml" />
     <AndroidResource Include="Resources\layout\Step.axml" />
     <AndroidResource Include="Resources\layout\MealPlannerCalendar.axml" />
+    <AndroidResource Include="Resources\layout\Walkthrough.axml" />
+    <AndroidResource Include="Resources\drawable\circle_closed.png" />
+    <AndroidResource Include="Resources\drawable\circle_open.png" />
     <AndroidResource Include="Resources\layout\BrowseNationalities.axml" />
     <AndroidResource Include="Resources\layout\SideBySideView.axml" />
     <AndroidResource Include="Resources\layout\MealDesign.axml" />
-    <AndroidResource Include="Resources\drawable\circle_closed.png" />
-    <AndroidResource Include="Resources\drawable\circle_open.png" />
     <AndroidResource Include="Resources\drawable\clock1.png" />
-    <AndroidResource Include="Resources\layout\HorizontalContainer.axml" />
-    <AndroidResource Include="Resources\layout\Walkthrough.axml" />
+    <AndroidResource Include="Resources\drawable\timing_progress.xml" />
     <AndroidResource Include="Resources\layout\LinearCardView.axml" />
     <AndroidResource Include="Resources\drawable\AmericanFood.jpg" />
     <AndroidResource Include="Resources\drawable\ChineseFood.jpg" />
@@ -150,9 +155,5 @@
     <AndroidResource Include="Resources\layout\Search.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Resources\menu\" />
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
