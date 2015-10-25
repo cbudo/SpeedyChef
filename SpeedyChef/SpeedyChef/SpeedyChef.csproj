@@ -147,6 +147,7 @@
     <AndroidResource Include="Resources\drawable\ThaiFoodEx.jpg" />
     <AndroidResource Include="Resources\drawable\ThaiMeats.jpg" />
     <AndroidResource Include="Resources\drawable\ThaiVegetables.jpg" />
+    <AndroidResource Include="Resources\layout\Search.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
