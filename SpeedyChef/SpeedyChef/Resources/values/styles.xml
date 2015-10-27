@@ -29,6 +29,9 @@
 		<item name="android:textColor">@color/text</item>
 		<item name="android:padding">10dp</item>
 	</style>
+	<style name="ListView">
+		<item name="android:background">@color/my_blue</item>
+	</style>
 	<style name="generalButtonStyle">
 		<item name="android:background">@color/my_blue</item>
 	</style>
