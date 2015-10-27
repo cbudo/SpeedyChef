@@ -67,6 +67,7 @@
     <Compile Include="MealDesign.cs" />
     <Compile Include="SubtypeBrowseActivity.cs" />
     <Compile Include="RecipeStepTimer.cs" />
+    <Compile Include="SearchActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -77,6 +78,8 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\menu\Filter_Menu.xml" />
+    <AndroidResource Include="Resources\layout\TwoByTwoResultView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

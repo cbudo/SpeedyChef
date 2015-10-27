@@ -9,6 +9,10 @@
 	<string name="MM_Account_Title">Account</string>
 	<string name="MM_Walkthrough">Walkthrough</string>
 
+	<string name="FM_Time">By Time</string>
+	<string name="FM_Difficulty">By Difficulty</string>
+	<string name="FM_Both">By Both</string>
+
 	<string name="hour">hour</string>
 	<string name="minute">minute</string>
 	<string name="second">second</string>
