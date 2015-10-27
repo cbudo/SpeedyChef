@@ -66,6 +66,7 @@
     <Compile Include="MealDesign.cs" />
     <Compile Include="SubtypeBrowseActivity.cs" />
     <Compile Include="RecipeStepTimer.cs" />
+    <Compile Include="RecipeStepTimerHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

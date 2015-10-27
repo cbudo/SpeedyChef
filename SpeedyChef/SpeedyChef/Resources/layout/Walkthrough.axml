@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/walkthrough_progress_bars">
         <FrameLayout
+            android:id="@+id/walkthrough_frame_1"
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
@@ -24,6 +25,7 @@
             </LinearLayout>
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/walkthrough_frame_2"
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
@@ -39,6 +41,7 @@
             </LinearLayout>
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/walkthrough_frame_3"
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
@@ -54,6 +57,7 @@
             </LinearLayout>
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/walkthrough_frame_4"
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
@@ -69,6 +73,7 @@
             </LinearLayout>
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/walkthrough_frame_5"
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
@@ -89,12 +94,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.9" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/walkthrough_progress_dots"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_weight="0.1"
-        android:gravity="center"
-        android:padding="10dp" />
+    <HorizontalScrollView
+        style="@style/FillWidth">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/walkthrough_progress_dots"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:padding="5dp" />
+    </HorizontalScrollView>
 </LinearLayout>

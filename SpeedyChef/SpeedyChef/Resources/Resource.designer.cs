@@ -1645,26 +1645,26 @@ namespace SpeedyChef
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f0600ad
+			public const int MM_Account = 2131099821;
+			
+			// aapt resource value: 0x7f0600aa
+			public const int MM_Browse = 2131099818;
+			
 			// aapt resource value: 0x7f0600a8
-			public const int MM_Account = 2131099816;
+			public const int MM_Home = 2131099816;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int MM_Browse = 2131099813;
+			// aapt resource value: 0x7f0600ab
+			public const int MM_Plan = 2131099819;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int MM_Home = 2131099811;
-			
-			// aapt resource value: 0x7f0600a6
-			public const int MM_Plan = 2131099814;
-			
-			// aapt resource value: 0x7f0600a7
-			public const int MM_Preferences = 2131099815;
-			
-			// aapt resource value: 0x7f0600a4
-			public const int MM_Search = 2131099812;
+			// aapt resource value: 0x7f0600ac
+			public const int MM_Preferences = 2131099820;
 			
 			// aapt resource value: 0x7f0600a9
-			public const int MM_Walkthrough = 2131099817;
+			public const int MM_Search = 2131099817;
+			
+			// aapt resource value: 0x7f0600ae
+			public const int MM_Walkthrough = 2131099822;
 			
 			// aapt resource value: 0x7f060077
 			public const int action0 = 2131099767;
@@ -2092,59 +2092,74 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060013
 			public const int useLogo = 2131099667;
 			
-			// aapt resource value: 0x7f060092
-			public const int walkthrough_bar_1 = 2131099794;
+			// aapt resource value: 0x7f060093
+			public const int walkthrough_bar_1 = 2131099795;
 			
-			// aapt resource value: 0x7f060095
-			public const int walkthrough_bar_2 = 2131099797;
-			
-			// aapt resource value: 0x7f060098
-			public const int walkthrough_bar_3 = 2131099800;
+			// aapt resource value: 0x7f060097
+			public const int walkthrough_bar_2 = 2131099799;
 			
 			// aapt resource value: 0x7f06009b
-			public const int walkthrough_bar_4 = 2131099803;
+			public const int walkthrough_bar_3 = 2131099803;
+			
+			// aapt resource value: 0x7f06009f
+			public const int walkthrough_bar_4 = 2131099807;
+			
+			// aapt resource value: 0x7f0600a3
+			public const int walkthrough_bar_5 = 2131099811;
+			
+			// aapt resource value: 0x7f060092
+			public const int walkthrough_frame_1 = 2131099794;
+			
+			// aapt resource value: 0x7f060096
+			public const int walkthrough_frame_2 = 2131099798;
+			
+			// aapt resource value: 0x7f06009a
+			public const int walkthrough_frame_3 = 2131099802;
 			
 			// aapt resource value: 0x7f06009e
-			public const int walkthrough_bar_5 = 2131099806;
+			public const int walkthrough_frame_4 = 2131099806;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int walkthrough_pager = 2131099809;
+			// aapt resource value: 0x7f0600a2
+			public const int walkthrough_frame_5 = 2131099810;
+			
+			// aapt resource value: 0x7f0600a6
+			public const int walkthrough_pager = 2131099814;
 			
 			// aapt resource value: 0x7f060091
 			public const int walkthrough_progress_bars = 2131099793;
 			
-			// aapt resource value: 0x7f0600a2
-			public const int walkthrough_progress_dots = 2131099810;
+			// aapt resource value: 0x7f0600a7
+			public const int walkthrough_progress_dots = 2131099815;
 			
-			// aapt resource value: 0x7f060094
-			public const int walkthrough_text_1 = 2131099796;
-			
-			// aapt resource value: 0x7f060097
-			public const int walkthrough_text_2 = 2131099799;
-			
-			// aapt resource value: 0x7f06009a
-			public const int walkthrough_text_3 = 2131099802;
-			
-			// aapt resource value: 0x7f06009d
-			public const int walkthrough_text_4 = 2131099805;
-			
-			// aapt resource value: 0x7f0600a0
-			public const int walkthrough_text_5 = 2131099808;
-			
-			// aapt resource value: 0x7f060093
-			public const int walkthrough_time_1 = 2131099795;
-			
-			// aapt resource value: 0x7f060096
-			public const int walkthrough_time_2 = 2131099798;
+			// aapt resource value: 0x7f060095
+			public const int walkthrough_text_1 = 2131099797;
 			
 			// aapt resource value: 0x7f060099
-			public const int walkthrough_time_3 = 2131099801;
+			public const int walkthrough_text_2 = 2131099801;
+			
+			// aapt resource value: 0x7f06009d
+			public const int walkthrough_text_3 = 2131099805;
+			
+			// aapt resource value: 0x7f0600a1
+			public const int walkthrough_text_4 = 2131099809;
+			
+			// aapt resource value: 0x7f0600a5
+			public const int walkthrough_text_5 = 2131099813;
+			
+			// aapt resource value: 0x7f060094
+			public const int walkthrough_time_1 = 2131099796;
+			
+			// aapt resource value: 0x7f060098
+			public const int walkthrough_time_2 = 2131099800;
 			
 			// aapt resource value: 0x7f06009c
-			public const int walkthrough_time_4 = 2131099804;
+			public const int walkthrough_time_3 = 2131099804;
 			
-			// aapt resource value: 0x7f06009f
-			public const int walkthrough_time_5 = 2131099807;
+			// aapt resource value: 0x7f0600a0
+			public const int walkthrough_time_4 = 2131099808;
+			
+			// aapt resource value: 0x7f0600a4
+			public const int walkthrough_time_5 = 2131099812;
 			
 			// aapt resource value: 0x7f060066
 			public const int weekOf = 2131099750;

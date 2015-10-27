@@ -7,6 +7,7 @@ namespace SpeedyChef
 	public class RecipeStepTimer : CountDownTimer
 	{
 		private TextView tv;
+		private ProgressBar pb;
 
 		public bool active;
 
@@ -25,6 +26,9 @@ namespace SpeedyChef
 					tv.Text = (mins + ":" + seconds);
 				}
 			}
+			if (pb != null) {
+				pb.IncrementProgressBy (1);
+			}
 		}
 
 		public override void OnFinish() {
@@ -35,7 +39,10 @@ namespace SpeedyChef
 		public void SetTextView(TextView tv) {
 			this.tv = tv;
 		}
-			
+
+		public void SetProgressBar(ProgressBar pb) {
+			this.pb = pb;
+		}
 	}
 }
 
