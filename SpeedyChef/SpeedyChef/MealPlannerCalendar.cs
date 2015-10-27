@@ -23,6 +23,11 @@ namespace SpeedyChef
 		DateButton selected = null;
 
 		/**
+		 * Layout where meal information is displayed
+		 **/
+		LinearLayout mealDisplay = null;
+
+		/**
 		 * Current day of app 
 		 **/ 
 		DateTime current = DateTime.Now;
@@ -67,6 +72,7 @@ namespace SpeedyChef
 			SetContentView (Resource.Layout.MealPlannerCalendar);
 
 			// Provides global 
+			mealDisplay = FindViewById<LinearLayout> (Resource.Id.mealDisplay);
 			debug = FindViewById<TextView> (Resource.Id.debug);
 			monthInfo = FindViewById<TextView> (Resource.Id.weekOf);
 			daysList = new DateButton[7];
@@ -74,6 +80,7 @@ namespace SpeedyChef
 			// Makes sure day is selected before you can add a meal
 			if (selected == null) {
 				addBar.Visibility = Android.Views.ViewStates.Invisible;
+				mealDisplay.Visibility = Android.Views.ViewStates.Invisible;
 			}
 
 			Button addButton = FindViewById<Button> (Resource.Id.addMeal);
@@ -168,6 +175,7 @@ namespace SpeedyChef
 			}
 			
 			selected = GetDateButton((Button) sender);
+			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
 			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
 			// Can click the button after an action listener finds this.
@@ -218,6 +226,7 @@ namespace SpeedyChef
 			}
 			// Removes any selected day
 			selected = null;
+			mealDisplay.Visibility = Android.Views.ViewStates.Invisible;
 			// Makes the add button invisible
 			addBar.Visibility = Android.Views.ViewStates.Invisible;
 		}
