@@ -57,6 +57,7 @@ namespace SpeedyChef
 			NumberPicker np = FindViewById<NumberPicker> (Resource.Id.dinerCount);
 			np.MaxValue = 20;
 			np.MinValue = 0;
+			np.Orientation = 0;
 
 			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
 			returnButton.Click += (sender, e) => {

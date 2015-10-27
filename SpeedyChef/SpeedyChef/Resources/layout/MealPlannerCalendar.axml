@@ -33,6 +33,7 @@
             android:id="@+id/leftShift"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/weekOf"
+            android:layout_margin="10dp"
             android:width="40dp"
             android:maxWidth="50dp" />
         <TextView
@@ -134,15 +135,87 @@
         android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
+        android:weightSum="10"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/mealDisplay">
         <ScrollView
             android:minWidth="25px"
             android:minHeight="250px"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/mealScroll" />
+            android:id="@+id/mealScroll"
+            android:layout_weight="8">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/MealDisplay"
+                android:minWidth="25px"
+                android:minHeight="25px">
+            <!-- Start example here -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/E1">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="10"
+                        android:layout_margin="5dp"
+                        android:id="@+id/ExampleOne">
+                        <TextView
+                            style="@style/generalButtonStyle"
+                            android:text="Rice and Beans"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="left|center"
+                            android:layout_weight="8"
+                            android:id="@+id/Name1" />
+                        <Button
+                            style="@style/generalButtonStyle"
+                            android:text="&gt;"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:id="@+id/open1" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="10"
+                        android:layout_margin="5dp"
+                        android:id="@+id/E1Desc">
+                        <TextView
+                            android:textColor="@color/my_white"
+                            android:text="Refried beans with cheese, Mexican rice, ...."
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/e1Desc"
+                            android:ellipsize="end" />
+                        <TextView
+                            android:text="4 Diners"
+                            android:textColor="@color/my_white"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/e1Diner" />
+                    </LinearLayout>
+                </LinearLayout>
+            <!-- End Example Here -->
+            </LinearLayout>
+        </ScrollView>
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -151,10 +224,6 @@
             android:gravity="bottom"
             android:minWidth="25px"
             android:minHeight="25px">
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spaceLeft" />
             <Button
                 style="@style/generalButtonStyle"
                 android:text="Add"
@@ -163,10 +232,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100px"
                 android:id="@+id/addMeal" />
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spaceRight" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
