@@ -13,14 +13,14 @@
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
-                android:id="@+id/walkthrough_bar_1" />
+                android:id="@+id/walkthrough_bar" />
             <LinearLayout
                 style="@style/ProgressBarTextWrapper">
                 <TextView
-                    android:id="@+id/walkthrough_time_1"
+                    android:id="@+id/walkthrough_time"
                     style="@style/ProgressBarText" />
                 <TextView
-                    android:id="@+id/walkthrough_text_1"
+                    android:id="@+id/walkthrough_text"
                     style="@style/ProgressBarText" />
             </LinearLayout>
         </FrameLayout>
@@ -29,14 +29,14 @@
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
-                android:id="@+id/walkthrough_bar_2" />
+                android:id="@+id/walkthrough_bar" />
             <LinearLayout
                 style="@style/ProgressBarTextWrapper">
                 <TextView
-                    android:id="@+id/walkthrough_time_2"
+                    android:id="@+id/walkthrough_time"
                     style="@style/ProgressBarText" />
                 <TextView
-                    android:id="@+id/walkthrough_text_2"
+                    android:id="@+id/walkthrough_text"
                     style="@style/ProgressBarText" />
             </LinearLayout>
         </FrameLayout>
@@ -45,14 +45,14 @@
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
-                android:id="@+id/walkthrough_bar_3" />
+                android:id="@+id/walkthrough_bar" />
             <LinearLayout
                 style="@style/ProgressBarTextWrapper">
                 <TextView
-                    android:id="@+id/walkthrough_time_3"
+                    android:id="@+id/walkthrough_time"
                     style="@style/ProgressBarText" />
                 <TextView
-                    android:id="@+id/walkthrough_text_3"
+                    android:id="@+id/walkthrough_text"
                     style="@style/ProgressBarText" />
             </LinearLayout>
         </FrameLayout>
@@ -61,14 +61,14 @@
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
-                android:id="@+id/walkthrough_bar_4" />
+                android:id="@+id/walkthrough_bar" />
             <LinearLayout
                 style="@style/ProgressBarTextWrapper">
                 <TextView
-                    android:id="@+id/walkthrough_time_4"
+                    android:id="@+id/walkthrough_time"
                     style="@style/ProgressBarText" />
                 <TextView
-                    android:id="@+id/walkthrough_text_4"
+                    android:id="@+id/walkthrough_text"
                     style="@style/ProgressBarText" />
             </LinearLayout>
         </FrameLayout>
@@ -77,14 +77,14 @@
             style="@style/ProgressBarFrame">
             <ProgressBar
                 style="@style/CustomProgressBar"
-                android:id="@+id/walkthrough_bar_5" />
+                android:id="@+id/walkthrough_bar" />
             <LinearLayout
                 style="@style/ProgressBarTextWrapper">
                 <TextView
-                    android:id="@+id/walkthrough_time_5"
+                    android:id="@+id/walkthrough_time"
                     style="@style/ProgressBarText" />
                 <TextView
-                    android:id="@+id/walkthrough_text_5"
+                    android:id="@+id/walkthrough_text"
                     style="@style/ProgressBarText" />
             </LinearLayout>
         </FrameLayout>

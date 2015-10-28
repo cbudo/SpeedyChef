@@ -67,6 +67,8 @@
     <Compile Include="SubtypeBrowseActivity.cs" />
     <Compile Include="RecipeStepTimer.cs" />
     <Compile Include="RecipeStepTimerHandler.cs" />
+    <Compile Include="TimerPoolHandler.cs" />
+    <Compile Include="Utils\WebUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -155,5 +157,6 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\drawable\" />
     <Folder Include="Models\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>
