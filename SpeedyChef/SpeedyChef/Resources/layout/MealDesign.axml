@@ -28,7 +28,7 @@
             android:minWidth="25px"
             android:minHeight="250px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/mealScroll"
             android:layout_weight="9">
             <LinearLayout
@@ -37,18 +37,16 @@
                 android:minHeight="25px"
                 android:id="@+id/scroller"
                 android:layout_width="match_parent"
-                android:gravity="center"
                 android:weightSum="10"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:orientation="vertical"
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:id="@+id/mealInfo"
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_weight="4"
-                    android:layout_height="0dp">
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4">
                     <EditText
                         android:id="@+id/mealName"
                         android:layout_width="match_parent"
@@ -61,21 +59,18 @@
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight="4"
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_weight="4"
                     android:id="@+id/mealsArea" />
                 <LinearLayout
-                    android:layout_weight="2"
                     android:orientation="horizontal"
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:id="@+id/nameIncrementer"
-                    android:layout_width="match_parent"
-                    android:gravity="center|bottom"
-                    android:layout_height="0dp">
+                    android:layout_weight="2"
+                    android:layout_width="match_parent">
                     <TextView
                         android:text="Diners: "
                         android:textAppearance="?android:attr/textAppearanceLarge"

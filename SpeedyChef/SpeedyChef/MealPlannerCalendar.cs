@@ -152,6 +152,12 @@ namespace SpeedyChef
 				GoForwardWeek ();
 			};
 			debug.Text = "";
+			Button b1 = FindViewById<Button> (Resource.Id.Name1);
+			b1.Click += delegate {
+				MealInfo(b1.Parent);
+			};
+			// LinearLayout ll = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			// Console.WriteLine (ll.ChildCount + " Look for me");
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data){
@@ -193,6 +199,20 @@ namespace SpeedyChef
 			}
 			Console.WriteLine ("Should never get here");
 			return daysList [0];
+		}
+
+
+		/**
+		 * Use this method to go to the Design page and take 
+		 * and information you need with you.
+		 *
+		 **/
+		public void MealInfo (IViewParent parent){
+			LinearLayout ll = (LinearLayout) parent.Parent;
+			Console.WriteLine (parent.GetType ().ToString ());
+			// LinearLayout ll = (LinearLayout) parent;
+			Console.WriteLine (ll.ChildCount);
+			Console.WriteLine ("Button");
 		}
 
 		/**
