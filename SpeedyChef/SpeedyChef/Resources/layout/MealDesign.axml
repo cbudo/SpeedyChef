@@ -61,6 +61,7 @@
                     android:orientation="vertical"
                     android:minWidth="25px"
                     android:minHeight="25px"
+                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_weight="4"
                     android:id="@+id/mealsArea" />
@@ -69,6 +70,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:id="@+id/nameIncrementer"
+                    android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_width="match_parent">
                     <TextView
