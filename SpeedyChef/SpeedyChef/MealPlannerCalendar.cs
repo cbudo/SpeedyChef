@@ -23,6 +23,11 @@ namespace SpeedyChef
 		DateButton selected = null;
 
 		/**
+		 * Layout where meal information is displayed
+		 **/
+		LinearLayout mealDisplay = null;
+
+		/**
 		 * Current day of app 
 		 **/ 
 		DateTime current = DateTime.Now;
@@ -67,6 +72,7 @@ namespace SpeedyChef
 			SetContentView (Resource.Layout.MealPlannerCalendar);
 
 			// Provides global 
+			mealDisplay = FindViewById<LinearLayout> (Resource.Id.mealDisplay);
 			debug = FindViewById<TextView> (Resource.Id.debug);
 			monthInfo = FindViewById<TextView> (Resource.Id.weekOf);
 			daysList = new DateButton[7];
@@ -74,6 +80,7 @@ namespace SpeedyChef
 			// Makes sure day is selected before you can add a meal
 			if (selected == null) {
 				addBar.Visibility = Android.Views.ViewStates.Invisible;
+				mealDisplay.Visibility = Android.Views.ViewStates.Invisible;
 			}
 
 			Button addButton = FindViewById<Button> (Resource.Id.addMeal);
@@ -145,6 +152,12 @@ namespace SpeedyChef
 				GoForwardWeek ();
 			};
 			debug.Text = "";
+			Button b1 = FindViewById<Button> (Resource.Id.Name1);
+			b1.Click += delegate {
+				MealInfo(b1.Parent);
+			};
+			// LinearLayout ll = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			// Console.WriteLine (ll.ChildCount + " Look for me");
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data){
@@ -168,6 +181,7 @@ namespace SpeedyChef
 			}
 			
 			selected = GetDateButton((Button) sender);
+			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
 			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
 			// Can click the button after an action listener finds this.
@@ -185,6 +199,20 @@ namespace SpeedyChef
 			}
 			Console.WriteLine ("Should never get here");
 			return daysList [0];
+		}
+
+
+		/**
+		 * Use this method to go to the Design page and take 
+		 * and information you need with you.
+		 *
+		 **/
+		public void MealInfo (IViewParent parent){
+			LinearLayout ll = (LinearLayout) parent.Parent;
+			Console.WriteLine (parent.GetType ().ToString ());
+			// LinearLayout ll = (LinearLayout) parent;
+			Console.WriteLine (ll.ChildCount);
+			Console.WriteLine ("Button");
 		}
 
 		/**
@@ -218,6 +246,7 @@ namespace SpeedyChef
 			}
 			// Removes any selected day
 			selected = null;
+			mealDisplay.Visibility = Android.Views.ViewStates.Invisible;
 			// Makes the add button invisible
 			addBar.Visibility = Android.Views.ViewStates.Invisible;
 		}

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/contextMenu">
+  <item android:id="@+id/Time"
+        android:title="@string/FM_Time"
+        android:background="@color/my_blue"/>
+  <item android:id="@+id/Difficulty"
+        android:title="@string/FM_Difficulty"
+        android:background="@color/my_blue"/>
+  <item android:id="@+id/Both"
+  		android:title="@string/FM_Both"
+  		android:background="@color/my_blue"/>
+</menu>
