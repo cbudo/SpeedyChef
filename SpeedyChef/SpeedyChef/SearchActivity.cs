@@ -80,6 +80,8 @@ namespace SpeedyChef
 			filter_button.Click += (s, arg) => {
 				((Button) s).ShowContextMenu();
 			};
+
+
 		}
 
 		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
