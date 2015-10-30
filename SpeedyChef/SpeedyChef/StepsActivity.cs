@@ -51,6 +51,7 @@ namespace SpeedyChef
 			s1.desc = "And we form the corn, form form the corn, and we form the corn, form form the corn";
 			s1.time = 600;
 			s1.timeable = true;
+			s1.timerHandler = new RecipeStepTimerHandler (s1.time);
 			RecipeStep s2 = new RecipeStep ();
 			s2.title = "Shuck the Corn";
 			s2.desc = "And we shuck the corn, shuck shuck the corn, and we shuck the corn, shuck shuck the corn";
@@ -64,11 +65,13 @@ namespace SpeedyChef
 			s4.desc = "And we form potatoes, form form potatoes, and we form potatoes, form form potatoes";
 			s4.time = 3600;
 			s4.timeable = true;
+			s4.timerHandler = new RecipeStepTimerHandler (s4.time);
 			RecipeStep s5 = new RecipeStep ();
 			s5.title = "Peel Potatoes";
 			s5.desc = "And we peel potatoes, peel peel potatoes and we peel potatoes, peel peel potatoes";
 			s5.time = 750;
 			s5.timeable = true;
+			s5.timerHandler = new RecipeStepTimerHandler (s5.time);
 			RecipeStep s6 = new RecipeStep ();
 			s6.title = "Mash Potatoes";
 			s6.desc = "And we mash potatoes, mash mash potatoes and we mash potatoes, mash mash potatoes";
@@ -146,7 +149,7 @@ namespace SpeedyChef
 
 			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed), timerPoolHandler.getTimers(), pbs));
 
-			Console.WriteLine (WebUtils.getRecipeSteps ());
+			//Console.WriteLine (WebUtils.getRecipeSteps ());
 
 		}
 
@@ -180,7 +183,6 @@ namespace SpeedyChef
 
 		private RecipeStep recipeStep;
 		private TimerPoolHandler handler;
-		private bool hasTimer;
 
 		public StepFragment(RecipeStep s, TimerPoolHandler h) {
 			this.recipeStep = s;
@@ -195,13 +197,17 @@ namespace SpeedyChef
 			ImageView imgv = (ImageView) rootView.FindViewById (Resource.Id.step_image);
 			TextView descTv = (TextView) rootView.FindViewById (Resource.Id.step_desc);
 			TextView timeTv;
-			if (this.recipeStep.timeable && !hasTimer) { // Add a timer
+			if (this.recipeStep.timeable) { // Add a timer
 				rootView.FindViewById (Resource.Id.step_timer_wrapper).Visibility = ViewStates.Visible;
 				timeTv = (TextView) rootView.FindViewById (Resource.Id.step_timer_display);
-				timeTv.Text = (this.recipeStep.time / 60).ToString () + ":00";
 				Button startButton = rootView.FindViewById<Button> (Resource.Id.step_timer_start_button);
-				handler.AddTimer (this.recipeStep.time, timeTv, startButton);
-				hasTimer = true;
+				if (this.recipeStep.timerHandler.IsActive ()) {
+					startButton.SetText (Resource.String.pause);
+				} else {
+					timeTv.Text = (this.recipeStep.time / 60).ToString () + ":00";
+					handler.AddTimer (this.recipeStep, timeTv, startButton);
+				}
+					
 			}
 			else { // Don't add a timer, just display the time estimate
 				rootView.FindViewById (Resource.Id.step_static_time).Visibility = ViewStates.Visible;
@@ -221,10 +227,10 @@ namespace SpeedyChef
 		ImageView[] dots;
 		Drawable open;
 		Drawable closed;
-		List<RecipeStepTimerHandler> timers;
+		HashSet<RecipeStepTimerHandler> timers;
 		ViewGroup progressBars;
 
-		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, List<RecipeStepTimerHandler> timers, ViewGroup progressBars) : base() {
+		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, HashSet<RecipeStepTimerHandler> timers, ViewGroup progressBars) : base() {
 			this.dots = dots;
 			this.open = open;
 			this.closed = closed;

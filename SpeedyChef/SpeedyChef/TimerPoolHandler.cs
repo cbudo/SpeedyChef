@@ -8,35 +8,44 @@ namespace SpeedyChef
 	public class TimerPoolHandler
 	{
 		private ViewGroup[] timerFrames;
-		private List<RecipeStepTimerHandler> timers;
+		private HashSet<RecipeStepTimerHandler> timers;
 		private int timerIndex;
 
 		public TimerPoolHandler (ViewGroup[] timerFrames)
 		{
 			this.timerFrames = timerFrames;
-			timers = new List<RecipeStepTimerHandler> ();
+			timers = new HashSet<RecipeStepTimerHandler> ();
 			timerIndex = 0;
 		}
 
-		public List<RecipeStepTimerHandler> getTimers() {
+		public HashSet<RecipeStepTimerHandler> getTimers() {
 			return timers;
 		}
 
-		public void AddTimer(int seconds, Android.Widget.TextView textView, Button button) {
+		public void AddTimer(RecipeStep recipeStep, Android.Widget.TextView textView, Button button) {
 
 			//Add timer to list
-			RecipeStepTimerHandler t = new RecipeStepTimerHandler (seconds, timerFrames[timerIndex], textView);
-			timers.Add (t);
-			timerIndex++;
+			if (timers.Add (recipeStep.timerHandler)) {
+				assignTimerView (recipeStep, textView, timerFrames [timerIndex], button);
+				timerIndex++;
+			}
+
+		}
+
+		private void assignTimerView(RecipeStep recipeStep, TextView textView, ViewGroup timerFrame, Button button) {
+			RecipeStepTimerHandler t = recipeStep.timerHandler;
+			t.SetViews (textView, timerFrame.FindViewById<TextView> (Resource.Id.walkthrough_time),
+				timerFrame.FindViewById<ProgressBar> (Resource.Id.walkthrough_bar));
+			timerFrame.FindViewById<TextView> (Resource.Id.walkthrough_text).Text = recipeStep.title;
 			button.Click += delegate {
 				if (t.IsActive ()) {
 					t.PauseTimer ();
 					button.SetText (Resource.String.start);
-					timerFrames [timerIndex].Visibility = ViewStates.Gone;
+					timerFrame.Visibility = ViewStates.Gone;
 				} else {
 					t.StartTimer ();
 					button.SetText (Resource.String.pause);
-					timerFrames [timerIndex].Visibility = ViewStates.Visible;
+					timerFrame.Visibility = ViewStates.Visible;
 				}
 			};
 		}

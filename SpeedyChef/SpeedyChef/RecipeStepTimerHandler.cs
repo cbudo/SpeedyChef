@@ -8,15 +8,22 @@ namespace SpeedyChef
 	{
 		private int time;
 		private RecipeStepTimer recipeStepTimer;
-		private ViewGroup timerView;
-		private TextView original;
+	//	private ViewGroup timerView;
+	//	private TextView original;
 
-		public RecipeStepTimerHandler (int t, ViewGroup v, TextView tv)
+		public RecipeStepTimerHandler (int t)
 		{
 			time = t;
-			timerView = v;
-			original = tv;
-			recipeStepTimer = new RecipeStepTimer (time, timerView.FindViewById<TextView> (Resource.Id.walkthrough_time), original, v.FindViewById<ProgressBar> (Resource.Id.walkthrough_bar));
+			recipeStepTimer = new RecipeStepTimer (t);
+			//timerView = v;
+			//original = tv;
+			//recipeStepTimer = new RecipeStepTimer (time, timerView.FindViewById<TextView> (Resource.Id.walkthrough_time), original, v.FindViewById<ProgressBar> (Resource.Id.walkthrough_bar));
+		}
+
+		public void SetViews(TextView stepView, TextView barView, ProgressBar progressBar) {
+			recipeStepTimer.SetStepTextView (stepView);
+			recipeStepTimer.SetBarTextView (barView);
+			recipeStepTimer.SetProgressBar (progressBar);
 		}
 
 		public void StartTimer() {
@@ -26,7 +33,10 @@ namespace SpeedyChef
 		public void PauseTimer() {
 			time = recipeStepTimer.getSecondsLeft();
 			recipeStepTimer.deactivate ();
-			RecipeStepTimer newTimer = new RecipeStepTimer (time, recipeStepTimer.getBarTextView (), recipeStepTimer.getStepTextView (), recipeStepTimer.getProgressBar ());
+			RecipeStepTimer newTimer = new RecipeStepTimer (time);
+			newTimer.SetStepTextView (recipeStepTimer.GetStepTextView ());
+			newTimer.SetBarTextView (recipeStepTimer.GetBarTextView ());
+			newTimer.SetProgressBar (recipeStepTimer.GetProgressBar ());
 			recipeStepTimer = newTimer;
 		}
 

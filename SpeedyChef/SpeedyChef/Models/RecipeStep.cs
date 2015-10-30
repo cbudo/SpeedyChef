@@ -9,6 +9,7 @@ namespace SpeedyChef
 		public string desc;
 		public int time;
 		public bool timeable;
+		public RecipeStepTimerHandler timerHandler;
 	}
 }
 

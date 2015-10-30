@@ -11,23 +11,25 @@ namespace SpeedyChef
 		private ProgressBar pb;
 
 		private bool active;
-		private long millisLeft;
+		private int secondsLeft;
+		private int maxSeconds;
 
-		public RecipeStepTimer (int seconds, TextView bartv, TextView steptv, ProgressBar pb) : base (seconds * 1000, 1000)
+		public RecipeStepTimer (int seconds) : base (seconds * 1000, 1000)
 		{
-			this.bar_tv = bartv;
+			/*this.bar_tv = bartv;
 			this.step_tv = steptv;
 			this.pb = pb;
-			pb.Max = seconds;
+			pb.Max = seconds;*/
 
 			active = false;
-			millisLeft = seconds;
+			secondsLeft = seconds;
+			maxSeconds = seconds;
 		}
 
 		public override void OnTick(long millisUntilFinished) {
-			millisLeft = millisUntilFinished;
-			long seconds = millisUntilFinished / 1000;
-			long mins = seconds / 60;
+			secondsLeft = (int) (millisUntilFinished / 1000);
+			int seconds = secondsLeft;
+			int mins = seconds / 60;
 			seconds = seconds % 60;
 			string display;
 			if (seconds < 10) {
@@ -41,6 +43,7 @@ namespace SpeedyChef
 			if (pb != null) {
 				pb.IncrementProgressBy (1);
 			}
+			Console.WriteLine ("PB: " + pb);
 		}
 
 		public override void OnFinish() {
@@ -63,19 +66,32 @@ namespace SpeedyChef
 		}
 
 		public int getSecondsLeft() {
-			return (int) this.millisLeft / 1000;
+			return secondsLeft;
 		}
 
-		public TextView getStepTextView() {
+		public TextView GetStepTextView() {
 			return step_tv;
 		}
 
-		public TextView getBarTextView() {
+		public TextView GetBarTextView() {
 			return bar_tv;
 		} 
 
-		public ProgressBar getProgressBar() {
+		public ProgressBar GetProgressBar() {
 			return pb;
+		}
+
+		public void SetStepTextView(TextView tv) {
+			step_tv = tv;
+		}
+
+		public void SetBarTextView(TextView tv) {
+			bar_tv = tv;
+		} 
+
+		public void SetProgressBar(ProgressBar bar) {
+			pb = bar;
+			pb.Max = maxSeconds;
 		}
 
 		public void UpdateTextView(String s) {

@@ -7,7 +7,7 @@ namespace SpeedyChef
 	public static class WebUtils
 	{
 		//TODO change this
-		private static string baseURI = "CHANGE ME";
+		private static string baseURI = "http://localhost:8027";
 
 		public static RecipeStep[] getRecipeSteps() {
 			string response = getJSONResponse ("/Steps");
