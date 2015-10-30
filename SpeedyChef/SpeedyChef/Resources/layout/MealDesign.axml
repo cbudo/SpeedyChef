@@ -28,34 +28,76 @@
             android:minWidth="25px"
             android:minHeight="250px"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="fill_parent"
             android:id="@+id/mealScroll"
             android:layout_weight="9">
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:minWidth="25px"
                 android:minHeight="25px"
-                android:id="@+id/nameIncrementer"
+                android:id="@+id/scroller"
                 android:layout_width="match_parent"
-                android:gravity="center"
+                android:weightSum="10"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="Diners: "
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:id="@+id/dinerText" />
-                <NumberPicker
-                    style="@style/generalButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:id="@+id/dinerCount" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/mealInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4">
+                    <EditText
+                        android:id="@+id/mealName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:hint="Enter Name of Meal" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:id="@+id/mealsArea" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/nameIncrementer"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent">
+                    <TextView
+                        android:text="Diners: "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:id="@+id/dinerText" />
+                    <TextView
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:id="@+id/seekBarCount" />
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/dinerCounter"
+                        android:max="20" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
         <RelativeLayout
             android:orientation="vertical"
+            android:layout_weight="1"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="fill_parent"
