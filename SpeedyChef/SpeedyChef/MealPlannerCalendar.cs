@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Json;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -11,6 +15,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Util;
+
 
 namespace SpeedyChef
 {
@@ -85,11 +90,11 @@ namespace SpeedyChef
 
 			Button addButton = FindViewById<Button> (Resource.Id.addMeal);
 			addButton.Click += (sender, e) => {
-				Intent intent = new Intent(this, typeof(MealDesign));
+				Intent intent = new Intent (this, typeof(MealDesign));
 				// Console.WriteLine (selected.GetDateField().ToBinary());
 				// Adds Binary field to be parsed later
-				intent.PutExtra("Date", selected.GetDateField().ToBinary());
-				StartActivity(intent);
+				intent.PutExtra ("Date", selected.GetDateField ().ToBinary ());
+				StartActivity (intent);
 			};
 
 			//MENU VIEW
@@ -154,16 +159,17 @@ namespace SpeedyChef
 			debug.Text = "";
 			Button b1 = FindViewById<Button> (Resource.Id.Name1);
 			b1.Click += delegate {
-				MealInfo(b1.Parent);
+				MealInfo (b1.Parent);
 			};
 			// LinearLayout ll = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
 			// Console.WriteLine (ll.ChildCount + " Look for me");
 		}
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data){
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok) {
-				Console.WriteLine (data.GetStringExtra("Result"));
+				Console.WriteLine (data.GetStringExtra ("Result"));
 			}
 			Console.WriteLine ("Maybe");
 		}
@@ -172,7 +178,8 @@ namespace SpeedyChef
 		/**
 		 * Event Handler method to help get date to pass to next object
 		 **/ 
-		protected void dayClick(object sender, EventArgs e){
+		protected async void dayClick (object sender, EventArgs e)
+		{
 			if (selected != null) {
 				selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
 			}
@@ -180,24 +187,107 @@ namespace SpeedyChef
 				currentDate.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
 			}
 			
-			selected = GetDateButton((Button) sender);
+			selected = GetDateButton ((Button)sender);
 			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
 			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
 			string user = "tester";
-			string useDate = selected.GetDateField ().ToString ("YYYY-MM-DD");
-
+			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
+			// System.Diagnostics.Debug.WriteLine (useDate);
 			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
-			//  JsonValue json = await Fetch
+			JsonValue json = await FetchMealDay (url);
+			// System.Diagnostics.Debug.WriteLine (json.ToString ());
+			parseMeals (json);
+		}
+
+
+		private void parseMeals (JsonValue json)
+		{
+			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			System.Diagnostics.Debug.WriteLine (json.Count);
+			//mealDisplay.RemoveAllViews ();
+			mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
+			for (int i = 0; i < json.Count; i++) {
+				mealDisplay = makeObjects (json [i], i, mealDisplay);
+			}
+		}
+
+		/**
+		 * 
+		 * 
+		 **/
+		private LinearLayout makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
+		{
+			System.Diagnostics.Debug.WriteLine (json.ToString());
+			for (int i = 0; i < mealDisplay.ChildCount; i++) {
+				mealDisplay.RemoveView (mealDisplay.GetChildAt (i));
+			}
+			LinearLayout mealObject = new LinearLayout (this);
+			mealObject.Orientation = Orientation.Vertical;
+			mealObject.SetMinimumWidth (25);
+			mealObject.SetMinimumHeight (25);
+			LinearLayout.LayoutParams mealObjectLL = 
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			mealObject.LayoutParameters = mealObjectLL;
+			// mealObject.Id = count * 20 + 5;
+			LinearLayout buttonCont = new LinearLayout (this);
+			//buttonCont.SetBackgroundColor (Android.Graphics.Color.White);
+			buttonCont.Orientation = Orientation.Horizontal;
+			buttonCont.SetMinimumWidth (25);
+			buttonCont.SetMinimumHeight (100);
+			LinearLayout.LayoutParams bcll = 
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			bcll.SetMargins (5, 5, 5, 5);
+			buttonCont.LayoutParameters = bcll;
+			// buttonCont.Id = count * 20 + 6;
+			Button button = new Button (this, null, Resource.Style.generalButtonStyle);
+			LinearLayout.LayoutParams lp = 
+				new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MatchParent, 
+					LinearLayout.LayoutParams.MatchParent);
+			button.LayoutParameters = lp;
+			button.Text = json ["Mealname"];
+			button.SetBackgroundColor (Android.Graphics.Color.ParseColor("#3498DB"));
+			buttonCont.AddView (button);
+			mealDisplay.AddView (buttonCont);
+			System.Diagnostics.Debug.WriteLine ("Created it");
+			return mealDisplay;
+		}
+
+		/**
+		 * TODO 
+		 * 
+		 **/
+		private async Task<JsonValue> FetchMealDay (string url)
+		{
+			// Create an HTTP web request using the URL:
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
+			request.ContentType = "application/json";
+			request.Method = "GET";
+
+			// Send the request to the server and wait for the response:
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				// Get a stream representation of the HTTP web response:
+				using (Stream stream = response.GetResponseStream ()) {
+					// Use this stream to build a JSON document object:
+					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
+					Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
+
+					// Return the JSON document:
+					return jsonDoc;
+				}
+			}
+
 		}
 
 		/**
 		 * Finds matching button in button lists
 		 **/
-		private DateButton GetDateButton(Button b){
-			for (int i = 0; i < daysList.Length; i++){
+		private DateButton GetDateButton (Button b)
+		{
+			for (int i = 0; i < daysList.Length; i++) {
 				if (daysList [i].wrappedButton.GetHashCode () == b.GetHashCode ()) {
 					return daysList [i];
 				}
@@ -212,8 +302,9 @@ namespace SpeedyChef
 		 * and information you need with you.
 		 *
 		 **/
-		public void MealInfo (IViewParent parent){
-			LinearLayout ll = (LinearLayout) parent.Parent;
+		public void MealInfo (IViewParent parent)
+		{
+			LinearLayout ll = (LinearLayout)parent.Parent;
 			Console.WriteLine (parent.GetType ().ToString ());
 			// LinearLayout ll = (LinearLayout) parent;
 			Console.WriteLine (ll.ChildCount);
