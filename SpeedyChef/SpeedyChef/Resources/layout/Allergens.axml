@@ -24,7 +24,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@id/tabs_linear_layout">
+        android:id="@+id/tabs_linear_layout">
         <Button
             android:layout_width="100dp"
             android:layout_height="75dp"
@@ -34,11 +34,11 @@
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:id="@+id/oven_button"
-            android:background="@drawable/oven-electric-tool_318-63231" />
+            android:background="@drawable/ic_oven_white" />
         <Button
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:id="@+id/expertise_button"
-            android:background="@drawable/ic_face_white_28px" />
+            android:background="@drawable/ic_face_white_24px" />
     </LinearLayout>
 </LinearLayout>
