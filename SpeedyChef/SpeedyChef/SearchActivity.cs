@@ -27,12 +27,14 @@ namespace SpeedyChef
 		JsonValue jsonDoc;
 		string ordertype;
 		string asc;
+		string mostRecentKeywords;
 		private Object thisLock = new Object();
 
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			this.mostRecentKeywords = "";
 			this.asc = "Asc";
 			this.ordertype = "Diff";
 			//RECYCLER VIEW
@@ -114,18 +116,21 @@ namespace SpeedyChef
 				{
 					this.filter_button.Text = "Time";
 					this.ordertype = "Time";
+					this.SearchQuery (this.mostRecentKeywords, this.ordertype, this.asc);
 					break;
 				}
 			case Resource.Id.Difficulty:
 				{
 					this.filter_button.Text = "Difficulty";
 					this.ordertype = "Diff";
+					this.SearchQuery (this.mostRecentKeywords, this.ordertype, this.asc);
 					break;
 				}
 			case Resource.Id.Both:
 				{
 					this.filter_button.Text = "Both";
 					this.ordertype = "Both";
+					this.SearchQuery (this.mostRecentKeywords, this.ordertype, this.asc);
 					break;
 				}
 			default:
@@ -137,15 +142,25 @@ namespace SpeedyChef
 
 		public bool OnQueryTextChange(string input)
 		{
-			string newString = input.Replace (' ', ',');
-			System.Diagnostics.Debug.WriteLine (newString);
-			this.SearchQuery (input.Replace(' ', ','), this.ordertype, this.asc);
-			return true;
+			if (CachedData.Instance.SelectedSubgenre != null) {
+				string newString = CachedData.Instance.SelectedSubgenre.Replace(" ", ",");
+				newString = newString + "," + input.Replace (" ", ",");
+				System.Diagnostics.Debug.WriteLine (newString);
+				this.SearchQuery (newString, this.ordertype, this.asc);
+				return true;
+			} else {
+				string newString = input.Replace (" ", ",");
+				System.Diagnostics.Debug.WriteLine (newString);
+				this.SearchQuery (newString, this.ordertype, this.asc);
+				return true;
+			}
 		}
 
 		public void SearchQuery(string inputKeywords, string ordertype, string ascending){
 			lock (thisLock) {
 				string url = "http://speedychef.azurewebsites.net/search/search?inputKeywords=" + inputKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc;
+				this.mostRecentKeywords = inputKeywords;
+				System.Diagnostics.Debug.WriteLine (url);
 
 				// Create an HTTP web request using the URL:
 				HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
@@ -158,7 +173,7 @@ namespace SpeedyChef
 					using (Stream stream = response.GetResponseStream ()) {
 						// Use this stream to build a JSON document object:
 						this.jsonDoc = JsonObject.Load (stream);
-						System.Diagnostics.Debug.WriteLine ("Response: {0}", jsonDoc.ToString ());
+						System.Diagnostics.Debug.WriteLine (this.jsonDoc.ToString ());
 					}
 				}
 				int tempNum = this.mObject.NumElements;
@@ -167,7 +182,6 @@ namespace SpeedyChef
 					this.mAdapter.NotifyItemRemoved (i);
 				}
 				for (int k = 0; k < this.jsonDoc.Count; k++) {
-					System.Diagnostics.Debug.WriteLine (this.jsonDoc [k] ["Recname"]);
 					this.mObject.Add (new Tuple<string, string, int> (this.jsonDoc [k] ["Recname"], this.jsonDoc [k] ["Recdesc"], this.jsonDoc [k] ["Recdiff"]));
 					this.mAdapter.NotifyItemInserted (k);
 				}
@@ -176,9 +190,9 @@ namespace SpeedyChef
 
 		public bool OnQueryTextSubmit(string input)
 		{
-			string newString = input.Replace (' ', ',');
+			string newString = input.Replace (" ", ",");
 			System.Diagnostics.Debug.WriteLine (newString);
-			this.SearchQuery (input.Replace(' ', ','), this.ordertype, this.asc);
+			this.SearchQuery (newString, this.ordertype, this.asc);
 			return true;
 		}
 

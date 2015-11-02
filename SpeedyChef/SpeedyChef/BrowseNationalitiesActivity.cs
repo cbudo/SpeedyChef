@@ -84,6 +84,9 @@ namespace SpeedyChef
 			RightText = itemView.FindViewById<TextView> (Resource.Id.textViewRight);
 			if (!searchLanding) {
 				this.attributeClicks ();
+			} 
+			else {
+				this.searchClicks ();
 			}
 		}
 
@@ -97,6 +100,20 @@ namespace SpeedyChef
 			RightImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedNationality = RightText.Text;
 				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
+				callingActivity.StartActivity(intent);
+			};
+		}
+
+		public void searchClicks()
+		{
+			LeftImage.Click += (sender, e) => {
+				CachedData.Instance.SelectedSubgenre = LeftText.Text;
+				var intent = new Intent(callingActivity, typeof(SearchActivity));
+				callingActivity.StartActivity(intent);
+			};
+			RightImage.Click += (sender, e) => {
+				CachedData.Instance.SelectedSubgenre = RightText.Text;
+				var intent = new Intent(callingActivity, typeof(SearchActivity));
 				callingActivity.StartActivity(intent);
 			};
 		}
