@@ -72,6 +72,10 @@ namespace SpeedyChef
 						var intent = new Intent(this, typeof(SearchActivity));
 						StartActivity(intent);
 					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
+						var intent = new Intent(this, typeof(Allergens));
+						StartActivity(intent);
+					}
 				};
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);

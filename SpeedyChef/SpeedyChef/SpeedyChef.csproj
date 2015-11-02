@@ -88,8 +88,13 @@
     <AndroidResource Include="Resources\drawable\ic_block_white_48px.png" />
     <AndroidResource Include="Resources\drawable\ic_face_black_24px.png" />
     <AndroidResource Include="Resources\drawable\ic_face_white_24px.png" />
-    <AndroidResource Include="Resources\drawable\ic_oven_white.jpg" />
     <AndroidResource Include="Resources\drawable\ic_oven_black.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_oven_white.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_face_white_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_face_white_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_face_white_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_face_white_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_face_white_48dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
