@@ -186,6 +186,11 @@ namespace SpeedyChef
 			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
+			string user = "tester";
+			string useDate = selected.GetDateField ().ToString ("YYYY-MM-DD");
+
+			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
+			//  JsonValue json = await Fetch
 		}
 
 		/**
