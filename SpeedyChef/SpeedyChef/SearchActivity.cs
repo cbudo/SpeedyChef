@@ -9,6 +9,11 @@ using Android.OS;
 using v7Widget = Android.Support.V7.Widget;
 using System.Collections.Generic;
 
+using System.Json;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
+
 namespace SpeedyChef
 {
 	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", MainLauncher = true, Icon = "@drawable/icon")]
@@ -19,11 +24,17 @@ namespace SpeedyChef
 		RecipeAdapter mAdapter;
 		RecipeObject mObject;
 		Button filter_button;
+		JsonValue jsonDoc;
+		string ordertype;
+		string asc;
+		private Object thisLock = new Object();
+
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
+			this.asc = "Asc";
+			this.ordertype = "Diff";
 			//RECYCLER VIEW
 			mObject = new RecipeObject ();
 			mAdapter = new RecipeAdapter (mObject, this);
@@ -98,16 +109,19 @@ namespace SpeedyChef
 			case Resource.Id.Time:
 				{
 					this.filter_button.Text = "Time";
+					this.ordertype = "Time";
 					break;
 				}
 			case Resource.Id.Difficulty:
 				{
 					this.filter_button.Text = "Difficulty";
+					this.ordertype = "Diff";
 					break;
 				}
 			case Resource.Id.Both:
 				{
 					this.filter_button.Text = "Both";
+					this.ordertype = "Both";
 					break;
 				}
 			default:
@@ -119,13 +133,48 @@ namespace SpeedyChef
 
 		public bool OnQueryTextChange(string input)
 		{
-			System.Console.WriteLine (input);
+			string newString = input.Replace (' ', ',');
+			System.Diagnostics.Debug.WriteLine (newString);
+			this.SearchQuery (input.Replace(' ', ','), this.ordertype, this.asc);
 			return true;
+		}
+
+		public void SearchQuery(string inputKeywords, string ordertype, string ascending){
+			lock (thisLock) {
+				string url = "http://speedychef.azurewebsites.net/search/search?inputKeywords=" + inputKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc;
+
+				// Create an HTTP web request using the URL:
+				HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
+				request.ContentType = "application/json";
+				request.Method = "SEARCH";
+
+				// Send the request to the server and wait for the response:
+				using (WebResponse response = request.GetResponse ()) {
+					// Get a stream representation of the HTTP web response:
+					using (Stream stream = response.GetResponseStream ()) {
+						// Use this stream to build a JSON document object:
+						this.jsonDoc = JsonObject.Load (stream);
+						System.Diagnostics.Debug.WriteLine ("Response: {0}", jsonDoc.ToString ());
+					}
+				}
+				int tempNum = this.mObject.NumElements;
+				for (int i = this.mObject.NumElements - 1; i > -1; i--) {
+					this.mObject.Remove (i);
+					this.mAdapter.NotifyItemRemoved (i);
+				}
+				for (int k = 0; k < this.jsonDoc.Count; k++) {
+					System.Diagnostics.Debug.WriteLine (this.jsonDoc [k] ["Recname"]);
+					this.mObject.Add (new Tuple<string, string, int> (this.jsonDoc [k] ["Recname"], this.jsonDoc [k] ["Recdesc"], this.jsonDoc [k] ["Recdiff"]));
+					this.mAdapter.NotifyItemInserted (k);
+				}
+			}
 		}
 
 		public bool OnQueryTextSubmit(string input)
 		{
-			System.Console.WriteLine (input);
+			string newString = input.Replace (' ', ',');
+			System.Diagnostics.Debug.WriteLine (newString);
+			this.SearchQuery (input.Replace(' ', ','), this.ordertype, this.asc);
 			return true;
 		}
 
@@ -159,7 +208,7 @@ namespace SpeedyChef
 	public class RecipeAdapter : v7Widget.RecyclerView.Adapter
 	{
 		public RecipeObject mRObject;
-		public Activity callingActivity;
+		public Activity callingActivity; 
 
 		public RecipeAdapter (RecipeObject inRObject, Activity inActivity)
 		{
@@ -214,15 +263,11 @@ namespace SpeedyChef
 	{
 		public int NumElements;
 		public List<Tuple<string, string, int>> RecipeList;
+		private Object thisLock = new Object();
 
 		public RecipeObject ()
 		{
 			this.RecipeList = new List<Tuple<string, string, int>>();
-			this.RecipeList.Add(new Tuple<string, string, int>("Name", "Time", 5));
-			this.RecipeList.Add (new Tuple<string, string, int> ("Name2", "Time", 4));
-			this.RecipeList.Add (new Tuple<string, string, int> ("Name3", "Time", 3));
-			this.RecipeList.Add (new Tuple<string, string, int> ("Name3", "Time", 2));
-			this.RecipeList.Add (new Tuple<string, string, int> ("Name4", "Time", 1));
 			this.NumElements = this.RecipeList.Count;
 		}
 
@@ -235,6 +280,16 @@ namespace SpeedyChef
 		public Tuple<string, string, int> getObjectInPosition(int position)
 		{
 			return this.RecipeList [position];
+		}
+			
+		public void Add(Tuple<string, string, int> newTuple){
+			this.RecipeList.Add (newTuple);
+			this.NumElements = this.RecipeList.Count;
+		}
+
+		public void Remove(int position){
+			this.RecipeList.RemoveAt (position);
+			this.NumElements -= 1;
 		}
 	}
 }
