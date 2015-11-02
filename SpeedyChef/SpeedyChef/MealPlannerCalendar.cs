@@ -217,7 +217,7 @@ namespace SpeedyChef
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
 			for (int i = 0; i < json.Count; i++) {
-				mealDisplay = makeObjects (json [i], i, mealDisplay);
+				makeObjects (json [i], i, mealDisplay);
 			}
 		}
 
@@ -225,7 +225,7 @@ namespace SpeedyChef
 		 * 
 		 * 
 		 **/
-		private LinearLayout makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
+		private async void makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
 		{
 			System.Diagnostics.Debug.WriteLine (json.ToString());
 //			for (int i = 0; i < mealDisplay.ChildCount; i++) {
@@ -257,12 +257,14 @@ namespace SpeedyChef
 					LinearLayout.LayoutParams.MatchParent);
 			button.LayoutParameters = lp;
 			button.Text = json ["Mealname"];
+
 			button.Visibility = Android.Views.ViewStates.Visible;
 			button.SetBackgroundColor (Android.Graphics.Color.ParseColor("#3498DB"));
+			button.Gravity = GravityFlags.Center;
 			buttonCont.AddView (button);
 			mealObject.AddView (buttonCont);
 			LinearLayout mealInfo = new LinearLayout (this);
-			mealInfo.Orientation = Orientation.Vertical;
+			mealInfo.Orientation = Orientation.Horizontal;
 			mealInfo.SetMinimumWidth (25);
 			mealInfo.SetMinimumHeight (25);
 			LinearLayout.LayoutParams mealInfoLL = 
@@ -271,14 +273,44 @@ namespace SpeedyChef
 			mealInfo.LayoutParameters = mealInfoLL;
 			mealInfo.Id = count * 20 + 7;
 			TextView mealSize = new TextView (this);
+			TextView recipeInfo = new TextView (this);
+			string user = "tester";
+			int mealId = json ["Mealid"];
+			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
+			JsonValue recipeResult = await FetchMealDay (url);
+			recipeInfo.Text = handleRecipeJson (recipeResult);
+			// System.Diagnostics.Debug.WriteLine (recipeResult.ToString ());
+			recipeInfo.SetTextAppearance(this, Android.Resource.Style.TextAppearanceSmall);
+			recipeInfo.SetLines (1);
+			LinearLayout.LayoutParams rill = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
+			recipeInfo.LayoutParameters = rill;
+			recipeInfo.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
 			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
-			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			mealSize.LayoutParameters = tvll;
 			mealSize.SetTextColor (Android.Graphics.Color.ParseColor("#FFFFFF"));
-			mealSize.Text = "DINERS";
-			mealObject.AddView (mealSize);
+			mealSize.Text = json["Mealsize"].ToString() + " Diners ";
+			mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
+			mealInfo.SetPadding (10, 0, 0, 0);
+			mealSize.Gravity = GravityFlags.Right;
+			mealInfo.AddView (mealSize);
+			mealInfo.AddView (recipeInfo);
+			mealObject.AddView (mealInfo);
 			mealDisplay.AddView (mealObject);
-			return mealDisplay;
+		}
+
+		/**
+		 * 
+		 **/
+		public string handleRecipeJson(JsonValue json)
+		{
+			string finalString = "";
+			for (int i = 0; i < json.Count; i++) {
+				finalString += json [i] ["Recname"] + ", ";
+			}
+			finalString = finalString.Substring (0, finalString.Length - 2);
+			// System.Diagnostics.Debug.WriteLine (finalString);
+			return finalString;
 		}
 
 		/**

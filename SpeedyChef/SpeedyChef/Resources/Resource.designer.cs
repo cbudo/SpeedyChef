@@ -1870,11 +1870,11 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f06000d
 			public const int disableHome = 2131099661;
 			
-			// aapt resource value: 0x7f060080
-			public const int e1Desc = 2131099776;
-			
 			// aapt resource value: 0x7f060081
-			public const int e1Diner = 2131099777;
+			public const int e1Desc = 2131099777;
+			
+			// aapt resource value: 0x7f060080
+			public const int e1Diner = 2131099776;
 			
 			// aapt resource value: 0x7f060086
 			public const int e2Desc = 2131099782;

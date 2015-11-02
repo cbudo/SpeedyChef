@@ -176,7 +176,7 @@
                             android:id="@+id/Name1" />
                     </LinearLayout>
                     <LinearLayout
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:minWidth="25px"
                         android:minHeight="25px"
                         android:layout_width="match_parent"
@@ -184,20 +184,20 @@
                         android:layout_margin="5dp"
                         android:id="@+id/E1Desc">
                         <TextView
+                            android:text="4 Diners"
                             android:textColor="@color/my_white"
-                            android:text="Refried beans with cheese, Mexican rice, ...."
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/e1Diner" />
+                        <TextView
+                            android:textColor="@color/my_white"
+                            android:text="Refried beans with cheese, Mexican rice, .adsfasdfsadfadsfadsfa"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/e1Desc"
                             android:ellipsize="end" />
-                        <TextView
-                            android:text="4 Diners"
-                            android:textColor="@color/my_white"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/e1Diner" />
                     </LinearLayout>
                 </LinearLayout>
             <!-- End Example Here -->
