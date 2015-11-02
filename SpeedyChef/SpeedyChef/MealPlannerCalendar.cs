@@ -203,12 +203,15 @@ namespace SpeedyChef
 		}
 
 
+		/**
+		 * 
+		 **/
 		private void parseMeals (JsonValue json)
 		{
 			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
 			System.Diagnostics.Debug.WriteLine (json.Count);
-			//mealDisplay.RemoveAllViews ();
-			mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
+			mealDisplay.RemoveAllViews ();
+			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
 			for (int i = 0; i < json.Count; i++) {
 				mealDisplay = makeObjects (json [i], i, mealDisplay);
 			}
@@ -221,9 +224,9 @@ namespace SpeedyChef
 		private LinearLayout makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
 		{
 			System.Diagnostics.Debug.WriteLine (json.ToString());
-			for (int i = 0; i < mealDisplay.ChildCount; i++) {
-				mealDisplay.RemoveView (mealDisplay.GetChildAt (i));
-			}
+//			for (int i = 0; i < mealDisplay.ChildCount; i++) {
+//				mealDisplay.RemoveView (mealDisplay.GetChildAt (i));
+//			}
 			LinearLayout mealObject = new LinearLayout (this);
 			mealObject.Orientation = Orientation.Vertical;
 			mealObject.SetMinimumWidth (25);
@@ -231,7 +234,7 @@ namespace SpeedyChef
 			LinearLayout.LayoutParams mealObjectLL = 
 				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			mealObject.LayoutParameters = mealObjectLL;
-			// mealObject.Id = count * 20 + 5;
+			mealObject.Id = count * 20 + 5;
 			LinearLayout buttonCont = new LinearLayout (this);
 			//buttonCont.SetBackgroundColor (Android.Graphics.Color.White);
 			buttonCont.Orientation = Orientation.Horizontal;
@@ -241,7 +244,8 @@ namespace SpeedyChef
 				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			bcll.SetMargins (5, 5, 5, 5);
 			buttonCont.LayoutParameters = bcll;
-			// buttonCont.Id = count * 20 + 6;
+			buttonCont.Visibility = Android.Views.ViewStates.Visible;
+			buttonCont.Id = count * 20 + 6;
 			Button button = new Button (this, null, Resource.Style.generalButtonStyle);
 			LinearLayout.LayoutParams lp = 
 				new LinearLayout.LayoutParams(
@@ -249,10 +253,27 @@ namespace SpeedyChef
 					LinearLayout.LayoutParams.MatchParent);
 			button.LayoutParameters = lp;
 			button.Text = json ["Mealname"];
+			button.Visibility = Android.Views.ViewStates.Visible;
 			button.SetBackgroundColor (Android.Graphics.Color.ParseColor("#3498DB"));
 			buttonCont.AddView (button);
-			mealDisplay.AddView (buttonCont);
-			System.Diagnostics.Debug.WriteLine ("Created it");
+			mealObject.AddView (buttonCont);
+			LinearLayout mealInfo = new LinearLayout (this);
+			mealInfo.Orientation = Orientation.Vertical;
+			mealInfo.SetMinimumWidth (25);
+			mealInfo.SetMinimumHeight (25);
+			LinearLayout.LayoutParams mealInfoLL = 
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			mealInfoLL.SetMargins (5, 5, 5, 5);
+			mealInfo.LayoutParameters = mealInfoLL;
+			mealInfo.Id = count * 20 + 7;
+			TextView mealSize = new TextView (this);
+			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
+			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			mealSize.LayoutParameters = tvll;
+			mealSize.SetTextColor (Android.Graphics.Color.ParseColor("#FFFFFF"));
+			mealSize.Text = "DINERS";
+			mealObject.AddView (mealSize);
+			mealDisplay.AddView (mealObject);
 			return mealDisplay;
 		}
 
