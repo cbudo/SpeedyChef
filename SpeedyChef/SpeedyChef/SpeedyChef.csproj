@@ -77,12 +77,18 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
-    <AndroidResource Include="Resources\layout\Preferences.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <None Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\menu\Filter_Menu.xml" />
     <AndroidResource Include="Resources\layout\TwoByTwoResultView.axml" />
+    <AndroidResource Include="Resources\layout\Allergens.axml" />
+    <AndroidResource Include="Resources\layout\Appliances.axml" />
+    <AndroidResource Include="Resources\layout\Expertise.axml" />
+    <AndroidResource Include="Resources\drawable\ic_block_black_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_block_white_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_black_24px.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_white_24px.png" />
+    <AndroidResource Include="Resources\drawable\ic_oven_white.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_oven_black.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

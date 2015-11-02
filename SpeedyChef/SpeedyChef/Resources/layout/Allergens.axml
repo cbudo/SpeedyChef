@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_linear_layout">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/menu_button"
+            android:background="@drawable/menu_lines" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/tabs_linear_layout">
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:id="@+id/allergens_button"
+            android:background="@drawable/ic_block_white_48px" />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:id="@+id/oven_button"
+            android:background="@drawable/oven-electric-tool_318-63231" />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:id="@+id/expertise_button"
+            android:background="@drawable/ic_face_white_28px" />
+    </LinearLayout>
+</LinearLayout>
