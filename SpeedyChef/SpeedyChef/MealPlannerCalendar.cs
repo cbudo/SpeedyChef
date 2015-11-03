@@ -271,11 +271,15 @@ namespace SpeedyChef
 			LinearLayout.LayoutParams wtll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			walkthroughButton.LayoutParameters = wtll;
 			walkthroughButton.AddView (CreateMealInfo (json, recipeResult, count));
-			Button button = new Button (this);
+			MealButton button = new MealButton(this);
+			button.mealName = json ["Mealname"];
+			button.mealId = json ["Mealid"];
+			button.mealSize = json ["Mealsize"];
 			button.Text = "Start Walkthrough";
-
-			// TODO: Add the click to the walkthrough
-
+			button.Click += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine(button.mealName + "  " + button.mealSize);
+				// TODO: Add the click to the walkthrough
+			};
 			button.Gravity = GravityFlags.Center;
 			button.SetBackgroundColor (Android.Graphics.Color.Aqua);
 			button.SetTextColor (Android.Graphics.Color.Black);
@@ -351,10 +355,16 @@ namespace SpeedyChef
 			buttonCont.LayoutParameters = bcll;
 			buttonCont.Visibility = Android.Views.ViewStates.Visible;
 			buttonCont.Id = count * 20 + 6;
-			Button button = new Button (this, null, Resource.Style.generalButtonStyle);
+			// Used to hold more values
+			MealButton button = new MealButton (this, null, Resource.Style.generalButtonStyle); 
+			button.mealName = json["Mealname"];
+			button.mealSize =  (json ["Mealsize"]);
+			button.Click += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine(button.mealName);
+				System.Diagnostics.Debug.WriteLine(button.mealSize);
+				// TODO: Jump to the Design page
 
-			// TODO: Jump to the Design page
-
+			};
 			LinearLayout.LayoutParams lp = 
 				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
 			button.LayoutParameters = lp;
@@ -536,6 +546,48 @@ namespace SpeedyChef
 		public DateTime GetDateField ()
 		{
 			return this.dateField;
+		}
+	}
+
+
+	/**
+	 * Button class that contains extra fields to be used for getting additional information
+	 * 
+	 **/
+	public class MealButton : Button{
+
+		/**
+		 * Meal id used in database
+		 * 
+		 **/
+		public int mealId {get; set;}
+
+		/**
+		 * Name of the meal
+		 *
+		 **/
+		public string mealName { get; set;}
+
+		/**
+		 * Mealsize
+		 **/
+		public int mealSize { get; set; }
+
+		/**
+		 * Constructor
+		 **/
+		public MealButton(Context context) : base(context){
+			this.mealId = -1;
+			this.mealName = "";
+			this.mealSize = -1;
+		}
+
+		/**
+		 * Constructor
+		 **/
+		public MealButton(Context context, Android.Util.IAttributeSet set, int style ) : base(context, set, style){
+			this.mealId = -1;
+			this.mealName = "";
 		}
 	}
 }
