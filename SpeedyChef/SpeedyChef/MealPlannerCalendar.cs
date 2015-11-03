@@ -251,9 +251,38 @@ namespace SpeedyChef
 			int mealId = json ["Mealid"];
 			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
 			JsonValue recipeResult = await FetchMealData (url);
-
-			mealObject.AddView (CreateMealInfo(json, recipeResult, count));
+			mealObject.AddView (ButtonView(json, recipeResult, count));
+			mealObject.SetPadding(0, 0, 0, 40);
 			mealDisplay.AddView (mealObject);
+		}
+
+		/**
+		 * Creates a button view to be added to a meal to start the walkthrough
+		 * 
+		 * @param json - Given json for a meal
+		 * @param recipeResult - Recipes in Json for a given meal
+		 * @param count - used for ids
+		 * 
+		 * @return LinearLayout - Object containing buttons and other fields for a meal button
+		 **/
+		private LinearLayout ButtonView(JsonValue json, JsonValue recipeResult, int count)
+		{
+			LinearLayout walkthroughButton = new LinearLayout (this);
+			walkthroughButton.Orientation = Orientation.Vertical;
+			LinearLayout.LayoutParams wtll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			walkthroughButton.LayoutParameters = wtll;
+			walkthroughButton.AddView (CreateMealInfo (json, recipeResult, count));
+			Button button = new Button (this);
+			button.Text = "Start Walkthrough";
+			button.Gravity = GravityFlags.Center;
+			button.SetBackgroundColor (Android.Graphics.Color.Aqua);
+			button.SetTextColor (Android.Graphics.Color.Black);
+			LinearLayout.LayoutParams bll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			bll.SetMargins (10, 10, 10, 10);
+			button.LayoutParameters = bll;
+			button.SetPadding (0, 0, 0, 10);
+			walkthroughButton.AddView (button);
+			return walkthroughButton;
 		}
 
 		/**
