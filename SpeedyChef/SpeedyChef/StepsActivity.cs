@@ -164,14 +164,12 @@ namespace SpeedyChef
 		ImageView[] dots;
 		Drawable open;
 		Drawable closed;
-		HashSet<RecipeStepTimerHandler> timers;
 		ViewGroup progressBars;
 
 		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, ViewGroup progressBars) : base() {
 			this.dots = dots;
 			this.open = open;
 			this.closed = closed;
-			this.timers = timers;
 			this.progressBars = progressBars;
 		}
 

@@ -72,6 +72,7 @@
     <Compile Include="TimerPoolHandler.cs" />
     <Compile Include="Utils\WebUtils.cs" />
     <Compile Include="SearchActivity.cs" />
+    <Compile Include="RecipeViewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -96,6 +97,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\layout\FinalStep.axml" />
+    <AndroidResource Include="Resources\layout\RecipeView.axml" />
+    <AndroidResource Include="Resources\drawable\VegTemp.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
