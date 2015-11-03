@@ -21,8 +21,9 @@ namespace SpeedyChef
 				currentStep.time = currentItem ["taskTime"];
 				currentStep.time *= 60;
 				currentStep.timeable = currentItem ["taskTimeable"];
+				//currentStep.timeable = true; //For testing
 				if (currentStep.timeable)
-					currentStep.timerHandler = new RecipeStepTimerHandler (currentStep.time);
+					currentStep.timerHandler = new RecipeStepTimerHandler (currentStep.time, currentStep.title);
 				steps [i] = currentStep;
 			}
 			return steps;

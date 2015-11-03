@@ -68,7 +68,7 @@ namespace SpeedyChef
 
 			ViewGroup pbs = (ViewGroup)FindViewById (Resource.Id.walkthrough_progress_bars);
 
-			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed), timerPoolHandler.getTimers(), pbs));
+			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed), pbs));
 
 		}
 
@@ -127,8 +127,9 @@ namespace SpeedyChef
 					startButton.SetText (Resource.String.pause);
 				} else {
 					timeTv.Text = (this.recipeStep.time / 60).ToString () + ":00";
-					handler.AddTimer (this.recipeStep, timeTv, startButton);
+					//handler.AddTimer (this.recipeStep, timeTv, startButton);
 				}
+				handler.AssignFragView (this.recipeStep.timerHandler, timeTv, startButton);
 
 			}
 			else { // Don't add a timer, just display the time estimate
@@ -166,7 +167,7 @@ namespace SpeedyChef
 		HashSet<RecipeStepTimerHandler> timers;
 		ViewGroup progressBars;
 
-		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, HashSet<RecipeStepTimerHandler> timers, ViewGroup progressBars) : base() {
+		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, ViewGroup progressBars) : base() {
 			this.dots = dots;
 			this.open = open;
 			this.closed = closed;
@@ -176,7 +177,7 @@ namespace SpeedyChef
 
 		public override void OnPageSelected (int position) {
 			SetUIListPos (position);
-			loadTimers ();
+			//loadTimers ();
 		}
 
 		public void SetUIListPos(int pos) {
@@ -186,11 +187,11 @@ namespace SpeedyChef
 			}
 		}
 
-		private void loadTimers() {
+		/*(private void loadTimers() {
 			for (int i = 0; i < timers.Count; i++) {
 				RecipeStepTimerHandler t = timers.ElementAt (i);
 				if (t.IsActive()) {
-					/*//TODO hardcoded for prototype, fix this later
+					//TODO hardcoded for prototype, fix this later
 					int id_frame;
 					int id_time;
 					if (i == 1) {
@@ -205,10 +206,10 @@ namespace SpeedyChef
 						v.Visibility = ViewStates.Visible;
 					}
 					TextView tv = progressBars.FindViewById<TextView> (id_time);
-					t.SetTextView (tv); */
+					t.SetTextView (tv); 
 				}
 			}
-		}
+		}*/
 	}
 }
 
