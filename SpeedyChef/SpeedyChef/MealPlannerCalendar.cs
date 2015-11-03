@@ -114,10 +114,9 @@ namespace SpeedyChef
 					} else if (arg1.Item.TitleFormatted.ToString () == "Walkthrough") {
 						var intent = new Intent (this, typeof(StepsActivity));
 						StartActivity (intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
-						var intent = new Intent(this, typeof(Allergens));
-						StartActivity(intent);
+					} else if (arg1.Item.TitleFormatted.ToString () == "Preferences") {
+						var intent = new Intent (this, typeof(Allergens));
+						StartActivity (intent);
 					}
 				};
 				menu.DismissEvent += (s2, arg2) => {
@@ -245,14 +244,14 @@ namespace SpeedyChef
 			mealObject.LayoutParameters = mealObjectLL;
 			mealObject.Id = count * 20 + 5;
 			// Adds button container here
-			mealObject.AddView (CreateButtonContainer(json, count));
+			mealObject.AddView (CreateButtonContainer (json, count));
 			// Additional Json information to be used
 			string user = "tester";
 			int mealId = json ["Mealid"];
 			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
 			JsonValue recipeResult = await FetchMealData (url);
-			mealObject.AddView (ButtonView(json, recipeResult, count));
-			mealObject.SetPadding(0, 0, 0, 40);
+			mealObject.AddView (ButtonView (json, recipeResult, count));
+			mealObject.SetPadding (0, 0, 0, 40);
 			mealDisplay.AddView (mealObject);
 		}
 
@@ -265,7 +264,7 @@ namespace SpeedyChef
 		 * 
 		 * @return LinearLayout - Object containing buttons and other fields for a meal button
 		 **/
-		private LinearLayout ButtonView(JsonValue json, JsonValue recipeResult, int count)
+		private LinearLayout ButtonView (JsonValue json, JsonValue recipeResult, int count)
 		{
 			LinearLayout walkthroughButton = new LinearLayout (this);
 			walkthroughButton.Orientation = Orientation.Vertical;
@@ -274,6 +273,9 @@ namespace SpeedyChef
 			walkthroughButton.AddView (CreateMealInfo (json, recipeResult, count));
 			Button button = new Button (this);
 			button.Text = "Start Walkthrough";
+
+			// TODO: Add the click to the walkthrough
+
 			button.Gravity = GravityFlags.Center;
 			button.SetBackgroundColor (Android.Graphics.Color.Aqua);
 			button.SetTextColor (Android.Graphics.Color.Black);
@@ -294,7 +296,8 @@ namespace SpeedyChef
 		 * 
 		 * @return LinearLayout - MealInfo Container for original Json call
 		 **/
-		private LinearLayout CreateMealInfo(JsonValue json, JsonValue recipeResult, int count){
+		private LinearLayout CreateMealInfo (JsonValue json, JsonValue recipeResult, int count)
+		{
 			LinearLayout mealInfo = new LinearLayout (this);
 			mealInfo.Orientation = Orientation.Horizontal;
 			mealInfo.SetMinimumWidth (25);
@@ -308,7 +311,7 @@ namespace SpeedyChef
 			TextView recipeInfo = new TextView (this);
 			recipeInfo.Text = handleRecipeJson (recipeResult);
 			// System.Diagnostics.Debug.WriteLine (recipeResult.ToString ());
-			recipeInfo.SetTextAppearance(this, Android.Resource.Style.TextAppearanceSmall);
+			recipeInfo.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
 			recipeInfo.SetLines (1);
 			LinearLayout.LayoutParams rill = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			recipeInfo.LayoutParameters = rill;
@@ -316,14 +319,13 @@ namespace SpeedyChef
 			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
 			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			mealSize.LayoutParameters = tvll;
-			mealSize.SetTextColor (Android.Graphics.Color.ParseColor("#FFFFFF"));
-			mealSize.Text = json["Mealsize"].ToString() + " Diners ";
+			mealSize.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
+			mealSize.Text = json ["Mealsize"].ToString () + " Diners ";
 			mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
 			recipeInfo.SetPadding (10, 0, 0, 0);
 			mealSize.Gravity = GravityFlags.Right;
 			mealInfo.AddView (mealSize);
 			mealInfo.AddView (recipeInfo);
-
 			return mealInfo;
 		}
 
@@ -336,7 +338,8 @@ namespace SpeedyChef
 		 * @return LinearLayout - Button Container object
 		 * 
 		 **/ 
-		private LinearLayout CreateButtonContainer(JsonValue json, int count){
+		private LinearLayout CreateButtonContainer (JsonValue json, int count)
+		{
 			LinearLayout buttonCont = new LinearLayout (this);
 			//buttonCont.SetBackgroundColor (Android.Graphics.Color.White);
 			buttonCont.Orientation = Orientation.Horizontal;
@@ -349,13 +352,16 @@ namespace SpeedyChef
 			buttonCont.Visibility = Android.Views.ViewStates.Visible;
 			buttonCont.Id = count * 20 + 6;
 			Button button = new Button (this, null, Resource.Style.generalButtonStyle);
+
+			// TODO: Jump to the Design page
+
 			LinearLayout.LayoutParams lp = 
-				new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
 			button.LayoutParameters = lp;
 			button.Text = json ["Mealname"];
 
 			button.Visibility = Android.Views.ViewStates.Visible;
-			button.SetBackgroundColor (Android.Graphics.Color.ParseColor("#3498DB"));
+			button.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#3498DB"));
 			button.Gravity = GravityFlags.Center;
 			buttonCont.AddView (button);
 			return buttonCont;
@@ -368,7 +374,7 @@ namespace SpeedyChef
 		 * @param json - Json to parse
 		 * @return String - Final string to be displayed with meal
 		 **/
-		public string handleRecipeJson(JsonValue json)
+		public string handleRecipeJson (JsonValue json)
 		{
 			string finalString = "";
 			for (int i = 0; i < json.Count; i++) {
@@ -496,28 +502,40 @@ namespace SpeedyChef
 	 **/
 	public class DateButton
 	{
-
+		/**
+		 * Datefield for button container
+		 **/
 		private DateTime dateField;
+
+		/**
+		 * Button of the container
+		 **/
 		public Button wrappedButton;
 
+		/**
+		 * Constructor to make date button
+		 **/
 		public DateButton (Button button)
 		{
 			wrappedButton = button;
 			this.dateField = DateTime.Now.AddDays (-100);
 		}
 
+		/**
+		 * Set the date field for a button
+		 **/
 		public void SetDateField (DateTime date)
 		{
 			// Console.WriteLine ("Wrote date");
 			this.dateField = date;
 		}
 
+		/**
+		 * Returns the date field for the given button
+		 **/
 		public DateTime GetDateField ()
 		{
 			return this.dateField;
 		}
-
-
-
 	}
 }
