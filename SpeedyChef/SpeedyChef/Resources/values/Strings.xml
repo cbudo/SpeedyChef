@@ -22,4 +22,6 @@
 
 	<string name="start">Start</string>
 	<string name="pause">Pause</string>
+	<string name="done">Done</string>
+	<string name="enjoy">Enjoy your meal!</string>
 </resources>

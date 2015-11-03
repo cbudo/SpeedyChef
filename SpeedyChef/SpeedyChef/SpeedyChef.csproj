@@ -95,6 +95,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_face_white_48dp.png" />
+    <AndroidResource Include="Resources\layout\FinalStep.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

@@ -1,28 +1,40 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using System.Json;
 
 namespace SpeedyChef
 {
 	public static class WebUtils
 	{
-		//TODO change this
-		private static string baseURI = "http://localhost:8027";
+		//The base url for all requests. This may be subject to change
+		private static string baseURI = "http://speedychef.azurewebsites.net";
 
-		public static RecipeStep[] getRecipeSteps() {
-			string response = getJSONResponse ("/Steps");
-			return new RecipeStep[1];
+		public static RecipeStep[] getRecipeSteps(int AgendaId) {
+			JsonValue returnedSteps = getJSONResponse ("/Steps");
+			RecipeStep[] steps = new RecipeStep[returnedSteps.Count];
+			for (int i = 0; i < returnedSteps.Count; i++) {
+				JsonValue currentItem = returnedSteps [i];
+				RecipeStep currentStep = new RecipeStep ();
+				currentStep.title = currentItem ["taskName"];
+				currentStep.desc = currentItem["taskDesc"];
+				currentStep.time = currentItem ["taskTime"];
+				currentStep.time *= 60;
+				currentStep.timeable = currentItem ["taskTimeable"];
+				if (currentStep.timeable)
+					currentStep.timerHandler = new RecipeStepTimerHandler (currentStep.time);
+				steps [i] = currentStep;
+			}
+			return steps;
 		}
 
-		public static string getJSONResponse(string requestUrl) {
+		public static JsonValue getJSONResponse(string requestUrl) {
 			var request = HttpWebRequest.Create (baseURI + requestUrl);
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
 			var response = request.GetResponse ();
-			StreamReader streamReader = new StreamReader (response.GetResponseStream());
-			string responseData = streamReader.ReadToEnd ();
-			return responseData;
+			return JsonValue.Load (response.GetResponseStream ());
 		}
 
 	}

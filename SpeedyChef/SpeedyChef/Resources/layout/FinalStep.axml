@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/PaginatedContent">
+    <TextView
+        android:text="@string/enjoy"
+        style="@style/CenterTitle" />
+    <Button
+        android:id="@+id/walkthrough_finish_button"
+        style="@style/WrapContent"
+        android:text="@string/done" />
+</LinearLayout>
