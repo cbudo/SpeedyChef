@@ -23,8 +23,14 @@ namespace SpeedyChef
 			// Create your application here
 			long binaryDate = Intent.GetLongExtra ("Date", 0);
 			DateTime date = DateTime.FromBinary (binaryDate);
-			//TextView text = FindViewById<TextView> (Resource.Id.debug);
-			//text.Text = date.ToString ();
+			string mealname = Intent.GetStringExtra ("Name");
+			// System.Diagnostics.Debug.WriteLine (mealname + " I am here");
+
+			// Changes meal name to passed in name
+			EditText mealName = FindViewById<EditText> (Resource.Id.mealName);
+			if (mealname != null) {
+				mealName.Text = mealname;
+			}
 
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
@@ -64,13 +70,8 @@ namespace SpeedyChef
 				Intent i = new Intent (this, typeof(MealPlannerCalendar));
 				i.PutExtra ("Result", "Passing back works");
 				SetResult (Result.Ok, i);
-				Console.WriteLine ("Made it here");
 				Finish ();
 			};
 		}
-
-
-
 	}
 }
-

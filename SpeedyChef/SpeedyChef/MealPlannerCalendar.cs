@@ -278,6 +278,7 @@ namespace SpeedyChef
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
 				System.Diagnostics.Debug.WriteLine(button.mealName + "  " + button.mealSize);
+
 				// TODO: Add the click to the walkthrough
 			};
 			button.Gravity = GravityFlags.Center;
@@ -362,6 +363,11 @@ namespace SpeedyChef
 			button.Click += (object sender, EventArgs e) => {
 				System.Diagnostics.Debug.WriteLine(button.mealName);
 				System.Diagnostics.Debug.WriteLine(button.mealSize);
+				Intent intent = new Intent (this, typeof(MealDesign));
+				// Console.WriteLine (selected.GetDateField().ToBinary());
+				// Adds Binary field to be parsed later
+				intent.PutExtra ("Name", button.mealName);
+				StartActivity (intent);
 				// TODO: Jump to the Design page
 
 			};
