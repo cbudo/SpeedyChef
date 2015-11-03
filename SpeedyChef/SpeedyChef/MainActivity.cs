@@ -157,7 +157,7 @@ namespace SpeedyChef
 		public PlannedMealObject ()
 		{
 			mealArray = new string[5];
-			mealArray [0] = "10/28 Mom's Mystery Meatloaf";
+			mealArray [0] = "10/28 Mom's Spaghetti";
 			mealArray [1] = "10/30 Halloween Cake w/ Candy Corn";
 			mealArray [2] = "10/31 All Saints Day Omelette";
 			mealArray [3] = "11/2 Wedding Present (Brownies)";
@@ -186,6 +186,7 @@ namespace SpeedyChef
 		public Tuple<int, string>[] AmericanFood { get; set; }
 		public Dictionary<string, Tuple<int, string>[]> TupleDict { get; set; }
 		public string SelectedNationality { get; set; }
+		public string SelectedSubgenre { get; set; }
 
 		private CachedData()
 		{
