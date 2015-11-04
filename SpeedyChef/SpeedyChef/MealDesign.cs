@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Json;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -10,10 +14,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Util;
 
 namespace SpeedyChef
 {
-	[Activity (Label = "MealDesign")]			
+	[Activity (Theme = "@style/MyTheme", Label = "MealDesign")]			
 	public class MealDesign : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -81,13 +86,66 @@ namespace SpeedyChef
 			removeButton.Click += (object sender, EventArgs e) => {
 				System.Diagnostics.Debug.WriteLine ("ClICKED");
 			};
-			if (mealId == -1){
+			if (mealId == -1) {
 				removeButton.Clickable = false;
 			} 
 			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
-			RecipeLayouts rl = new RecipeLayouts (this);
-			mealsArea.AddView (rl);
+			LoadRecipes (mealsArea, mealId);
+			//mealsArea.AddView (rl);
+		}
 
+
+
+		private async void LoadRecipes (LinearLayout mealArea, int mealId)
+		{
+			string user = "tester";
+
+			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
+			JsonValue json = await FetchMealData (url);
+			ParseRecipes (mealArea, mealId, json);
+		}
+
+
+		private void ParseRecipes (LinearLayout mealArea, int mealId, JsonValue json)
+		{
+
+			for (int i = 0; i < json.Count; i++)
+			{
+				MakeRecipeObjects (mealArea, mealId, json [i]);
+			}
+		}
+
+		private void MakeRecipeObjects(LinearLayout mealArea, int mealId, JsonValue json)
+		{
+			RecipeLayouts rl = new RecipeLayouts (this, json["Recname"], json["Recid"]);
+			mealArea.AddView (rl);
+		}
+
+
+
+		/**
+		 * Fetches Json from database using URL. Called mainly with stored procedures.
+		 * 
+		 **/
+		private async Task<JsonValue> FetchMealData (string url)
+		{
+			// Create an HTTP web request using the URL:
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
+			request.ContentType = "application/json";
+			request.Method = "GET";
+
+			// Send the request to the server and wait for the response:
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				// Get a stream representation of the HTTP web response:
+				using (Stream stream = response.GetResponseStream ()) {
+					// Use this stream to build a JSON document object:
+					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
+					Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
+
+					// Return the JSON document:
+					return jsonDoc;
+				}
+			}
 
 		}
 	}
@@ -100,16 +158,18 @@ namespace SpeedyChef
 
 		private Button recipeInfo;
 
-		private int recipeId { get; set; }
+		public int recipeId { get; set; }
 
-		private string recipeName { get; set; }
+		public string recipeName { get; set; }
 
 
-		public RecipeLayouts (Context context) : base (context)
+		public RecipeLayouts (Context context, string recName, int recId) : base (context)
 		{
 			
 			this.removeButton = new Button (context, null, Resource.Style.generalButtonStyle);
 			this.recipeInfo = new Button (context, null, Resource.Style.generalButtonStyle);
+			recipeName = recName;
+			recId = recipeId;
 			CreateLPs ();
 			CreateRLPs ();
 			SetPropertiesLayout ();
@@ -131,7 +191,7 @@ namespace SpeedyChef
 		private void SetPropertiesRemove ()
 		{
 			this.removeButton.SetMinimumHeight (100);
-			this.removeButton.SetMinimumWidth(25);
+			this.removeButton.SetMinimumWidth (25);
 			this.removeButton.Text = "Remove";
 			this.removeButton.SetTextAppearance (this.removeButton.Context, Resource.Style.generalButtonStyle);
 			this.removeButton.SetBackgroundResource (Resource.Color.orange_header);
@@ -144,7 +204,7 @@ namespace SpeedyChef
 			this.recipeInfo.SetMinimumHeight (100);
 			this.recipeInfo.SetMinimumWidth (25);
 			this.recipeInfo.Gravity = GravityFlags.Center;
-			this.recipeInfo.Text = "EMPTY";
+			this.recipeInfo.Text = recipeName;
 			this.recipeInfo.SetTextAppearance (this.recipeInfo.Context, Resource.Style.generalButtonStyle);
 			this.recipeInfo.SetBackgroundResource (Resource.Color.orange_header);
 		}

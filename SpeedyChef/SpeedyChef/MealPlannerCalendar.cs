@@ -184,7 +184,7 @@ namespace SpeedyChef
 		protected async void dayClick (object sender, EventArgs e)
 		{
 			if (selected != null) {
-				selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
+				selected.wrappedButton.SetBackgroundColor (Resources.GetColor (Resource.Color.light_gray));
 				selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.black_text));
 			}
 			if (currentDate != null) {
@@ -194,7 +194,7 @@ namespace SpeedyChef
 			selected = GetDateButton ((Button)sender);
 			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
-			selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
+			selected.wrappedButton.SetBackgroundColor (Resources.GetColor (Resource.Color.selected_date));
 			selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.white_text));
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
@@ -274,14 +274,14 @@ namespace SpeedyChef
 			LinearLayout.LayoutParams wtll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			walkthroughButton.LayoutParameters = wtll;
 			walkthroughButton.AddView (CreateMealInfo (json, recipeResult, count));
-			MealButton button = new MealButton(this);
+			MealButton button = new MealButton (this);
 			button.mealName = json ["Mealname"];
 			button.mealId = json ["Mealid"];
 			button.mealSize = json ["Mealsize"];
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
 				// PRINTS
-				System.Diagnostics.Debug.WriteLine(button.mealName + "  " + button.mealSize);
+				System.Diagnostics.Debug.WriteLine (button.mealName + "  " + button.mealSize);
 
 				// TODO: Add the click to the walkthrough
 			};
@@ -366,9 +366,9 @@ namespace SpeedyChef
 			buttonCont.Id = count * 20 + 6;
 			// Used to hold more values
 			MealButton button = new MealButton (this, null, Resource.Style.generalButtonStyle); 
-			button.mealName = json["Mealname"];
-			button.mealSize =  (json ["Mealsize"]);
-			button.mealId =  (json ["Mealid"]);
+			button.mealName = json ["Mealname"];
+			button.mealSize = (json ["Mealsize"]);
+			button.mealId = (json ["Mealid"]);
 			button.Click += (object sender, EventArgs e) => {
 				// PRINTS
 				// System.Diagnostics.Debug.WriteLine(button.mealId);
@@ -378,7 +378,7 @@ namespace SpeedyChef
 				Intent intent = new Intent (this, typeof(MealDesign));
 				// Adds Binary field to be parsed later
 				intent.PutExtra ("Name", button.mealName);
-				intent.PutExtra("Mealsize", button.mealSize);
+				intent.PutExtra ("Mealsize", button.mealSize);
 				intent.PutExtra ("mealId", button.mealId);
 				StartActivity (intent);
 				// TODO: Jump to the Design page
@@ -390,7 +390,7 @@ namespace SpeedyChef
 			button.Text = json ["Mealname"];
 
 			button.Visibility = Android.Views.ViewStates.Visible;
-			button.SetBackgroundColor (Resources.GetColor(Resource.Color.orange_header));
+			button.SetBackgroundColor (Resources.GetColor (Resource.Color.orange_header));
 			button.Gravity = GravityFlags.Center;
 			buttonCont.AddView (button);
 			return buttonCont;
@@ -409,7 +409,9 @@ namespace SpeedyChef
 			for (int i = 0; i < json.Count; i++) {
 				finalString += json [i] ["Recname"] + ", ";
 			}
-			finalString = finalString.Substring (0, finalString.Length - 2);
+			if (finalString.Length > 2){
+				finalString = finalString.Substring (0, finalString.Length - 2);
+			}
 			// System.Diagnostics.Debug.WriteLine (finalString);
 			return finalString;
 		}
@@ -492,11 +494,14 @@ namespace SpeedyChef
 				daysList [i].wrappedButton.Text = weekDay.Substring (0, 1) + "\n" + day;
 				daysList [i].SetDateField (date.AddDays (-date.DayOfWeek.GetHashCode () + i));
 				// Sets all the buttons to the default colors
-				daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
+				daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor (Resource.Color.light_gray));
+				daysList [i].wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.black_text));
 				// Handles setting the highlighting of the current day on the phone
 				if (i == current.DayOfWeek.GetHashCode () && date.Date.Equals (current.Date)) {
 					currentDate = daysList [i].wrappedButton;
-					daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
+					daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor (Resource.Color.selected_date));
+					daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor (Resource.Color.current_date));
+					// daysList [i].wrappedButton.SetBackgroundResource ();
 				}
 			}
 			// Removes any selected day
@@ -512,6 +517,8 @@ namespace SpeedyChef
 		 * */
 		public void GoBackWeek ()
 		{
+			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			mealDisplay.RemoveAllViews ();
 			viewDate = viewDate.AddDays (-7);
 			handleCalendar (viewDate);
 		}
@@ -523,6 +530,8 @@ namespace SpeedyChef
 		public void GoForwardWeek ()
 		{
 			viewDate = viewDate.AddDays (7);
+			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			mealDisplay.RemoveAllViews ();
 			handleCalendar (viewDate);
 		}
 	}
@@ -574,19 +583,20 @@ namespace SpeedyChef
 	 * Button class that contains extra fields to be used for getting additional information
 	 * 
 	 **/
-	public class MealButton : Button{
+	public class MealButton : Button
+	{
 
 		/**
 		 * Meal id used in database
 		 * 
 		 **/
-		public int mealId {get; set;}
+		public int mealId { get; set; }
 
 		/**
 		 * Name of the meal
 		 *
 		 **/
-		public string mealName { get; set;}
+		public string mealName { get; set; }
 
 		/**
 		 * Mealsize
@@ -596,7 +606,8 @@ namespace SpeedyChef
 		/**
 		 * Constructor
 		 **/
-		public MealButton(Context context) : base(context){
+		public MealButton (Context context) : base (context)
+		{
 			this.mealId = -1;
 			this.mealName = "";
 			this.mealSize = -1;
@@ -605,7 +616,8 @@ namespace SpeedyChef
 		/**
 		 * Constructor
 		 **/
-		public MealButton(Context context, Android.Util.IAttributeSet set, int style ) : base(context, set, style){
+		public MealButton (Context context, Android.Util.IAttributeSet set, int style) : base (context, set, style)
+		{
 			this.mealId = -1;
 			this.mealName = "";
 		}
