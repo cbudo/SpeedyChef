@@ -314,11 +314,11 @@ namespace SpeedyChef
 			mealInfoLL.SetMargins (5, 5, 5, 5);
 			mealInfo.LayoutParameters = mealInfoLL;
 			mealInfo.Id = count * 20 + 7;
-			/*ImageView dinerIcon = new ImageView (this);
+			/* ImageView dinerIcon = new ImageView (this);
 			//LinearLayout iconParams = new LinearLayout.LayoutParams (18, 18);
-			dinerIcon.SetMaxWidth(5);
-			dinerIcon.SetMaxHeight(5);
-			dinerIcon.SetImageResource (Resource.Drawable.gray_person);*/
+			dinerIcon.LayoutParameters.Width = 18;
+			dinerIcon.LayoutParameters.Height = 18;
+			dinerIcon.SetImageResource (Resource.Drawable.gray_person);*/ 
 			TextView mealSize = new TextView (this);
 			TextView recipeInfo = new TextView (this);
 			recipeInfo.Text = handleRecipeJson (recipeResult);
@@ -336,7 +336,7 @@ namespace SpeedyChef
 			//mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
 			recipeInfo.SetPadding (10, 0, 0, 0);
 			mealSize.Gravity = GravityFlags.Right;
-			//mealInfo.AddView (dinerIcon);
+			// mealInfo.AddView (dinerIcon);
 			mealInfo.AddView (mealSize);
 			mealInfo.AddView (recipeInfo);
 			return mealInfo;
