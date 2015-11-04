@@ -28,6 +28,7 @@ namespace SpeedyChef
 			// Create your application here
 			long binaryDate = Intent.GetLongExtra ("Date", 0);
 			DateTime date = DateTime.FromBinary (binaryDate);
+			string useDate = date.ToString ("yyyy-MM-dd");
 			string mealname = Intent.GetStringExtra ("Name");
 			int mealId = Intent.GetIntExtra ("mealId", -1);
 			int mealSize = Intent.GetIntExtra ("Mealsize", 0);
@@ -94,7 +95,18 @@ namespace SpeedyChef
 				// PRINTS
 				System.Diagnostics.Debug.WriteLine ("ClICKED");
 				System.Diagnostics.Debug.WriteLine (mealId);
-
+				Intent i = new Intent (this, typeof(MealPlannerCalendar));
+				if (mealId != -1) {
+					// Change to meal id
+					string user = "tester";
+					string url = "http://speedychef.azurewebsites.net/CalendarScreen/RemoveMeal?user=" 
+						+ user + "&mealName=" + mealname+ "&date=" + useDate;
+					// JsonValue json = GetMealRemoved(url).Result;
+					// System.Diagnostics.Debug.WriteLine (json.ToString ());
+					
+				}
+				i.PutExtra ("MealRemoved", mealId);
+				Finish ();
 				// Remove meal with mealId TODO
 			};
 			if (mealId == -1) {
@@ -103,6 +115,11 @@ namespace SpeedyChef
 			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
 			LoadRecipes (mealsArea, mealId);
 			//mealsArea.AddView (rl);
+		}
+
+		private async Task<JsonValue> GetMealRemoved(string url){
+			JsonValue temp = await FetchMealData (url);
+			return temp;
 		}
 
 
