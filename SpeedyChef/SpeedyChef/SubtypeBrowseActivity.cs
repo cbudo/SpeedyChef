@@ -44,18 +44,27 @@ namespace SpeedyChef
 					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
 					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
 						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
 						var intent = new Intent(this, typeof(MealPlannerCalendar));
+						CachedData.Instance.ActivityContext = this.GetType();
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Search"){
+						var intent = new Intent(this, typeof(SearchActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
 						var intent = new Intent(this, typeof(StepsActivity));
+						CachedData.Instance.ActivityContext =  this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
 						var intent = new Intent(this, typeof(Allergens));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 				};

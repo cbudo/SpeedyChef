@@ -42,17 +42,26 @@ namespace SpeedyChef
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += (s1, arg1) => {
-					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
 					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
-						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
-						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
 						var intent = new Intent(this, typeof(MealPlannerCalendar));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
 						var intent = new Intent(this, typeof(StepsActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Search"){
+						var intent = new Intent(this, typeof(SearchActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
+						StartActivity(intent);
+					}
+					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
+						var intent = new Intent(this, typeof(Allergens));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 				};
@@ -95,11 +104,13 @@ namespace SpeedyChef
 			LeftImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedNationality = LeftText.Text;
 				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
+				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
 				callingActivity.StartActivity(intent);
 			};
 			RightImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedNationality = RightText.Text;
 				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
+				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
 				callingActivity.StartActivity(intent);
 			};
 		}
@@ -109,11 +120,13 @@ namespace SpeedyChef
 			LeftImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedSubgenre = LeftText.Text;
 				var intent = new Intent(callingActivity, typeof(SearchActivity));
+				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
 				callingActivity.StartActivity(intent);
 			};
 			RightImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedSubgenre = RightText.Text;
 				var intent = new Intent(callingActivity, typeof(SearchActivity));
+				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
 				callingActivity.StartActivity(intent);
 			};
 		}
