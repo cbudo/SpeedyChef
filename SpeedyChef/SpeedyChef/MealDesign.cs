@@ -82,9 +82,20 @@ namespace SpeedyChef
 				SetResult (Result.Ok, i);
 				Finish ();
 			};
+			Button searchButton = FindViewById<Button> (Resource.Id.searchButton);
+			searchButton.Click += (object sender, EventArgs e) => {
+				// PRINTS
+				System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
+
+				// Connects to search page
+			};
 			Button removeButton = FindViewById<Button> (Resource.Id.removeButton);
 			removeButton.Click += (object sender, EventArgs e) => {
+				// PRINTS
 				System.Diagnostics.Debug.WriteLine ("ClICKED");
+				System.Diagnostics.Debug.WriteLine (mealId);
+
+				// Remove meal with mealId TODO
 			};
 			if (mealId == -1) {
 				removeButton.Clickable = false;
@@ -109,19 +120,18 @@ namespace SpeedyChef
 		private void ParseRecipes (LinearLayout mealArea, int mealId, JsonValue json)
 		{
 
-			for (int i = 0; i < json.Count; i++)
-			{
+			for (int i = 0; i < json.Count; i++) {
 				MakeRecipeObjects (mealArea, mealId, json [i]);
 			}
 		}
 
-		private void MakeRecipeObjects(LinearLayout mealArea, int mealId, JsonValue json)
+		private void MakeRecipeObjects (LinearLayout mealArea, int mealId, JsonValue json)
 		{
-			RecipeLayouts rl = new RecipeLayouts (this, json["Recname"], json["Recid"]);
+			RecipeLayouts rl = new RecipeLayouts (this, json ["Recname"], json ["Recid"], mealId);
 			mealArea.AddView (rl);
 		}
 
-
+		 
 
 		/**
 		 * Fetches Json from database using URL. Called mainly with stored procedures.
@@ -150,31 +160,66 @@ namespace SpeedyChef
 		}
 	}
 
+	/**
+	 * Container class used to present recipes for a meal and the option to 
+	 * remove the container itself. Contained in a LinearLayout object and 
+	 * holds 2 buttons with different functionality.
+	 **/
 	public class RecipeLayouts : LinearLayout
 	{
 
-
+		/**
+		 * Button object to remove recipe from a meal. Both from display 
+		 * and from the database
+		 **/
 		private Button removeButton;
 
+		/**
+		 * Button object that brings recipe info page up.
+		 **/
 		private Button recipeInfo;
 
+		/**
+		 * 
+		 **/
 		public int recipeId { get; set; }
 
 		public string recipeName { get; set; }
 
+		public int mealId { get; set; }
 
-		public RecipeLayouts (Context context, string recName, int recId) : base (context)
+
+		public RecipeLayouts (Context context, string recName, int recId, int mealId) : base (context)
 		{
 			
 			this.removeButton = new Button (context, null, Resource.Style.generalButtonStyle);
 			this.recipeInfo = new Button (context, null, Resource.Style.generalButtonStyle);
-			recipeName = recName;
-			recId = recipeId;
+			this.recipeName = recName;
+			this.recipeId = recId;
+			this.mealId = mealId;
 			CreateLPs ();
 			CreateRLPs ();
 			SetPropertiesLayout ();
 			SetPropertiesRemove ();
 			SetPropertiesInfo ();
+			this.removeButton.Click += (object sender, EventArgs e) => {
+				// PRINTS
+				Console.WriteLine ("Remove button clicked");
+				Console.WriteLine (this.recipeName);
+				Console.WriteLine (this.recipeId);
+				Console.WriteLine (this.mealId);
+				// Removes from mealID (Has necessary ids, i think) TODO
+
+				this.Visibility = ViewStates.Gone;
+				Console.WriteLine ("Disposed, hopefully.");
+				Console.WriteLine ("Hasn't been removed from database yet");
+			};
+			this.recipeInfo.Click += (object sender, EventArgs e) => {
+				// PRINTS
+				Console.WriteLine ("Recipe info button clicked");
+				Console.WriteLine (this.recipeId);
+				// Goes to meal preview TODO
+			};
 			this.AddView (this.removeButton);
 			this.AddView (this.recipeInfo);
 		}
@@ -184,8 +229,6 @@ namespace SpeedyChef
 			this.Orientation = Orientation.Horizontal;
 			this.SetMinimumHeight (100);
 			this.SetMinimumWidth (25);
-			//this.SetBackgroundColor(Android.Graphics.Color.White);
-			
 		}
 
 		private void SetPropertiesRemove ()
