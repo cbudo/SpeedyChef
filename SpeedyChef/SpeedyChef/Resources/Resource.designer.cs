@@ -1948,8 +1948,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f0600ad
 			public const int filter_button = 2131099821;
 			
-			// aapt resource value: 0x7f060055
-			public const int gridLayout1 = 2131099733;
+			// aapt resource value: 0x7f060058
+			public const int gridLayout1 = 2131099736;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -1987,8 +1987,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060094
 			public const int line3 = 2131099796;
 			
-			// aapt resource value: 0x7f060054
-			public const int linearLayout1 = 2131099732;
+			// aapt resource value: 0x7f060057
+			public const int linearLayout1 = 2131099735;
 			
 			// aapt resource value: 0x7f060098
 			public const int linearLayout2 = 2131099800;
@@ -1999,8 +1999,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060029
 			public const int list_item = 2131099689;
 			
-			// aapt resource value: 0x7f06005a
-			public const int main_search = 2131099738;
+			// aapt resource value: 0x7f060055
+			public const int main_search = 2131099733;
 			
 			// aapt resource value: 0x7f06007b
 			public const int mealDisplay = 2131099771;
@@ -2116,8 +2116,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060049
 			public const int search_close_btn = 2131099721;
 			
-			// aapt resource value: 0x7f060059
-			public const int search_container = 2131099737;
+			// aapt resource value: 0x7f060054
+			public const int search_container = 2131099732;
 			
 			// aapt resource value: 0x7f060045
 			public const int search_edit_frame = 2131099717;
@@ -2218,8 +2218,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060032
 			public const int textSpacerNoButtons = 2131099698;
 			
-			// aapt resource value: 0x7f060058
-			public const int textView = 2131099736;
+			// aapt resource value: 0x7f06005a
+			public const int textView = 2131099738;
 			
 			// aapt resource value: 0x7f06009e
 			public const int textView1 = 2131099806;
@@ -2290,8 +2290,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f0600bd
 			public const int walkthrough_bar = 2131099837;
 			
-			// aapt resource value: 0x7f060057
-			public const int walkthrough_finish_button = 2131099735;
+			// aapt resource value: 0x7f060059
+			public const int walkthrough_finish_button = 2131099737;
 			
 			// aapt resource value: 0x7f0600bc
 			public const int walkthrough_frame_1 = 2131099836;
