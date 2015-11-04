@@ -1798,9 +1798,6 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060069
 			public const int bookmarkBar = 2131099753;
 			
-			// aapt resource value: 0x7f06006a
-			public const int bookmarkButton = 2131099754;
-			
 			// aapt resource value: 0x7f06009a
 			public const int bookmark_rec_button = 2131099802;
 			
@@ -2037,6 +2034,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f060056
 			public const int recyclerView = 2131099734;
+			
+			// aapt resource value: 0x7f06006a
+			public const int removeButton = 2131099754;
 			
 			// aapt resource value: 0x7f06006c
 			public const int returnButton = 2131099756;
