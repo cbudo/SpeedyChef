@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/my_white">
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -78,6 +79,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:textColor="@color/black_text"
                         android:gravity="center"
                         android:id="@+id/dinerText" />
                     <TextView

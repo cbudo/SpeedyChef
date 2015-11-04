@@ -184,16 +184,18 @@ namespace SpeedyChef
 		protected async void dayClick (object sender, EventArgs e)
 		{
 			if (selected != null) {
-				selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
+				selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
+				selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.black_text));
 			}
 			if (currentDate != null) {
-				currentDate.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
+				currentDate.SetBackgroundColor (Resources.GetColor (Resource.Color.current_date));
 			}
 			
 			selected = GetDateButton ((Button)sender);
 			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
-			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
+			selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
+			selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.white_text));
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
 
@@ -282,8 +284,8 @@ namespace SpeedyChef
 				// TODO: Add the click to the walkthrough
 			};
 			button.Gravity = GravityFlags.Center;
-			button.SetBackgroundColor (Android.Graphics.Color.Aqua);
-			button.SetTextColor (Android.Graphics.Color.Black);
+			//button.SetBackgroundColor (Android.Graphics.Color.Aqua);
+			//button.SetTextColor (Android.Graphics.Color.Black);
 			LinearLayout.LayoutParams bll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			bll.SetMargins (10, 10, 10, 10);
 			button.LayoutParameters = bll;
@@ -312,6 +314,11 @@ namespace SpeedyChef
 			mealInfoLL.SetMargins (5, 5, 5, 5);
 			mealInfo.LayoutParameters = mealInfoLL;
 			mealInfo.Id = count * 20 + 7;
+			/*ImageView dinerIcon = new ImageView (this);
+			//LinearLayout iconParams = new LinearLayout.LayoutParams (18, 18);
+			dinerIcon.SetMaxWidth(5);
+			dinerIcon.SetMaxHeight(5);
+			dinerIcon.SetImageResource (Resource.Drawable.gray_person);*/
 			TextView mealSize = new TextView (this);
 			TextView recipeInfo = new TextView (this);
 			recipeInfo.Text = handleRecipeJson (recipeResult);
@@ -320,15 +327,16 @@ namespace SpeedyChef
 			recipeInfo.SetLines (1);
 			LinearLayout.LayoutParams rill = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			recipeInfo.LayoutParameters = rill;
-			recipeInfo.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
+			//recipeInfo.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
 			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
 			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			mealSize.LayoutParameters = tvll;
-			mealSize.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
-			mealSize.Text = json ["Mealsize"].ToString () + " Diners ";
-			mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
+			//mealSize.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
+			mealSize.Text = json ["Mealsize"].ToString ();
+			//mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
 			recipeInfo.SetPadding (10, 0, 0, 0);
 			mealSize.Gravity = GravityFlags.Right;
+			//mealInfo.AddView (dinerIcon);
 			mealInfo.AddView (mealSize);
 			mealInfo.AddView (recipeInfo);
 			return mealInfo;
@@ -377,7 +385,7 @@ namespace SpeedyChef
 			button.Text = json ["Mealname"];
 
 			button.Visibility = Android.Views.ViewStates.Visible;
-			button.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#3498DB"));
+			button.SetBackgroundColor (Resources.GetColor(Resource.Color.orange_header));
 			button.Gravity = GravityFlags.Center;
 			buttonCont.AddView (button);
 			return buttonCont;
@@ -478,11 +486,11 @@ namespace SpeedyChef
 				daysList [i].wrappedButton.Text = weekDay.Substring (0, 1) + "\n" + day;
 				daysList [i].SetDateField (date.AddDays (-date.DayOfWeek.GetHashCode () + i));
 				// Sets all the buttons to the default colors
-				daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
+				daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
 				// Handles setting the highlighting of the current day on the phone
 				if (i == current.DayOfWeek.GetHashCode () && date.Date.Equals (current.Date)) {
 					currentDate = daysList [i].wrappedButton;
-					daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
+					daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
 				}
 			}
 			// Removes any selected day

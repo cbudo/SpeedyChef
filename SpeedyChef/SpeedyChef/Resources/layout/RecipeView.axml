@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/FillWidth">
+    style="@style/FillWidth"
+    android:background="@color/my_white"
+    android:minWidth="25px"
+    android:minHeight="25px">
     <LinearLayout
         style="@style/FillWidth"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout2">
         <RelativeLayout
-            style="@style/FillWidth">
+            style="@style/FillWidth"
+            android:paddingBottom="10dp"
+            android:id="@+id/relativeLayout1">
             <ImageView
                 android:id="@+id/recipeImage"
                 android:src="@drawable/VegTemp"
@@ -30,52 +36,65 @@
         <TextView
             style="@style/TextBase"
             android:text="30 minutes"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:id="@+id/textView1" />
         <TextView
             style="@style/SubTitle"
-            android:text="@string/ingredients" />
+            android:text="@string/ingredients"
+            android:id="@+id/textView14" />
         <LinearLayout
             style="@style/FillWidth"
             android:orientation="vertical"
             android:id="@+id/recipe_view_ingredients">
             <TextView
                 style="@style/TextBase"
-                android:text="1. Step 1 Step 1" />
+                android:text="1. Step 1 Step 1"
+                android:id="@+id/textView15" />
             <TextView
                 style="@style/TextBase"
-                android:text="2. Step 2 Step 2" />
+                android:text="2. Step 2 Step 2"
+                android:id="@+id/textView16" />
             <TextView
                 style="@style/TextBase"
-                android:text="3. Step 3 Step 3" />
+                android:text="3. Step 3 Step 3"
+                android:id="@+id/textView17" />
             <TextView
                 style="@style/TextBase"
-                android:text="4. Step 4 Step 4" />
+                android:text="4. Step 4 Step 4"
+                android:id="@+id/textView18" />
             <TextView
                 style="@style/TextBase"
-                android:text="5. Step 5 Step 5" />
+                android:text="5. Step 5 Step 5"
+                android:id="@+id/textView19" />
         </LinearLayout>
         <TextView
             style="@style/SubTitle"
-            android:text="@string/steps" />
+            android:text="@string/steps"
+            android:id="@+id/textView20" />
         <LinearLayout
             style="@style/FillWidth"
             android:orientation="vertical"
             android:id="@+id/recipe_view_steps">
             <TextView
                 style="@style/TextBase"
-                android:text="1. Step 1 Step 1" />
+                android:text="1. Step 1 Step 1"
+                android:id="@+id/textView21" />
             <TextView
                 style="@style/TextBase"
-                android:text="2. Step 2 Step 2" />
+                android:text="2. Step 2 Step 2"
+                android:id="@+id/textView22" />
             <TextView
                 style="@style/TextBase"
-                android:text="3. Step 3 Step 3" />
+                android:text="3. Step 3 Step 3"
+                android:id="@+id/textView23" />
             <TextView
                 style="@style/TextBase"
-                android:text="4. Step 4 Step 4" />
+                android:text="4. Step 4 Step 4"
+                android:id="@+id/textView24" />
             <TextView
                 style="@style/TextBase"
-                android:text="5. Step 5 Step 5" />
+                android:text="5. Step 5 Step 5"
+                android:id="@+id/textView25" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

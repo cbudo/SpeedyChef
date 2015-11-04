@@ -99,6 +99,13 @@
     <AndroidResource Include="Resources\layout\FinalStep.axml" />
     <AndroidResource Include="Resources\layout\RecipeView.axml" />
     <AndroidResource Include="Resources\drawable\VegTemp.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_block_gray_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_block_orange_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_oven_gray.png" />
+    <AndroidResource Include="Resources\drawable\ic_oven_orange.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_gray_48dp.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_orange_48dp.png" />
+    <AndroidResource Include="Resources\drawable\gray_person.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

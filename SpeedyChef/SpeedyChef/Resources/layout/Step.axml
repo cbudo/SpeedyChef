@@ -34,7 +34,7 @@
                 style="@style/StepCountdownTimer" />
             <Button
                 android:id="@+id/step_timer_start_button"
-                style="@style/WrapContent"
+                style="@style/BasicButton"
                 android:text="@string/start" />
         </LinearLayout>
     </LinearLayout>
