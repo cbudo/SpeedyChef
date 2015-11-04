@@ -114,10 +114,9 @@ namespace SpeedyChef
 					} else if (arg1.Item.TitleFormatted.ToString () == "Walkthrough") {
 						var intent = new Intent (this, typeof(StepsActivity));
 						StartActivity (intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
-						var intent = new Intent(this, typeof(Allergens));
-						StartActivity(intent);
+					} else if (arg1.Item.TitleFormatted.ToString () == "Preferences") {
+						var intent = new Intent (this, typeof(Allergens));
+						StartActivity (intent);
 					}
 				};
 				menu.DismissEvent += (s2, arg2) => {
@@ -185,29 +184,37 @@ namespace SpeedyChef
 		protected async void dayClick (object sender, EventArgs e)
 		{
 			if (selected != null) {
-				selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
+				selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
+				selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.black_text));
 			}
 			if (currentDate != null) {
-				currentDate.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
+				currentDate.SetBackgroundColor (Resources.GetColor (Resource.Color.current_date));
 			}
 			
 			selected = GetDateButton ((Button)sender);
 			mealDisplay.Visibility = Android.Views.ViewStates.Visible;
 			// Console.WriteLine(selected.GetDateField().ToBinary());
-			selected.wrappedButton.SetBackgroundColor (Android.Graphics.Color.Cyan);
+			selected.wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
+			selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.white_text));
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
+
+			// Below handles connection to the database and the parsing of Json
 			string user = "tester";
 			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
 			// System.Diagnostics.Debug.WriteLine (useDate);
 			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
-			JsonValue json = await FetchMealDay (url);
+			JsonValue json = await FetchMealData (url);
 			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			parseMeals (json);
 		}
 
 
 		/**
+		 * Parses Json to get meals to display to calendar page. Creates buttons 
+		 * and views programmatically.
+		 * 
+		 * @param json - Json to parse for meals
 		 * 
 		 **/
 		private void parseMeals (JsonValue json)
@@ -217,20 +224,19 @@ namespace SpeedyChef
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
 			for (int i = 0; i < json.Count; i++) {
-				mealDisplay = makeObjects (json [i], i, mealDisplay);
+				makeObjects (json [i], i, mealDisplay);
 			}
 		}
 
 		/**
+		 * Makes meal segments for the calendar page. 
 		 * 
-		 * 
+		 * @param json - Json to parse information to use for displaying
+		 * @param count - Used to help with ids of objects
+		 * @param mealDisplay - LinearLayout that all of the objects are going to be added to
 		 **/
-		private LinearLayout makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
+		private async void makeObjects (JsonValue json, int count, LinearLayout mealDisplay)
 		{
-			System.Diagnostics.Debug.WriteLine (json.ToString());
-//			for (int i = 0; i < mealDisplay.ChildCount; i++) {
-//				mealDisplay.RemoveView (mealDisplay.GetChildAt (i));
-//			}
 			LinearLayout mealObject = new LinearLayout (this);
 			mealObject.Orientation = Orientation.Vertical;
 			mealObject.SetMinimumWidth (25);
@@ -239,6 +245,114 @@ namespace SpeedyChef
 				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			mealObject.LayoutParameters = mealObjectLL;
 			mealObject.Id = count * 20 + 5;
+			// Adds button container here
+			mealObject.AddView (CreateButtonContainer (json, count));
+			// Additional Json information to be used
+			string user = "tester";
+			int mealId = json ["Mealid"];
+			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
+			JsonValue recipeResult = await FetchMealData (url);
+			mealObject.AddView (ButtonView (json, recipeResult, count));
+			mealObject.SetPadding (0, 0, 0, 40);
+			mealDisplay.AddView (mealObject);
+		}
+
+		/**
+		 * Creates a button view to be added to a meal to start the walkthrough
+		 * 
+		 * @param json - Given json for a meal
+		 * @param recipeResult - Recipes in Json for a given meal
+		 * @param count - used for ids
+		 * 
+		 * @return LinearLayout - Object containing buttons and other fields for a meal button
+		 **/
+		private LinearLayout ButtonView (JsonValue json, JsonValue recipeResult, int count)
+		{
+			LinearLayout walkthroughButton = new LinearLayout (this);
+			walkthroughButton.Orientation = Orientation.Vertical;
+			LinearLayout.LayoutParams wtll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			walkthroughButton.LayoutParameters = wtll;
+			walkthroughButton.AddView (CreateMealInfo (json, recipeResult, count));
+			MealButton button = new MealButton(this);
+			button.mealName = json ["Mealname"];
+			button.mealId = json ["Mealid"];
+			button.mealSize = json ["Mealsize"];
+			button.Text = "Start Walkthrough";
+			button.Click += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine(button.mealName + "  " + button.mealSize);
+
+				// TODO: Add the click to the walkthrough
+			};
+			button.Gravity = GravityFlags.Center;
+			//button.SetBackgroundColor (Android.Graphics.Color.Aqua);
+			//button.SetTextColor (Android.Graphics.Color.Black);
+			LinearLayout.LayoutParams bll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			bll.SetMargins (10, 10, 10, 10);
+			button.LayoutParameters = bll;
+			button.SetPadding (0, 0, 0, 10);
+			walkthroughButton.AddView (button);
+			return walkthroughButton;
+		}
+
+		/**
+		 * Create the meal info area in the programmitcally generated by Json
+		 * 
+		 * @param json - Json from original call to be parsed
+		 * @param recipeResult - Json result form using information from original Json
+		 * @param count - used for creating unique ids
+		 * 
+		 * @return LinearLayout - MealInfo Container for original Json call
+		 **/
+		private LinearLayout CreateMealInfo (JsonValue json, JsonValue recipeResult, int count)
+		{
+			LinearLayout mealInfo = new LinearLayout (this);
+			mealInfo.Orientation = Orientation.Horizontal;
+			mealInfo.SetMinimumWidth (25);
+			mealInfo.SetMinimumHeight (25);
+			LinearLayout.LayoutParams mealInfoLL = 
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+			mealInfoLL.SetMargins (5, 5, 5, 5);
+			mealInfo.LayoutParameters = mealInfoLL;
+			mealInfo.Id = count * 20 + 7;
+			/*ImageView dinerIcon = new ImageView (this);
+			//LinearLayout iconParams = new LinearLayout.LayoutParams (18, 18);
+			dinerIcon.SetMaxWidth(5);
+			dinerIcon.SetMaxHeight(5);
+			dinerIcon.SetImageResource (Resource.Drawable.gray_person);*/
+			TextView mealSize = new TextView (this);
+			TextView recipeInfo = new TextView (this);
+			recipeInfo.Text = handleRecipeJson (recipeResult);
+			// System.Diagnostics.Debug.WriteLine (recipeResult.ToString ());
+			recipeInfo.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
+			recipeInfo.SetLines (1);
+			LinearLayout.LayoutParams rill = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
+			recipeInfo.LayoutParameters = rill;
+			//recipeInfo.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
+			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
+			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
+			mealSize.LayoutParameters = tvll;
+			//mealSize.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
+			mealSize.Text = json ["Mealsize"].ToString ();
+			//mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
+			recipeInfo.SetPadding (10, 0, 0, 0);
+			mealSize.Gravity = GravityFlags.Right;
+			//mealInfo.AddView (dinerIcon);
+			mealInfo.AddView (mealSize);
+			mealInfo.AddView (recipeInfo);
+			return mealInfo;
+		}
+
+		/**
+		 * Used to clean up code. Creates button container with button for designing meal
+		 * 
+		 * @param json - Json to be parsed
+		 * @param count - Used to create unique ids
+		 * 
+		 * @return LinearLayout - Button Container object
+		 * 
+		 **/ 
+		private LinearLayout CreateButtonContainer (JsonValue json, int count)
+		{
 			LinearLayout buttonCont = new LinearLayout (this);
 			//buttonCont.SetBackgroundColor (Android.Graphics.Color.White);
 			buttonCont.Orientation = Orientation.Horizontal;
@@ -250,42 +364,58 @@ namespace SpeedyChef
 			buttonCont.LayoutParameters = bcll;
 			buttonCont.Visibility = Android.Views.ViewStates.Visible;
 			buttonCont.Id = count * 20 + 6;
-			Button button = new Button (this, null, Resource.Style.generalButtonStyle);
+			// Used to hold more values
+			MealButton button = new MealButton (this, null, Resource.Style.generalButtonStyle); 
+			button.mealName = json["Mealname"];
+			button.mealSize =  (json ["Mealsize"]);
+			button.Click += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine(button.mealName);
+				System.Diagnostics.Debug.WriteLine(button.mealSize);
+				Intent intent = new Intent (this, typeof(MealDesign));
+				// Console.WriteLine (selected.GetDateField().ToBinary());
+				// Adds Binary field to be parsed later
+				intent.PutExtra ("Name", button.mealName);
+				intent.PutExtra("Mealsize", button.mealSize);
+				StartActivity (intent);
+				// TODO: Jump to the Design page
+
+			};
 			LinearLayout.LayoutParams lp = 
-				new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.MatchParent, 
-					LinearLayout.LayoutParams.MatchParent);
+				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
 			button.LayoutParameters = lp;
 			button.Text = json ["Mealname"];
+
 			button.Visibility = Android.Views.ViewStates.Visible;
-			button.SetBackgroundColor (Android.Graphics.Color.ParseColor("#3498DB"));
+			button.SetBackgroundColor (Resources.GetColor(Resource.Color.orange_header));
+			button.Gravity = GravityFlags.Center;
 			buttonCont.AddView (button);
-			mealObject.AddView (buttonCont);
-			LinearLayout mealInfo = new LinearLayout (this);
-			mealInfo.Orientation = Orientation.Vertical;
-			mealInfo.SetMinimumWidth (25);
-			mealInfo.SetMinimumHeight (25);
-			LinearLayout.LayoutParams mealInfoLL = 
-				new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
-			mealInfoLL.SetMargins (5, 5, 5, 5);
-			mealInfo.LayoutParameters = mealInfoLL;
-			mealInfo.Id = count * 20 + 7;
-			TextView mealSize = new TextView (this);
-			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
-			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
-			mealSize.LayoutParameters = tvll;
-			mealSize.SetTextColor (Android.Graphics.Color.ParseColor("#FFFFFF"));
-			mealSize.Text = "DINERS";
-			mealObject.AddView (mealSize);
-			mealDisplay.AddView (mealObject);
-			return mealDisplay;
+			return buttonCont;
 		}
 
+
 		/**
-		 * TODO 
+		 * Takes the recipes and makes into nice string to display
+		 * 
+		 * @param json - Json to parse
+		 * @return String - Final string to be displayed with meal
+		 **/
+		public string handleRecipeJson (JsonValue json)
+		{
+			string finalString = "";
+			for (int i = 0; i < json.Count; i++) {
+				finalString += json [i] ["Recname"] + ", ";
+			}
+			finalString = finalString.Substring (0, finalString.Length - 2);
+			// System.Diagnostics.Debug.WriteLine (finalString);
+			return finalString;
+		}
+
+
+		/**
+		 * Fetches Json from database using URL. Called mainly with stored procedures.
 		 * 
 		 **/
-		private async Task<JsonValue> FetchMealDay (string url)
+		private async Task<JsonValue> FetchMealData (string url)
 		{
 			// Create an HTTP web request using the URL:
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
@@ -358,11 +488,11 @@ namespace SpeedyChef
 				daysList [i].wrappedButton.Text = weekDay.Substring (0, 1) + "\n" + day;
 				daysList [i].SetDateField (date.AddDays (-date.DayOfWeek.GetHashCode () + i));
 				// Sets all the buttons to the default colors
-				daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ParseColor ("#1E2327"));
+				daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.light_gray));
 				// Handles setting the highlighting of the current day on the phone
 				if (i == current.DayOfWeek.GetHashCode () && date.Date.Equals (current.Date)) {
 					currentDate = daysList [i].wrappedButton;
-					daysList [i].wrappedButton.SetBackgroundColor (Android.Graphics.Color.ForestGreen);
+					daysList [i].wrappedButton.SetBackgroundColor (Resources.GetColor(Resource.Color.selected_date));
 				}
 			}
 			// Removes any selected day
@@ -398,28 +528,82 @@ namespace SpeedyChef
 	 **/
 	public class DateButton
 	{
-
+		/**
+		 * Datefield for button container
+		 **/
 		private DateTime dateField;
+
+		/**
+		 * Button of the container
+		 **/
 		public Button wrappedButton;
 
+		/**
+		 * Constructor to make date button
+		 **/
 		public DateButton (Button button)
 		{
 			wrappedButton = button;
 			this.dateField = DateTime.Now.AddDays (-100);
 		}
 
+		/**
+		 * Set the date field for a button
+		 **/
 		public void SetDateField (DateTime date)
 		{
 			// Console.WriteLine ("Wrote date");
 			this.dateField = date;
 		}
 
+		/**
+		 * Returns the date field for the given button
+		 **/
 		public DateTime GetDateField ()
 		{
 			return this.dateField;
 		}
+	}
 
 
+	/**
+	 * Button class that contains extra fields to be used for getting additional information
+	 * 
+	 **/
+	public class MealButton : Button{
 
+		/**
+		 * Meal id used in database
+		 * 
+		 **/
+		public int mealId {get; set;}
+
+		/**
+		 * Name of the meal
+		 *
+		 **/
+		public string mealName { get; set;}
+
+		/**
+		 * Mealsize
+		 **/
+		public int mealSize { get; set; }
+
+		/**
+		 * Constructor
+		 **/
+		public MealButton(Context context) : base(context){
+			this.mealId = -1;
+			this.mealName = "";
+			this.mealSize = -1;
+		}
+
+		/**
+		 * Constructor
+		 **/
+		public MealButton(Context context, Android.Util.IAttributeSet set, int style ) : base(context, set, style){
+			this.mealId = -1;
+			this.mealName = "";
+		}
 	}
 }

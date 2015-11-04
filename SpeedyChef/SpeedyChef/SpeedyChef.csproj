@@ -72,6 +72,7 @@
     <Compile Include="TimerPoolHandler.cs" />
     <Compile Include="Utils\WebUtils.cs" />
     <Compile Include="SearchActivity.cs" />
+    <Compile Include="RecipeViewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -95,8 +96,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_face_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_face_white_48dp.png" />
-    <AndroidResource Include="Resources\drawable\ic_block_blue_48px.png" />
-    <AndroidResource Include="Resources\drawable\ic_oven_blue.png" />
+    <AndroidResource Include="Resources\layout\FinalStep.axml" />
+    <AndroidResource Include="Resources\layout\RecipeView.axml" />
+    <AndroidResource Include="Resources\drawable\VegTemp.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_block_gray_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_block_orange_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_oven_gray.png" />
+    <AndroidResource Include="Resources\drawable\ic_oven_orange.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_gray_48dp.png" />
+    <AndroidResource Include="Resources\drawable\ic_face_orange_48dp.png" />
+    <AndroidResource Include="Resources\drawable\gray_person.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

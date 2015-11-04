@@ -58,22 +58,31 @@ namespace SpeedyChef
 					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
 					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
 						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
 						var intent = new Intent(this, typeof(MealPlannerCalendar));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
 						var intent = new Intent(this, typeof(StepsActivity));
+
+						CachedData.Instance.ActivityContext = this.GetType();
+
+						intent.PutExtra("AgendaId", 1);
+
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Search"){
 						var intent = new Intent(this, typeof(SearchActivity));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
 						var intent = new Intent(this, typeof(Allergens));
+						CachedData.Instance.ActivityContext = this.GetType();
 						StartActivity(intent);
 					}
 				};
@@ -157,7 +166,7 @@ namespace SpeedyChef
 		public PlannedMealObject ()
 		{
 			mealArray = new string[5];
-			mealArray [0] = "10/28 Mom's Mystery Meatloaf";
+			mealArray [0] = "10/28 Mom's Spaghetti";
 			mealArray [1] = "10/30 Halloween Cake w/ Candy Corn";
 			mealArray [2] = "10/31 All Saints Day Omelette";
 			mealArray [3] = "11/2 Wedding Present (Brownies)";
@@ -186,6 +195,8 @@ namespace SpeedyChef
 		public Tuple<int, string>[] AmericanFood { get; set; }
 		public Dictionary<string, Tuple<int, string>[]> TupleDict { get; set; }
 		public string SelectedNationality { get; set; }
+		public string SelectedSubgenre { get; set; }
+		public System.Type ActivityContext { get; set; }
 
 		private CachedData()
 		{

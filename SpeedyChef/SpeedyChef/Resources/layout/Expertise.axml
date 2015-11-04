@@ -31,7 +31,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/allergens_button"
-            android:background="@drawable/ic_block_white_48px" />
+            android:background="@drawable/ic_block_gray_48px" />
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -40,7 +40,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/oven_button"
-            android:background="@drawable/ic_oven_white" />
+            android:background="@drawable/ic_oven_gray" />
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -49,7 +49,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/expertise_button"
-            android:background="@drawable/ic_face_white_48dp" />
+            android:background="@drawable/ic_face_orange_48dp" />
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
