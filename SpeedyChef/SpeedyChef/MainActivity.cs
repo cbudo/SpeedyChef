@@ -68,7 +68,11 @@ namespace SpeedyChef
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
 						var intent = new Intent(this, typeof(StepsActivity));
+
 						CachedData.Instance.ActivityContext = this.GetType();
+
+						intent.PutExtra("AgendaId", 1);
+
 						StartActivity(intent);
 					}
 					else if (arg1.Item.TitleFormatted.ToString() == "Search"){

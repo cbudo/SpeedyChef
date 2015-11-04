@@ -17,7 +17,7 @@ using Android.Util;
 
 namespace SpeedyChef
 {
-		
+
 	[Activity (Label = "StepsActivity")]			
 	public class StepsActivity : FragmentActivity
 	{
@@ -25,11 +25,15 @@ namespace SpeedyChef
 		RecipeStep[] steps; 
 		ViewGroup[] timerFrames;
 		TimerPoolHandler timerPoolHandler;
+		int fragmentCount;
 
 		//Called when the page is created
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			int AgendaId = Intent.GetIntExtra ("AgendaId", 0);
+			Console.WriteLine ("Recipe Id: " + AgendaId);
 
 			SetContentView (Resource.Layout.Walkthrough);
 			ViewPager vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
@@ -44,97 +48,14 @@ namespace SpeedyChef
 
 			timerPoolHandler = new TimerPoolHandler (timerFrames);
 
-			//TODO replace dummy content with actual input
-			steps = new RecipeStep[9];
-			RecipeStep s1 = new RecipeStep ();
-			s1.title = "Form the Corn";
-			s1.desc = "And we form the corn, form form the corn, and we form the corn, form form the corn";
-			s1.time = 600;
-			s1.timeable = true;
-			s1.timerHandler = new RecipeStepTimerHandler (s1.time);
-			RecipeStep s2 = new RecipeStep ();
-			s2.title = "Shuck the Corn";
-			s2.desc = "And we shuck the corn, shuck shuck the corn, and we shuck the corn, shuck shuck the corn";
-			s2.time = 750;
-			RecipeStep s3 = new RecipeStep ();
-			s3.title = "Pop the Corn";
-			s3.desc = "And we pop the corn, pop pop the corn, and we pop the corn, pop pop the corn";
-			s3.time = 300;
-			RecipeStep s4 = new RecipeStep ();
-			s4.title = "Form Potatoes";
-			s4.desc = "And we form potatoes, form form potatoes, and we form potatoes, form form potatoes";
-			s4.time = 3600;
-			s4.timeable = true;
-			s4.timerHandler = new RecipeStepTimerHandler (s4.time);
-			RecipeStep s5 = new RecipeStep ();
-			s5.title = "Peel Potatoes";
-			s5.desc = "And we peel potatoes, peel peel potatoes and we peel potatoes, peel peel potatoes";
-			s5.time = 750;
-			s5.timeable = true;
-			s5.timerHandler = new RecipeStepTimerHandler (s5.time);
-			RecipeStep s6 = new RecipeStep ();
-			s6.title = "Mash Potatoes";
-			s6.desc = "And we mash potatoes, mash mash potatoes and we mash potatoes, mash mash potatoes";
-			s6.time = 300;
-			RecipeStep s7 = new RecipeStep ();
-			s7.title = "Form Bananas";
-			s7.desc = "And we form bananas, form form bananas, and we form bananas, form form bananas";
-			s7.time = 1800;
-			RecipeStep s8 = new RecipeStep ();
-			s8.title = "Peel Bananas";
-			s8.desc = "And we peel bananas, peel peel bananas and we peel bananas, peel peel bananas";
-			s8.time = 750;
-			RecipeStep s9 = new RecipeStep ();
-			s9.title = "Go Bananas";
-			s9.desc = "AND WE GO BANANAS GO GO BANANAS AND WE GO BANANAS GO GO BANANAS";
-			s9.time = 300;
-			/*RecipeStep s1 = new RecipeStep();
-			s1.title = "Boil Water";
-			s1.desc = "Fill a large pot with about one quart of water. Put the pot on a burner on high. Check back in about 8 minutes.";
-			s1.time = 8;
-			s1.timeable = true;
-			s1.timer = new RecipeStepTimer (s1.time * 60);
-			timers.Add (s1.timer);
-			RecipeStep s2 = new RecipeStep();
-			s2.title = "Boil Potatoes";
-			s2.desc = "Put the potatoes into the boiling water. Allow them to boil for 10 minutes.";
-			s2.time = 10;
-			s2.timeable = true;
-			s2.timer = new RecipeStepTimer (s2.time * 60);
-			timers.Add (s2.timer);
-			RecipeStep s3 = new RecipeStep();
-			s3.title = "Peel Potatoes";
-			s3.desc = "Remove the potatoes from the boiling water. Wait for them to cool, or you can run them under cold water. Once they are cool enough to handle, use a peeler to remove the skin.";
-			s3.time = 5;
-			s3.timeable = false;
-			RecipeStep s4 = new RecipeStep();
-			s4.title = "Slice Potatoes";
-			s4.desc = "Use a large chef's knife to slice the potatoes into thin chunks.";
-			s4.time = 3;
-			s4.timeable = false; */
-
-			steps [0] = s1;
-			steps [1] = s2;
-			steps [2] = s3;
-			steps [3] = s4;
-			steps [4] = s5;
-			steps [5] = s6;
-			steps [6] = s7;
-			steps [7] = s8;
-			steps [8] = s9;
-
-			//TODO iterate through returned JSON
-			/*for (int i = 0; i < steps.Length; i++) {
-				if (steps [i].timeable) {
-					timers.Add (new RecipeStepTimerHandler (steps [i]));
-				}
-			} */
+			steps = WebUtils.getRecipeSteps (AgendaId);
+			fragmentCount = steps.Length + 1;
 
 			vp.Adapter = new StepFragmentPagerAdapter (SupportFragmentManager, steps, timerPoolHandler);
 
 			//Set up the progress dots to appear at the bottom of the screen
 			ViewGroup pd = (ViewGroup) FindViewById (Resource.Id.walkthrough_progress_dots);
-			ImageView[] progressDots = new ImageView[steps.Length];
+			ImageView[] progressDots = new ImageView[fragmentCount];
 			Drawable open = Resources.GetDrawable (Resource.Drawable.circle_open);
 
 			for (int i = 0; i < progressDots.Length; i++) {
@@ -147,16 +68,14 @@ namespace SpeedyChef
 
 			ViewGroup pbs = (ViewGroup)FindViewById (Resource.Id.walkthrough_progress_bars);
 
-			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed), timerPoolHandler.getTimers(), pbs));
-
-			//Console.WriteLine (WebUtils.getRecipeSteps ());
+			vp.AddOnPageChangeListener (new StepChangeListener (progressDots, open, Resources.GetDrawable(Resource.Drawable.circle_closed), pbs));
 
 		}
 
 
-			
+
 	}
-		
+
 
 	class StepFragmentPagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter {
 		private RecipeStep[] steps;
@@ -168,17 +87,20 @@ namespace SpeedyChef
 		}
 
 		public override Android.Support.V4.App.Fragment GetItem(int position) {
-			return new StepFragment (steps [position], handler);
+			if (position < steps.Length)
+				return new StepFragment (steps [position], handler);
+			return new FinishedFragment ();
 		}
 
 		public override int Count {
 			get {
-				return steps.Length;
+				return steps.Length + 1;
 			}
 		}
 
 	}
 
+	//Fragment to display an individual recipe step
 	class StepFragment : Android.Support.V4.App.Fragment {
 
 		private RecipeStep recipeStep;
@@ -205,9 +127,10 @@ namespace SpeedyChef
 					startButton.SetText (Resource.String.pause);
 				} else {
 					timeTv.Text = (this.recipeStep.time / 60).ToString () + ":00";
-					handler.AddTimer (this.recipeStep, timeTv, startButton);
+					//handler.AddTimer (this.recipeStep, timeTv, startButton);
 				}
-					
+				handler.AssignFragView (this.recipeStep.timerHandler, timeTv, startButton);
+
 			}
 			else { // Don't add a timer, just display the time estimate
 				rootView.FindViewById (Resource.Id.step_static_time).Visibility = ViewStates.Visible;
@@ -223,24 +146,36 @@ namespace SpeedyChef
 
 	}
 
+	//Fragment to display when the user has gone through all of the steps
+	class FinishedFragment : Android.Support.V4.App.Fragment {
+
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+			View view = inflater.Inflate (Resource.Layout.FinalStep, container, false);
+			Button finishButton = view.FindViewById<Button> (Resource.Id.walkthrough_finish_button);
+			finishButton.Click += delegate {
+				Activity.Finish();
+			};
+			return view;
+		}
+	}
+
 	class StepChangeListener : ViewPager.SimpleOnPageChangeListener {
 		ImageView[] dots;
 		Drawable open;
 		Drawable closed;
-		HashSet<RecipeStepTimerHandler> timers;
 		ViewGroup progressBars;
 
-		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, HashSet<RecipeStepTimerHandler> timers, ViewGroup progressBars) : base() {
+		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, ViewGroup progressBars) : base() {
 			this.dots = dots;
 			this.open = open;
 			this.closed = closed;
-			this.timers = timers;
 			this.progressBars = progressBars;
 		}
 
 		public override void OnPageSelected (int position) {
 			SetUIListPos (position);
-			loadTimers ();
+			//loadTimers ();
 		}
 
 		public void SetUIListPos(int pos) {
@@ -250,11 +185,11 @@ namespace SpeedyChef
 			}
 		}
 
-		private void loadTimers() {
+		/*(private void loadTimers() {
 			for (int i = 0; i < timers.Count; i++) {
 				RecipeStepTimerHandler t = timers.ElementAt (i);
 				if (t.IsActive()) {
-					/*//TODO hardcoded for prototype, fix this later
+					//TODO hardcoded for prototype, fix this later
 					int id_frame;
 					int id_time;
 					if (i == 1) {
@@ -269,10 +204,10 @@ namespace SpeedyChef
 						v.Visibility = ViewStates.Visible;
 					}
 					TextView tv = progressBars.FindViewById<TextView> (id_time);
-					t.SetTextView (tv); */
+					t.SetTextView (tv); 
 				}
 			}
-		}
+		}*/
 	}
 }
 

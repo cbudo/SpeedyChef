@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    style="@style/PaginatedContent">
-    <TextView
-        android:id="@+id/step_title"
-        style="@style/CenterTitle" />
-    <ImageView
-        android:id="@+id/step_image"
-        style="@style/WebImage" />
-    <TextView
-        android:id="@+id/step_desc"
-        style="@style/TextBase"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/step_static_time"
-        style="@style/CenterTitle"
-        android:background="@drawable/clock1"
-        android:layout_height="150dp"
-        android:layout_width="150dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FillWidth">
     <LinearLayout
-        android:id="@+id/step_timer_wrapper"
-        style="@style/WrapContent"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:visibility="gone">
+        style="@style/PaginatedContent">
         <TextView
-            android:id="@+id/step_timer_display"
-            style="@style/StepCountdownTimer" />
-        <Button
-            android:id="@+id/step_timer_start_button"
+            android:id="@+id/step_title"
+            style="@style/CenterTitle" />
+        <ImageView
+            android:id="@+id/step_image"
+            style="@style/WebImage" />
+        <TextView
+            android:id="@+id/step_desc"
+            style="@style/TextBase"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/step_static_time"
+            style="@style/CenterTitle"
+            android:background="@drawable/clock1"
+            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
+        <LinearLayout
+            android:id="@+id/step_timer_wrapper"
             style="@style/WrapContent"
-            android:text="@string/start" />
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/step_timer_display"
+                style="@style/StepCountdownTimer" />
+            <Button
+                android:id="@+id/step_timer_start_button"
+                style="@style/BasicButton"
+                android:text="@string/start" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
