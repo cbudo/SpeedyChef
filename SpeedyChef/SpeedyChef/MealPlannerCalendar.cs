@@ -375,6 +375,7 @@ namespace SpeedyChef
 				// Console.WriteLine (selected.GetDateField().ToBinary());
 				// Adds Binary field to be parsed later
 				intent.PutExtra ("Name", button.mealName);
+				intent.PutExtra("Mealsize", button.mealSize);
 				StartActivity (intent);
 				// TODO: Jump to the Design page
 
@@ -408,6 +409,7 @@ namespace SpeedyChef
 			// System.Diagnostics.Debug.WriteLine (finalString);
 			return finalString;
 		}
+
 
 		/**
 		 * Fetches Json from database using URL. Called mainly with stored procedures.
