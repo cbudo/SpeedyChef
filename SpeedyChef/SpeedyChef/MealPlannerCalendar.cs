@@ -314,30 +314,28 @@ namespace SpeedyChef
 			mealInfoLL.SetMargins (5, 5, 5, 5);
 			mealInfo.LayoutParameters = mealInfoLL;
 			mealInfo.Id = count * 20 + 7;
-			/* ImageView dinerIcon = new ImageView (this);
-			//LinearLayout iconParams = new LinearLayout.LayoutParams (18, 18);
-			dinerIcon.LayoutParameters.Width = 18;
-			dinerIcon.LayoutParameters.Height = 18;
-			dinerIcon.SetImageResource (Resource.Drawable.gray_person);*/ 
+			// Set image icon
+			ImageView dinerIcon = new ImageView (this);
+			dinerIcon.SetImageResource (Resource.Drawable.gray_person);
+			dinerIcon.LayoutParameters = new 
+				LinearLayout.LayoutParams (50, LinearLayout.LayoutParams.MatchParent);
+			// Finish setting the image icon
 			TextView mealSize = new TextView (this);
 			TextView recipeInfo = new TextView (this);
 			recipeInfo.Text = handleRecipeJson (recipeResult);
-			// System.Diagnostics.Debug.WriteLine (recipeResult.ToString ());
 			recipeInfo.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
 			recipeInfo.SetLines (1);
 			LinearLayout.LayoutParams rill = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			recipeInfo.LayoutParameters = rill;
-			//recipeInfo.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
 			mealSize.SetTextAppearance (this, Android.Resource.Style.TextAppearanceSmall);
 			LinearLayout.LayoutParams tvll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 			mealSize.LayoutParameters = tvll;
-			//mealSize.SetTextColor (Android.Graphics.Color.ParseColor ("#FFFFFF"));
 			mealSize.Text = json ["Mealsize"].ToString ();
-			//mealSize.SetBackgroundColor (Android.Graphics.Color.DarkBlue);
 			recipeInfo.SetPadding (10, 0, 0, 0);
 			mealSize.Gravity = GravityFlags.Right;
-			// mealInfo.AddView (dinerIcon);
+			// Add image icon
 			mealInfo.AddView (mealSize);
+			mealInfo.AddView (dinerIcon);
 			mealInfo.AddView (recipeInfo);
 			return mealInfo;
 		}
@@ -409,7 +407,7 @@ namespace SpeedyChef
 			for (int i = 0; i < json.Count; i++) {
 				finalString += json [i] ["Recname"] + ", ";
 			}
-			if (finalString.Length > 2){
+			if (finalString.Length > 2) {
 				finalString = finalString.Substring (0, finalString.Length - 2);
 			}
 			// System.Diagnostics.Debug.WriteLine (finalString);
