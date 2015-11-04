@@ -120,5 +120,15 @@
 		<item name="android:layout_height">18dp</item>
 		<item name="android:layout_marginRight">2dp</item>
 	</style>
+	<style name="DinerIconDesign">
+		<item name="android:src">@drawable/gray_person</item>
+		<item name="android:layout_width">50dp</item>
+<!--		<item name="android:maxWidth">18dp</item>-->
+		<item name="android:maxHeight">18dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_marginRight">2dp</item>
+		<item name="android:adjustViewBounds">true</item>
+	</style>
 
 </resources>

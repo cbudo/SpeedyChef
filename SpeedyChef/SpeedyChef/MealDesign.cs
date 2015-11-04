@@ -26,7 +26,7 @@ namespace SpeedyChef
 			string mealname = Intent.GetStringExtra ("Name");
 			int mealId = Intent.GetIntExtra ("mealId", -1);
 			int mealSize = Intent.GetIntExtra ("Mealsize", 0);
-			System.Diagnostics.Debug.WriteLine (mealSize);
+			System.Diagnostics.Debug.WriteLine (mealId);
 			// System.Diagnostics.Debug.WriteLine (mealname + " I am here");
 
 			// Changes meal name to passed in name
@@ -83,8 +83,7 @@ namespace SpeedyChef
 			};
 			if (mealId == -1){
 				removeButton.Clickable = false;
-				
-			}
+			} 
 			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
 			RecipeLayouts rl = new RecipeLayouts (this);
 			mealsArea.AddView (rl);
@@ -134,7 +133,8 @@ namespace SpeedyChef
 			this.removeButton.SetMinimumHeight (100);
 			this.removeButton.SetMinimumWidth(25);
 			this.removeButton.Text = "Remove";
-			this.removeButton.SetBackgroundResource (Resource.Color.my_blue);
+			this.removeButton.SetTextAppearance (this.removeButton.Context, Resource.Style.generalButtonStyle);
+			this.removeButton.SetBackgroundResource (Resource.Color.orange_header);
 			this.removeButton.Gravity = GravityFlags.Center;
 			this.removeButton.SetPadding (5, 5, 5, 5);
 		}
@@ -145,6 +145,8 @@ namespace SpeedyChef
 			this.recipeInfo.SetMinimumWidth (25);
 			this.recipeInfo.Gravity = GravityFlags.Center;
 			this.recipeInfo.Text = "EMPTY";
+			this.recipeInfo.SetTextAppearance (this.recipeInfo.Context, Resource.Style.generalButtonStyle);
+			this.recipeInfo.SetBackgroundResource (Resource.Color.orange_header);
 		}
 
 		private void CreateRLPs ()

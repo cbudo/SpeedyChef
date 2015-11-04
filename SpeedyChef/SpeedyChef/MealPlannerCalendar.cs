@@ -220,6 +220,7 @@ namespace SpeedyChef
 		private void parseMeals (JsonValue json)
 		{
 			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			// PRINTS
 			System.Diagnostics.Debug.WriteLine (json.Count);
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
@@ -279,13 +280,12 @@ namespace SpeedyChef
 			button.mealSize = json ["Mealsize"];
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
+				// PRINTS
 				System.Diagnostics.Debug.WriteLine(button.mealName + "  " + button.mealSize);
 
 				// TODO: Add the click to the walkthrough
 			};
 			button.Gravity = GravityFlags.Center;
-			//button.SetBackgroundColor (Android.Graphics.Color.Aqua);
-			//button.SetTextColor (Android.Graphics.Color.Black);
 			LinearLayout.LayoutParams bll = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
 			bll.SetMargins (10, 10, 10, 10);
 			button.LayoutParameters = bll;
@@ -368,14 +368,18 @@ namespace SpeedyChef
 			MealButton button = new MealButton (this, null, Resource.Style.generalButtonStyle); 
 			button.mealName = json["Mealname"];
 			button.mealSize =  (json ["Mealsize"]);
+			button.mealId =  (json ["Mealid"]);
 			button.Click += (object sender, EventArgs e) => {
-				System.Diagnostics.Debug.WriteLine(button.mealName);
-				System.Diagnostics.Debug.WriteLine(button.mealSize);
+				// PRINTS
+				// System.Diagnostics.Debug.WriteLine(button.mealId);
+				// System.Diagnostics.Debug.WriteLine(button.mealSize);
+
+
 				Intent intent = new Intent (this, typeof(MealDesign));
-				// Console.WriteLine (selected.GetDateField().ToBinary());
 				// Adds Binary field to be parsed later
 				intent.PutExtra ("Name", button.mealName);
 				intent.PutExtra("Mealsize", button.mealSize);
+				intent.PutExtra ("mealId", button.mealId);
 				StartActivity (intent);
 				// TODO: Jump to the Design page
 

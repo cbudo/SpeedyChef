@@ -56,7 +56,8 @@
                         android:lines="1"
                         android:maxLines="1"
                         android:inputType="text"
-                        android:hint="Enter Name of Meal" />
+                        android:hint="Enter Name of Meal"
+                        android:textColor="@color/text" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -70,23 +71,29 @@
                     android:orientation="horizontal"
                     android:minWidth="25px"
                     android:minHeight="25px"
+                    android:maxWidth="25px"
+                    android:maxHeight="25px"
                     android:id="@+id/nameIncrementer"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_width="match_parent">
-                    <TextView
+                <!--                    <TextView
                         android:text="Diners: "
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textColor="@color/black_text"
                         android:gravity="center"
+                        android:id="@+id/dinerText" />-->
+                    <ImageView
+                        style="@style/DinerIconDesign"
                         android:id="@+id/dinerText" />
                     <TextView
                         android:text="0"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:textColor="@color/black_text"
                         android:gravity="center"
                         android:id="@+id/seekBarCount" />
                     <SeekBar

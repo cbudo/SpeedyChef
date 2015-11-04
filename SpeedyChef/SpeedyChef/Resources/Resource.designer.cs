@@ -1837,9 +1837,6 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060069
 			public const int bookmarkBar = 2131099753;
 			
-			// aapt resource value: 0x7f06006a
-			public const int bookmarkButton = 2131099754;
-			
 			// aapt resource value: 0x7f06009c
 			public const int bookmark_rec_button = 2131099804;
 			
@@ -2082,6 +2079,9 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f060099
 			public const int relativeLayout1 = 2131099801;
+			
+			// aapt resource value: 0x7f06006a
+			public const int removeButton = 2131099754;
 			
 			// aapt resource value: 0x7f06006c
 			public const int returnButton = 2131099756;
@@ -3138,6 +3138,9 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080143
 			public const int DinerIcon = 2131231043;
 			
+			// aapt resource value: 0x7f080144
+			public const int DinerIconDesign = 2131231044;
+			
 			// aapt resource value: 0x7f080130
 			public const int FillHeight = 2131231024;
 			
@@ -3150,8 +3153,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f080142
 			public const int MealDateButton = 2131231042;
 			
-			// aapt resource value: 0x7f080144
-			public const int Mono_Android_Theme_Splash = 2131231044;
+			// aapt resource value: 0x7f080145
+			public const int Mono_Android_Theme_Splash = 2131231045;
 			
 			// aapt resource value: 0x7f080131
 			public const int MyTheme = 2131231025;
