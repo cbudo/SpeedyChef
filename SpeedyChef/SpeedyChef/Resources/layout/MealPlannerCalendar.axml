@@ -24,7 +24,8 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="80px"
-        android:id="@+id/monthBar">
+        android:id="@+id/monthBar"
+        android:layout_marginBottom="5dp">
         <Button
             style="@style/generalButtonStyle"
             android:text="&lt;"
@@ -37,7 +38,7 @@
             android:maxWidth="50dp" />
         <TextView
             android:text="Month Presenter"
-            android:textColor="@color/my_green"
+            android:textColor="@color/black_text"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -67,61 +68,26 @@
             android:layout_height="70dp"
             android:id="@+id/dayLayout">
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X S"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day1"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day1" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X M"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day2"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day2" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X T"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day3"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day3" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X W"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day4"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day4" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X T"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day5"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day5" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X F"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day6"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day6" />
             <Button
-                style="@style/generalButtonStyle"
-                android:lines="2"
-                android:text="X S"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/day7"
-                android:layout_weight="1" />
+                style="@style/MealDateButton"
+                android:id="@+id/day7" />
         </LinearLayout>
     </HorizontalScrollView>
     <TextView
@@ -183,15 +149,17 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/E1Desc">
+                        <ImageView
+                            style="@style/DinerIcon" />
                         <TextView
-                            android:text="4 Diners"
-                            android:textColor="@color/my_white"
+                            android:text="4"
+                            android:textColor="@color/black_text"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/e1Diner" />
                         <TextView
-                            android:textColor="@color/my_white"
+                            android:textColor="@color/black_text"
                             android:text="Refried beans with cheese, Mexican rice, .adsfasdfsadfadsfadsfa"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_width="match_parent"
@@ -233,16 +201,18 @@
                         android:layout_margin="5dp"
                         android:id="@+id/E2Desc">
                         <TextView
-                            android:textColor="@color/my_white"
+                            android:textColor="@color/black_text"
                             android:text="Refried beans with cheese, Mexican rice, ...."
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/e2Desc"
                             android:ellipsize="end" />
+                        <ImageView
+                            style="@style/DinerIcon" />
                         <TextView
-                            android:text="4 Diners"
-                            android:textColor="@color/my_white"
+                            android:text="4"
+                            android:textColor="@color/black_text"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -259,7 +229,9 @@
             android:id="@+id/addBar"
             android:gravity="bottom"
             android:minWidth="25px"
-            android:minHeight="25px">
+            android:minHeight="25px"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="10dp">
             <Button
                 style="@style/generalButtonStyle"
                 android:text="Add"
