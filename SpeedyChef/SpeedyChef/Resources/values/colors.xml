@@ -5,16 +5,7 @@
 	<color name="my_purple">#B455B6</color>
 	<color name="my_gray">#738182</color>
 	<color name="my_black">#000000</color>
-	<color name="text">#000000</color>
+	<color name="text">#ffffff</color>
 	<color name="my_white">#ffffff</color>
 	<color name="black_text">#000000</color>
-	<color name="white_text">#ffffff</color>
-
-	<color name="orange_header">#f56600</color>
-	<color name="gray_icon">#b2b2b2</color>
-	<color name="light_gray">#e3e3e3</color>
-
-	<!-- Colors for the meal planner -->
-	<color name="current_date">#b2b2b2</color>
-	<color name="selected_date">#f56600</color>
 </resources>

@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/my_white">
+    android:layout_height="fill_parent">
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -79,7 +78,6 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black_text"
                         android:gravity="center"
                         android:id="@+id/dinerText" />
                     <TextView
@@ -134,10 +132,10 @@
                 android:layout_below="@id/searchButtonBar">
                 <Button
                     style="@style/generalButtonStyle"
-                    android:text="Remove Meal"
+                    android:text="Bookmark Recipe"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/removeButton"
+                    android:id="@+id/bookmarkButton"
                     android:layout_width="500px"
                     android:layout_height="100px"
                     android:layout_marginRight="0.0dp"

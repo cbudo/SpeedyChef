@@ -28,10 +28,6 @@ namespace SpeedyChef
 
 		public override void OnTick(long millisUntilFinished) {
 			secondsLeft = (int) (millisUntilFinished / 1000);
-			TimeUpdate ();
-		}
-
-		public void TimeUpdate() {
 			int seconds = secondsLeft;
 			int mins = seconds / 60;
 			seconds = seconds % 60;
@@ -47,6 +43,7 @@ namespace SpeedyChef
 			if (pb != null) {
 				pb.IncrementProgressBy (1);
 			}
+			Console.WriteLine ("PB: " + pb);
 		}
 
 		public override void OnFinish() {

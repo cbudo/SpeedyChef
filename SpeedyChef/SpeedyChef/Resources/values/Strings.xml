@@ -22,11 +22,4 @@
 
 	<string name="start">Start</string>
 	<string name="pause">Pause</string>
-	<string name="done">Done</string>
-	<string name="enjoy">Enjoy your meal!</string>
-
-	<string name="add_to_meal">Add to Meal</string>
-	<string name="bookmark_recipe">Bookmark Recipe</string>
-	<string name="ingredients">Ingredients</string>
-	<string name="steps">Steps</string>
 </resources>

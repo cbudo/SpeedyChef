@@ -8,52 +8,22 @@ namespace SpeedyChef
 	{
 		private int time;
 		private RecipeStepTimer recipeStepTimer;
-		private ViewGroup timerFrame;
-		private int timerIndex;
-		private string timerName;
+	//	private ViewGroup timerView;
+	//	private TextView original;
 
-		public RecipeStepTimerHandler (int t, string s)
+		public RecipeStepTimerHandler (int t)
 		{
 			time = t;
-			timerName = s;
 			recipeStepTimer = new RecipeStepTimer (t);
+			//timerView = v;
+			//original = tv;
+			//recipeStepTimer = new RecipeStepTimer (time, timerView.FindViewById<TextView> (Resource.Id.walkthrough_time), original, v.FindViewById<ProgressBar> (Resource.Id.walkthrough_bar));
 		}
 
-		public void SetViews(TextView stepView, ViewGroup timerFrame) {
+		public void SetViews(TextView stepView, TextView barView, ProgressBar progressBar) {
 			recipeStepTimer.SetStepTextView (stepView);
-			setTimerFrame (timerFrame);
-			}
-
-		public void SetStepView(TextView stepView) {
-			recipeStepTimer.SetStepTextView (stepView);
-		}
-
-		public ViewGroup getTimerFrame() {
-			return this.timerFrame;
-		}
-
-		public void setTimerFrame(ViewGroup timerFrame) {
-			this.timerFrame = timerFrame;
-			recipeStepTimer.SetBarTextView (timerFrame.FindViewById<TextView> (Resource.Id.walkthrough_time));
-			recipeStepTimer.SetProgressBar (timerFrame.FindViewById<ProgressBar> (Resource.Id.walkthrough_bar));
-			timerFrame.FindViewById<TextView> (Resource.Id.walkthrough_text).Text = this.timerName;
-			recipeStepTimer.TimeUpdate ();
-		}
-
-		public int getTimerIndex() {
-			return this.timerIndex;
-		}
-
-		public void setTimerIndex(int x) {
-			this.timerIndex = x;
-		}
-
-		public string getTimerName() {
-			return this.timerName;;
-		}
-
-		public void setTimerName(string s) {
-			this.timerName = s;
+			recipeStepTimer.SetBarTextView (barView);
+			recipeStepTimer.SetProgressBar (progressBar);
 		}
 
 		public void StartTimer() {

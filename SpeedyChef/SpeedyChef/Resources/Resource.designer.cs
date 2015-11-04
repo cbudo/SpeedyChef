@@ -1528,6 +1528,7 @@ namespace SpeedyChef
 			public const int ic_block_black_48px = 2130837588;
 			
 			// aapt resource value: 0x7f020055
+<<<<<<< HEAD
 			public const int ic_block_blue_48px = 2130837589;
 			
 			// aapt resource value: 0x7f020056
@@ -1658,6 +1659,132 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f02007f
 			public const int timing_progress = 2130837631;
+=======
+			public const int ic_block_white_48px = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int ic_face_black_24px = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int ic_face_white_24px = 2130837591;
+			
+			// aapt resource value: 0x7f020058
+			public const int ic_face_white_48dp = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public const int ic_oven_black = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int ic_oven_white = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public const int Icon = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public const int IndianCurry = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public const int IndianDesserts = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int IndianFood = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int IndianMeats = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int IndianVegetables = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int ItalianDesserts = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int ItalianFood = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public const int ItalianMeats = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public const int ItalianPastas = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int ItalianVegetables = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int JapaneseDesserts = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int JapaneseFood = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int JapaneseMeats = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int JapaneseSushi = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int JapaneseVegetables = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int menu_lines = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int MexicanDesserts = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int MexicanFood = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int MexicanMeats = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int MexicanVegetables = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int MexicanWraps = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int monoandroidsplash = 2130837617;
+			
+			// aapt resource value: 0x7f02007e
+			public const int notification_template_icon_bg = 2130837630;
+			
+			// aapt resource value: 0x7f020072
+			public const int pressed_lines = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int SpanishDesserts = 2130837619;
+			
+			// aapt resource value: 0x7f020074
+			public const int SpanishFood = 2130837620;
+			
+			// aapt resource value: 0x7f020075
+			public const int SpanishMeats = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int SpanishOmelettes = 2130837622;
+			
+			// aapt resource value: 0x7f020077
+			public const int SpanishVegetables = 2130837623;
+			
+			// aapt resource value: 0x7f020078
+			public const int ThaiDesserts = 2130837624;
+			
+			// aapt resource value: 0x7f020079
+			public const int ThaiFood = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int ThaiFoodEx = 2130837626;
+			
+			// aapt resource value: 0x7f02007b
+			public const int ThaiMeats = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int ThaiVegetables = 2130837628;
+			
+			// aapt resource value: 0x7f02007d
+			public const int timing_progress = 2130837629;
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			
 			static Drawable()
 			{
@@ -1876,15 +2003,27 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f06000d
 			public const int disableHome = 2131099661;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060080
 			public const int e1Desc = 2131099776;
 			
+=======
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			// aapt resource value: 0x7f060081
-			public const int e1Diner = 2131099777;
+			public const int e1Desc = 2131099777;
+			
+<<<<<<< HEAD
+			// aapt resource value: 0x7f060086
+			public const int e2Desc = 2131099782;
+			
+=======
+			// aapt resource value: 0x7f060080
+			public const int e1Diner = 2131099776;
 			
 			// aapt resource value: 0x7f060086
 			public const int e2Desc = 2131099782;
 			
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			// aapt resource value: 0x7f060087
 			public const int e2Diner = 2131099783;
 			
@@ -1941,24 +2080,41 @@ namespace SpeedyChef
 			
 			// aapt resource value: 0x7f06006d
 			public const int leftShift = 2131099757;
+<<<<<<< HEAD
+			
+			// aapt resource value: 0x7f06008f
+			public const int line1 = 2131099791;
+=======
 			
 			// aapt resource value: 0x7f06008f
 			public const int line1 = 2131099791;
 			
 			// aapt resource value: 0x7f060093
 			public const int line3 = 2131099795;
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			
+			// aapt resource value: 0x7f060093
+			public const int line3 = 2131099795;
+			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060057
 			public const int linearLayout1 = 2131099735;
 			
+=======
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			// aapt resource value: 0x7f06000a
 			public const int listMode = 2131099658;
 			
 			// aapt resource value: 0x7f060029
 			public const int list_item = 2131099689;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060055
 			public const int main_search = 2131099733;
+=======
+			// aapt resource value: 0x7f060059
+			public const int main_search = 2131099737;
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			
 			// aapt resource value: 0x7f06007a
 			public const int mealDisplay = 2131099770;
@@ -2056,8 +2212,13 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060049
 			public const int search_close_btn = 2131099721;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060054
 			public const int search_container = 2131099732;
+=======
+			// aapt resource value: 0x7f060058
+			public const int search_container = 2131099736;
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			
 			// aapt resource value: 0x7f060045
 			public const int search_edit_frame = 2131099717;
@@ -2158,8 +2319,13 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060032
 			public const int textSpacerNoButtons = 2131099698;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060059
 			public const int textView = 2131099737;
+=======
+			// aapt resource value: 0x7f060057
+			public const int textView = 2131099735;
+>>>>>>> parent of 0bb4531... Fixed one small conflict (PutExtra) and Merged
 			
 			// aapt resource value: 0x7f06009a
 			public const int textViewLeft = 2131099802;
