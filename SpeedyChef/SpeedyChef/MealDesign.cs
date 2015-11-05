@@ -78,6 +78,15 @@ namespace SpeedyChef
 			Window.SetSoftInputMode (SoftInput.StateAlwaysHidden);
 			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
 			returnButton.Click += (sender, e) => {
+				int[] recIds;
+				if (mealId == -1) {
+					// Adds to the procedure (No updating)
+					recIds = GetRecIds();
+				}
+				else{
+					// Updates the items for the meal id
+					recIds = GetRecIds();
+				}
 				Intent i = new Intent (this, typeof(MealPlannerCalendar));
 				i.PutExtra ("Result", "Passing back works");
 				SetResult (Result.Ok, i);
@@ -100,12 +109,12 @@ namespace SpeedyChef
 					// Change to meal id
 					string user = "tester";
 					string url = 
-						"http://speedychef.azurewebsites.net/CalendarScreen/RemoveMealFromTables?user=" 
+						"http://speedychef.azurewebsites.net/CalendarScreen/RemoveMealFromTables?user="
 						+ user + "&mealid=" + mealId;
-					GetMealRemoved(url);
+					GetMealRemoved (url);
 				}
 				i.PutExtra ("MealRemoved", mealId);
-				SetResult(Result.Ok, i);
+				SetResult (Result.Ok, i);
 				Finish ();
 				
 				// Remove meal with mealId TODO
@@ -118,7 +127,19 @@ namespace SpeedyChef
 			//mealsArea.AddView (rl);
 		}
 
-		private async void GetMealRemoved(string url){
+		private int[] GetRecIds(){
+			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
+			//System.Diagnostics.Debug.WriteLine (mealsArea.ChildCount);
+			int[] ids = new int[mealsArea.ChildCount];
+			for(int c = 0; c < mealsArea.ChildCount; c ++){
+				// System.Diagnostics.Debug.WriteLine (((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId);
+				ids[c] = ((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId;
+			}
+			return ids;
+		}
+
+		private async void GetMealRemoved (string url)
+		{
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
 			request.ContentType = "";
 			request.Method = "GET";
@@ -135,7 +156,7 @@ namespace SpeedyChef
 			string user = "tester";
 
 			string url = "http://speedychef.azurewebsites.net/" +
-				"CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
+			             "CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
 			JsonValue json = await FetchMealData (url);
 			ParseRecipes (mealArea, mealId, json);
 		}
@@ -233,7 +254,7 @@ namespace SpeedyChef
 				Console.WriteLine (this.recipeId);
 				Console.WriteLine (this.mealId);
 				// Removes from mealID (Has necessary ids, i think) TODO
-				if (this.mealId != -1){
+				if (this.mealId != -1) {
 					
 				}
 				// TODO
@@ -247,9 +268,9 @@ namespace SpeedyChef
 				Console.WriteLine ("Recipe info button clicked");
 				Console.WriteLine (this.recipeId);
 				// Goes to meal preview TODO
-				Intent i = new Intent(context, typeof(RecipeViewActivity));
+				Intent i = new Intent (context, typeof(RecipeViewActivity));
 				i.PutExtra ("Recid", this.recipeId);
-				context.StartActivity(i);
+				context.StartActivity (i);
 			};
 			this.AddView (this.removeButton);
 			this.AddView (this.recipeInfo);
