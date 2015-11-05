@@ -57,4 +57,34 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
     </LinearLayout>
+    <CheckBox
+        android:text="Peanuts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox1" />
+    <CheckBox
+        android:text="Gluten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox2" />
+    <CheckBox
+        android:text="Eggs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3" />
+    <CheckBox
+        android:text="Soy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4" />
+    <CheckBox
+        android:text="Dairy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox5" />
+    <CheckBox
+        android:text="Tree Nuts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox6" />
 </LinearLayout>

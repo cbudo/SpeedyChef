@@ -76,6 +76,10 @@ namespace SpeedyChef
 				menu.Show ();
 			};
         }
+        public override void OnBackPressed()
+        {
+            return;
+        }
     }
 	[Activity(Theme="@style/MyTheme",Label = "Appliances")]
 	public class Appliances : Activity
@@ -85,7 +89,7 @@ namespace SpeedyChef
 			base.OnCreate(bundle);
 			SetContentView(Resource.Layout.Appliances);
 
-			Spinner spinner = FindViewById<Spinner> (Resource.Id.spinner1);
+			Spinner spinner = FindViewById<Spinner> (Resource.Id.spinner2);
 
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
 			var adapter = ArrayAdapter.CreateFromResource (
@@ -142,8 +146,12 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
-		}
-		private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+        }
+        public override void OnBackPressed()
+        {
+            return;
+        }
+        private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
 
@@ -205,7 +213,12 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
-		}
-	}
+        }
+        public override void OnBackPressed()
+        {
+            return;
+        }
+    }
+    
 }
 

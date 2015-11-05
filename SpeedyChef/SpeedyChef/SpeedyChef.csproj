@@ -186,11 +186,8 @@
     <AndroidResource Include="Resources\layout\Search.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Resources\menu\" />
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Models\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\single_listview_item.xml" />
+  </ItemGroup>
 </Project>
