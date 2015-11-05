@@ -16,55 +16,57 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 
-
+/// <summary>
+/// Meal planner calendar page.
+/// </summary>
 namespace SpeedyChef
 {
 	[Activity (Theme = "@style/MyTheme", Label = "MealPlannerCalendar")]			
 	public class MealPlannerCalendar : CustomActivity
 	{
-		/**
-		 * Button currently highlighted after being clicked on 
-		 **/ 
+		/// <summary>
+		/// Button currently highlighted after being clicked on.
+		/// </summary>
 		DateButton selected = null;
 
-		/**
-		 * Layout where meal information is displayed
-		 **/
+		/// <summary>
+		/// Layout where meal information is displayed.
+		/// </summary>
 		LinearLayout mealDisplay = null;
 
-		/**
-		 * Current day of app 
-		 **/ 
+		/// <summary>
+		/// The current day of app.
+		/// </summary>
 		DateTime current = DateTime.Now;
 
-		/**
-		 * DateTime for the date to view on screen
-		 **/
+		/// <summary>
+		/// DateTime for the date to view on screen.
+		/// </summary>
 		DateTime viewDate = DateTime.Now;
 
-		/**
-		 * Debug text bar to use to help present data
-		 **/
+		/// <summary>
+		/// Debug text bar to use to help present data.
+		/// </summary>
 		TextView debug = null;
 
-		/**
-		 * Month banner that needs to be adjusted with the date
-		 **/ 
+		/// <summary>
+		/// Month banner that needs to be adjusted with the date.
+		/// </summary>
 		TextView monthInfo = null;
 
-		/**
-		 * Current date TextView object that will be highlighted
-		 **/ 
+		/// <summary>
+		/// Current date TextView object that will be highlighted.
+		/// </summary>
 		TextView currentDate = null;
 
-		/**
-		 * List of all buttons in display area to be selected
-		 **/
+		/// <summary>
+		/// List of all buttons in display area to be selected.
+		/// </summary>
 		DateButton[] daysList = null;
 
-		/**
-		 * Location of button
-		 **/
+		/// <summary>
+		/// The add bar, location of add button.
+		/// </summary>
 		RelativeLayout addBar = null;
 
 
@@ -100,12 +102,12 @@ namespace SpeedyChef
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+				menu_button.SetBackgroundResource (Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
@@ -151,7 +153,7 @@ namespace SpeedyChef
 		}
 
 		protected override void OnActivityResult (int requestCode, 
-			Result resultCode, Intent data)
+		                                          Result resultCode, Intent data)
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok) {
@@ -162,11 +164,12 @@ namespace SpeedyChef
 				RefreshMeals ();
 			}
 		}
-
-
-		/**
-		 * Event Handler method to help get date to pass to next object
-		 **/ 
+			
+		/// <summary>
+		/// Event handler method to help get date to pass to next object
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		protected void dayClick (object sender, EventArgs e)
 		{
 			if (selected != null) {
@@ -191,7 +194,10 @@ namespace SpeedyChef
 			addBar.Visibility = Android.Views.ViewStates.Visible;
 			RefreshMeals ();
 		}
-
+			
+		/// <summary>
+		/// Refreshs the meal displaying area after calling Json.
+		/// </summary>
 		private async void RefreshMeals ()
 		{
 			// Below handles connection to the database and the parsing of Json
@@ -199,20 +205,17 @@ namespace SpeedyChef
 			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
 			// System.Diagnostics.Debug.WriteLine (useDate);
 			string url = "http://speedychef.azurewebsites.net/" +
-				"CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
+			             "CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
 			JsonValue json = await FetchMealData (url);
 			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			parseMeals (json);
 		}
-
-
-		/**
-		 * Parses Json to get meals to display to calendar page. Creates buttons 
-		 * and views programmatically.
-		 * 
-		 * @param json - Json to parse for meals
-		 * 
-		 **/
+			
+		/// <summary>
+		/// Parses the meals from Json to display on the calendar page. Creates buttons 
+		/// and views programmatically.
+		/// </summary>
+		/// <param name="json">Json to parse for meals.</param>
 		private void parseMeals (JsonValue json)
 		{
 			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
@@ -223,15 +226,14 @@ namespace SpeedyChef
 				makeObjects (json [i], i, mealDisplay);
 			}
 		}
-
-		/**
-		 * Makes meal segments for the calendar page. 
-		 * 
-		 * @param json - Json to parse information to use for displaying
-		 * @param count - Used to help with ids of objects
-		 * @param mealDisplay - LinearLayout that all of the objects are going to be 
-		 * 						added to
-		 **/
+			
+		/// <summary>
+		/// Makes meal segments for the calendar page
+		/// </summary>
+		/// <param name="json">Json to parse information to use for displaying.</param>
+		/// <param name="count">Count used for unique ids.</param>
+		/// <param name="mealDisplay">Meal display (LinearLayout) that all of the 
+		/// 		objects are going to be added to.</param>
 		private async void makeObjects (JsonValue json, 
 		                                int count, LinearLayout mealDisplay)
 		{
@@ -258,16 +260,14 @@ namespace SpeedyChef
 			mealDisplay.AddView (mealObject);
 		}
 
-		/**
-		 * Creates a button view to be added to a meal to start the walkthrough
-		 * 
-		 * @param json - Given json for a meal
-		 * @param recipeResult - Recipes in Json for a given meal
-		 * @param count - used for ids
-		 * 
-		 * @return LinearLayout - Object containing buttons and other fields for a meal
-		 * 						  button
-		 **/
+		/// <summary>
+		/// Creates a button view to be added to a meal to start the walkthrough
+		/// </summary>
+		/// <returns>The view (LinearLayout) containing buttons and 
+		/// 			other fields for a meal button.</returns>
+		/// <param name="json">Json for a meal.</param>
+		/// <param name="recipeResult">Recipe result in Json for a given meal.</param>
+		/// <param name="count">Count for unique ids.</param>
 		private LinearLayout ButtonView (JsonValue json, JsonValue recipeResult, int count)
 		{
 			LinearLayout walkthroughButton = new LinearLayout (this);
@@ -299,15 +299,13 @@ namespace SpeedyChef
 			return walkthroughButton;
 		}
 
-		/**
-		 * Create the meal info area in the programmitcally generated by Json
-		 * 
-		 * @param json - Json from original call to be parsed
-		 * @param recipeResult - Json result form using information from original Json
-		 * @param count - used for creating unique ids
-		 * 
-		 * @return LinearLayout - MealInfo Container for original Json call
-		 **/
+		/// <summary>
+		/// Creates the meal info area in the programmitcally generated by Json.
+		/// </summary>
+		/// <returns>The meal info container for orginal Json calls.</returns>
+		/// <param name="json">Json from original call to be parsed.</param>
+		/// <param name="recipeResult">Recipe result (Json) using info from original Json.</param>
+		/// <param name="count">Count used for creating unique ids.</param>
 		private LinearLayout CreateMealInfo (JsonValue json, 
 		                                     JsonValue recipeResult, int count)
 		{
@@ -351,15 +349,12 @@ namespace SpeedyChef
 			return mealInfo;
 		}
 
-		/**
-		 * Used to clean up code. Creates button container with button for designing meal
-		 * 
-		 * @param json - Json to be parsed
-		 * @param count - Used to create unique ids
-		 * 
-		 * @return LinearLayout - Button Container object
-		 * 
-		 **/ 
+		/// <summary>
+		/// Creates the button container. Used to clean up code and with button for desiging meal/
+		/// </summary>
+		/// <returns>The button container object.</returns>
+		/// <param name="json">Json to be parsed.</param>
+		/// <param name="count">Count used to create unique ids.</param>
 		private LinearLayout CreateButtonContainer (JsonValue json, int count)
 		{
 			LinearLayout buttonCont = new LinearLayout (this);
@@ -403,13 +398,11 @@ namespace SpeedyChef
 			return buttonCont;
 		}
 
-
-		/**
-		 * Takes the recipes and makes into nice string to display
-		 * 
-		 * @param json - Json to parse
-		 * @return String - Final string to be displayed with meal
-		 **/
+		/// <summary>
+		/// Takes the recipes and makes into nice string to display
+		/// </summary>
+		/// <returns>The recipe json in string.</returns>
+		/// <param name="json">Json.</param>
 		public string handleRecipeJson (JsonValue json)
 		{
 			string finalString = "";
@@ -424,10 +417,11 @@ namespace SpeedyChef
 		}
 
 
-		/**
-		 * Fetches Json from database using URL. Called mainly with stored procedures.
-		 * 
-		 **/
+		/// <summary>
+		/// Fetchs the meal data.
+		/// </summary>
+		/// <returns>The meal data (Json).</returns>
+		/// <param name="url">URL to call API.</param>
 		private async Task<JsonValue> FetchMealData (string url)
 		{
 			// Create an HTTP web request using the URL:
@@ -450,9 +444,11 @@ namespace SpeedyChef
 
 		}
 
-		/**
-		 * Finds matching button in button lists
-		 **/
+		/// <summary>
+		/// Gets the date button.
+		/// </summary>
+		/// <returns>The date button that matches the given button.</returns>
+		/// <param name="b">The button component to find from the days.</param>
 		private DateButton GetDateButton (Button b)
 		{
 			for (int i = 0; i < daysList.Length; i++) {
@@ -464,13 +460,12 @@ namespace SpeedyChef
 			return daysList [0];
 		}
 
-		/**
-		 * Method that handles updating all the boxes in the calendar
-		 * so that the dates line up in the week.
-		 * 
-		 * @param DateTime Date that the week view needs to be generated around. 
-		 * 				   The date can be any day of the week
-		 * */
+		/// <summary>
+		/// Method that handles updating all the boxes in the calendar so that
+		/// the dates line up in the week
+		/// </summary>
+		/// <param name="date">Date that the week view needs to be generated around.
+		/// 					The date can any day of the week.</param>
 		public void handleCalendar (DateTime date)
 		{
 			currentDate = null;
@@ -511,10 +506,9 @@ namespace SpeedyChef
 			addBar.Visibility = Android.Views.ViewStates.Invisible;
 		}
 
-		/**
-		 * Action for button when < button is clicked.
-		 * 
-		 * */
+		/// <summary>
+		/// Goes back a week.
+		/// </summary>
 		public void GoBackWeek ()
 		{
 			LinearLayout mealDisplay = FindViewById<LinearLayout> 
@@ -524,10 +518,9 @@ namespace SpeedyChef
 			handleCalendar (viewDate);
 		}
 
-		/**
-		 * Action for button when > button is clicked
-		 * 
-		 * */
+		/// <summary>
+		/// Goes forward a week.
+		/// </summary>
 		public void GoForwardWeek ()
 		{
 			viewDate = viewDate.AddDays (7);
@@ -538,77 +531,84 @@ namespace SpeedyChef
 		}
 	}
 
-	/**
-	 * Wrapper class for button to help handle passing the dates.
-	 **/
+	/// <summary>
+	/// Wrapper class for button to help handle passing the dates.
+	/// </summary>
 	public class DateButton
 	{
 		/**
 		 * Datefield for button container
 		 **/
+		/// <summary>
+		/// The date field for the button container.
+		/// </summary>
 		private DateTime dateField;
 
-		/**
-		 * Button of the container
-		 **/
+		/// <summary>
+		/// The wrapped button for the button container.
+		/// </summary>
 		public Button wrappedButton;
 
-		/**
-		 * Constructor to make date button
-		 **/
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SpeedyChef.DateButton"/> class. 
+		/// This is a container class.
+		/// </summary>
+		/// <param name="button">Button of the container class.</param>
 		public DateButton (Button button)
 		{
 			wrappedButton = button;
 			this.dateField = DateTime.Now.AddDays (-100);
 		}
 
-		/**
-		 * Set the date field for a button
-		 **/
+		/// <summary>
+		/// Sets the date field.
+		/// </summary>
+		/// <param name="date">Date.</param>
 		public void SetDateField (DateTime date)
 		{
 			// Console.WriteLine ("Wrote date");
 			this.dateField = date;
 		}
 
-		/**
-		 * Returns the date field for the given button
-		 **/
+		/// <summary>
+		/// Gets the date field.
+		/// </summary>
+		/// <returns>The date field.</returns>
 		public DateTime GetDateField ()
 		{
 			return this.dateField;
 		}
 	}
 
-
-	/**
-	 * Button class that contains extra fields to be used for getting
-	 * additional information
-	 * 
-	 **/
+	/// <summary>
+	/// Button class that contains extra fields to be used for getting 
+	/// additional information
+	/// </summary>
 	public class MealButton : Button
 	{
 
-		/**
-		 * Meal id used in database
-		 * 
-		 **/
+		/// <summary>
+		/// Gets or sets the meal identifier.
+		/// </summary>
+		/// <value>The meal identifier.</value>
 		public int mealId { get; set; }
 
-		/**
-		 * Name of the meal
-		 *
-		 **/
+		/// <summary>
+		/// Gets or sets the name of the meal.
+		/// </summary>
+		/// <value>The name of the meal.</value>
 		public string mealName { get; set; }
 
-		/**
-		 * Mealsize
-		 **/
+		/// <summary>
+		/// Gets or sets the size of the meal.
+		/// </summary>
+		/// <value>The size of the meal.</value>
 		public int mealSize { get; set; }
 
-		/**
-		 * Constructor
-		 **/
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SpeedyChef.MealButton"/> class.
+		/// </summary>
+		/// <param name="context">Context of the button.</param>
 		public MealButton (Context context) : base (context)
 		{
 			this.mealId = -1;
@@ -616,9 +616,12 @@ namespace SpeedyChef
 			this.mealSize = -1;
 		}
 
-		/**
-		 * Constructor
-		 **/
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SpeedyChef.MealButton"/> class.
+		/// </summary>
+		/// <param name="context">Context of the button.</param>
+		/// <param name="set">Attributes of the button.</param>
+		/// <param name="style">Style of the button.</param>
 		public MealButton (Context context, 
 		                   Android.Util.IAttributeSet set, int style) :
 			base (context, set, style)
