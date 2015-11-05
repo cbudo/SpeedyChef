@@ -14,7 +14,7 @@ using Android.Widget;
 namespace SpeedyChef
 {
 	[Activity(Theme="@style/MyTheme",Label = "Allergens")]
-    public class Allergens : Activity
+    public class Allergens : CustomActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -45,30 +45,7 @@ namespace SpeedyChef
 				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
-				menu.MenuItemClick += (s1, arg1) => {
-					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
-						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
-						var intent = new Intent(this, typeof(MealPlannerCalendar));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Search"){
-						var intent = new Intent(this, typeof(SearchActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
-						var intent = new Intent(this, typeof(StepsActivity));
-						CachedData.Instance.ActivityContext =  this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
-					} else if (arg1.Item.TitleFormatted.ToString () == "Home") {
-						var intent = new Intent (this, typeof(SearchActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity (intent);
-					}
-				};
+                menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
@@ -82,7 +59,7 @@ namespace SpeedyChef
         }
     }
 	[Activity(Theme="@style/MyTheme",Label = "Appliances")]
-	public class Appliances : Activity
+	public class Appliances : CustomActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -115,37 +92,19 @@ namespace SpeedyChef
 				StartActivity(intent);
 			};
 
-			//MENU VIEW
-			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
-			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
-				PopupMenu menu = new PopupMenu (this, menu_button);
-				menu.Inflate (Resource.Menu.Main_Menu);
-				menu.MenuItemClick += (s1, arg1) => {
-					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
-					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
-						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
-						var intent = new Intent(this, typeof(MealPlannerCalendar));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
-						var intent = new Intent(this, typeof(StepsActivity));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Search"){
-						var intent = new Intent(this, typeof(SearchActivity));
-						StartActivity(intent);
-					}
-				};
-				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
-					Console.WriteLine ("menu dismissed");
-				};
-				menu.Show ();
-			};
+            //MENU VIEW
+            Button menu_button = FindViewById<Button>(Resource.Id.menu_button);
+            menu_button.Click += (s, arg) => {
+                menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+                PopupMenu menu = new PopupMenu(this, menu_button);
+                menu.Inflate(Resource.Menu.Main_Menu);
+                menu.MenuItemClick += this.MenuButtonClick;
+                menu.DismissEvent += (s2, arg2) => {
+                    menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+                    Console.WriteLine("menu dismissed");
+                };
+                menu.Show();
+            };
         }
         public override void OnBackPressed()
         {
@@ -160,7 +119,7 @@ namespace SpeedyChef
 		}
 	}
 	[Activity(Theme="@style/MyTheme",Label = "Expertise")]
-	public class Expertise : Activity
+	public class Expertise : CustomActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -182,37 +141,19 @@ namespace SpeedyChef
 				var intent = new Intent(this, typeof(Expertise));
 				StartActivity(intent);
 			};
-			//MENU VIEW
-			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
-			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
-				PopupMenu menu = new PopupMenu (this, menu_button);
-				menu.Inflate (Resource.Menu.Main_Menu);
-				menu.MenuItemClick += (s1, arg1) => {
-					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
-					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
-						var intent = new Intent(this, typeof(BrowseNationalitiesActivity));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
-						var intent = new Intent(this, typeof(MealPlannerCalendar));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
-						var intent = new Intent(this, typeof(StepsActivity));
-						StartActivity(intent);
-					}
-					else if (arg1.Item.TitleFormatted.ToString() == "Search"){
-						var intent = new Intent(this, typeof(SearchActivity));
-						StartActivity(intent);
-					}
-				};
-				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
-					Console.WriteLine ("menu dismissed");
-				};
-				menu.Show ();
-			};
+            //MENU VIEW
+            Button menu_button = FindViewById<Button>(Resource.Id.menu_button);
+            menu_button.Click += (s, arg) => {
+                menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+                PopupMenu menu = new PopupMenu(this, menu_button);
+                menu.Inflate(Resource.Menu.Main_Menu);
+                menu.MenuItemClick += this.MenuButtonClick;
+                menu.DismissEvent += (s2, arg2) => {
+                    menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+                    Console.WriteLine("menu dismissed");
+                };
+                menu.Show();
+            };
         }
         public override void OnBackPressed()
         {
