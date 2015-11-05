@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +12,7 @@ using Android.Widget;
 
 namespace SpeedyChef
 {
-	[Activity (Label = "RecipeViewActivity")]			
+	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", Icon = "@drawable/icon")]			
 	public class RecipeViewActivity : CustomActivity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -65,6 +64,16 @@ namespace SpeedyChef
 				tv.Text = recipe.tasks [i];
 				taskView.AddView (tv);
 			}
+			Button addToMealButton = FindViewById<Button> (Resource.Id.add_rec_to_meal_button);
+			addToMealButton.Click += (object sender, EventArgs e) => {
+				CachedData.Instance.mostRecentMealAdd = CachedData.Instance.mostRecentRecSel;
+				if (CachedData.Instance.ActivityContext == typeof(SearchActivity)) {
+					CachedData.Instance.PreviousActivity.Finish();
+					CachedData.Instance.PreviousActivity.SetResult(Result.Ok);
+					SetResult(Result.Ok, CachedData.Instance.PreviousActivity.Intent);
+					Finish();
+				}
+			};
 		}
 
 

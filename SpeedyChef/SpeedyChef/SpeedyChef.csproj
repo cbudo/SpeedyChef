@@ -108,6 +108,7 @@
     <AndroidResource Include="Resources\drawable\ic_face_gray_48dp.png" />
     <AndroidResource Include="Resources\drawable\ic_face_orange_48dp.png" />
     <AndroidResource Include="Resources\drawable\gray_person.png" />
+    <AndroidResource Include="Resources\values\burner_types.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

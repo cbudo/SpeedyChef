@@ -16,7 +16,7 @@ using System.IO;
 
 namespace SpeedyChef
 {
-	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", Icon = "@drawable/icon")]
 	public class SearchActivity : CustomActivity, SearchView.IOnQueryTextListener, SearchView.IOnSuggestionListener
 	{
 		v7Widget.RecyclerView mRecyclerView;
@@ -41,6 +41,7 @@ namespace SpeedyChef
 			//RECYCLER VIEW
 			mObject = new RecipeObject ();
 			mAdapter = new RecipeAdapter (mObject, this);
+			mAdapter.itemClick += this.OnItemClick;
 			SetContentView (Resource.Layout.Search);
 			mRecyclerView = FindViewById<v7Widget.RecyclerView> (Resource.Id.recyclerView);
 			mRecyclerView.SetAdapter (mAdapter);
@@ -108,7 +109,10 @@ namespace SpeedyChef
 		public override bool OnContextItemSelected (IMenuItem item)
 		{
 			base.OnContextItemSelected(item);
-			string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
+			string selectionInput = "";
+			if (CachedData.Instance.SelectedSubgenre != null) {
+				selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
+			}
 			switch (item.ItemId) {
 			case Resource.Id.Time:
 				{
@@ -156,6 +160,12 @@ namespace SpeedyChef
 			return true;
 		}
 
+		public void OnItemClick (object sender, int position)
+		{
+			int photoNum = position + 1;
+			System.Diagnostics.Debug.WriteLine (position);
+		}
+
 		public bool OnQueryTextChange(string input)
 		{
 			if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
@@ -193,7 +203,7 @@ namespace SpeedyChef
 					this.mAdapter.NotifyItemRemoved (i);
 				}
 				for (int k = 0; k < this.jsonDoc.Count; k++) {
-					this.mObject.Add (new Tuple<string, string, int> (this.jsonDoc [k] ["Recname"], this.jsonDoc [k] ["Recdesc"], this.jsonDoc [k] ["Recdiff"]));
+					this.mObject.Add (new Tuple<string, string, int, int, int> (this.jsonDoc [k] ["Recname"], this.jsonDoc [k] ["Recdesc"], this.jsonDoc [k] ["Recdiff"], this.jsonDoc[k] ["Rectime"], this.jsonDoc [k] ["Recid"]));
 					this.mAdapter.NotifyItemInserted (k);
 				}
 			}
@@ -234,11 +244,12 @@ namespace SpeedyChef
 		public Activity callingActivity;
 		// Locate and cache view references
 
-		public RecipeViewHolder (View itemView, Activity callingActivity) : base (itemView)
+		public RecipeViewHolder (View itemView, Activity callingActivity, Action<int> listener) : base (itemView)
 		{
 			this.callingActivity = callingActivity;
 			LeftText = itemView.FindViewById<TextView> (Resource.Id.textViewLeft);
 			RightText = itemView.FindViewById<TextView> (Resource.Id.textViewRight);
+			itemView.Click += (sender, e) => listener (base.AdapterPosition);
 		}
 	}
 
@@ -246,6 +257,8 @@ namespace SpeedyChef
 	{
 		public RecipeObject mRObject;
 		public Activity callingActivity; 
+		public event EventHandler<int> itemClick;
+		public int Recid;
 
 		public RecipeAdapter (RecipeObject inRObject, Activity inActivity)
 		{
@@ -258,17 +271,33 @@ namespace SpeedyChef
 		{
 			View itemView = LayoutInflater.From (parent.Context).
 				Inflate (Resource.Layout.TwoByTwoResultView, parent, false);
-			RecipeViewHolder vh = new RecipeViewHolder (itemView, this.callingActivity);
+			RecipeViewHolder vh = new RecipeViewHolder (itemView, this.callingActivity, OnClick);
 			return vh;
+		}
+			
+		public void OnClick (int position)
+		{
+			if (this.itemClick != null) 
+			{
+				if (this.Recid == 8) {
+					this.itemClick (this, position);
+					var intent = new Intent (callingActivity, typeof(RecipeViewActivity));
+					CachedData.Instance.ActivityContext = callingActivity.GetType ();
+					CachedData.Instance.PreviousActivity = callingActivity;
+					CachedData.Instance.mostRecentRecSel = this.Recid;
+					callingActivity.StartActivity (intent);
+				}
+			}
 		}
 
 		public override void
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
 			RecipeViewHolder vh = holder as RecipeViewHolder;
-			Tuple<string, string, int> tupleInQuestion = mRObject.getObjectInPosition (position);
+			Tuple<string, string, int, int, int> tupleInQuestion = mRObject.getObjectInPosition (position);
 			string tempLeftText = tupleInQuestion.Item1;
 			string tempRightText = tupleInQuestion.Item2;
+			this.Recid = tupleInQuestion.Item5;
 			if (tupleInQuestion.Item3 == 5) {
 				vh.LeftText.SetBackgroundColor (Android.Graphics.Color.Red);
 				vh.RightText.SetBackgroundColor (Android.Graphics.Color.Red);
@@ -299,27 +328,27 @@ namespace SpeedyChef
 	public class RecipeObject
 	{
 		public int NumElements;
-		public List<Tuple<string, string, int>> RecipeList;
+		public List<Tuple<string, string, int, int, int>> RecipeList;
 		private Object thisLock = new Object();
 
 		public RecipeObject ()
 		{
-			this.RecipeList = new List<Tuple<string, string, int>>();
+			this.RecipeList = new List<Tuple<string, string, int, int, int>>();
 			this.NumElements = this.RecipeList.Count;
 		}
 
-		public RecipeObject (List<Tuple<string, string, int>> inList)
+		public RecipeObject (List<Tuple<string, string, int, int, int>> inList)
 		{
 			this.RecipeList = inList;
 			this.NumElements = this.RecipeList.Count;
 		}
 
-		public Tuple<string, string, int> getObjectInPosition(int position)
+		public Tuple<string, string, int, int, int> getObjectInPosition(int position)
 		{
 			return this.RecipeList [position];
 		}
 			
-		public void Add(Tuple<string, string, int> newTuple){
+		public void Add(Tuple<string, string, int, int, int> newTuple){
 			this.RecipeList.Add (newTuple);
 			this.NumElements = this.RecipeList.Count;
 		}

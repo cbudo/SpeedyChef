@@ -71,6 +71,22 @@ namespace SpeedyChef
 			}
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int burner_types = 2131492864;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -1708,41 +1724,41 @@ namespace SpeedyChef
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0600bd
-			public const int Both = 2131099837;
-			
 			// aapt resource value: 0x7f0600bc
-			public const int Difficulty = 2131099836;
-			
-			// aapt resource value: 0x7f0600c3
-			public const int MM_Account = 2131099843;
-			
-			// aapt resource value: 0x7f0600c0
-			public const int MM_Browse = 2131099840;
-			
-			// aapt resource value: 0x7f0600be
-			public const int MM_Home = 2131099838;
-			
-			// aapt resource value: 0x7f0600c1
-			public const int MM_Plan = 2131099841;
-			
-			// aapt resource value: 0x7f0600c2
-			public const int MM_Preferences = 2131099842;
-			
-			// aapt resource value: 0x7f0600bf
-			public const int MM_Search = 2131099839;
-			
-			// aapt resource value: 0x7f0600c4
-			public const int MM_Walkthrough = 2131099844;
-			
-			// aapt resource value: 0x7f06007c
-			public const int MealDisplay = 2131099772;
+			public const int Both = 2131099836;
 			
 			// aapt resource value: 0x7f0600bb
-			public const int Time = 2131099835;
+			public const int Difficulty = 2131099835;
 			
-			// aapt resource value: 0x7f06007f
-			public const int action0 = 2131099775;
+			// aapt resource value: 0x7f0600c2
+			public const int MM_Account = 2131099842;
+			
+			// aapt resource value: 0x7f0600bf
+			public const int MM_Browse = 2131099839;
+			
+			// aapt resource value: 0x7f0600bd
+			public const int MM_Home = 2131099837;
+			
+			// aapt resource value: 0x7f0600c0
+			public const int MM_Plan = 2131099840;
+			
+			// aapt resource value: 0x7f0600c1
+			public const int MM_Preferences = 2131099841;
+			
+			// aapt resource value: 0x7f0600be
+			public const int MM_Search = 2131099838;
+			
+			// aapt resource value: 0x7f0600c3
+			public const int MM_Walkthrough = 2131099843;
+			
+			// aapt resource value: 0x7f060087
+			public const int MealDisplay = 2131099783;
+			
+			// aapt resource value: 0x7f0600ba
+			public const int Time = 2131099834;
+			
+			// aapt resource value: 0x7f06008a
+			public const int action0 = 2131099786;
 			
 			// aapt resource value: 0x7f06003f
 			public const int action_bar = 2131099711;
@@ -1768,8 +1784,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060040
 			public const int action_context_bar = 2131099712;
 			
-			// aapt resource value: 0x7f060083
-			public const int action_divider = 2131099779;
+			// aapt resource value: 0x7f06008e
+			public const int action_divider = 2131099790;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -1789,14 +1805,14 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060025
 			public const int activity_chooser_view_content = 2131099685;
 			
-			// aapt resource value: 0x7f06007d
-			public const int addBar = 2131099773;
+			// aapt resource value: 0x7f060088
+			public const int addBar = 2131099784;
 			
-			// aapt resource value: 0x7f06007e
-			public const int addMeal = 2131099774;
+			// aapt resource value: 0x7f060089
+			public const int addMeal = 2131099785;
 			
-			// aapt resource value: 0x7f06008f
-			public const int add_rec_to_meal_button = 2131099791;
+			// aapt resource value: 0x7f06009a
+			public const int add_rec_to_meal_button = 2131099802;
 			
 			// aapt resource value: 0x7f06002f
 			public const int alertTitle = 2131099695;
@@ -1810,26 +1826,29 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060019
 			public const int beginning = 2131099673;
 			
-			// aapt resource value: 0x7f060069
-			public const int bookmarkBar = 2131099753;
+			// aapt resource value: 0x7f060074
+			public const int bookmarkBar = 2131099764;
 			
-			// aapt resource value: 0x7f060090
-			public const int bookmark_rec_button = 2131099792;
+			// aapt resource value: 0x7f06009b
+			public const int bookmark_rec_button = 2131099803;
 			
-			// aapt resource value: 0x7f060066
-			public const int buttonBar = 2131099750;
+			// aapt resource value: 0x7f060055
+			public const int burnerNum = 2131099733;
+			
+			// aapt resource value: 0x7f060071
+			public const int buttonBar = 2131099761;
 			
 			// aapt resource value: 0x7f060035
 			public const int buttonPanel = 2131099701;
 			
-			// aapt resource value: 0x7f060080
-			public const int cancel_action = 2131099776;
+			// aapt resource value: 0x7f06008b
+			public const int cancel_action = 2131099787;
 			
 			// aapt resource value: 0x7f060037
 			public const int checkbox = 2131099703;
 			
-			// aapt resource value: 0x7f060086
-			public const int chronometer = 2131099782;
+			// aapt resource value: 0x7f060091
+			public const int chronometer = 2131099793;
 			
 			// aapt resource value: 0x7f06001d
 			public const int collapseActionView = 2131099677;
@@ -1837,8 +1856,17 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060030
 			public const int contentPanel = 2131099696;
 			
-			// aapt resource value: 0x7f0600ba
-			public const int contextMenu = 2131099834;
+			// aapt resource value: 0x7f0600b9
+			public const int contextMenu = 2131099833;
+			
+			// aapt resource value: 0x7f06005e
+			public const int cooking_label = 2131099742;
+			
+			// aapt resource value: 0x7f060060
+			public const int cooking_slider = 2131099744;
+			
+			// aapt resource value: 0x7f06005f
+			public const int cooking_slider_container = 2131099743;
 			
 			// aapt resource value: 0x7f060034
 			public const int custom = 2131099700;
@@ -1846,35 +1874,35 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060033
 			public const int customPanel = 2131099699;
 			
-			// aapt resource value: 0x7f060073
-			public const int day1 = 2131099763;
+			// aapt resource value: 0x7f06007e
+			public const int day1 = 2131099774;
 			
-			// aapt resource value: 0x7f060074
-			public const int day2 = 2131099764;
+			// aapt resource value: 0x7f06007f
+			public const int day2 = 2131099775;
 			
-			// aapt resource value: 0x7f060075
-			public const int day3 = 2131099765;
+			// aapt resource value: 0x7f060080
+			public const int day3 = 2131099776;
 			
-			// aapt resource value: 0x7f060076
-			public const int day4 = 2131099766;
+			// aapt resource value: 0x7f060081
+			public const int day4 = 2131099777;
 			
-			// aapt resource value: 0x7f060077
-			public const int day5 = 2131099767;
+			// aapt resource value: 0x7f060082
+			public const int day5 = 2131099778;
 			
-			// aapt resource value: 0x7f060078
-			public const int day6 = 2131099768;
+			// aapt resource value: 0x7f060083
+			public const int day6 = 2131099779;
 			
-			// aapt resource value: 0x7f060079
-			public const int day7 = 2131099769;
+			// aapt resource value: 0x7f060084
+			public const int day7 = 2131099780;
 			
-			// aapt resource value: 0x7f060072
-			public const int dayLayout = 2131099762;
+			// aapt resource value: 0x7f06007d
+			public const int dayLayout = 2131099773;
 			
-			// aapt resource value: 0x7f060071
-			public const int dayViewer = 2131099761;
+			// aapt resource value: 0x7f06007c
+			public const int dayViewer = 2131099772;
 			
-			// aapt resource value: 0x7f06007a
-			public const int debug = 2131099770;
+			// aapt resource value: 0x7f060085
+			public const int debug = 2131099781;
 			
 			// aapt resource value: 0x7f06003d
 			public const int decor_content_parent = 2131099709;
@@ -1882,14 +1910,17 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060028
 			public const int default_activity_button = 2131099688;
 			
-			// aapt resource value: 0x7f060065
-			public const int dinerCounter = 2131099749;
+			// aapt resource value: 0x7f060070
+			public const int dinerCounter = 2131099760;
 			
-			// aapt resource value: 0x7f060063
-			public const int dinerText = 2131099747;
+			// aapt resource value: 0x7f06006e
+			public const int dinerText = 2131099758;
 			
 			// aapt resource value: 0x7f06000d
 			public const int disableHome = 2131099661;
+			
+			// aapt resource value: 0x7f060057
+			public const int editText1 = 2131099735;
 			
 			// aapt resource value: 0x7f060041
 			public const int edit_query = 2131099713;
@@ -1897,8 +1928,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f06001a
 			public const int end = 2131099674;
 			
-			// aapt resource value: 0x7f06008b
-			public const int end_padder = 2131099787;
+			// aapt resource value: 0x7f060096
+			public const int end_padder = 2131099798;
 			
 			// aapt resource value: 0x7f060026
 			public const int expand_activities_button = 2131099686;
@@ -1909,11 +1940,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060053
 			public const int expertise_button = 2131099731;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int filter_button = 2131099809;
-			
-			// aapt resource value: 0x7f060058
-			public const int gridLayout1 = 2131099736;
+			// aapt resource value: 0x7f0600a0
+			public const int filter_button = 2131099808;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -1930,32 +1958,32 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060027
 			public const int image = 2131099687;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int imageViewLeft = 2131099811;
+			// aapt resource value: 0x7f0600a2
+			public const int imageViewLeft = 2131099810;
 			
-			// aapt resource value: 0x7f0600a6
-			public const int imageViewRight = 2131099814;
+			// aapt resource value: 0x7f0600a5
+			public const int imageViewRight = 2131099813;
 			
-			// aapt resource value: 0x7f06008a
-			public const int info = 2131099786;
+			// aapt resource value: 0x7f060095
+			public const int info = 2131099797;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
 			
-			// aapt resource value: 0x7f06006e
-			public const int leftShift = 2131099758;
+			// aapt resource value: 0x7f060079
+			public const int leftShift = 2131099769;
 			
-			// aapt resource value: 0x7f060084
-			public const int line1 = 2131099780;
+			// aapt resource value: 0x7f06008f
+			public const int line1 = 2131099791;
 			
-			// aapt resource value: 0x7f060088
-			public const int line3 = 2131099784;
+			// aapt resource value: 0x7f060093
+			public const int line3 = 2131099795;
 			
-			// aapt resource value: 0x7f060057
-			public const int linearLayout1 = 2131099735;
+			// aapt resource value: 0x7f060054
+			public const int linearLayout1 = 2131099732;
 			
-			// aapt resource value: 0x7f06008c
-			public const int linearLayout2 = 2131099788;
+			// aapt resource value: 0x7f060097
+			public const int linearLayout2 = 2131099799;
 			
 			// aapt resource value: 0x7f06000a
 			public const int listMode = 2131099658;
@@ -1963,29 +1991,29 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060029
 			public const int list_item = 2131099689;
 			
-			// aapt resource value: 0x7f060055
-			public const int main_search = 2131099733;
+			// aapt resource value: 0x7f060065
+			public const int main_search = 2131099749;
 			
-			// aapt resource value: 0x7f06007b
-			public const int mealDisplay = 2131099771;
+			// aapt resource value: 0x7f060086
+			public const int mealDisplay = 2131099782;
 			
-			// aapt resource value: 0x7f06005f
-			public const int mealInfo = 2131099743;
+			// aapt resource value: 0x7f06006a
+			public const int mealInfo = 2131099754;
 			
-			// aapt resource value: 0x7f060060
-			public const int mealName = 2131099744;
+			// aapt resource value: 0x7f06006b
+			public const int mealName = 2131099755;
 			
-			// aapt resource value: 0x7f06005b
-			public const int mealPlanText = 2131099739;
+			// aapt resource value: 0x7f060066
+			public const int mealPlanText = 2131099750;
 			
-			// aapt resource value: 0x7f06005d
-			public const int mealScroll = 2131099741;
+			// aapt resource value: 0x7f060068
+			public const int mealScroll = 2131099752;
 			
-			// aapt resource value: 0x7f060061
-			public const int mealsArea = 2131099745;
+			// aapt resource value: 0x7f06006c
+			public const int mealsArea = 2131099756;
 			
-			// aapt resource value: 0x7f060082
-			public const int media_actions = 2131099778;
+			// aapt resource value: 0x7f06008d
+			public const int media_actions = 2131099789;
 			
 			// aapt resource value: 0x7f06004f
 			public const int menu_button = 2131099727;
@@ -1993,14 +2021,14 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f06001b
 			public const int middle = 2131099675;
 			
-			// aapt resource value: 0x7f06006d
-			public const int monthBar = 2131099757;
+			// aapt resource value: 0x7f060078
+			public const int monthBar = 2131099768;
 			
 			// aapt resource value: 0x7f060014
 			public const int multiply = 2131099668;
 			
-			// aapt resource value: 0x7f060062
-			public const int nameIncrementer = 2131099746;
+			// aapt resource value: 0x7f06006d
+			public const int nameIncrementer = 2131099757;
 			
 			// aapt resource value: 0x7f06001f
 			public const int never = 2131099679;
@@ -2026,32 +2054,38 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060039
 			public const int radio = 2131099705;
 			
-			// aapt resource value: 0x7f06008e
-			public const int recipeImage = 2131099790;
+			// aapt resource value: 0x7f060058
+			public const int range_type = 2131099736;
 			
-			// aapt resource value: 0x7f060094
-			public const int recipe_view_ingredients = 2131099796;
+			// aapt resource value: 0x7f060099
+			public const int recipeImage = 2131099801;
 			
-			// aapt resource value: 0x7f06009b
-			public const int recipe_view_steps = 2131099803;
+			// aapt resource value: 0x7f06009e
+			public const int recipe_view_ingredients = 2131099806;
 			
-			// aapt resource value: 0x7f060091
-			public const int recipe_view_title = 2131099793;
+			// aapt resource value: 0x7f06009f
+			public const int recipe_view_steps = 2131099807;
 			
-			// aapt resource value: 0x7f060056
-			public const int recyclerView = 2131099734;
+			// aapt resource value: 0x7f06009d
+			public const int recipe_view_time = 2131099805;
 			
-			// aapt resource value: 0x7f06008d
-			public const int relativeLayout1 = 2131099789;
+			// aapt resource value: 0x7f06009c
+			public const int recipe_view_title = 2131099804;
 			
-			// aapt resource value: 0x7f06006a
-			public const int removeButton = 2131099754;
+			// aapt resource value: 0x7f06005d
+			public const int recyclerView = 2131099741;
 			
-			// aapt resource value: 0x7f06006c
-			public const int returnButton = 2131099756;
+			// aapt resource value: 0x7f060098
+			public const int relativeLayout1 = 2131099800;
 			
-			// aapt resource value: 0x7f060070
-			public const int rightShift = 2131099760;
+			// aapt resource value: 0x7f060075
+			public const int removeButton = 2131099765;
+			
+			// aapt resource value: 0x7f060077
+			public const int returnButton = 2131099767;
+			
+			// aapt resource value: 0x7f06007b
+			public const int rightShift = 2131099771;
 			
 			// aapt resource value: 0x7f060015
 			public const int screen = 2131099669;
@@ -2059,14 +2093,14 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060031
 			public const int scrollView = 2131099697;
 			
-			// aapt resource value: 0x7f06005e
-			public const int scroller = 2131099742;
+			// aapt resource value: 0x7f060069
+			public const int scroller = 2131099753;
 			
-			// aapt resource value: 0x7f060068
-			public const int searchButton = 2131099752;
+			// aapt resource value: 0x7f060073
+			public const int searchButton = 2131099763;
 			
-			// aapt resource value: 0x7f060067
-			public const int searchButtonBar = 2131099751;
+			// aapt resource value: 0x7f060072
+			public const int searchButtonBar = 2131099762;
 			
 			// aapt resource value: 0x7f060043
 			public const int search_badge = 2131099715;
@@ -2080,8 +2114,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060049
 			public const int search_close_btn = 2131099721;
 			
-			// aapt resource value: 0x7f060054
-			public const int search_container = 2131099732;
+			// aapt resource value: 0x7f060064
+			public const int search_container = 2131099748;
 			
 			// aapt resource value: 0x7f060045
 			public const int search_edit_frame = 2131099717;
@@ -2101,8 +2135,8 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f06004c
 			public const int search_voice_btn = 2131099724;
 			
-			// aapt resource value: 0x7f060064
-			public const int seekBarCount = 2131099748;
+			// aapt resource value: 0x7f06006f
+			public const int seekBarCount = 2131099759;
 			
 			// aapt resource value: 0x7f06004d
 			public const int select_dialog_listview = 2131099725;
@@ -2119,6 +2153,15 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060012
 			public const int showTitle = 2131099666;
 			
+			// aapt resource value: 0x7f060061
+			public const int slider_help_text = 2131099745;
+			
+			// aapt resource value: 0x7f06005c
+			public const int spinner1 = 2131099740;
+			
+			// aapt resource value: 0x7f06005a
+			public const int spinner2 = 2131099738;
+			
 			// aapt resource value: 0x7f060008
 			public const int split_action_bar = 2131099656;
 			
@@ -2131,38 +2174,38 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060018
 			public const int src_over = 2131099672;
 			
-			// aapt resource value: 0x7f060081
-			public const int status_bar_latest_event_content = 2131099777;
-			
-			// aapt resource value: 0x7f0600aa
-			public const int step_desc = 2131099818;
+			// aapt resource value: 0x7f06008c
+			public const int status_bar_latest_event_content = 2131099788;
 			
 			// aapt resource value: 0x7f0600a9
-			public const int step_image = 2131099817;
-			
-			// aapt resource value: 0x7f0600ab
-			public const int step_static_time = 2131099819;
-			
-			// aapt resource value: 0x7f0600ad
-			public const int step_timer_display = 2131099821;
-			
-			// aapt resource value: 0x7f0600ae
-			public const int step_timer_start_button = 2131099822;
-			
-			// aapt resource value: 0x7f0600ac
-			public const int step_timer_wrapper = 2131099820;
+			public const int step_desc = 2131099817;
 			
 			// aapt resource value: 0x7f0600a8
-			public const int step_title = 2131099816;
+			public const int step_image = 2131099816;
 			
-			// aapt resource value: 0x7f0600a2
-			public const int subLayoutLeft = 2131099810;
+			// aapt resource value: 0x7f0600aa
+			public const int step_static_time = 2131099818;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int subLayoutRight = 2131099813;
+			// aapt resource value: 0x7f0600ac
+			public const int step_timer_display = 2131099820;
 			
-			// aapt resource value: 0x7f06006b
-			public const int submitBar = 2131099755;
+			// aapt resource value: 0x7f0600ad
+			public const int step_timer_start_button = 2131099821;
+			
+			// aapt resource value: 0x7f0600ab
+			public const int step_timer_wrapper = 2131099819;
+			
+			// aapt resource value: 0x7f0600a7
+			public const int step_title = 2131099815;
+			
+			// aapt resource value: 0x7f0600a1
+			public const int subLayoutLeft = 2131099809;
+			
+			// aapt resource value: 0x7f0600a4
+			public const int subLayoutRight = 2131099812;
+			
+			// aapt resource value: 0x7f060076
+			public const int submitBar = 2131099766;
 			
 			// aapt resource value: 0x7f06004a
 			public const int submit_area = 2131099722;
@@ -2173,65 +2216,35 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060050
 			public const int tabs_linear_layout = 2131099728;
 			
-			// aapt resource value: 0x7f060089
-			public const int text = 2131099785;
+			// aapt resource value: 0x7f060094
+			public const int text = 2131099796;
 			
-			// aapt resource value: 0x7f060087
-			public const int text2 = 2131099783;
+			// aapt resource value: 0x7f060092
+			public const int text2 = 2131099794;
 			
 			// aapt resource value: 0x7f060032
 			public const int textSpacerNoButtons = 2131099698;
 			
-			// aapt resource value: 0x7f06005a
-			public const int textView = 2131099738;
+			// aapt resource value: 0x7f060063
+			public const int textView = 2131099747;
 			
-			// aapt resource value: 0x7f060092
-			public const int textView1 = 2131099794;
+			// aapt resource value: 0x7f060056
+			public const int textView1 = 2131099734;
 			
-			// aapt resource value: 0x7f060093
-			public const int textView14 = 2131099795;
+			// aapt resource value: 0x7f06005b
+			public const int textView2 = 2131099739;
 			
-			// aapt resource value: 0x7f060095
-			public const int textView15 = 2131099797;
+			// aapt resource value: 0x7f060059
+			public const int textView3 = 2131099737;
 			
-			// aapt resource value: 0x7f060096
-			public const int textView16 = 2131099798;
+			// aapt resource value: 0x7f0600a3
+			public const int textViewLeft = 2131099811;
 			
-			// aapt resource value: 0x7f060097
-			public const int textView17 = 2131099799;
+			// aapt resource value: 0x7f0600a6
+			public const int textViewRight = 2131099814;
 			
-			// aapt resource value: 0x7f060098
-			public const int textView18 = 2131099800;
-			
-			// aapt resource value: 0x7f060099
-			public const int textView19 = 2131099801;
-			
-			// aapt resource value: 0x7f06009a
-			public const int textView20 = 2131099802;
-			
-			// aapt resource value: 0x7f06009c
-			public const int textView21 = 2131099804;
-			
-			// aapt resource value: 0x7f06009d
-			public const int textView22 = 2131099805;
-			
-			// aapt resource value: 0x7f06009e
-			public const int textView23 = 2131099806;
-			
-			// aapt resource value: 0x7f06009f
-			public const int textView24 = 2131099807;
-			
-			// aapt resource value: 0x7f0600a0
-			public const int textView25 = 2131099808;
-			
-			// aapt resource value: 0x7f0600a4
-			public const int textViewLeft = 2131099812;
-			
-			// aapt resource value: 0x7f0600a7
-			public const int textViewRight = 2131099815;
-			
-			// aapt resource value: 0x7f060085
-			public const int time = 2131099781;
+			// aapt resource value: 0x7f060090
+			public const int time = 2131099792;
 			
 			// aapt resource value: 0x7f06002b
 			public const int title = 2131099691;
@@ -2251,47 +2264,47 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f060013
 			public const int useLogo = 2131099667;
 			
-			// aapt resource value: 0x7f0600b1
-			public const int walkthrough_bar = 2131099825;
-			
-			// aapt resource value: 0x7f060059
-			public const int walkthrough_finish_button = 2131099737;
-			
 			// aapt resource value: 0x7f0600b0
-			public const int walkthrough_frame_1 = 2131099824;
+			public const int walkthrough_bar = 2131099824;
 			
-			// aapt resource value: 0x7f0600b4
-			public const int walkthrough_frame_2 = 2131099828;
-			
-			// aapt resource value: 0x7f0600b5
-			public const int walkthrough_frame_3 = 2131099829;
-			
-			// aapt resource value: 0x7f0600b6
-			public const int walkthrough_frame_4 = 2131099830;
-			
-			// aapt resource value: 0x7f0600b7
-			public const int walkthrough_frame_5 = 2131099831;
-			
-			// aapt resource value: 0x7f0600b8
-			public const int walkthrough_pager = 2131099832;
+			// aapt resource value: 0x7f060062
+			public const int walkthrough_finish_button = 2131099746;
 			
 			// aapt resource value: 0x7f0600af
-			public const int walkthrough_progress_bars = 2131099823;
-			
-			// aapt resource value: 0x7f0600b9
-			public const int walkthrough_progress_dots = 2131099833;
+			public const int walkthrough_frame_1 = 2131099823;
 			
 			// aapt resource value: 0x7f0600b3
-			public const int walkthrough_text = 2131099827;
+			public const int walkthrough_frame_2 = 2131099827;
+			
+			// aapt resource value: 0x7f0600b4
+			public const int walkthrough_frame_3 = 2131099828;
+			
+			// aapt resource value: 0x7f0600b5
+			public const int walkthrough_frame_4 = 2131099829;
+			
+			// aapt resource value: 0x7f0600b6
+			public const int walkthrough_frame_5 = 2131099830;
+			
+			// aapt resource value: 0x7f0600b7
+			public const int walkthrough_pager = 2131099831;
+			
+			// aapt resource value: 0x7f0600ae
+			public const int walkthrough_progress_bars = 2131099822;
+			
+			// aapt resource value: 0x7f0600b8
+			public const int walkthrough_progress_dots = 2131099832;
 			
 			// aapt resource value: 0x7f0600b2
-			public const int walkthrough_time = 2131099826;
+			public const int walkthrough_text = 2131099826;
 			
-			// aapt resource value: 0x7f06006f
-			public const int weekOf = 2131099759;
+			// aapt resource value: 0x7f0600b1
+			public const int walkthrough_time = 2131099825;
 			
-			// aapt resource value: 0x7f06005c
-			public const int window = 2131099740;
+			// aapt resource value: 0x7f06007a
+			public const int weekOf = 2131099770;
+			
+			// aapt resource value: 0x7f060067
+			public const int window = 2131099751;
 			
 			// aapt resource value: 0x7f060020
 			public const int withText = 2131099680;
@@ -2506,11 +2519,11 @@ namespace SpeedyChef
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0c0000
-			public const int Filter_Menu = 2131492864;
+			// aapt resource value: 0x7f0d0000
+			public const int Filter_Menu = 2131558400;
 			
-			// aapt resource value: 0x7f0c0001
-			public const int Main_Menu = 2131492865;
+			// aapt resource value: 0x7f0d0001
+			public const int Main_Menu = 2131558401;
 			
 			static Menu()
 			{
@@ -2525,35 +2538,35 @@ namespace SpeedyChef
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f09001d
+			public const int FM_Both = 2131296285;
+			
 			// aapt resource value: 0x7f09001c
-			public const int FM_Both = 2131296284;
+			public const int FM_Difficulty = 2131296284;
 			
 			// aapt resource value: 0x7f09001b
-			public const int FM_Difficulty = 2131296283;
-			
-			// aapt resource value: 0x7f09001a
-			public const int FM_Time = 2131296282;
-			
-			// aapt resource value: 0x7f090018
-			public const int MM_Account_Title = 2131296280;
-			
-			// aapt resource value: 0x7f090015
-			public const int MM_Browse_Title = 2131296277;
-			
-			// aapt resource value: 0x7f090013
-			public const int MM_Home_Title = 2131296275;
-			
-			// aapt resource value: 0x7f090016
-			public const int MM_Plan_Title = 2131296278;
-			
-			// aapt resource value: 0x7f090017
-			public const int MM_Preferences_Title = 2131296279;
-			
-			// aapt resource value: 0x7f090014
-			public const int MM_Search_Title = 2131296276;
+			public const int FM_Time = 2131296283;
 			
 			// aapt resource value: 0x7f090019
-			public const int MM_Walkthrough = 2131296281;
+			public const int MM_Account_Title = 2131296281;
+			
+			// aapt resource value: 0x7f090016
+			public const int MM_Browse_Title = 2131296278;
+			
+			// aapt resource value: 0x7f090014
+			public const int MM_Home_Title = 2131296276;
+			
+			// aapt resource value: 0x7f090017
+			public const int MM_Plan_Title = 2131296279;
+			
+			// aapt resource value: 0x7f090018
+			public const int MM_Preferences_Title = 2131296280;
+			
+			// aapt resource value: 0x7f090015
+			public const int MM_Search_Title = 2131296277;
+			
+			// aapt resource value: 0x7f09001a
+			public const int MM_Walkthrough = 2131296282;
 			
 			// aapt resource value: 0x7f090000
 			public const int abc_action_bar_home_description = 2131296256;
@@ -2606,53 +2619,56 @@ namespace SpeedyChef
 			// aapt resource value: 0x7f090010
 			public const int abc_toolbar_collapse_description = 2131296272;
 			
-			// aapt resource value: 0x7f090027
-			public const int add_to_meal = 2131296295;
-			
-			// aapt resource value: 0x7f090012
-			public const int app_name = 2131296274;
-			
 			// aapt resource value: 0x7f090028
-			public const int bookmark_recipe = 2131296296;
+			public const int add_to_meal = 2131296296;
 			
-			// aapt resource value: 0x7f090025
-			public const int done = 2131296293;
-			
-			// aapt resource value: 0x7f090026
-			public const int enjoy = 2131296294;
-			
-			// aapt resource value: 0x7f09001d
-			public const int hour = 2131296285;
-			
-			// aapt resource value: 0x7f090020
-			public const int hour_short = 2131296288;
+			// aapt resource value: 0x7f090013
+			public const int app_name = 2131296275;
 			
 			// aapt resource value: 0x7f090029
-			public const int ingredients = 2131296297;
+			public const int bookmark_recipe = 2131296297;
+			
+			// aapt resource value: 0x7f090012
+			public const int burner_prompt = 2131296274;
+			
+			// aapt resource value: 0x7f090026
+			public const int done = 2131296294;
+			
+			// aapt resource value: 0x7f090027
+			public const int enjoy = 2131296295;
 			
 			// aapt resource value: 0x7f09001e
-			public const int minute = 2131296286;
+			public const int hour = 2131296286;
 			
 			// aapt resource value: 0x7f090021
-			public const int minute_short = 2131296289;
+			public const int hour_short = 2131296289;
 			
-			// aapt resource value: 0x7f090024
-			public const int pause = 2131296292;
+			// aapt resource value: 0x7f09002a
+			public const int ingredients = 2131296298;
 			
 			// aapt resource value: 0x7f09001f
-			public const int second = 2131296287;
+			public const int minute = 2131296287;
 			
 			// aapt resource value: 0x7f090022
-			public const int second_short = 2131296290;
+			public const int minute_short = 2131296290;
+			
+			// aapt resource value: 0x7f090025
+			public const int pause = 2131296293;
+			
+			// aapt resource value: 0x7f090020
+			public const int second = 2131296288;
 			
 			// aapt resource value: 0x7f090023
-			public const int start = 2131296291;
+			public const int second_short = 2131296291;
+			
+			// aapt resource value: 0x7f090024
+			public const int start = 2131296292;
 			
 			// aapt resource value: 0x7f090011
 			public const int status_bar_notification_info_overflow = 2131296273;
 			
-			// aapt resource value: 0x7f09002a
-			public const int steps = 2131296298;
+			// aapt resource value: 0x7f09002b
+			public const int steps = 2131296299;
 			
 			static String()
 			{

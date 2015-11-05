@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<string name="burner_prompt">Select Burner Type</string>
+	<string-array name="burner_types">
+		<item>Electric</item>
+		<item>Gas</item>
+		<item>Induction</item>
+	</string-array>
+</resources>
