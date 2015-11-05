@@ -125,7 +125,7 @@ namespace SpeedyChef
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok && requestCode == -1) {
-				System.Diagnostics.Debug.WriteLine ();
+				System.Diagnostics.Debug.WriteLine("");
 			}
 		}
 
