@@ -157,11 +157,10 @@ namespace SpeedyChef
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok) {
-				Console.WriteLine (data.GetStringExtra ("Result"));
-			}
-			// For when it comes back from the design page
-			if (requestCode == 3) {
+				// Console.WriteLine (data.GetStringExtra ("Result"));
+
 				RefreshMeals ();
+				Console.WriteLine ("HERE");
 			}
 		}
 			
@@ -222,6 +221,7 @@ namespace SpeedyChef
 			// PRINTS
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
+			System.Diagnostics.Debug.WriteLine (json.Count);
 			for (int i = 0; i < json.Count; i++) {
 				makeObjects (json [i], i, mealDisplay);
 			}
@@ -284,7 +284,9 @@ namespace SpeedyChef
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
 				Intent i = new Intent (this, typeof(StepsActivity));
+				System.Diagnostics.Debug.WriteLine (button.mealId);
 				i.PutExtra ("mealId", button.mealId);
+				i.PutExtra ("AgendaId", button.mealId);
 				// requestCode of walkthrough is 1
 				StartActivityForResult (i, 1);
 			};

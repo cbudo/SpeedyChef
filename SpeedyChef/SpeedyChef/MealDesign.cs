@@ -24,6 +24,9 @@ namespace SpeedyChef
 	[Activity (Theme = "@style/MyTheme", Label = "MealDesign")]			
 	public class MealDesign : CustomActivity
 	{
+		private int mealId;
+
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -34,6 +37,7 @@ namespace SpeedyChef
 			string useDate = date.ToString ("yyyy-MM-dd");
 			string mealname = Intent.GetStringExtra ("Name");
 			int mealId = Intent.GetIntExtra ("mealId", -1);
+			this.mealId = mealId; 
 			int mealSize = Intent.GetIntExtra ("Mealsize", 0);
 			System.Diagnostics.Debug.WriteLine (mealId);
 			// System.Diagnostics.Debug.WriteLine (mealname + " I am here");
@@ -71,18 +75,23 @@ namespace SpeedyChef
 			Window.SetSoftInputMode (SoftInput.StateAlwaysHidden);
 			Button returnButton = FindViewById<Button> (Resource.Id.returnButton);
 			returnButton.Click += (sender, e) => {
-				int[] recIds;
-				if (mealId == -1) {
-					// Adds to the procedure (No updating)
-					recIds = GetRecIds ();
+				if (mealName.Text != null && !mealName.Text.Equals ("")) {
+					int[] recIds;
+					if (mealId == -1) {
+						// Adds to the procedure (No updating)
+						recIds = GetRecIds ();
+					} else {
+						// Updates the items for the meal id
+						recIds = GetRecIds ();
+					}
+					HandleAPICalls (mealName.Text, mealId, recIds, useDate, sb.Progress);
+					Intent i = new Intent (this, typeof(MealPlannerCalendar));
+					i.PutExtra ("Result", "Passing back works");
+					SetResult (Result.Ok, i);
+					Finish ();
 				} else {
-					// Updates the items for the meal id
-					recIds = GetRecIds ();
+					mealName.Hint = "Can't be Empty Name";
 				}
-				Intent i = new Intent (this, typeof(MealPlannerCalendar));
-				i.PutExtra ("Result", "Passing back works");
-				SetResult (Result.Ok, i);
-				Finish ();
 			};
 			Button searchButton = FindViewById<Button> (Resource.Id.searchButton);
 			searchButton.Click += (object sender, EventArgs e) => {
@@ -121,18 +130,54 @@ namespace SpeedyChef
 			//mealsArea.AddView (rl);
 		}
 
+		private async void HandleAPICalls (string mealName, int mealid, int[] recIds, string date, int mealSize)
+		{
+			// System.Diagnostics.Debug.WriteLine ("MealId = " + mealid);
+			if (mealid == -1) {
+				string user = "tester";
+				//System.Diagnostics.Debug.WriteLine (date + " " + mealSize );
+
+				string url = "http://speedychef.azurewebsites.net/" +
+				             "CalendarScreen/AddMeal?user=" + user + "&mealname=" +
+				             mealName + "&date=" + date + "&size=" + mealSize;
+				JsonValue json = await FetchMealData (url);
+				//System.Diagnostics.Debug.WriteLine (json[0].ToString ());
+				mealid = json [0] ["Mealid"];
+				//System.Diagnostics.Debug.WriteLine ("New  mealid = "+ mealid);
+			}
+			for (int i = 0; i < recIds.Length; i++) {
+				//System.Diagnostics.Debug.WriteLine (mealid);
+				//System.Diagnostics.Debug.WriteLine (recIds[i]);
+				string url = "http://speedychef.azurewebsites.net/" +
+				             "CalendarScreen/InsertRecForMeal?mealId=" + mealid + "&recId=" + recIds [i];
+				GetMealRemoved (url);// Name doesn't match, but oh well
+			}
+		}
+
 		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
-			System.Diagnostics.Debug.WriteLine(CachedData.Instance.mostRecentMealAdd);
+			System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
 			if (resultCode == Result.Ok && requestCode == -1) {
 			}
 		}
 
-		protected override void OnResume()
+		protected override void OnResume ()
 		{
 			base.OnResume ();
-			System.Diagnostics.Debug.WriteLine ("word");
+			System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
+			NewRecipeAdded (CachedData.Instance.mostRecentMealAdd);
+
+		}
+
+		private async void NewRecipeAdded (int recid)
+		{
+			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
+			string url = "http://speedychef.azurewebsites.net/" +
+			             "CalendarScreen/GetRecipe?recid=" + recid;
+			JsonValue json = await FetchMealData (url);
+			System.Diagnostics.Debug.WriteLine (json.ToString ());
+			ParseRecipes (mealsArea, this.mealId, json);
 		}
 
 		/// <summary>
@@ -181,7 +226,7 @@ namespace SpeedyChef
 			JsonValue json = await FetchMealData (url);
 			ParseRecipes (mealArea, mealId, json);
 		}
-			
+
 		/// <summary>
 		/// Loops through the Json and creates RecipeLayout objects for the 
 		/// recipes related to the meal.
@@ -196,7 +241,7 @@ namespace SpeedyChef
 				MakeRecipeObjects (mealArea, mealId, json [i]);
 			}
 		}
-			
+
 		/// <summary>
 		/// Makes the recipe objects for each recipe id.
 		/// </summary>
