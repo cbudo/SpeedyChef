@@ -85,7 +85,7 @@ namespace SpeedyChef
 				
 			if(CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)){
 				System.Diagnostics.Debug.WriteLine ("Here");
-				string selectionInput = CachedData.Instance.SelectedNationality + "," + CachedData.Instance.SelectedSubgenre;
+				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 				this.ProcessSingleSearchQuery (url, "SearchByUnion");
 			}
@@ -108,7 +108,7 @@ namespace SpeedyChef
 		public override bool OnContextItemSelected (IMenuItem item)
 		{
 			base.OnContextItemSelected(item);
-			string selectionInput = CachedData.Instance.SelectedNationality + "," + CachedData.Instance.SelectedSubgenre;
+			string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 			switch (item.ItemId) {
 			case Resource.Id.Time:
 				{
@@ -159,7 +159,7 @@ namespace SpeedyChef
 		public bool OnQueryTextChange(string input)
 		{
 			if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
-				string selectionInput = CachedData.Instance.SelectedNationality + "," + CachedData.Instance.SelectedSubgenre;
+				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ',',');
 				this.mostRecentKeywords = input.Replace (" ", ",");
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 				this.ProcessSingleSearchQuery (url, "SearchByUnion");
@@ -202,7 +202,7 @@ namespace SpeedyChef
 		public bool OnQueryTextSubmit(string input)
 		{
 			if (CachedData.Instance.ActivityContext == (typeof(SubtypeBrowseActivity))) {
-				string selectionInput = CachedData.Instance.SelectedNationality + "," + CachedData.Instance.SelectedSubgenre;
+				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 				this.mostRecentKeywords = input.Replace (" ", ",");
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 				this.ProcessSingleSearchQuery (url, "SearchByUnion");
