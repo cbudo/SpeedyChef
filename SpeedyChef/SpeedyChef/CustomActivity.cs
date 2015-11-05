@@ -73,6 +73,9 @@ namespace SpeedyChef
 		public string SelectedNationality { get; set; }
 		public string SelectedSubgenre { get; set; }
 		public System.Type ActivityContext { get; set; }
+		public int mostRecentRecSel { get; set; }
+		public int mostRecentMealAdd { get; set; }
+		public Activity PreviousActivity { get; set; }
 
 		private CachedData()
 		{

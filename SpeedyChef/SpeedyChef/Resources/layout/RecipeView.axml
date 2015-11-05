@@ -32,7 +32,7 @@
         <TextView
             android:id="@+id/recipe_view_title"
             style="@style/CenterTitle"
-            android:text="Recipe Name" />
+            android:text="STEAMED LOBSTER WITH LEMON-HERB BUTTER" />
         <TextView
             style="@style/TextBase"
             android:text="30 minutes"
@@ -48,24 +48,32 @@
             android:id="@+id/recipe_view_ingredients">
             <TextView
                 style="@style/TextBase"
-                android:text="1. Step 1 Step 1"
+                android:text="1. 6 11/4 to 11/2 pound live lobsters"
                 android:id="@+id/textView15" />
             <TextView
                 style="@style/TextBase"
-                android:text="2. Step 2 Step 2"
+                android:text="2. 1 cup (2 sticks) butter"
                 android:id="@+id/textView16" />
             <TextView
                 style="@style/TextBase"
-                android:text="3. Step 3 Step 3"
+                android:text="3. 2 teaspoons fresh lemon juice"
                 android:id="@+id/textView17" />
             <TextView
                 style="@style/TextBase"
-                android:text="4. Step 4 Step 4"
+                android:text="4. 2 teaspoons chopped fresh Italian parsley"
                 android:id="@+id/textView18" />
             <TextView
                 style="@style/TextBase"
-                android:text="5. Step 5 Step 5"
+                android:text="5. 2 teaspoons chopped fresh chives"
                 android:id="@+id/textView19" />
+            <TextView
+                style="@style/TextBase"
+                android:text="6. 2 teaspoons chopped fresh basil"
+                android:id="@+id/textView20" />
+            <TextView
+                style="@style/TextBase"
+                android:text="7. Deez lemon wedges"
+                android:id="@+id/textView21" />
         </LinearLayout>
         <TextView
             style="@style/SubTitle"
@@ -77,24 +85,16 @@
             android:id="@+id/recipe_view_steps">
             <TextView
                 style="@style/TextBase"
-                android:text="1. Step 1 Step 1"
+                android:text="1. Cook lobsters in 2 large pots of boiling salted water until shells are pink and lobsters are cooked through (11 minutes)"
                 android:id="@+id/textView21" />
             <TextView
                 style="@style/TextBase"
-                android:text="2. Step 2 Step 2"
+                android:text="2. Melt butter in small saucepan. Add lemon juice and herbs. Season with salt and pepper."
                 android:id="@+id/textView22" />
             <TextView
                 style="@style/TextBase"
-                android:text="3. Step 3 Step 3"
+                android:text="3. Serve Lobsters with lemon wedges and warm herb butter"
                 android:id="@+id/textView23" />
-            <TextView
-                style="@style/TextBase"
-                android:text="4. Step 4 Step 4"
-                android:id="@+id/textView24" />
-            <TextView
-                style="@style/TextBase"
-                android:text="5. Step 5 Step 5"
-                android:id="@+id/textView25" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
