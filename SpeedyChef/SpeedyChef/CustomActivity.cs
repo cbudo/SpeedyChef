@@ -48,7 +48,7 @@ namespace SpeedyChef
 				CachedData.Instance.ActivityContext = this.GetType ();
 				StartActivity (intent);
 			} else if (arg.Item.TitleFormatted.ToString () == "Home" && typeof(SearchActivity) != CachedData.Instance.ActivityContext) {
-				var intent = new Intent (this, typeof(SearchActivity));
+				var intent = new Intent (this, typeof(MainActivity));
 				CachedData.Instance.ActivityContext = this.GetType ();
 				StartActivity (intent);
 			}

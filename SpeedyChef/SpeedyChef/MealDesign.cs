@@ -19,7 +19,7 @@ using Java.Util;
 namespace SpeedyChef
 {
 	[Activity (Theme = "@style/MyTheme", Label = "MealDesign")]			
-	public class MealDesign : Activity
+	public class MealDesign : CustomActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -44,28 +44,18 @@ namespace SpeedyChef
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource (Resource.Drawable.pressed_lines);
+				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
-				menu.MenuItemClick += (s1, arg1) => {
-					// Console.WriteLine ("{0} selected", arg1.Item.TitleFormatted);
-					if (arg1.Item.TitleFormatted.ToString () == "Browse") {
-						var intent = new Intent (this, typeof(BrowseNationalitiesActivity));
-						StartActivity (intent);
-					} else if (arg1.Item.TitleFormatted.ToString () == "Plan") {
-						var intent = new Intent (this, typeof(MealPlannerCalendar));
-						StartActivity (intent);
-					} else if (arg1.Item.TitleFormatted.ToString () == "Walkthrough") {
-						var intent = new Intent (this, typeof(StepsActivity));
-						StartActivity (intent);
-					}
-				};
+				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
+					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
 			};
+
+
 			SeekBar sb = FindViewById<SeekBar> (Resource.Id.dinerCounter);
 			TextView sbt = FindViewById<TextView> (Resource.Id.seekBarCount);
 			sb.Progress = mealSize;
