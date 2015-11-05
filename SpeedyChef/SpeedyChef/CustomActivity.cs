@@ -73,6 +73,7 @@ namespace SpeedyChef
 		public string SelectedNationality { get; set; }
 		public string SelectedSubgenre { get; set; }
 		public System.Type ActivityContext { get; set; }
+		public int MealDesignMealId { get; set; }
 
 		private CachedData()
 		{

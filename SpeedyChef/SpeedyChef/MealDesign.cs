@@ -44,12 +44,12 @@ namespace SpeedyChef
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+				menu_button.SetBackgroundResource (Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
@@ -71,11 +71,10 @@ namespace SpeedyChef
 				int[] recIds;
 				if (mealId == -1) {
 					// Adds to the procedure (No updating)
-					recIds = GetRecIds();
-				}
-				else{
+					recIds = GetRecIds ();
+				} else {
 					// Updates the items for the meal id
-					recIds = GetRecIds();
+					recIds = GetRecIds ();
 				}
 				Intent i = new Intent (this, typeof(MealPlannerCalendar));
 				i.PutExtra ("Result", "Passing back works");
@@ -86,7 +85,9 @@ namespace SpeedyChef
 			searchButton.Click += (object sender, EventArgs e) => {
 				// PRINTS
 				System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
-
+				Intent i = new Intent (this, typeof(SearchActivity));
+				CachedData.Instance.MealDesignMealId = mealId;
+				StartActivityForResult (i, -1);
 				// TODO
 
 				// Connects to search page
@@ -117,13 +118,22 @@ namespace SpeedyChef
 			//mealsArea.AddView (rl);
 		}
 
-		private int[] GetRecIds(){
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult (requestCode, resultCode, data);
+			if (resultCode == Result.Ok && requestCode == -1){
+				System.Diagnostics.Debug.WriteLine ();
+			}
+		}
+
+		private int[] GetRecIds ()
+		{
 			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
 			//System.Diagnostics.Debug.WriteLine (mealsArea.ChildCount);
 			int[] ids = new int[mealsArea.ChildCount];
-			for(int c = 0; c < mealsArea.ChildCount; c ++){
+			for (int c = 0; c < mealsArea.ChildCount; c++) {
 				// System.Diagnostics.Debug.WriteLine (((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId);
-				ids[c] = ((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId;
+				ids [c] = ((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId;
 			}
 			return ids;
 		}
