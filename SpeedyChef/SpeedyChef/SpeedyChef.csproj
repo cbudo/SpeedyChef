@@ -73,6 +73,7 @@
     <Compile Include="Utils\WebUtils.cs" />
     <Compile Include="SearchActivity.cs" />
     <Compile Include="RecipeViewActivity.cs" />
+    <Compile Include="CustomActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
