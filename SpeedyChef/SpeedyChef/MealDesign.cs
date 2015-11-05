@@ -88,6 +88,8 @@ namespace SpeedyChef
 				// PRINTS
 				System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
 
+				// TODO
+
 				// Connects to search page
 			};
 			Button removeButton = FindViewById<Button> (Resource.Id.removeButton);
@@ -101,16 +103,10 @@ namespace SpeedyChef
 						"http://speedychef.azurewebsites.net/CalendarScreen/RemoveMealFromTables?user=" 
 						+ user + "&mealid=" + mealId;
 					GetMealRemoved(url);
-					Console.WriteLine ("Should have deleted");
-					// System.Diagnostics.Debug.WriteLine (json.ToString ());
-					
 				}
 				i.PutExtra ("MealRemoved", mealId);
 				SetResult(Result.Ok, i);
-				System.Diagnostics.Debug.WriteLine ("ClICKED");
 				Finish ();
-				System.Diagnostics.Debug.WriteLine (mealId);
-				//Finish ();
 				
 				// Remove meal with mealId TODO
 			};
@@ -138,7 +134,8 @@ namespace SpeedyChef
 		{
 			string user = "tester";
 
-			string url = "http://speedychef.azurewebsites.net/CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
+			string url = "http://speedychef.azurewebsites.net/" +
+				"CalendarScreen/GetRecipesForMeal?user=" + user + "&mealId=" + mealId;
 			JsonValue json = await FetchMealData (url);
 			ParseRecipes (mealArea, mealId, json);
 		}
@@ -177,7 +174,7 @@ namespace SpeedyChef
 				using (Stream stream = response.GetResponseStream ()) {
 					// Use this stream to build a JSON document object:
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
+					// Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
 
 					// Return the JSON document:
 					return jsonDoc;
@@ -237,9 +234,11 @@ namespace SpeedyChef
 				Console.WriteLine (this.mealId);
 				// Removes from mealID (Has necessary ids, i think) TODO
 
+				// TODO
+
+
 				this.Visibility = ViewStates.Gone;
-				Console.WriteLine ("Disposed, hopefully.");
-				Console.WriteLine ("Hasn't been removed from database yet");
+				// Console.WriteLine ("Disposed, hopefully.");
 			};
 			this.recipeInfo.Click += (object sender, EventArgs e) => {
 				// PRINTS
