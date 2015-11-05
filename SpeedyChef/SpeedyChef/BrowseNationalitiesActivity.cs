@@ -15,7 +15,7 @@ using v7Widget = Android.Support.V7.Widget;
 namespace SpeedyChef
 {
 	[Activity (Theme="@style/MyTheme", Label = "Browse Nationalities", Icon = "@drawable/icon")]
-	public class BrowseNationalitiesActivity : Activity
+	public class BrowseNationalitiesActivity : CustomActivity
 	{
 		v7Widget.RecyclerView mRecyclerView;
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
@@ -41,30 +41,7 @@ namespace SpeedyChef
 				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
-				menu.MenuItemClick += (s1, arg1) => {
-					if (arg1.Item.TitleFormatted.ToString() == "Browse") {
-					} else if (arg1.Item.TitleFormatted.ToString() == "Plan") {
-						var intent = new Intent(this, typeof(MealPlannerCalendar));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Walkthrough"){
-						var intent = new Intent(this, typeof(StepsActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Search"){
-						var intent = new Intent(this, typeof(SearchActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString() == "Preferences"){
-						var intent = new Intent(this, typeof(Allergens));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity(intent);
-					} else if (arg1.Item.TitleFormatted.ToString () == "Home") {
-						var intent = new Intent (this, typeof(MainActivity));
-						CachedData.Instance.ActivityContext = this.GetType();
-						StartActivity (intent);
-					}
-				};
+				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
