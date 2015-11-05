@@ -286,7 +286,6 @@ namespace SpeedyChef
 				Intent i = new Intent (this, typeof(StepsActivity));
 				System.Diagnostics.Debug.WriteLine (button.mealId);
 				i.PutExtra ("mealId", button.mealId);
-				i.PutExtra ("AgendaId", button.mealId);
 				// requestCode of walkthrough is 1
 				StartActivityForResult (i, 1);
 			};
