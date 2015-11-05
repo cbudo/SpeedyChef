@@ -48,6 +48,7 @@ namespace SpeedyChef
 
 			timerPoolHandler = new TimerPoolHandler (timerFrames);
 
+			//TODO fix
 			steps = WebUtils.getRecipeSteps (mealId);
 			fragmentCount = steps.Length + 1;
 
