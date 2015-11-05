@@ -24,6 +24,9 @@ namespace SpeedyChef
 	[Activity (Theme = "@style/MyTheme", Label = "MealPlannerCalendar")]			
 	public class MealPlannerCalendar : CustomActivity
 	{
+		private Boolean resumeHasRun = false;
+
+
 		/// <summary>
 		/// Button currently highlighted after being clicked on.
 		/// </summary>
@@ -108,7 +111,7 @@ namespace SpeedyChef
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
-					Console.WriteLine ("menu dismissed");
+					// Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
 			};
@@ -157,14 +160,14 @@ namespace SpeedyChef
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok) {
-				Console.WriteLine (data.GetStringExtra ("Result"));
-			}
-			// For when it comes back from the design page
-			if (requestCode == 3) {
+				// Console.WriteLine (data.GetStringExtra ("Result"));
+
 				RefreshMeals ();
+				// Console.WriteLine ("HERE");
+				// Console.WriteLine ("Request code = "+ requestCode);
 			}
 		}
-			
+
 		/// <summary>
 		/// Event handler method to help get date to pass to next object
 		/// </summary>
@@ -194,23 +197,38 @@ namespace SpeedyChef
 			addBar.Visibility = Android.Views.ViewStates.Visible;
 			RefreshMeals ();
 		}
-			
+
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			if (!resumeHasRun) {
+				resumeHasRun = true;
+				// Console.WriteLine ("Comes here");
+				return;
+			}
+		}
+
 		/// <summary>
 		/// Refreshs the meal displaying area after calling Json.
 		/// </summary>
 		private async void RefreshMeals ()
 		{
+			// Console.WriteLine ("Refreshing");
 			// Below handles connection to the database and the parsing of Json
+			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			mealDisplay.RemoveAllViews ();
 			string user = "tester";
 			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
 			// System.Diagnostics.Debug.WriteLine (useDate);
 			string url = "http://speedychef.azurewebsites.net/" +
 			             "CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
 			JsonValue json = await FetchMealData (url);
+
 			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			parseMeals (json);
 		}
-			
+
 		/// <summary>
 		/// Parses the meals from Json to display on the calendar page. Creates buttons 
 		/// and views programmatically.
@@ -222,11 +240,12 @@ namespace SpeedyChef
 			// PRINTS
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
+			// System.Diagnostics.Debug.WriteLine (json.Count);
 			for (int i = 0; i < json.Count; i++) {
 				makeObjects (json [i], i, mealDisplay);
 			}
 		}
-			
+
 		/// <summary>
 		/// Makes meal segments for the calendar page
 		/// </summary>
@@ -284,6 +303,7 @@ namespace SpeedyChef
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
 				Intent i = new Intent (this, typeof(StepsActivity));
+				// System.Diagnostics.Debug.WriteLine (button.mealId);
 				i.PutExtra ("mealId", button.mealId);
 				// requestCode of walkthrough is 1
 				StartActivityForResult (i, 1);
@@ -377,7 +397,9 @@ namespace SpeedyChef
 			button.mealId = (json ["Mealid"]);
 			button.Click += (object sender, EventArgs e) => {
 				Intent intent = new Intent (this, typeof(MealDesign));
-
+				LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+				// PRINTS
+				mealDisplay.RemoveAllViews ();
 				intent.PutExtra ("Name", button.mealName);
 				intent.PutExtra ("Mealsize", button.mealSize);
 				intent.PutExtra ("mealId", button.mealId);
@@ -428,13 +450,14 @@ namespace SpeedyChef
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
 			request.ContentType = "application/json";
 			request.Method = "GET";
-
+			
 			// Send the request to the server and wait for the response:
-			using (WebResponse response = await request.GetResponseAsync ()) {
+			using (WebResponse response = await request.GetResponseAsync ().ConfigureAwait (true)) {
 				// Get a stream representation of the HTTP web response:
 				using (Stream stream = response.GetResponseStream ()) {
 					// Use this stream to build a JSON document object:
-					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
+					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream)).ConfigureAwait (true);
+					
 					// Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
 
 					// Return the JSON document:
@@ -456,7 +479,7 @@ namespace SpeedyChef
 					return daysList [i];
 				}
 			}
-			Console.WriteLine ("Should never get here");
+			// Console.WriteLine ("Should never get here");
 			return daysList [0];
 		}
 

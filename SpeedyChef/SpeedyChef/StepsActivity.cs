@@ -32,8 +32,8 @@ namespace SpeedyChef
 		{
 			base.OnCreate (bundle);
 
-			int AgendaId = Intent.GetIntExtra ("AgendaId", 0);
-			Console.WriteLine ("Recipe Id: " + AgendaId);
+			int mealId = Intent.GetIntExtra ("mealId", 0);
+			Console.WriteLine ("Recipe Id: " + mealId);
 
 			SetContentView (Resource.Layout.Walkthrough);
 			ViewPager vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
@@ -48,7 +48,8 @@ namespace SpeedyChef
 
 			timerPoolHandler = new TimerPoolHandler (timerFrames);
 
-			steps = WebUtils.getRecipeSteps (AgendaId);
+			//TODO fix
+			steps = WebUtils.getRecipeSteps (mealId);
 			fragmentCount = steps.Length + 1;
 
 			vp.Adapter = new StepFragmentPagerAdapter (SupportFragmentManager, steps, timerPoolHandler);
