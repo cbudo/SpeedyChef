@@ -91,22 +91,27 @@ namespace SpeedyChef
 				// Connects to search page
 			};
 			Button removeButton = FindViewById<Button> (Resource.Id.removeButton);
-			removeButton.Click += (object sender, EventArgs e) => {
+			removeButton.Click += delegate {
 				// PRINTS
-				System.Diagnostics.Debug.WriteLine ("ClICKED");
-				System.Diagnostics.Debug.WriteLine (mealId);
 				Intent i = new Intent (this, typeof(MealPlannerCalendar));
 				if (mealId != -1) {
 					// Change to meal id
 					string user = "tester";
-					string url = "http://speedychef.azurewebsites.net/CalendarScreen/RemoveMeal?user=" 
-						+ user + "&mealName=" + mealname+ "&date=" + useDate;
-					// JsonValue json = GetMealRemoved(url).Result;
+					string url = 
+						"http://speedychef.azurewebsites.net/CalendarScreen/RemoveMealFromTables?user=" 
+						+ user + "&mealid=" + mealId;
+					GetMealRemoved(url);
+					Console.WriteLine ("Should have deleted");
 					// System.Diagnostics.Debug.WriteLine (json.ToString ());
 					
 				}
 				i.PutExtra ("MealRemoved", mealId);
+				SetResult(Result.Ok, i);
+				System.Diagnostics.Debug.WriteLine ("ClICKED");
 				Finish ();
+				System.Diagnostics.Debug.WriteLine (mealId);
+				//Finish ();
+				
 				// Remove meal with mealId TODO
 			};
 			if (mealId == -1) {
@@ -117,9 +122,14 @@ namespace SpeedyChef
 			//mealsArea.AddView (rl);
 		}
 
-		private async Task<JsonValue> GetMealRemoved(string url){
-			JsonValue temp = await FetchMealData (url);
-			return temp;
+		private async void GetMealRemoved(string url){
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
+			request.ContentType = "";
+			request.Method = "GET";
+
+			// Send the request to the server and wait for the response:
+			using (WebResponse response = await request.GetResponseAsync ()) {
+			}
 		}
 
 

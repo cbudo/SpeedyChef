@@ -94,7 +94,8 @@ namespace SpeedyChef
 				// Console.WriteLine (selected.GetDateField().ToBinary());
 				// Adds Binary field to be parsed later
 				intent.PutExtra ("Date", selected.GetDateField ().ToBinary ());
-				StartActivity (intent);
+				StartActivityForResult (intent, 0);
+				System.Diagnostics.Debug.WriteLine ("GET HERE");
 			};
 
 			//MENU VIEW
@@ -174,7 +175,11 @@ namespace SpeedyChef
 			if (resultCode == Result.Ok) {
 				Console.WriteLine (data.GetStringExtra ("Result"));
 			}
-			Console.WriteLine ("Maybe");
+			if (requestCode == 3){
+				System.Diagnostics.Debug.WriteLine ("DID YOU FIND ME");
+				System.Diagnostics.Debug.WriteLine (selected.GetDateField ().ToString ("yyyy-MM-dd"));
+				RefreshMeals ();
+			}
 		}
 
 
@@ -198,7 +203,10 @@ namespace SpeedyChef
 			selected.wrappedButton.SetTextColor (Resources.GetColor (Resource.Color.white_text));
 			// Can click the button after an action listener finds this.
 			addBar.Visibility = Android.Views.ViewStates.Visible;
+			RefreshMeals ();
+		}
 
+		private async void RefreshMeals (){
 			// Below handles connection to the database and the parsing of Json
 			string user = "tester";
 			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
@@ -284,7 +292,7 @@ namespace SpeedyChef
 				System.Diagnostics.Debug.WriteLine (button.mealName + "  " + button.mealSize);
 				Intent i = new Intent(this, typeof(StepsActivity));
 				i.PutExtra ("mealId", button.mealId);
-				StartActivity(i);
+				StartActivityForResult(i, 0);
 				// TODO: Add the click to the walkthrough
 			};
 			button.Gravity = GravityFlags.Center;
@@ -378,7 +386,7 @@ namespace SpeedyChef
 				intent.PutExtra ("Name", button.mealName);
 				intent.PutExtra ("Mealsize", button.mealSize);
 				intent.PutExtra ("mealId", button.mealId);
-				StartActivity (intent);
+				StartActivityForResult (intent, 3);
 				// TODO: Jump to the Design page
 
 			};
