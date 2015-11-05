@@ -233,7 +233,9 @@ namespace SpeedyChef
 				Console.WriteLine (this.recipeId);
 				Console.WriteLine (this.mealId);
 				// Removes from mealID (Has necessary ids, i think) TODO
-
+				if (this.mealId != -1){
+					
+				}
 				// TODO
 
 
@@ -245,6 +247,9 @@ namespace SpeedyChef
 				Console.WriteLine ("Recipe info button clicked");
 				Console.WriteLine (this.recipeId);
 				// Goes to meal preview TODO
+				Intent i = new Intent(context, typeof(RecipeViewActivity));
+				i.PutExtra ("Recid", this.recipeId);
+				context.StartActivity(i);
 			};
 			this.AddView (this.removeButton);
 			this.AddView (this.recipeInfo);
