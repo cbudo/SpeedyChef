@@ -125,7 +125,7 @@ namespace SpeedyChef
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 			if (resultCode == Result.Ok && requestCode == -1) {
-				System.Diagnostics.Debug.WriteLine ();
+				//System.Diagnostics.Debug.WriteLine ();
 			}
 		}
 
@@ -314,7 +314,7 @@ namespace SpeedyChef
 				Console.WriteLine (this.recipeId);
 				// Goes to meal preview TODO
 				Intent i = new Intent (context, typeof(RecipeViewActivity));
-				i.PutExtra ("Recid", this.recipeId);
+				i.PutExtra ("recId", this.recipeId);
 				context.StartActivity (i);
 			};
 			this.AddView (this.removeButton);

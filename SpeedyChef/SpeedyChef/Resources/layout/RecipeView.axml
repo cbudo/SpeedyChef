@@ -31,70 +31,27 @@
         </RelativeLayout>
         <TextView
             android:id="@+id/recipe_view_title"
-            style="@style/CenterTitle"
-            android:text="Recipe Name" />
+            style="@style/CenterTitle" />
         <TextView
             style="@style/TextBase"
-            android:text="30 minutes"
             android:layout_gravity="center"
-            android:id="@+id/textView1" />
+            android:id="@+id/recipe_view_time"
+            android:text="32 minutes" />
         <TextView
             style="@style/SubTitle"
-            android:text="@string/ingredients"
-            android:id="@+id/textView14" />
+            android:text="@string/ingredients" />
         <LinearLayout
-            style="@style/FillWidth"
+            style="@style/TextBase"
+            android:layout_width="fill_parent"
             android:orientation="vertical"
-            android:id="@+id/recipe_view_ingredients">
-            <TextView
-                style="@style/TextBase"
-                android:text="1. Step 1 Step 1"
-                android:id="@+id/textView15" />
-            <TextView
-                style="@style/TextBase"
-                android:text="2. Step 2 Step 2"
-                android:id="@+id/textView16" />
-            <TextView
-                style="@style/TextBase"
-                android:text="3. Step 3 Step 3"
-                android:id="@+id/textView17" />
-            <TextView
-                style="@style/TextBase"
-                android:text="4. Step 4 Step 4"
-                android:id="@+id/textView18" />
-            <TextView
-                style="@style/TextBase"
-                android:text="5. Step 5 Step 5"
-                android:id="@+id/textView19" />
-        </LinearLayout>
+            android:id="@+id/recipe_view_ingredients" />
         <TextView
             style="@style/SubTitle"
-            android:text="@string/steps"
-            android:id="@+id/textView20" />
+            android:text="@string/steps" />
         <LinearLayout
-            style="@style/FillWidth"
+            style="@style/TextBase"
+            android:layout_width="fill_parent"
             android:orientation="vertical"
-            android:id="@+id/recipe_view_steps">
-            <TextView
-                style="@style/TextBase"
-                android:text="1. Step 1 Step 1"
-                android:id="@+id/textView21" />
-            <TextView
-                style="@style/TextBase"
-                android:text="2. Step 2 Step 2"
-                android:id="@+id/textView22" />
-            <TextView
-                style="@style/TextBase"
-                android:text="3. Step 3 Step 3"
-                android:id="@+id/textView23" />
-            <TextView
-                style="@style/TextBase"
-                android:text="4. Step 4 Step 4"
-                android:id="@+id/textView24" />
-            <TextView
-                style="@style/TextBase"
-                android:text="5. Step 5 Step 5"
-                android:id="@+id/textView25" />
-        </LinearLayout>
+            android:id="@+id/recipe_view_steps" />
     </LinearLayout>
 </ScrollView>
