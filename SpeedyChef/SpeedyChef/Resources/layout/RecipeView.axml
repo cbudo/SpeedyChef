@@ -31,70 +31,27 @@
         </RelativeLayout>
         <TextView
             android:id="@+id/recipe_view_title"
-            style="@style/CenterTitle"
-            android:text="STEAMED LOBSTER WITH LEMON-HERB BUTTER" />
+            style="@style/CenterTitle" />
         <TextView
             style="@style/TextBase"
-            android:text="30 minutes"
             android:layout_gravity="center"
-            android:id="@+id/textView1" />
+            android:id="@+id/recipe_view_time"
+            android:text="32 minutes" />
         <TextView
             style="@style/SubTitle"
-            android:text="@string/ingredients"
-            android:id="@+id/textView14" />
+            android:text="@string/ingredients" />
         <LinearLayout
-            style="@style/FillWidth"
+            style="@style/TextBase"
+            android:layout_width="fill_parent"
             android:orientation="vertical"
-            android:id="@+id/recipe_view_ingredients">
-            <TextView
-                style="@style/TextBase"
-                android:text="1. 6 11/4 to 11/2 pound live lobsters"
-                android:id="@+id/textView15" />
-            <TextView
-                style="@style/TextBase"
-                android:text="2. 1 cup (2 sticks) butter"
-                android:id="@+id/textView16" />
-            <TextView
-                style="@style/TextBase"
-                android:text="3. 2 teaspoons fresh lemon juice"
-                android:id="@+id/textView17" />
-            <TextView
-                style="@style/TextBase"
-                android:text="4. 2 teaspoons chopped fresh Italian parsley"
-                android:id="@+id/textView18" />
-            <TextView
-                style="@style/TextBase"
-                android:text="5. 2 teaspoons chopped fresh chives"
-                android:id="@+id/textView19" />
-            <TextView
-                style="@style/TextBase"
-                android:text="6. 2 teaspoons chopped fresh basil"
-                android:id="@+id/textView20" />
-            <TextView
-                style="@style/TextBase"
-                android:text="7. Deez lemon wedges"
-                android:id="@+id/textView21" />
-        </LinearLayout>
+            android:id="@+id/recipe_view_ingredients" />
         <TextView
             style="@style/SubTitle"
-            android:text="@string/steps"
-            android:id="@+id/textView20" />
+            android:text="@string/steps" />
         <LinearLayout
-            style="@style/FillWidth"
+            style="@style/TextBase"
+            android:layout_width="fill_parent"
             android:orientation="vertical"
-            android:id="@+id/recipe_view_steps">
-            <TextView
-                style="@style/TextBase"
-                android:text="1. Cook lobsters in 2 large pots of boiling salted water until shells are pink and lobsters are cooked through (11 minutes)"
-                android:id="@+id/textView21" />
-            <TextView
-                style="@style/TextBase"
-                android:text="2. Melt butter in small saucepan. Add lemon juice and herbs. Season with salt and pepper."
-                android:id="@+id/textView22" />
-            <TextView
-                style="@style/TextBase"
-                android:text="3. Serve Lobsters with lemon wedges and warm herb butter"
-                android:id="@+id/textView23" />
-        </LinearLayout>
+            android:id="@+id/recipe_view_steps" />
     </LinearLayout>
 </ScrollView>

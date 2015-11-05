@@ -74,6 +74,7 @@
     <Compile Include="SearchActivity.cs" />
     <Compile Include="RecipeViewActivity.cs" />
     <Compile Include="CustomActivity.cs" />
+    <Compile Include="Models\Recipe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
