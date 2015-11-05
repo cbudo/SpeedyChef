@@ -24,6 +24,9 @@ namespace SpeedyChef
 	[Activity (Theme = "@style/MyTheme", Label = "MealPlannerCalendar")]			
 	public class MealPlannerCalendar : CustomActivity
 	{
+		private Boolean resumeHasRun = false;
+
+
 		/// <summary>
 		/// Button currently highlighted after being clicked on.
 		/// </summary>
@@ -161,9 +164,13 @@ namespace SpeedyChef
 
 				RefreshMeals ();
 				Console.WriteLine ("HERE");
+				Console.WriteLine ("Request code = "+ requestCode);
+				if (requestCode == 0){
+					Console.WriteLine ("add button return");
+				}
 			}
 		}
-			
+
 		/// <summary>
 		/// Event handler method to help get date to pass to next object
 		/// </summary>
@@ -193,13 +200,30 @@ namespace SpeedyChef
 			addBar.Visibility = Android.Views.ViewStates.Visible;
 			RefreshMeals ();
 		}
-			
+
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			if (!resumeHasRun) {
+				resumeHasRun = true;
+				Console.WriteLine ("Comes here");
+				return;
+			} else {
+				// RefreshMeals ();
+				Console.WriteLine ("Trying to get Refresh");
+			}
+		}
+
 		/// <summary>
 		/// Refreshs the meal displaying area after calling Json.
 		/// </summary>
 		private async void RefreshMeals ()
 		{
+			Console.WriteLine ("Refreshing");
 			// Below handles connection to the database and the parsing of Json
+			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+			mealDisplay.RemoveAllViews ();
 			string user = "tester";
 			string useDate = selected.GetDateField ().ToString ("yyyy-MM-dd");
 			// System.Diagnostics.Debug.WriteLine (useDate);
@@ -209,7 +233,7 @@ namespace SpeedyChef
 			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			parseMeals (json);
 		}
-			
+
 		/// <summary>
 		/// Parses the meals from Json to display on the calendar page. Creates buttons 
 		/// and views programmatically.
@@ -226,7 +250,7 @@ namespace SpeedyChef
 				makeObjects (json [i], i, mealDisplay);
 			}
 		}
-			
+
 		/// <summary>
 		/// Makes meal segments for the calendar page
 		/// </summary>
