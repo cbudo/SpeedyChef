@@ -111,7 +111,7 @@ namespace SpeedyChef
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
-					Console.WriteLine ("menu dismissed");
+					// Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
 			};
@@ -163,11 +163,8 @@ namespace SpeedyChef
 				// Console.WriteLine (data.GetStringExtra ("Result"));
 
 				RefreshMeals ();
-				Console.WriteLine ("HERE");
-				Console.WriteLine ("Request code = "+ requestCode);
-				if (requestCode == 0){
-					Console.WriteLine ("add button return");
-				}
+				// Console.WriteLine ("HERE");
+				// Console.WriteLine ("Request code = "+ requestCode);
 			}
 		}
 
@@ -207,11 +204,8 @@ namespace SpeedyChef
 			base.OnResume ();
 			if (!resumeHasRun) {
 				resumeHasRun = true;
-				Console.WriteLine ("Comes here");
+				// Console.WriteLine ("Comes here");
 				return;
-			} else {
-				// RefreshMeals ();
-				Console.WriteLine ("Trying to get Refresh");
 			}
 		}
 
@@ -220,7 +214,7 @@ namespace SpeedyChef
 		/// </summary>
 		private async void RefreshMeals ()
 		{
-			Console.WriteLine ("Refreshing");
+			// Console.WriteLine ("Refreshing");
 			// Below handles connection to the database and the parsing of Json
 			LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
 			mealDisplay.RemoveAllViews ();
@@ -246,7 +240,7 @@ namespace SpeedyChef
 			// PRINTS
 			mealDisplay.RemoveAllViews ();
 			// mealDisplay.SetBackgroundColor (Android.Graphics.Color.White);
-			System.Diagnostics.Debug.WriteLine (json.Count);
+			// System.Diagnostics.Debug.WriteLine (json.Count);
 			for (int i = 0; i < json.Count; i++) {
 				makeObjects (json [i], i, mealDisplay);
 			}
@@ -309,7 +303,7 @@ namespace SpeedyChef
 			button.Text = "Start Walkthrough";
 			button.Click += (object sender, EventArgs e) => {
 				Intent i = new Intent (this, typeof(StepsActivity));
-				System.Diagnostics.Debug.WriteLine (button.mealId);
+				// System.Diagnostics.Debug.WriteLine (button.mealId);
 				i.PutExtra ("mealId", button.mealId);
 				// requestCode of walkthrough is 1
 				StartActivityForResult (i, 1);
@@ -485,7 +479,7 @@ namespace SpeedyChef
 					return daysList [i];
 				}
 			}
-			Console.WriteLine ("Should never get here");
+			// Console.WriteLine ("Should never get here");
 			return daysList [0];
 		}
 

@@ -39,7 +39,7 @@ namespace SpeedyChef
 			int mealId = Intent.GetIntExtra ("mealId", -1);
 			this.mealId = mealId; 
 			int mealSize = Intent.GetIntExtra ("Mealsize", 0);
-			System.Diagnostics.Debug.WriteLine (mealId);
+			// System.Diagnostics.Debug.WriteLine (mealId);
 			// System.Diagnostics.Debug.WriteLine (mealname + " I am here");
 
 			// Changes meal name to passed in name
@@ -57,7 +57,7 @@ namespace SpeedyChef
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
 					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
-					Console.WriteLine ("menu dismissed");
+					// Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
 			};
@@ -96,7 +96,7 @@ namespace SpeedyChef
 			Button searchButton = FindViewById<Button> (Resource.Id.searchButton);
 			searchButton.Click += (object sender, EventArgs e) => {
 				// PRINTS
-				System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
+				// System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
 				Intent i = new Intent (this, typeof(SearchActivity));
 				CachedData.Instance.MealDesignMealId = mealId;
 				StartActivityForResult (i, -1);
@@ -154,10 +154,23 @@ namespace SpeedyChef
 			}
 		}
 
+		/// <param name="requestCode">The integer request code originally supplied to
+		///  startActivityForResult(), allowing you to identify who this
+		///  result came from.</param>
+		/// <param name="resultCode">The integer result code returned by the child activity
+		///  through its setResult().</param>
+		/// <param name="data">An Intent, which can return result data to the caller
+		///  (various data can be attached to Intent "extras").</param>
+		/// <summary>
+		/// Called when an activity you launched exits, giving you the requestCode
+		///  you started it with, the resultCode it returned, and any additional
+		///  data from it.
+		/// </summary>
 		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
+			// HACK: Currently not used and does nothing
 			base.OnActivityResult (requestCode, resultCode, data);
-			System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
+			// System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
 			if (resultCode == Result.Ok && requestCode == -1) {
 				//System.Diagnostics.Debug.WriteLine ();
 			}
@@ -167,7 +180,7 @@ namespace SpeedyChef
 		{
 			base.OnResume ();
 			if (CachedData.Instance.mostRecentRecSel != -1){
-				System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
+				// System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
 				NewRecipeAdded (CachedData.Instance.mostRecentMealAdd);
 				CachedData.Instance.mostRecentRecSel = -1;
 			}
@@ -180,7 +193,7 @@ namespace SpeedyChef
 			string url = "http://speedychef.azurewebsites.net/" +
 			             "CalendarScreen/GetRecipe?recid=" + recid;
 			JsonValue json = await FetchMealData (url);
-			System.Diagnostics.Debug.WriteLine (json.ToString ());
+			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			ParseRecipes (mealsArea, this.mealId, json);
 		}
 
@@ -351,10 +364,10 @@ namespace SpeedyChef
 			SetPropertiesInfo ();
 			this.removeButton.Click += (object sender, EventArgs e) => {
 				// PRINTS
-				Console.WriteLine ("Remove button clicked");
-				Console.WriteLine (this.recipeName);
-				Console.WriteLine (this.recipeId);
-				Console.WriteLine (this.mealId);
+				//Console.WriteLine ("Remove button clicked");
+				//Console.WriteLine (this.recipeName);
+				//Console.WriteLine (this.recipeId);
+				//Console.WriteLine (this.mealId);
 				// Removes from mealID (Has necessary ids, i think) TODO
 				if (this.mealId != -1) {
 					
@@ -367,8 +380,8 @@ namespace SpeedyChef
 			};
 			this.recipeInfo.Click += (object sender, EventArgs e) => {
 				// PRINTS
-				Console.WriteLine ("Recipe info button clicked");
-				Console.WriteLine (this.recipeId);
+				//Console.WriteLine ("Recipe info button clicked");
+				//Console.WriteLine (this.recipeId);
 				// Goes to meal preview TODO
 				Intent i = new Intent (context, typeof(RecipeViewActivity));
 				i.PutExtra ("recId", this.recipeId);
