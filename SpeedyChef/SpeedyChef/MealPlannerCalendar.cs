@@ -230,6 +230,7 @@ namespace SpeedyChef
 			string url = "http://speedychef.azurewebsites.net/" +
 			             "CalendarScreen/GetMealDay?user=" + user + "&date=" + useDate;
 			JsonValue json = await FetchMealData (url);
+
 			// System.Diagnostics.Debug.WriteLine (json.ToString ());
 			parseMeals (json);
 		}
@@ -402,7 +403,9 @@ namespace SpeedyChef
 			button.mealId = (json ["Mealid"]);
 			button.Click += (object sender, EventArgs e) => {
 				Intent intent = new Intent (this, typeof(MealDesign));
-
+				LinearLayout mealDisplay = FindViewById<LinearLayout> (Resource.Id.MealDisplay);
+				// PRINTS
+				mealDisplay.RemoveAllViews ();
 				intent.PutExtra ("Name", button.mealName);
 				intent.PutExtra ("Mealsize", button.mealSize);
 				intent.PutExtra ("mealId", button.mealId);
@@ -453,13 +456,14 @@ namespace SpeedyChef
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
 			request.ContentType = "application/json";
 			request.Method = "GET";
-
+			
 			// Send the request to the server and wait for the response:
-			using (WebResponse response = await request.GetResponseAsync ()) {
+			using (WebResponse response = await request.GetResponseAsync ().ConfigureAwait (true)) {
 				// Get a stream representation of the HTTP web response:
 				using (Stream stream = response.GetResponseStream ()) {
 					// Use this stream to build a JSON document object:
-					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
+					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream)).ConfigureAwait (true);
+					
 					// Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
 
 					// Return the JSON document:

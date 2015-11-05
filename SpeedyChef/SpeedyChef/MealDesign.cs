@@ -166,8 +166,11 @@ namespace SpeedyChef
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-			System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
-			NewRecipeAdded (CachedData.Instance.mostRecentMealAdd);
+			if (CachedData.Instance.mostRecentRecSel != -1){
+				System.Diagnostics.Debug.WriteLine (CachedData.Instance.mostRecentMealAdd);
+				NewRecipeAdded (CachedData.Instance.mostRecentMealAdd);
+				CachedData.Instance.mostRecentRecSel = -1;
+			}
 
 		}
 
@@ -201,15 +204,16 @@ namespace SpeedyChef
 		/// Gets the meal removed.
 		/// </summary>
 		/// <param name="url">URL.</param>
-		private async void GetMealRemoved (string url)
+		private void GetMealRemoved (string url)
 		{
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
 			request.ContentType = "";
 			request.Method = "GET";
 
 			// Send the request to the server and wait for the response:
-			using (WebResponse response = await request.GetResponseAsync ()) {
+			using (WebResponse response = request.GetResponse()) {
 			}
+
 		}
 
 
@@ -220,6 +224,7 @@ namespace SpeedyChef
 		/// <param name="mealId">Meal identifier to find recipes related to.</param>
 		private async void LoadRecipes (LinearLayout mealArea, int mealId)
 		{
+			mealArea.RemoveAllViews ();
 			string user = "tester";
 
 			string url = "http://speedychef.azurewebsites.net/" +
@@ -262,19 +267,19 @@ namespace SpeedyChef
 		/// </summary>
 		/// <returns>The meal data (Json).</returns>
 		/// <param name="url">URL to call the API.</param>
-		private async Task<JsonValue> FetchMealData (string url)
+		private Task<JsonValue> FetchMealData (string url)
 		{
 			// Create an HTTP web request using the URL:
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
 			request.ContentType = "application/json";
 			request.Method = "GET";
-
 			// Send the request to the server and wait for the response:
-			using (WebResponse response = await request.GetResponseAsync ()) {
+			// HACK: Changed from ASYNC to just regular
+			using (WebResponse response =  request.GetResponse()) {
 				// Get a stream representation of the HTTP web response:
 				using (Stream stream = response.GetResponseStream ()) {
 					// Use this stream to build a JSON document object:
-					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
+					Task<JsonValue> jsonDoc =  Task.Run (() => JsonObject.Load (stream));
 					// Console.Out.WriteLine ("Response: {0}", jsonDoc.ToString ());
 
 					// Return the JSON document:
