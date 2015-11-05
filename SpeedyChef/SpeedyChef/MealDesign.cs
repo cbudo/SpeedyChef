@@ -16,6 +16,9 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 
+/// <summary>
+/// Meal designer page.
+/// </summary>
 namespace SpeedyChef
 {
 	[Activity (Theme = "@style/MyTheme", Label = "MealDesign")]			
@@ -44,12 +47,12 @@ namespace SpeedyChef
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
-				menu_button.SetBackgroundResource(Resource.Drawable.pressed_lines);
+				menu_button.SetBackgroundResource (Resource.Drawable.pressed_lines);
 				PopupMenu menu = new PopupMenu (this, menu_button);
 				menu.Inflate (Resource.Menu.Main_Menu);
 				menu.MenuItemClick += this.MenuButtonClick;
 				menu.DismissEvent += (s2, arg2) => {
-					menu_button.SetBackgroundResource(Resource.Drawable.menu_lines);
+					menu_button.SetBackgroundResource (Resource.Drawable.menu_lines);
 					Console.WriteLine ("menu dismissed");
 				};
 				menu.Show ();
@@ -71,11 +74,10 @@ namespace SpeedyChef
 				int[] recIds;
 				if (mealId == -1) {
 					// Adds to the procedure (No updating)
-					recIds = GetRecIds();
-				}
-				else{
+					recIds = GetRecIds ();
+				} else {
 					// Updates the items for the meal id
-					recIds = GetRecIds();
+					recIds = GetRecIds ();
 				}
 				Intent i = new Intent (this, typeof(MealPlannerCalendar));
 				i.PutExtra ("Result", "Passing back works");
@@ -86,7 +88,9 @@ namespace SpeedyChef
 			searchButton.Click += (object sender, EventArgs e) => {
 				// PRINTS
 				System.Diagnostics.Debug.WriteLine ("SEARCHING PAGE");
-
+				Intent i = new Intent (this, typeof(SearchActivity));
+				CachedData.Instance.MealDesignMealId = mealId;
+				StartActivityForResult (i, -1);
 				// TODO
 
 				// Connects to search page
@@ -117,17 +121,34 @@ namespace SpeedyChef
 			//mealsArea.AddView (rl);
 		}
 
-		private int[] GetRecIds(){
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult (requestCode, resultCode, data);
+			if (resultCode == Result.Ok && requestCode == -1) {
+				System.Diagnostics.Debug.WriteLine("");
+			}
+		}
+
+		/// <summary>
+		/// Gets the recipe identifiers from the MealArea.
+		/// </summary>
+		/// <returns>The recipe identifiers.</returns>
+		private int[] GetRecIds ()
+		{
 			LinearLayout mealsArea = FindViewById<LinearLayout> (Resource.Id.mealsArea);
 			//System.Diagnostics.Debug.WriteLine (mealsArea.ChildCount);
 			int[] ids = new int[mealsArea.ChildCount];
-			for(int c = 0; c < mealsArea.ChildCount; c ++){
+			for (int c = 0; c < mealsArea.ChildCount; c++) {
 				// System.Diagnostics.Debug.WriteLine (((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId);
-				ids[c] = ((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId;
+				ids [c] = ((RecipeLayouts)mealsArea.GetChildAt (c)).recipeId;
 			}
 			return ids;
 		}
 
+		/// <summary>
+		/// Gets the meal removed.
+		/// </summary>
+		/// <param name="url">URL.</param>
 		private async void GetMealRemoved (string url)
 		{
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
@@ -140,7 +161,11 @@ namespace SpeedyChef
 		}
 
 
-
+		/// <summary>
+		///  Loads the recipes based on the meal id and has place to put the recipe results
+		/// </summary>
+		/// <param name="mealArea">Meal area to put results.</param>
+		/// <param name="mealId">Meal identifier to find recipes related to.</param>
 		private async void LoadRecipes (LinearLayout mealArea, int mealId)
 		{
 			string user = "tester";
@@ -150,8 +175,14 @@ namespace SpeedyChef
 			JsonValue json = await FetchMealData (url);
 			ParseRecipes (mealArea, mealId, json);
 		}
-
-
+			
+		/// <summary>
+		/// Loops through the Json and creates RecipeLayout objects for the 
+		/// recipes related to the meal.
+		/// </summary>
+		/// <param name="mealArea">Meal area (view) to append objects to.</param>
+		/// <param name="mealId">Meal identifier recipes are related to.</param>
+		/// <param name="json">Json with information of zero or more recipes.</param>
 		private void ParseRecipes (LinearLayout mealArea, int mealId, JsonValue json)
 		{
 
@@ -159,7 +190,13 @@ namespace SpeedyChef
 				MakeRecipeObjects (mealArea, mealId, json [i]);
 			}
 		}
-
+			
+		/// <summary>
+		/// Makes the recipe objects for each recipe id.
+		/// </summary>
+		/// <param name="mealArea">Meal area (LinearLayout) to add object to.</param>
+		/// <param name="mealId">Meal identifier of object.</param>
+		/// <param name="json">Json values for a single recipe.</param>
 		private void MakeRecipeObjects (LinearLayout mealArea, int mealId, JsonValue json)
 		{
 			RecipeLayouts rl = new RecipeLayouts (this, json ["Recname"], json ["Recid"], mealId);
@@ -167,11 +204,12 @@ namespace SpeedyChef
 		}
 
 		 
-
-		/**
-		 * Fetches Json from database using URL. Called mainly with stored procedures.
-		 * 
-		 **/
+		/// <summary>
+		/// Fetchs the meal data in form of JSON from database using URL. 
+		/// Called mainly with stored procedures.
+		/// </summary>
+		/// <returns>The meal data (Json).</returns>
+		/// <param name="url">URL to call the API.</param>
 		private async Task<JsonValue> FetchMealData (string url)
 		{
 			// Create an HTTP web request using the URL:
@@ -195,35 +233,52 @@ namespace SpeedyChef
 		}
 	}
 
-	/**
-	 * Container class used to present recipes for a meal and the option to 
-	 * remove the container itself. Contained in a LinearLayout object and 
-	 * holds 2 buttons with different functionality.
-	 **/
+
+	/// <summary>
+	/// Container class used to present recipes for a meal and the option to 
+	/// remove the container itself. Contained in a LinearLayout object and 
+	/// holds 2 buttons with different functionality.
+	/// </summary>
 	public class RecipeLayouts : LinearLayout
 	{
 
-		/**
-		 * Button object to remove recipe from a meal. Both from display 
-		 * and from the database
-		 **/
+		/// <summary>
+		/// Button object to remove recipe from a meal. Both from display 
+		/// and from the database.
+		/// </summary>
 		private Button removeButton;
 
-		/**
-		 * Button object that brings recipe info page up.
-		 **/
+		/// <summary>
+		/// The recipe info button.
+		/// </summary>
 		private Button recipeInfo;
 
-		/**
-		 * 
-		 **/
+		/// <summary>
+		/// Gets or sets the recipe identifier.
+		/// </summary>
+		/// <value>The recipe identifier.</value>
 		public int recipeId { get; set; }
 
+		/// <summary>
+		/// Gets or sets the name of the recipe.
+		/// </summary>
+		/// <value>The name of the recipe.</value>
 		public string recipeName { get; set; }
 
+		/// <summary>
+		/// Gets or sets the meal identifier.
+		/// </summary>
+		/// <value>The meal identifier.</value>
 		public int mealId { get; set; }
 
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SpeedyChef.RecipeLayouts"/> class.
+		/// </summary>
+		/// <param name="context">Context of the layout.</param>
+		/// <param name="recName">Recipe name of the object.</param>
+		/// <param name="recId">Recipe identifier of the object.</param>
+		/// <param name="mealId">Meal identifier of the object.</param>
 		public RecipeLayouts (Context context, string recName, int recId, int mealId) : base (context)
 		{
 			
@@ -266,6 +321,9 @@ namespace SpeedyChef
 			this.AddView (this.recipeInfo);
 		}
 
+		/// <summary>
+		/// Sets the properties layout of the object itself.
+		/// </summary>
 		private void SetPropertiesLayout ()
 		{
 			this.Orientation = Orientation.Horizontal;
@@ -273,6 +331,9 @@ namespace SpeedyChef
 			this.SetMinimumWidth (25);
 		}
 
+		/// <summary>
+		/// Sets the properties for remove button.
+		/// </summary>
 		private void SetPropertiesRemove ()
 		{
 			this.removeButton.SetMinimumHeight (100);
@@ -284,6 +345,9 @@ namespace SpeedyChef
 			this.removeButton.SetPadding (5, 5, 5, 5);
 		}
 
+		/// <summary>
+		/// Sets the properties of recipe info button.
+		/// </summary>
 		private void SetPropertiesInfo ()
 		{
 			this.recipeInfo.SetMinimumHeight (100);
@@ -294,6 +358,9 @@ namespace SpeedyChef
 			this.recipeInfo.SetBackgroundResource (Resource.Color.orange_header);
 		}
 
+		/// <summary>
+		/// Sets the layout parameters for each button
+		/// </summary>
 		private void CreateRLPs ()
 		{
 			LinearLayout.LayoutParams lllp = new 
@@ -306,7 +373,9 @@ namespace SpeedyChef
 			this.recipeInfo.LayoutParameters = llri;
 		}
 
-
+		/// <summary>
+		/// Sets the layout parameters of the object
+		/// </summary>
 		private void CreateLPs ()
 		{
 			LinearLayout.LayoutParams lllp = new 

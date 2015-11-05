@@ -56,11 +56,72 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
     </LinearLayout>
-    <GridLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gridLayout1"
-        android:layout_marginBottom="421.2dp" />
+        android:id="@+id/burnerNum">
+        <TextView
+            android:text="Range burners"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="189.6dp"
+            android:layout_height="36.4dp"
+            android:id="@+id/textView1" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="154.5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText1"
+            android:layout_marginLeft="0.0dp"
+            android:layout_marginRight="0.0dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabs_linear_layout">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="60.9dp"
+            android:id="@+id/range_type">
+            <TextView
+                android:text="Burner Type"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="34.7dp"
+                android:id="@+id/textView3" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+            <Spinner
+                android:layout_width="157.7dp"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner2"
+                android:layout_marginLeft="0.0dp"
+                android:prompt="@string/burner_prompt"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+        <TextView
+            android:text="Range type"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="33.9dp"
+            android:id="@+id/spinner1" />
+    </LinearLayout>
 </LinearLayout>

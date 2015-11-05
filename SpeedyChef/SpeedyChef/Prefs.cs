@@ -85,6 +85,15 @@ namespace SpeedyChef
 			base.OnCreate(bundle);
 			SetContentView(Resource.Layout.Appliances);
 
+			Spinner spinner = FindViewById<Spinner> (Resource.Id.spinner1);
+
+			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
+			var adapter = ArrayAdapter.CreateFromResource (
+				this, Resource.Array.burner_types, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			spinner.Adapter = adapter;
+
 
 			Button allergens_button = FindViewById<Button> (Resource.Id.allergens_button);
 			allergens_button.Click += (s, arg) => {
@@ -133,6 +142,13 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
+		}
+		private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+
+			string toast = string.Format ("{0}", spinner.GetItemAtPosition (e.Position));
+			Toast.MakeText (this, toast, ToastLength.Long).Show ();
 		}
 	}
 	[Activity(Theme="@style/MyTheme",Label = "Expertise")]

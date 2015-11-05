@@ -76,6 +76,7 @@ namespace SpeedyChef
 		public int mostRecentRecSel { get; set; }
 		public int mostRecentMealAdd { get; set; }
 		public Activity PreviousActivity { get; set; }
+		public int MealDesignMealId { get; set; }
 
 		private CachedData()
 		{
