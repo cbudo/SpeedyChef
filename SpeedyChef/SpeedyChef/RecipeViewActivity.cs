@@ -27,7 +27,9 @@ namespace SpeedyChef
 				CachedData.Instance.mostRecentMealAdd = CachedData.Instance.mostRecentRecSel;
 				if (CachedData.Instance.ActivityContext == typeof(SearchActivity)) {
 					CachedData.Instance.PreviousActivity.Finish();
-					this.Finish();
+					CachedData.Instance.PreviousActivity.SetResult(Result.Ok);
+					SetResult(Result.Ok, CachedData.Instance.PreviousActivity.Intent);
+					Finish();
 				}
 			};
 		}

@@ -109,7 +109,10 @@ namespace SpeedyChef
 		public override bool OnContextItemSelected (IMenuItem item)
 		{
 			base.OnContextItemSelected(item);
-			string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
+			string selectionInput = "";
+			if (CachedData.Instance.SelectedSubgenre != null) {
+				selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
+			}
 			switch (item.ItemId) {
 			case Resource.Id.Time:
 				{
@@ -281,6 +284,7 @@ namespace SpeedyChef
 					var intent = new Intent (callingActivity, typeof(RecipeViewActivity));
 					CachedData.Instance.ActivityContext = callingActivity.GetType ();
 					CachedData.Instance.PreviousActivity = callingActivity;
+					CachedData.Instance.mostRecentRecSel = this.Recid;
 					callingActivity.StartActivity (intent);
 				}
 			}

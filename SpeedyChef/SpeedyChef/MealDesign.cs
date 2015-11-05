@@ -124,9 +124,15 @@ namespace SpeedyChef
 		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
+			System.Diagnostics.Debug.WriteLine(CachedData.Instance.mostRecentMealAdd);
 			if (resultCode == Result.Ok && requestCode == -1) {
-				System.Diagnostics.Debug.WriteLine("");
 			}
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume ();
+			System.Diagnostics.Debug.WriteLine ("word");
 		}
 
 		/// <summary>
