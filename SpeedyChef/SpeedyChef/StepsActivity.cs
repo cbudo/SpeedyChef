@@ -18,8 +18,8 @@ using Android.Util;
 namespace SpeedyChef
 {
 
-	[Activity (Label = "StepsActivity")]			
-	public class StepsActivity : FragmentActivity
+	[Activity (Theme="@style/MyTheme", Label = "StepsActivity", Icon = "@drawable/icon")]			
+	public class StepsActivity : CustomActivity
 	{
 
 		RecipeStep[] steps; 
@@ -154,6 +154,7 @@ namespace SpeedyChef
 			View view = inflater.Inflate (Resource.Layout.FinalStep, container, false);
 			Button finishButton = view.FindViewById<Button> (Resource.Id.walkthrough_finish_button);
 			finishButton.Click += delegate {
+				CachedData.Instance.ActivityContext = this.GetType();
 				Activity.Finish();
 			};
 			return view;

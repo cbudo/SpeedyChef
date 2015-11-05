@@ -7,6 +7,6 @@
         style="@style/CenterTitle" />
     <Button
         android:id="@+id/walkthrough_finish_button"
-        style="@style/WrapContent"
+        style="@style/BasicButton"
         android:text="@string/done" />
 </LinearLayout>
