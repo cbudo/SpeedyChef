@@ -11,7 +11,7 @@ namespace SpeedyChef
 		private static string baseURI = "http://speedychef.azurewebsites.net";
 
 		public static RecipeStep[] getRecipeSteps(int mealId) {
-			JsonValue returnedSteps = getJSONResponse ("/Steps?mealid=4");
+			JsonValue returnedSteps = getJSONResponse ("/Steps?mealid=" + mealId);
 			RecipeStep[] steps = new RecipeStep[returnedSteps.Count];
 			for (int i = 0; i < returnedSteps.Count; i++) {
 				JsonValue currentItem = returnedSteps [i];
