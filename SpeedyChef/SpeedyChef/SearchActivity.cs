@@ -84,8 +84,7 @@ namespace SpeedyChef
 				((Button) s).ShowContextMenu();
 			};
 				
-			if(CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)){
-				System.Diagnostics.Debug.WriteLine ("Here");
+			if(CachedData.Instance.PreviousActivity.GetType() == typeof(SubtypeBrowseActivity)){
 				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 				this.ProcessSingleSearchQuery (url, "SearchByUnion");
@@ -93,9 +92,14 @@ namespace SpeedyChef
 
 		}
 
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
+
 		public override void OnBackPressed(){
 			base.OnPause ();
-			CachedData.Instance.ActivityContext = this.GetType ();
+			CachedData.Instance.PreviousActivity = this;
 			Finish ();
 		}
 
@@ -118,7 +122,7 @@ namespace SpeedyChef
 				{
 					this.filter_button.Text = "Time";
 					this.ordertype = "Time";
-					if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
+					if (CachedData.Instance.PreviousActivity.GetType() == typeof(SubtypeBrowseActivity)) {
 						string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 						this.ProcessSingleSearchQuery (url, "SearchByUnion");
 					} else {
@@ -131,7 +135,7 @@ namespace SpeedyChef
 				{
 					this.filter_button.Text = "Difficulty";
 					this.ordertype = "Diff";
-					if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
+					if (CachedData.Instance.PreviousActivity.GetType() == typeof(SubtypeBrowseActivity)) {
 						string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 						this.ProcessSingleSearchQuery (url, "SearchByUnion");
 					} else {
@@ -144,7 +148,7 @@ namespace SpeedyChef
 				{
 					this.filter_button.Text = "Both";
 					this.ordertype = "Both";
-					if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
+					if (CachedData.Instance.PreviousActivity.GetType() == typeof(SubtypeBrowseActivity)) {
 						string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 						this.ProcessSingleSearchQuery (url, "SearchByUnion");
 					} else {
@@ -168,7 +172,7 @@ namespace SpeedyChef
 
 		public bool OnQueryTextChange(string input)
 		{
-			if (CachedData.Instance.ActivityContext == typeof(SubtypeBrowseActivity)) {
+			if (CachedData.Instance.PreviousActivity.GetType() == typeof(SubtypeBrowseActivity)) {
 				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ',',');
 				this.mostRecentKeywords = input.Replace (" ", ",");
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
@@ -211,7 +215,7 @@ namespace SpeedyChef
 
 		public bool OnQueryTextSubmit(string input)
 		{
-			if (CachedData.Instance.ActivityContext == (typeof(SubtypeBrowseActivity))) {
+			if (CachedData.Instance.PreviousActivity.GetType() == (typeof(SubtypeBrowseActivity))) {
 				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 				this.mostRecentKeywords = input.Replace (" ", ",");
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
@@ -256,11 +260,11 @@ namespace SpeedyChef
 	public class RecipeAdapter : v7Widget.RecyclerView.Adapter
 	{
 		public RecipeObject mRObject;
-		public Activity callingActivity; 
+		public CustomActivity callingActivity; 
 		public event EventHandler<int> itemClick;
 		public int Recid;
 
-		public RecipeAdapter (RecipeObject inRObject, Activity inActivity)
+		public RecipeAdapter (RecipeObject inRObject, CustomActivity inActivity)
 		{
 			this.mRObject = inRObject;
 			this.callingActivity = inActivity;
@@ -282,7 +286,6 @@ namespace SpeedyChef
 				if (this.Recid == 8) {
 					this.itemClick (this, position);
 					var intent = new Intent (callingActivity, typeof(RecipeViewActivity));
-					CachedData.Instance.ActivityContext = callingActivity.GetType ();
 					CachedData.Instance.PreviousActivity = callingActivity;
 					CachedData.Instance.mostRecentRecSel = this.Recid;
 					callingActivity.StartActivity (intent);
@@ -290,8 +293,8 @@ namespace SpeedyChef
 			}
 		}
 
-		public override void
-		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
+
+		public override void OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
 			RecipeViewHolder vh = holder as RecipeViewHolder;
 			Tuple<string, string, int, int, int> tupleInQuestion = mRObject.getObjectInPosition (position);

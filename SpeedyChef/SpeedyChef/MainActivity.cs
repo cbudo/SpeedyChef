@@ -64,6 +64,17 @@ namespace SpeedyChef
 				
 		}
 
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
+
+		public override void OnBackPressed(){
+			base.OnPause ();
+			CachedData.Instance.PreviousActivity = this;
+			Finish ();
+		}
+
 		public bool OnQueryTextChange(string input)
 		{
 			System.Console.WriteLine (input);

@@ -50,6 +50,18 @@ namespace SpeedyChef
 			};
 
 		}
+
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
+
+		public override void OnBackPressed(){
+			base.OnPause ();
+			CachedData.Instance.PreviousActivity = this;
+			Finish ();
+		}
+
 	}
 
 	public class SideBySideViewHolder : v7Widget.RecyclerView.ViewHolder
@@ -58,10 +70,10 @@ namespace SpeedyChef
 		public ImageView RightImage { get; private set; }
 		public TextView LeftText { get; private set; }
 		public TextView RightText { get; private set; }
-		public Activity callingActivity;
+		public CustomActivity callingActivity;
 		// Locate and cache view references
 
-		public SideBySideViewHolder (View itemView, Activity callingActivity, bool searchLanding) : base (itemView)
+		public SideBySideViewHolder (View itemView, CustomActivity callingActivity, bool searchLanding) : base (itemView)
 		{
 			LeftImage = itemView.FindViewById<ImageView> (Resource.Id.imageViewLeft);
 			LeftText = itemView.FindViewById<TextView> (Resource.Id.textViewLeft);
@@ -81,13 +93,13 @@ namespace SpeedyChef
 			LeftImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedNationality = LeftText.Text;
 				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
-				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
+				CachedData.Instance.PreviousActivity = this.callingActivity;
 				callingActivity.StartActivity(intent);
 			};
 			RightImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedNationality = RightText.Text;
 				var intent = new Intent(callingActivity, typeof(SubtypeBrowseActivity));
-				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
+				CachedData.Instance.PreviousActivity = this.callingActivity;
 				callingActivity.StartActivity(intent);
 			};
 		}
@@ -97,13 +109,13 @@ namespace SpeedyChef
 			LeftImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedSubgenre = LeftText.Text;
 				var intent = new Intent(callingActivity, typeof(SearchActivity));
-				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
+				CachedData.Instance.PreviousActivity = this.callingActivity;
 				callingActivity.StartActivity(intent);
 			};
 			RightImage.Click += (sender, e) => {
 				CachedData.Instance.SelectedSubgenre = RightText.Text;
 				var intent = new Intent(callingActivity, typeof(SearchActivity));
-				CachedData.Instance.ActivityContext = this.callingActivity.GetType();
+				CachedData.Instance.PreviousActivity = this.callingActivity;
 				callingActivity.StartActivity(intent);
 			};
 		}
@@ -112,10 +124,10 @@ namespace SpeedyChef
 	public class SideBySideAdapter : v7Widget.RecyclerView.Adapter
 	{
 		public SideBySideObject mSideBySideObject;
-		public Activity callingActivity;
+		public CustomActivity callingActivity;
 		public bool searchLanding;
 
-		public SideBySideAdapter (SideBySideObject inSideBySideObject, Activity inActivity, bool searchLanding)
+		public SideBySideAdapter (SideBySideObject inSideBySideObject, CustomActivity inActivity, bool searchLanding)
 		{
 			this.mSideBySideObject = inSideBySideObject;
 			this.callingActivity = inActivity;

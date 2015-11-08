@@ -67,7 +67,7 @@ namespace SpeedyChef
 			Button addToMealButton = FindViewById<Button> (Resource.Id.add_rec_to_meal_button);
 			addToMealButton.Click += (object sender, EventArgs e) => {
 				CachedData.Instance.mostRecentMealAdd = CachedData.Instance.mostRecentRecSel;
-				if (CachedData.Instance.ActivityContext == typeof(SearchActivity)) {
+				if (CachedData.Instance.PreviousActivity.GetType() == typeof(SearchActivity)) {
 					CachedData.Instance.PreviousActivity.Finish();
 					CachedData.Instance.PreviousActivity.SetResult(Result.Ok);
 					SetResult(Result.Ok, CachedData.Instance.PreviousActivity.Intent);
@@ -76,7 +76,16 @@ namespace SpeedyChef
 			};
 		}
 
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
 
+		public override void OnBackPressed(){
+			base.OnPause ();
+			CachedData.Instance.PreviousActivity = this;
+			Finish ();
+		}
 	}
 }
 

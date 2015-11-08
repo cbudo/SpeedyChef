@@ -20,36 +20,43 @@ namespace SpeedyChef
 	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", Icon = "@drawable/icon")]
 	public class CustomActivity : FragmentActivity
 	{
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 		}
 
 		public void MenuButtonClick (object s, PopupMenu.MenuItemClickEventArgs arg){
-			if (arg.Item.TitleFormatted.ToString () == "Browse" && typeof(BrowseNationalitiesActivity) != CachedData.Instance.ActivityContext) {
+			if (arg.Item.TitleFormatted.ToString () == "Browse" && (typeof(BrowseNationalitiesActivity) != this.GetType())) {
 				var intent = new Intent (this, typeof(BrowseNationalitiesActivity));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.PreviousActivity = this;
+				CachedData.Instance.CurrHighLevelType = typeof(BrowseNationalitiesActivity);
 				StartActivity (intent);
-			} else if (arg.Item.TitleFormatted.ToString () == "Plan" && typeof(MealPlannerCalendar) != CachedData.Instance.ActivityContext) {
+			} else if (arg.Item.TitleFormatted.ToString () == "Plan" && (typeof(MealPlannerCalendar) != this.GetType())) {
 				var intent = new Intent (this, typeof(MealPlannerCalendar));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.CurrHighLevelType = typeof(MealPlannerCalendar);
+				CachedData.Instance.PreviousActivity = this;
 				StartActivity (intent);
-			} else if (arg.Item.TitleFormatted.ToString () == "Walkthrough" && typeof(StepsActivity) != CachedData.Instance.ActivityContext) {
+			} else if (arg.Item.TitleFormatted.ToString () == "Walkthrough" && (typeof(StepsActivity) != this.GetType())) {
 				var intent = new Intent (this, typeof(StepsActivity));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.CurrHighLevelType = typeof(StepsActivity);
+				CachedData.Instance.PreviousActivity = this;
 				intent.PutExtra ("AgendaId", 1);
 				StartActivity (intent);
-			} else if (arg.Item.TitleFormatted.ToString () == "Search" && typeof(SearchActivity) != CachedData.Instance.ActivityContext) {
+			} else if (arg.Item.TitleFormatted.ToString () == "Search" && (typeof(SearchActivity) != this.GetType())) {
 				var intent = new Intent (this, typeof(SearchActivity));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.CurrHighLevelType = typeof(SearchActivity);
+				CachedData.Instance.PreviousActivity = this;
 				StartActivity (intent);
-			} else if (arg.Item.TitleFormatted.ToString () == "Preferences" && typeof(Allergens) != CachedData.Instance.ActivityContext) {
+			} else if (arg.Item.TitleFormatted.ToString () == "Preferences" && (typeof(Allergens) != this.GetType())) {
 				var intent = new Intent (this, typeof(Allergens));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.CurrHighLevelType = typeof(Allergens);
+				CachedData.Instance.PreviousActivity = this;
 				StartActivity (intent);
-			} else if (arg.Item.TitleFormatted.ToString () == "Home" && typeof(SearchActivity) != CachedData.Instance.ActivityContext) {
+			} else if (arg.Item.TitleFormatted.ToString () == "Home" && (typeof(MainActivity) != this.GetType())) {
 				var intent = new Intent (this, typeof(MainActivity));
-				CachedData.Instance.ActivityContext = this.GetType ();
+				CachedData.Instance.CurrHighLevelType = typeof(MainActivity);
+				CachedData.Instance.PreviousActivity = this;
 				StartActivity (intent);
 			}
 		}
@@ -72,11 +79,11 @@ namespace SpeedyChef
 		public Dictionary<string, Tuple<int, string>[]> TupleDict { get; set; }
 		public string SelectedNationality { get; set; }
 		public string SelectedSubgenre { get; set; }
-		public System.Type ActivityContext { get; set; }
 		public int mostRecentRecSel { get; set; }
 		public int mostRecentMealAdd { get; set; }
-		public Activity PreviousActivity { get; set; }
+		public CustomActivity PreviousActivity { get; set; }
 		public int MealDesignMealId { get; set; }
+		public System.Type CurrHighLevelType { get; set; }
 
 		private CachedData()
 		{
@@ -152,6 +159,7 @@ namespace SpeedyChef
 			IndianFood[3] = new Tuple<int, string> (Resource.Drawable.IndianCurry, "Indian Curry");
 
 			SelectedNationality = "American";
+			this.PreviousActivity = new MainActivity ();
 		}
 
 		private static volatile CachedData _instance;

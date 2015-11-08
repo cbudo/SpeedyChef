@@ -73,8 +73,17 @@ namespace SpeedyChef
 
 		}
 
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
 
-
+		public override void OnBackPressed(){
+			base.OnPause ();
+			CachedData.Instance.PreviousActivity = this;
+			Finish ();
+		}
+			
 	}
 
 
@@ -155,7 +164,7 @@ namespace SpeedyChef
 			View view = inflater.Inflate (Resource.Layout.FinalStep, container, false);
 			Button finishButton = view.FindViewById<Button> (Resource.Id.walkthrough_finish_button);
 			finishButton.Click += delegate {
-				CachedData.Instance.ActivityContext = this.GetType();
+				CachedData.Instance.PreviousActivity = new StepsActivity();
 				Activity.Finish();
 			};
 			return view;
