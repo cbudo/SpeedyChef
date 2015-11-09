@@ -14,6 +14,7 @@ using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Graphics.Drawables;
 using Android.Util;
+using Java.Lang;
 
 namespace SpeedyChef
 {
@@ -25,6 +26,7 @@ namespace SpeedyChef
 		RecipeStep[] steps; 
 		ViewGroup[] timerFrames;
 		TimerPoolHandler timerPoolHandler;
+		ViewPager vp;
 		int fragmentCount;
 
 		//Called when the page is created
@@ -36,7 +38,7 @@ namespace SpeedyChef
 			Console.WriteLine ("Recipe Id: " + mealId);
 
 			SetContentView (Resource.Layout.Walkthrough);
-			ViewPager vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
+			vp = FindViewById<ViewPager> (Resource.Id.walkthrough_pager);
 
 			//Store pointers to timer frames to be referenced by the fragments
 			timerFrames = new ViewGroup[5];
@@ -56,14 +58,20 @@ namespace SpeedyChef
 
 			//Set up the progress dots to appear at the bottom of the screen
 			ViewGroup pd = (ViewGroup) FindViewById (Resource.Id.walkthrough_progress_dots);
-			ImageView[] progressDots = new ImageView[fragmentCount];
+			NavDot[] progressDots = new NavDot[fragmentCount];
 			Drawable open = Resources.GetDrawable (Resource.Drawable.circle_open);
 
 			for (int i = 0; i < progressDots.Length; i++) {
-				progressDots [i] = new ImageView (this);
-				progressDots [i].SetMaxWidth(30);
-				progressDots [i].SetImageDrawable (open);
-				pd.AddView (progressDots [i]);
+				NavDot dot = new NavDot (this);
+				dot.SetMaxWidth(30);
+				dot.SetImageDrawable (open);
+				pd.AddView (dot);
+				dot.Num = i;
+				dot.Click += delegate {
+					Console.WriteLine("Going to page " + dot.Num);
+					vp.SetCurrentItem (dot.Num, true);
+				};
+				progressDots [i] = dot;
 			}
 			progressDots[0].SetImageDrawable (Resources.GetDrawable(Resource.Drawable.circle_closed));
 
@@ -82,6 +90,10 @@ namespace SpeedyChef
 			base.OnPause ();
 			CachedData.Instance.PreviousActivity = this;
 			Finish ();
+		}
+
+		public ViewPager GetViewPager() {
+			return vp;
 		}
 			
 	}
@@ -137,9 +149,9 @@ namespace SpeedyChef
 					startButton.SetText (Resource.String.pause);
 				} else {
 					timeTv.Text = (this.recipeStep.time / 60).ToString () + ":00";
-					//handler.AddTimer (this.recipeStep, timeTv, startButton);
+
 				}
-				handler.AssignFragView (this.recipeStep.timerHandler, timeTv, startButton);
+				handler.AssignFragView (this.recipeStep.timerHandler, timeTv, startButton, ((StepsActivity)Activity).GetViewPager());
 
 			}
 			else { // Don't add a timer, just display the time estimate
@@ -172,29 +184,32 @@ namespace SpeedyChef
 	}
 
 	class StepChangeListener : ViewPager.SimpleOnPageChangeListener {
-		ImageView[] dots;
+		NavDot[] dots;
 		Drawable open;
 		Drawable closed;
 		ViewGroup progressBars;
+		int selected;
 
-		public StepChangeListener(ImageView[] dots, Drawable open, Drawable closed, ViewGroup progressBars) : base() {
+		public StepChangeListener(NavDot[] dots, Drawable open, Drawable closed, ViewGroup progressBars) : base() {
 			this.dots = dots;
 			this.open = open;
 			this.closed = closed;
 			this.progressBars = progressBars;
+			this.selected = 0;
 		}
 
 		public override void OnPageSelected (int position) {
-			SetUIListPos (position);
-			//loadTimers ();
+			dots [selected].SetImageDrawable (open);
+			selected = position;
+			dots [position].SetImageDrawable (closed);
 		}
 
-		public void SetUIListPos(int pos) {
+		/*public void SetUIListPos(int old, int new) {
 			dots [pos].SetImageDrawable(closed);
-			if (pos < dots.Length - 1) {
+			/*if (pos < dots.Length - 1) {
 				dots [pos + 1].SetImageDrawable (open);
 			}
-		}
+		}*/
 
 		/*(private void loadTimers() {
 			for (int i = 0; i < timers.Count; i++) {
@@ -219,6 +234,14 @@ namespace SpeedyChef
 				}
 			}
 		}*/
+	}
+
+	class NavDot : ImageView {
+		public int Num;
+
+		public NavDot(Context c) : base(c) {
+
+		}
 	}
 }
 
