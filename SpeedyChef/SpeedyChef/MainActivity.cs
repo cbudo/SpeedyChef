@@ -48,6 +48,8 @@ namespace SpeedyChef
 				}
 			};
 
+
+
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
