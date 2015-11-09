@@ -507,6 +507,7 @@ namespace SpeedyChef
 					.ToString ("ddddddd");
 				
 				daysList [i].wrappedButton.Text = weekDay.Substring (0, 3) + "\n" + day;
+				// Change the above line from a 3 to a 1
 				daysList [i].SetDateField (date.AddDays 
 					(-date.DayOfWeek.GetHashCode () + i));
 				// Sets all the buttons to the default colors

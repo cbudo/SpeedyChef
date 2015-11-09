@@ -18,23 +18,25 @@
             android:id="@+id/menu_button"
             android:background="@drawable/menu_lines" />
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
         android:minHeight="50px"
         android:layout_width="match_parent"
         android:layout_height="80px"
         android:id="@+id/monthBar"
+        android:weightSum="10"
         android:layout_marginBottom="5dp">
         <Button
             style="@style/generalButtonStyle"
             android:text="&lt;"
-            android:layout_width="40px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="175px"
+            android:minHeight="175dp"
             android:id="@+id/leftShift"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/weekOf"
+            android:layout_weight="2"
             android:width="40dp"
             android:maxWidth="50dp" />
         <TextView
@@ -43,6 +45,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="8"
             android:gravity="center"
             android:id="@+id/weekOf"
             android:layout_centerHorizontal="true"
@@ -50,14 +53,15 @@
         <Button
             style="@style/generalButtonStyle"
             android:text="&gt;"
-            android:layout_width="40px"
-            android:minHeight="175px"
+            android:layout_width="wrap_content"
+            android:minHeight="175dp"
             android:layout_height="wrap_content"
             android:id="@+id/rightShift"
             android:layout_toRightOf="@+id/weekOf"
             android:layout_alignParentRight="true"
+            android:layout_weight="2"
             android:maxWidth="50dp" />
-    </RelativeLayout>
+    </LinearLayout>
     <HorizontalScrollView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -67,7 +71,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:id="@+id/dayLayout">
             <Button
                 style="@style/MealDateButton"
