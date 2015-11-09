@@ -397,7 +397,7 @@ namespace SpeedyChef
 		private void SetPropertiesLayout ()
 		{
 			this.Orientation = Orientation.Horizontal;
-			this.SetMinimumHeight (100);
+			this.SetMinimumHeight (150);
 			this.SetMinimumWidth (25);
 		}
 
@@ -406,7 +406,7 @@ namespace SpeedyChef
 		/// </summary>
 		private void SetPropertiesRemove ()
 		{
-			this.removeButton.SetMinimumHeight (100);
+			this.removeButton.SetMinimumHeight (150);
 			this.removeButton.SetMinimumWidth (25);
 			this.removeButton.Text = "Remove";
 			this.removeButton.SetTextAppearance (this.removeButton.Context, Resource.Style.generalButtonStyle);
@@ -420,7 +420,7 @@ namespace SpeedyChef
 		/// </summary>
 		private void SetPropertiesInfo ()
 		{
-			this.recipeInfo.SetMinimumHeight (100);
+			this.recipeInfo.SetMinimumHeight (150);
 			this.recipeInfo.SetMinimumWidth (25);
 			this.recipeInfo.Gravity = GravityFlags.Center;
 			this.recipeInfo.Text = recipeName;

@@ -301,6 +301,7 @@ namespace SpeedyChef
 			button.mealId = json ["Mealid"];
 			button.mealSize = json ["Mealsize"];
 			button.Text = "Start Walkthrough";
+			button.SetHeight (150);
 			button.Click += (object sender, EventArgs e) => {
 				Intent i = new Intent (this, typeof(StepsActivity));
 				// System.Diagnostics.Debug.WriteLine (button.mealId);
@@ -394,6 +395,7 @@ namespace SpeedyChef
 				                    Resource.Style.generalButtonStyle); 
 			button.mealName = json ["Mealname"];
 			button.mealSize = (json ["Mealsize"]);
+			button.SetHeight (150);
 			button.mealId = (json ["Mealid"]);
 			button.Click += (object sender, EventArgs e) => {
 				Intent intent = new Intent (this, typeof(MealDesign));
@@ -500,10 +502,11 @@ namespace SpeedyChef
 			for (int i = 0; i < 7; i++) {
 				// Determines the day from how far away from the beginning (Sunday)
 				// and displays appropriately
-				day = date.AddDays (-date.DayOfWeek.GetHashCode () + i).ToString ("M/d");
+				day = date.AddDays (-date.DayOfWeek.GetHashCode () + i).ToString ("MM/d");
 				weekDay = date.AddDays (-date.DayOfWeek.GetHashCode () + i)
-					.ToString ("ddd");
-				daysList [i].wrappedButton.Text = weekDay.Substring (0, 1) + "\n" + day;
+					.ToString ("ddddddd");
+				
+				daysList [i].wrappedButton.Text = weekDay.Substring (0, 3) + "\n" + day;
 				daysList [i].SetDateField (date.AddDays 
 					(-date.DayOfWeek.GetHashCode () + i));
 				// Sets all the buttons to the default colors

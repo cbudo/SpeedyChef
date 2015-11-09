@@ -21,7 +21,7 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:minWidth="25px"
-        android:minHeight="25px"
+        android:minHeight="50px"
         android:layout_width="match_parent"
         android:layout_height="80px"
         android:id="@+id/monthBar"
@@ -31,6 +31,7 @@
             android:text="&lt;"
             android:layout_width="40px"
             android:layout_height="wrap_content"
+            android:minHeight="175px"
             android:id="@+id/leftShift"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/weekOf"
@@ -50,6 +51,7 @@
             style="@style/generalButtonStyle"
             android:text="&gt;"
             android:layout_width="40px"
+            android:minHeight="175px"
             android:layout_height="wrap_content"
             android:id="@+id/rightShift"
             android:layout_toRightOf="@+id/weekOf"
@@ -134,8 +136,8 @@
                 android:text="Add"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="100px"
+                android:layout_width="400px"
+                android:layout_height="150px"
                 android:id="@+id/addMeal" />
         </RelativeLayout>
     </LinearLayout>
