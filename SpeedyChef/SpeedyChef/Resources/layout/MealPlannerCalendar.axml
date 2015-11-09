@@ -62,40 +62,46 @@
             android:layout_weight="2"
             android:maxWidth="50dp" />
     </LinearLayout>
-    <HorizontalScrollView
+    <LinearLayout
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dayViewer">
-        <LinearLayout
-            android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <HorizontalScrollView
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/dayLayout">
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day1" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day2" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day3" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day4" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day5" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day6" />
-            <Button
-                style="@style/MealDateButton"
-                android:id="@+id/day7" />
-        </LinearLayout>
-    </HorizontalScrollView>
+            android:layout_height="wrap_content"
+            android:id="@+id/dayViewer">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/dayLayout">
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day1" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day2" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day3" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day4" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day5" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day6" />
+                <Button
+                    style="@style/MealDateButton"
+                    android:id="@+id/day7" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
     <TextView
         android:text="Debug Info"
         android:textAppearance="?android:attr/textAppearanceLarge"
