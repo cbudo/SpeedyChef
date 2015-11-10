@@ -21,7 +21,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:minWidth="25px"
         android:minHeight="25px">
         <LinearLayout
@@ -125,7 +125,7 @@
         android:id="@+id/mealDisplay">
         <ScrollView
             android:minWidth="25px"
-            android:minHeight="250px"
+            android:minHeight="200px"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/mealScroll"
@@ -146,6 +146,7 @@
             android:gravity="bottom"
             android:minWidth="25px"
             android:minHeight="25px"
+            android:layout_weight="2"
             android:layout_marginBottom="20dp"
             android:paddingTop="10dp">
             <Button
@@ -154,7 +155,7 @@
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
                 android:layout_width="400px"
-                android:layout_height="150px"
+                android:layout_height="200px"
                 android:id="@+id/addMeal" />
         </RelativeLayout>
     </LinearLayout>
