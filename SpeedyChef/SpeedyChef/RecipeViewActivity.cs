@@ -20,6 +20,7 @@ namespace SpeedyChef
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			SetContentView (Resource.Layout.RecipeView);
 
 			//this.Recid = CachedData.Instance.mostRecentRecSel;
 
