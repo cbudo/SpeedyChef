@@ -19,88 +19,95 @@
             android:background="@drawable/menu_lines" />
     </LinearLayout>
     <LinearLayout
-        android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="50px"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="80px"
-        android:id="@+id/monthBar"
-        android:weightSum="10"
-        android:layout_marginBottom="5dp">
-        <Button
-            style="@style/generalButtonStyle"
-            android:text="&lt;"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="175dp"
-            android:id="@+id/leftShift"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/weekOf"
-            android:layout_weight="2"
-            android:width="40dp"
-            android:maxWidth="50dp" />
-        <TextView
-            android:text="Month Presenter"
-            android:textColor="@color/black_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:gravity="center"
-            android:id="@+id/weekOf"
-            android:layout_centerHorizontal="true"
-            android:minWidth="250dp" />
-        <Button
-            style="@style/generalButtonStyle"
-            android:text="&gt;"
-            android:layout_width="wrap_content"
-            android:minHeight="175dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/rightShift"
-            android:layout_toRightOf="@+id/weekOf"
-            android:layout_alignParentRight="true"
-            android:layout_weight="2"
-            android:maxWidth="50dp" />
-    </LinearLayout>
-    <LinearLayout
+        android:layout_height="match_parent"
         android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <HorizontalScrollView
+        android:minHeight="25px">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="50px"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/monthBar"
+            android:weightSum="10"
+            android:layout_marginBottom="5dp">
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="&lt;"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="175dp"
+                android:id="@+id/leftShift"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/weekOf"
+                android:layout_weight="2"
+                android:width="40dp"
+                android:maxWidth="50dp" />
+            <TextView
+                android:text="Month Presenter"
+                android:textColor="@color/black_text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:gravity="center"
+                android:id="@+id/weekOf"
+                android:layout_centerHorizontal="true"
+                android:minWidth="250dp" />
+            <Button
+                style="@style/generalButtonStyle"
+                android:text="&gt;"
+                android:layout_width="wrap_content"
+                android:minHeight="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/rightShift"
+                android:layout_toRightOf="@+id/weekOf"
+                android:layout_alignParentRight="true"
+                android:layout_weight="2"
+                android:maxWidth="50dp" />
+        </LinearLayout>
+        <LinearLayout
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dayViewer">
-            <LinearLayout
-                android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <HorizontalScrollView
+                android:minWidth="25px"
+                android:minHeight="25px"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:id="@+id/dayLayout">
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day1" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day2" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day3" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day4" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day5" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day6" />
-                <Button
-                    style="@style/MealDateButton"
-                    android:id="@+id/day7" />
-            </LinearLayout>
-        </HorizontalScrollView>
+                android:layout_height="wrap_content"
+                android:id="@+id/dayViewer">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:id="@+id/dayLayout">
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day1" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day2" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day3" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day4" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day5" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day6" />
+                    <Button
+                        style="@style/MealDateButton"
+                        android:id="@+id/day7" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
     </LinearLayout>
     <TextView
         android:text="Debug Info"
