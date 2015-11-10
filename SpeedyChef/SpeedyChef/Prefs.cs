@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace SpeedyChef
 {
-	[Activity(Theme="@style/MyTheme",Label = "Allergens")]
+	[Activity(Theme="@style/MyTheme",Label = "Allergens",NoHistory = true)]
     public class Allergens : CustomActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -53,12 +53,8 @@ namespace SpeedyChef
 				menu.Show ();
 			};
         }
-        public override void OnBackPressed()
-        {
-            return;
-        }
     }
-	[Activity(Theme="@style/MyTheme",Label = "Appliances")]
+	[Activity(Theme="@style/MyTheme",Label = "Appliances", NoHistory = true)]
 	public class Appliances : CustomActivity
 	{
 		protected override void OnCreate(Bundle bundle)
@@ -106,10 +102,6 @@ namespace SpeedyChef
                 menu.Show();
             };
         }
-        public override void OnBackPressed()
-        {
-            return;
-        }
         private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
@@ -118,7 +110,7 @@ namespace SpeedyChef
 			Toast.MakeText (this, toast, ToastLength.Long).Show ();
 		}
 	}
-	[Activity(Theme="@style/MyTheme",Label = "Expertise")]
+	[Activity(Theme="@style/MyTheme",Label = "Expertise", NoHistory = true)]
 	public class Expertise : CustomActivity
 	{
 		protected override void OnCreate(Bundle bundle)
@@ -154,10 +146,6 @@ namespace SpeedyChef
                 };
                 menu.Show();
             };
-        }
-        public override void OnBackPressed()
-        {
-            return;
         }
     }
     
