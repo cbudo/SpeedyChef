@@ -15,13 +15,13 @@ namespace SpeedyChef
 	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", Icon = "@drawable/icon")]			
 	public class RecipeViewActivity : CustomActivity
 	{
+		public int Recid;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			//Retrieve stored recipe information
-			int recId = Intent.GetIntExtra("recId", 0);
-			SetContentView (Resource.Layout.RecipeView);
+			//this.Recid = CachedData.Instance.mostRecentRecSel;
 
 			/*//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
@@ -36,8 +36,9 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};*/
-
-			Recipe recipe = WebUtils.getRecipeViewInfo (8);
+			int varTest = CachedData.Instance.mostRecentRecSel;
+			Recipe recipe = WebUtils.getRecipeViewInfo (varTest);
+			System.Diagnostics.Debug.WriteLine (recipe.title);
 			FindViewById<TextView> (Resource.Id.recipe_view_title).Text = recipe.title;
 			//FindViewById<TextView> (Resource.Id.recipe_view_time).Text = recipe.time + " minutes";
 

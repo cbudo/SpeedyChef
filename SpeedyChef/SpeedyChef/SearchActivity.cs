@@ -50,12 +50,12 @@ namespace SpeedyChef
 
 			//SEARCH VIEW
 			SearchView searchView = FindViewById<SearchView> (Resource.Id.main_search);
-			searchView.SetBackgroundColor (Android.Graphics.Color.White);
+			searchView.SetBackgroundColor (Android.Graphics.Color.DarkOrange);
 			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener)this);
 			int id = Resources.GetIdentifier ("android:id/search_src_text", null, null);
 			TextView textView = (TextView)searchView.FindViewById (id);
-			textView.SetTextColor (Android.Graphics.Color.Black);
-			textView.SetHintTextColor (Android.Graphics.Color.Black);
+			textView.SetTextColor (Android.Graphics.Color.White);
+			textView.SetHintTextColor (Android.Graphics.Color.White);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {
@@ -88,6 +88,12 @@ namespace SpeedyChef
 				string selectionInput = CachedData.Instance.SelectedSubgenre.Replace(' ', ',');
 				string url = "http://speedychef.azurewebsites.net/search/searchbyunion?inputKeywords=" + this.mostRecentKeywords + "&ordertype=" + this.ordertype + "&ascending=" + this.asc + "&subgenre=" + selectionInput;
 				this.ProcessSingleSearchQuery (url, "SearchByUnion");
+			}
+
+			if(CachedData.Instance.SubmissionFromMain){
+				string url = "http://speedychef.azurewebsites.net/search/search?inputKeywords=" + CachedData.Instance.LastSubmissionFromMain + "&ordertype=" + this.ordertype + "&ascending=" + this.asc;
+				this.ProcessSingleSearchQuery (url, "Search");
+				CachedData.Instance.SubmissionFromMain = false;
 			}
 
 		}
@@ -166,8 +172,8 @@ namespace SpeedyChef
 
 		public void OnItemClick (object sender, int position)
 		{
-			int photoNum = position + 1;
-			System.Diagnostics.Debug.WriteLine (position);
+			int exampleInt = position + 1;
+			System.Diagnostics.Debug.WriteLine (exampleInt);
 		}
 
 		public bool OnQueryTextChange(string input)
@@ -283,13 +289,11 @@ namespace SpeedyChef
 		{
 			if (this.itemClick != null) 
 			{
-				if (this.Recid == 8) {
-					this.itemClick (this, position);
-					var intent = new Intent (callingActivity, typeof(RecipeViewActivity));
-					CachedData.Instance.PreviousActivity = callingActivity;
-					CachedData.Instance.mostRecentRecSel = this.Recid;
-					callingActivity.StartActivity (intent);
-				}
+				this.itemClick (this, position);
+				var intent = new Intent (callingActivity, typeof(RecipeViewActivity));
+				CachedData.Instance.PreviousActivity = callingActivity;
+				CachedData.Instance.mostRecentRecSel = this.mRObject.RecipeList[position].Item5;
+				callingActivity.StartActivity (intent);
 			}
 		}
 
@@ -311,7 +315,7 @@ namespace SpeedyChef
 				vh.LeftText.SetBackgroundColor (Android.Graphics.Color.Yellow);
 				vh.RightText.SetBackgroundColor (Android.Graphics.Color.Yellow);
 			}
-			else if (tupleInQuestion.Item3 == 2) {
+			  else if (tupleInQuestion.Item3 == 2) {
 				vh.LeftText.SetBackgroundColor (Android.Graphics.Color.GreenYellow);
 				vh.RightText.SetBackgroundColor (Android.Graphics.Color.GreenYellow);
 			} else if (tupleInQuestion.Item3 == 1) {

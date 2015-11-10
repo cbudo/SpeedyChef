@@ -9,6 +9,8 @@
 		<item name="android:windowBackground">@color/my_black</item>
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
 		<item name="android:itemTextAppearance">@style/menuTextAppearance</item>
+		<item name="android:actionBarStyle">@style/Theme.MyAppTheme.ActionBar</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.MyAppTheme.ActionBarWidgetTheme</item>
 	</style>
 	<style name="menuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/my_black</item>
@@ -42,4 +44,13 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:padding">20dp</item>
 	</style>
+
+	<style name="Theme.MyAppTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/orange_header</item>
+    </style>
+
+    <style name="Theme.MyAppTheme.ActionBarWidgetTheme" parent="@android:style/Theme.Holo">
+        <item name="android:textColorHint">#f00</item>
+        <item name="android:textColor">#00f</item>
+    </style>
 </resources>

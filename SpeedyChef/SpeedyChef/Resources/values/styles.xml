@@ -63,6 +63,8 @@
 		<item name="colorPrimary">#2196F3</item>
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#FF4081</item>
+		<item name="android:actionBarStyle">@style/Theme.MyAppTheme.ActionBar</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.MyAppTheme.ActionBarWidgetTheme</item>
 	</style>
 	<style name="PaginatedContent">
 		<item name="android:layout_width">wrap_content</item>
@@ -135,5 +137,14 @@
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="android:adjustViewBounds">true</item>
 	</style>
+
+    <style name="Theme.MyAppTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/orange_header</item>
+    </style>
+
+    <style name="Theme.MyAppTheme.ActionBarWidgetTheme" parent="@android:style/Theme.Holo">
+        <item name="android:textColorHint">#f00</item>
+        <item name="android:textColor">#00f</item>
+    </style>
 
 </resources>

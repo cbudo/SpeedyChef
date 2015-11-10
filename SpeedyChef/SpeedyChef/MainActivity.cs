@@ -41,12 +41,12 @@ namespace SpeedyChef
 
 			//SEARCH VIEW
 			SearchView searchView = FindViewById<SearchView> (Resource.Id.main_search);
-			searchView.SetBackgroundColor (Android.Graphics.Color.White);
+			searchView.SetBackgroundColor (Android.Graphics.Color.DarkOrange);
 			searchView.SetOnQueryTextListener ((SearchView.IOnQueryTextListener) this);
 			int id = Resources.GetIdentifier("android:id/search_src_text", null, null);
 			TextView textView = (TextView) searchView.FindViewById(id);
-			textView.SetTextColor(Android.Graphics.Color.Black);
-			textView.SetHintTextColor (Android.Graphics.Color.Black);
+			textView.SetTextColor(Android.Graphics.Color.White);
+			textView.SetHintTextColor (Android.Graphics.Color.White);
 			searchView.SetQueryHint ("Search Recipes...");
 			LinearLayout search_container = FindViewById<LinearLayout> (Resource.Id.search_container);
 			search_container.Click += (sender, e) => {
@@ -94,7 +94,12 @@ namespace SpeedyChef
 
 		public bool OnQueryTextSubmit(string input)
 		{
-			System.Console.WriteLine (input);
+			CachedData.Instance.LastSubmissionFromMain = input;
+			CachedData.Instance.SubmissionFromMain = true;
+			var intent = new Intent (this, typeof(SearchActivity));
+			CachedData.Instance.CurrHighLevelType = typeof(SearchActivity);
+			CachedData.Instance.PreviousActivity = this;
+			StartActivity (intent);
 			return true;
 		}
 

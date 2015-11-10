@@ -37,6 +37,7 @@
                 android:minWidth="25dp"
                 android:minHeight="25dp"
                 android:maxHeight="50dp"
+                android:padding="5dp"
                 android:id="@+id/main_search"
                 android:layoutMode="opticalBounds"
                 android:layout_width="match_parent"
