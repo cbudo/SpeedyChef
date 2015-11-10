@@ -9,6 +9,11 @@ using Android.OS;
 using v7Widget = Android.Support.V7.Widget;
 using System.Collections.Generic;
 
+using System.Json;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
+
 namespace SpeedyChef
 {
 	[Activity (Theme="@style/MyTheme", Label = "SpeedyChef", MainLauncher = true, Icon = "@drawable/icon")]
@@ -18,6 +23,8 @@ namespace SpeedyChef
 		v7Widget.RecyclerView.LayoutManager mLayoutManager;
 		PlannedMealAdapter mAdapter;
 		PlannedMealObject mObject;
+		object thisLock = new object();
+		JsonValue jsonDoc;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -48,6 +55,8 @@ namespace SpeedyChef
 				}
 			};
 
+
+
 			//MENU VIEW
 			Button menu_button = FindViewById<Button> (Resource.Id.menu_button);
 			menu_button.Click += (s, arg) => {
@@ -61,7 +70,20 @@ namespace SpeedyChef
 				};
 				menu.Show ();
 			};
+
+			this.GenerateUpcomingMeals ("http://speedychef.azurewebsites.net/search/GenerateUpcomingMeals?user=tester&date1=" + DateTime.Now + "&date2=" + DateTime.Now.AddDays (7.0), "GenerateUpcomingMeals");
 				
+		}
+
+		protected override void OnResume(){
+			base.OnResume ();
+			CachedData.Instance.CurrHighLevelType = this.GetType ();
+		}
+
+		public override void OnBackPressed(){
+			base.OnPause ();
+			CachedData.Instance.PreviousActivity = this;
+			Finish ();
 		}
 
 		public bool OnQueryTextChange(string input)
@@ -85,15 +107,51 @@ namespace SpeedyChef
 		{
 			return false;
 		}
+
+		public void GenerateUpcomingMeals(string inURL, string inMethod){
+			lock (thisLock) {
+				// Create an HTTP web request using the URL:
+				HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (inURL));
+				request.ContentType = "application/json";
+				request.Method = inMethod;
+
+				// Send the request to the server and wait for the response:
+				using (WebResponse response = request.GetResponse ()) {
+					// Get a stream representation of the HTTP web response:
+					using (Stream stream = response.GetResponseStream ()) {
+						// Use this stream to build a JSON document object:
+						this.jsonDoc = JsonObject.Load (stream);
+					}
+				}
+				int tempNum = this.mObject.NumElements;
+				for (int i = this.mObject.NumElements - 1; i > -1; i--) {
+					this.mObject.Remove (i);
+					this.mAdapter.NotifyItemRemoved (i);
+				}
+				for (int k = 0; k < this.jsonDoc.Count; k++) {
+					string[] separation = this.jsonDoc [k].ToString ().Split (';');
+					string finalSep0 = separation[0].Remove(0, 1);
+					string finalSep2 = separation[2].Remove((separation[2].Length - 1));
+					Tuple<string, string, string> newTuple = new Tuple<string, string, string> (finalSep0, separation [1], finalSep2);
+					this.mObject.Add (newTuple);
+					this.mAdapter.NotifyItemInserted (k);
+				}
+			}
+		}
 	}
 
 	public class PlannedMealViewHolder : v7Widget.RecyclerView.ViewHolder
 	{
-		public TextView mealDescription { get; private set; }
+		public TextView LeftText { get; private set; }
+		public TextView MiddleText { get; private set; }
+		public TextView RightText { get; private set; }
+
 		// Locate and cache view references
 		public PlannedMealViewHolder (View itemView) : base (itemView)
 		{
-			mealDescription = itemView.FindViewById<TextView> (Resource.Id.textView);
+			LeftText = itemView.FindViewById<TextView> (Resource.Id.leftTextView);
+			MiddleText = itemView.FindViewById<TextView> (Resource.Id.middleTextView);
+			RightText = itemView.FindViewById<TextView> (Resource.Id.rightTextView);
 		}
 	}
 
@@ -118,7 +176,10 @@ namespace SpeedyChef
 		OnBindViewHolder (v7Widget.RecyclerView.ViewHolder holder, int position)
 		{
 			PlannedMealViewHolder vh = holder as PlannedMealViewHolder;
-			vh.mealDescription.Text = mPMObject.getObjectInPosition(position);
+			Tuple<string, string, string> newTuple = mPMObject.getObjectInPosition (position);
+			vh.LeftText.Text = newTuple.Item1;
+			vh.MiddleText.Text = newTuple.Item2;
+			vh.RightText.Text = newTuple.Item3;
 		}
 
 		public override int ItemCount
@@ -130,22 +191,27 @@ namespace SpeedyChef
 	public class PlannedMealObject
 	{
 		public int NumElements;
-		public string[] mealArray;
+		public List<Tuple<string, string, string>> mealList;
 
 		public PlannedMealObject ()
 		{
-			mealArray = new string[5];
-			mealArray [0] = "10/28 Mom's Spaghetti";
-			mealArray [1] = "10/30 Halloween Cake w/ Candy Corn";
-			mealArray [2] = "10/31 All Saints Day Omelette";
-			mealArray [3] = "11/2 Wedding Present (Brownies)";
-			mealArray [4] = "11/3 Uncle Chuck's Chicken Noodle Soup";
-			NumElements = mealArray.Length;
+			mealList = new List<Tuple<string, string, string>>();
+			NumElements = mealList.Count;
 		}
 
-		public string getObjectInPosition(int position)
+		public Tuple<string, string, string> getObjectInPosition(int position)
 		{
-			return this.mealArray [position];
+			return this.mealList[position];
+		}
+
+		public void Add(Tuple<string, string, string> newTuple){
+			this.mealList.Add (newTuple);
+			this.NumElements = this.mealList.Count;
+		}
+
+		public void Remove(int position){
+			this.mealList.RemoveAt (position);
+			this.NumElements -= 1;
 		}
 	}
 }

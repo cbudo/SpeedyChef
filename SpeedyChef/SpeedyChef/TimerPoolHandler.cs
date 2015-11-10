@@ -2,6 +2,7 @@
 using Android.Views;
 using System.Collections.Generic;
 using Android.Widget;
+using Android.Support.V4.View;
 
 namespace SpeedyChef
 {
@@ -39,18 +40,21 @@ namespace SpeedyChef
 			AssignButtonFunction (t, button);
 		}*/
 
-		public void AssignFragView(RecipeStepTimerHandler t, TextView textView, Button button) {
+		public void AssignFragView(RecipeStepTimerHandler t, TextView textView, Button button, ViewPager vp) {
 			t.SetStepView (textView);
-			AssignButtonFunction (t, button);
+			AssignButtonFunction (t, button, vp);
 		}
 
-		private void AssignButtonFunction(RecipeStepTimerHandler t, Button button) {
+		private void AssignButtonFunction(RecipeStepTimerHandler t, Button button, ViewPager vp) {
 			//ViewGroup timerFrame = t.getTimerFrame ();
 			button.Click += delegate {
 				if (t.IsActive ()) {
 					DeactivateTimer(t, button);
 				} else {
 					ActivateTimer(t, button);
+					//ViewPager vp = ((StepsActivity)Activity).GetViewPager();
+					int pos = vp.CurrentItem + 1;
+					vp.SetCurrentItem (pos, true);
 					/*t.StartTimer ();
 					button.SetText (Resource.String.pause);
 					timerFrame.Visibility = ViewStates.Visible;*/

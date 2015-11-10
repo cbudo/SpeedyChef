@@ -127,8 +127,8 @@
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/searchButton"
-                    android:layout_width="500px"
-                    android:layout_height="100px"
+                    android:layout_width="600px"
+                    android:layout_height="150px"
                     android:layout_marginBottom="5px" />
             </LinearLayout>
             <LinearLayout
@@ -146,8 +146,8 @@
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/removeButton"
-                    android:layout_width="500px"
-                    android:layout_height="100px"
+                    android:layout_width="600px"
+                    android:layout_height="150px"
                     android:layout_marginRight="0.0dp"
                     android:layout_marginBottom="5px" />
             </LinearLayout>
@@ -166,8 +166,8 @@
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/returnButton"
-                    android:layout_width="500px"
-                    android:layout_height="100px"
+                    android:layout_width="600px"
+                    android:layout_height="150px"
                     android:layout_marginBottom="5px" />
             </LinearLayout>
         </RelativeLayout>
