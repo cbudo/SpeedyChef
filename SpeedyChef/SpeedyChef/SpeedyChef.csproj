@@ -188,7 +188,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\single_listview_item.xml" />
-  </ItemGroup>
 </Project>
