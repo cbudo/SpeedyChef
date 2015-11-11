@@ -43,10 +43,19 @@ namespace SpeedyChef
 			string[] tasks = new string[recipeTasks.Count];
 			for (int i = 0; i < recipeIngredients.Count; i++) {
 				//ingredients [i] = "Ingredient " + i;
-				ingredients [i] = recipeIngredients [i] ["Foodname"];
+				string ingredient = recipeIngredients[i]["Foodname"];
+				if (recipeIngredients [i] ["FoodAmount"] != null)
+					ingredient += ", " + recipeIngredients [i] ["FoodAmount"];
+				if (recipeIngredients [i] ["FoodAmountUnit"] != null)
+					ingredient += " " + recipeIngredients [i] ["FoodAmountUnit"];
+				
+				ingredients [i] = ingredient;
 			}
+
+			int recTime = 0;
 			for (int i = 0; i < recipeTasks.Count; i++) {
 				tasks [i] = recipeTasks [i] ["Taskdesc"];
+				recTime += recipeTasks [i] ["Tasktime"];
 			}
 			r.ingredients = ingredients;
 			r.tasks = tasks;
